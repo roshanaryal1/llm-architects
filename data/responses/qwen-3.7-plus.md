@@ -1,6 +1,6 @@
 ---
 ai_name: Qwen 3.7 Plus
-model_version_id: "qwen-3.7-plus (as labelled by user; exact ID not shown)"
+model_version_id: "free Qwen Chat — user labelled 'Qwen 3.7 Plus'; likely Qwen3.7 (Qwen3.8-Max became the flagship on 2026-08-03). Exact ID not shown in-answer."
 provider: Alibaba
 interface: web app (assumed)
 browsing_enabled: unknown — no sources cited, answer reads as from-knowledge

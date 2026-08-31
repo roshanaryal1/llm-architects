@@ -85,6 +85,27 @@ PRESETS: dict[str, dict] = {
         "ctx": 32000,
         "browser": True,
     },
+    "perplexity": {
+        # Perplexity's rule: Qwen3-Coder-30B-A3B as the single heavy worker, optional
+        # 4-8B helper, NO second large model co-resident, context capped 16k default.
+        "label": "Perplexity pick (Qwen3-Coder-30B-A3B + optional 4-8B helper, 16k ctx)",
+        "models": [("Qwen3-Coder-30B-A3B q4", 17.0, 0.09),
+                   ("4-8B utility helper (optional)", 5.0, 0.03)],
+        "ctx": 16000,
+        "browser": True,
+    },
+    "deepseek-deepthink": {
+        # DeepSeek Instant+DeepThink keeps THREE models loaded per its own diagram
+        # ("Ornith-1.0-9B" + "Qwen2.5-Coder-7B" always loaded, "Qwen3.5-35B-A3B" on
+        # demand) and calls the resulting ~32-34 GB "slight oversubscription acceptable".
+        # Model names are fabricated; sizes are as the response states them.
+        "label": "DeepSeek Instant+DeepThink pick (3 models 'always loaded'; names FABRICATED)",
+        "models": [("'Qwen3.5-35B-A3B' q4 [FABRICATED]", 22.0, 0.14),
+                   ("'Ornith-1.0-9B' q4 [FABRICATED]", 5.6, 0.03),
+                   ("'Qwen2.5-Coder-7B' q4", 4.0, 0.03)],
+        "ctx": 8000,
+        "browser": True,
+    },
     "over-budget-demo": {
         "label": "The classic mistake: heavy MoE + mid reasoner + browser all resident",
         "models": [("Qwen3-Coder-30B-A3B q4", 18.0, 0.09),
