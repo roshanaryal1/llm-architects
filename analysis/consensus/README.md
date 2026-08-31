@@ -1,8 +1,9 @@
 # `analysis/consensus/` — cross-response synthesis (RQ1)
 
-**Status: not started.** Formal synthesis begins once the remaining ~2 responses are in
-(currently 9: claude-sonnet-5, qwen-3.7-plus, deepseek-instant, deepseek-expert,
-deepseek-instant-deepthink, perplexity, gemini-3.1-pro, kimi-instant, mistral-large-3).
+**Status: not started.** Formal synthesis begins once the remaining ~1 response is in
+(currently 10: claude-sonnet-5, qwen-3.7-plus, deepseek-instant, deepseek-expert,
+deepseek-instant-deepthink, perplexity, gemini-3.1-pro, kimi-instant, mistral-large-3, gpt-5).
+Only Grok 4 (#6) and Llama 4 (#7) remain.
 
 ## What goes here
 
@@ -15,9 +16,9 @@ deepseek-instant-deepthink, perplexity, gemini-3.1-pro, kimi-instant, mistral-la
    non-consensus call explicitly labelled `[adjudicated]` with reasoning. This is the paper's
    synthesis section and the author's build brief.
 
-## Early signal (from 9 responses — provisional, not a result)
+## Early signal (from 10 responses — provisional, not a result)
 
-**Unanimous (9/9):**
+**Unanimous (10/10):**
 
 - MLX-family local inference (Ollama/MLX; llama.cpp as fallback/diagnostic).
 - 100+ logical agents = stored definitions/job-specs + task queue + small worker pool + model
@@ -45,15 +46,24 @@ deepseek-instant-deepthink, perplexity, gemini-3.1-pro, kimi-instant, mistral-la
   Gemini).
 - Research = **evidence-first / citation-grounded** (Claude, Qwen, both DeepSeek runs, Perplexity
   build a custom evidence pipeline; Gemini delegates it to **PaperQA2** off-the-shelf — 6/7).
-- **`sqlite-vec` vs ChromaDB** split: **Claude + Gemini + Kimi** pick sqlite-vec (in-process,
-  no daemon, "explicitly not Chroma"); Qwen + both DeepSeek runs pick ChromaDB; Perplexity picks
-  Qdrant embedded. Now 4/8 explicitly avoid a standalone vector daemon; only 3/8 want Chroma.
-- **Aider** is the modal coding harness (Qwen, both DeepSeek runs, Gemini, Kimi = 5/8); Claude +
-  DeepSeek-Expert pick Claude Code; Perplexity + (Kimi as secondary) pick OpenHands SDK.
-- **Managed research APIs vs self-host:** Kimi (Firecrawl + Perplexity Sonar) and Perplexity
-  (paid-API fallback) lean on hosted research; Claude + Qwen + Gemini + DeepSeek-Expert build a
-  custom evidence pipeline; Gemini uses PaperQA2. All 8 agree "store retrieved content before
-  synthesis; verify citations".
+- **`sqlite-vec` is now the plurality vector store (5/10):** Claude, Gemini, Kimi, Mistral, GPT-5
+  all pick it (in-process, no daemon, "explicitly not Chroma"); Qwen + both DeepSeek runs pick
+  ChromaDB (3/10); Perplexity picks Qdrant embedded; Mistral adds Mem0 as the later step.
+  **6/10 explicitly avoid running a standalone vector-DB daemon.**
+- **Coding harness:** **OpenHands** is now the plurality (Perplexity, Mistral, GPT-5, + Kimi/Qwen
+  as secondary = 4-6/10, always in a Docker sandbox); **Aider** 5/10 (Qwen, both DeepSeek runs,
+  Gemini, Kimi); **Claude Code** 2/10 (Claude, DeepSeek-Expert). GPT-5 uniquely adds **Qwen Code**
+  as the interactive console.
+- **Orchestration substrate splits 4 ways:** Claude Agent SDK (Claude) · **LangGraph** (Perplexity,
+  Mistral, Gemini) · **Pydantic AI** (GPT-5, with a dedicated argument against LangGraph-as-core) ·
+  plain custom Python (Qwen, Kimi, DeepSeek runs). All 10 agree the orchestrator is mostly
+  **your own code**, not a framework.
+- **Managed research APIs vs self-host:** Kimi (Firecrawl + Perplexity Sonar), GPT-5 (Exa Search +
+  Contents), Perplexity (paid-API fallback) lean on hosted research; Claude + Qwen + DeepSeek-Expert
+  + Mistral build a custom evidence pipeline; Gemini uses PaperQA2. **All 10** agree "store
+  retrieved content before synthesis; verify every citation; run a contradiction pass".
+- **M6-aware vs generic:** 4/10 engage the actual M6 spec (170 GB/s, dual NE, 2026-08-25 ship
+  date) — Claude, Mistral, Perplexity, GPT-5 — and all 4 are also the sourced/current responses.
 
 **Genuine disagreement:**
 
@@ -75,7 +85,11 @@ deepseek-instant-deepthink, perplexity, gemini-3.1-pro, kimi-instant, mistral-la
   invent it (both DeepSeek runs).
 - **Memory headroom:** keep 4–6 GB free (Perplexity, Claude) vs **oversubscribe to 32–34 GB**,
   "acceptable" (DeepSeek-DeepThink — outlier, likely bad advice).
-- **Sources:** Claude ~97, Perplexity ~17, everyone else **0**.
+- **Primary local model:** **Qwen3-Coder-30B-A3B** (Claude, Perplexity, DeepSeek-Expert, Kimi) vs
+  **Qwen3.6-35B-A3B** (Mistral alt, GPT-5 primary — GPT-5 explicitly rejects the 80B Qwen3-Coder-Next
+  as "wrong machine") vs dense 2024 32B (Qwen 3.7 Plus, Gemini) vs fabricated tags (DeepSeek non-expert).
+- **Sources:** Claude ~97, Mistral ~36 (rated), Perplexity ~17; GPT-5 / Kimi / Gemini give
+  inline attributions but 0 resolvable URLs; Qwen + all 3 DeepSeek runs give **0**.
 
 **Fabrication watch (RQ2):**
 
@@ -88,18 +102,26 @@ deepseek-instant-deepthink, perplexity, gemini-3.1-pro, kimi-instant, mistral-la
 | gemini-3.1-pro | none (real tools; stale model + cloud-fallback names — recency, not fabrication) |
 | kimi-instant | none (real tools; number inflation — "OpenCode 198k stars", "gpt-oss 98.3%" — and a stale cloud list) |
 | mistral-large-3 | none (~6 of ~36 "sources" are google.com/search URLs — evidence-quality, not fabrication) |
+| gpt-5 | none (~20 specific inline attributions, no resolvable URL list — evidence-quality, not fabrication) |
 | perplexity | none (2 arXiv IDs unverified — evidence-quality, not fabrication) |
 | claude-sonnet-5 | none |
 
 Pattern so far: **the fabrication is concentrated in DeepSeek's non-"expert" free modes**, not
-across vendors — a within-provider mode effect worth calling out in the paper. **7 of 9 responses
+across vendors — a within-provider mode effect worth calling out in the paper. **8 of 10 responses
 fabricate nothing.** The more interesting axis is a 3-way recency/rigour split:
 
-1. **Sourced + current + M6-aware** — `claude-sonnet-5`, `mistral-large-3`, `perplexity`
-   (all browsed; explicit methodology/limitations; engaged 170 GB/s + ship dates + the
-   GLM-5.2 / Kimi K3 / DeepSeek V4 frontier landscape).
-2. **Unsourced + ~12-18 months behind** — `qwen-3.7-plus`, `gemini-3.1-pro`, `kimi-instant`
+1. **Sourced + current + M6-aware (4/10)** — `claude-sonnet-5`, `mistral-large-3`, `perplexity`,
+   `gpt-5` (browsed or retrieval-assisted; engage 170 GB/s + ship dates + the current
+   GLM-5.2 / Kimi K3 / DeepSeek V4 / Qwen3.6 frontier landscape; hedge every throughput number).
+   Of these, only Claude and Perplexity give a resolvable URL list; Mistral gives a rated one;
+   GPT-5 gives inline attributions only.
+2. **Unsourced + ~12-18 months behind (3/10)** — `qwen-3.7-plus`, `gemini-3.1-pro`, `kimi-instant`
    (real tools, but 2024-era models and/or `Claude 3.5 Sonnet` as the cloud fallback; no M6 facts).
-3. **Confident futurism** — `deepseek-instant`, `deepseek-instant-deepthink`
+3. **Confident futurism (2/10)** — `deepseek-instant`, `deepseek-instant-deepthink`
    (invent plausible-sounding 2026 tools/models — Rapid-MLX, DSH, Ornith-1.0-9B, WhipDesk …).
    `deepseek-expert` (same base model, "expert" mode) escapes this into bucket 2.
+
+Emerging cross-cut: the 4 responses in bucket 1 also **converge hardest on the architecture**
+(MLX + 1 large + 1 small worker + SQLite + sqlite-vec + OpenHands-in-Docker + Tailscale + launchd),
+while buckets 2 and 3 diverge more — worth testing whether "grounded in current reality" predicts
+"agrees with the consensus".

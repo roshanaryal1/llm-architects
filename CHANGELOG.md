@@ -92,8 +92,25 @@ All notable changes to the corpus and analysis. Format loosely follows
   RDMA-over-Thunderbolt clustering. Weakness: ~6 of ~36 "sources" are `google.com/search` URLs.
 - `decisions-matrix.csv`: `mistral_large3` column filled (39 axes; 9 of 12 columns filled).
 
+### Added — 2026-08-31 — response 10 (GPT-5.6 Luna) — closes #5
+- Web-checked ChatGPT free tier: default since **2026-08-06** is **GPT-5.6 Luna** (smallest of
+  the GPT-5.6 family: Luna / Terra / Sol). Recorded in the capture's `model_version_id`.
+- `gpt-5` — OpenAI ChatGPT free tier. Trust: **HIGH** — rivals `mistral-large-3` and `perplexity`,
+  close to the anchor. 87-section architecture review; every named tool real, current and
+  correctly described (Pydantic AI durable-execution integrations, OpenHands headless
+  auto-approval, Exa Agent beta, Letta MemFS, Mem0 2026 benchmark caveats, sqlite-vec pre-v1,
+  Tailnet Lock). Engaged M6 specifics (170 GB/s, dual NE, ship date). Strong epistemic discipline
+  ("benchmarks as capability indicators not throughput"); zero fabrications. Distinctive:
+  **Pydantic AI** orchestration substrate (dedicated section arguing against LangGraph-as-core);
+  **Qwen3.6-35B-A3B** primary (rejects the 80B Qwen3-Coder-Next); **Qwen Code** interactive
+  console; **Exa Search + Contents**; **`capability://` filesystem broker**; **`privacy_class`
+  per-task data routing**; **queue-aware keep-awake**. Weakness: ~20 inline factual attributions
+  but no resolvable Sources list.
+- `memory_budget.py`: +`gpt5` preset (Qwen3.6-35B-A3B 4-bit + Qwen3.5-4B both resident → ~4 GB over).
+- `decisions-matrix.csv`: `gpt5` column filled (39 axes; 10 of 12 columns).
+
 ### Pending
-- Responses: GPT-5, Grok 4, Llama 4.
+- Responses: Grok 4 (#6), Llama 4 (#7). Optional follow-up probes (#12–#14).
 - `prompts/prompt-v2.md` / `prompt-v3.md` paraphrases for prompt-sensitivity (RQ6).
 - Second independent rater for the rubric; inter-rater agreement.
 - `analysis/consensus/` synthesis once ≥ 6 responses are in.
