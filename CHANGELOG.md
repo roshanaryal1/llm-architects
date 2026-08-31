@@ -109,8 +109,25 @@ All notable changes to the corpus and analysis. Format loosely follows
 - `memory_budget.py`: +`gpt5` preset (Qwen3.6-35B-A3B 4-bit + Qwen3.5-4B both resident → ~4 GB over).
 - `decisions-matrix.csv`: `gpt5` column filled (39 axes; 10 of 12 columns).
 
+### Added — 2026-08-31 — response 11 (Meta / Llama 4) — closes #7
+- `meta-llama-4` — converted from the raw `./data/responses/meta.md` the user dropped (wrapped as
+  a proper capture, body byte-for-byte unchanged; renamed to the slug convention). Meta AI /
+  hosted Llama 4; exact variant + host not disclosed. Trust: **LOW**.
+- **The most-cited response in the corpus (99 numbered refs + a Sources list) and the lowest
+  citation quality.** ~60% of citations are junk `github.com/<user>/<repo>/commit|pull|issues|SKILL.md`
+  URLs cited as authoritative; several "support" fabricated tools. Recycles the fabricated
+  **`Rapid-MLX`** (+ the same `raullenchai` Homebrew tap `deepseek-instant` invented) and
+  **`Gemma 4`**; invents a fake `Qwen3.5-35B-A3B` OpenRouter id; invents an entire
+  **`OpenClaw` / `Claw Code` / `Clawtrol` / `memo` / `cplt` / `nono`** ecosystem; **gets M6
+  bandwidth wrong** ("~300+ GB/s"; actual is 170); mis-titles a real arXiv paper. The architecture
+  *shape* lands on consensus (MLX + 1 large / 2-3 small workers + SQLite WAL + LiteLLM +
+  PydanticAI/LangGraph + launchd + Tailscale Serve + coordinator/worker) but every load-bearing
+  product pick is fabricated.
+- `memory_budget.py`: +`meta` preset (35B-A3B + Qwen2.5-Coder-7B both resident → ~7 GB over).
+- `decisions-matrix.csv`: `llama4` column filled (39 axes; **11 of 12 columns** — only `grok4` left).
+
 ### Pending
-- Responses: Grok 4 (#6), Llama 4 (#7). Optional follow-up probes (#12–#14).
+- Response: Grok 4 (#6). Optional follow-up probes (#12–#14). Then #8 #9 #10 #11.
 - `prompts/prompt-v2.md` / `prompt-v3.md` paraphrases for prompt-sensitivity (RQ6).
 - Second independent rater for the rubric; inter-rater agreement.
 - `analysis/consensus/` synthesis once ≥ 6 responses are in.
