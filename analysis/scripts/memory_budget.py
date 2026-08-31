@@ -152,6 +152,16 @@ PRESETS: dict[str, dict] = {
         "ctx": 16000,
         "browser": True,
     },
+    "meta": {
+        # Meta / Llama 4: one hot large model (its "Qwen3.5-35B-A3B" fabricated tag, ~20 GB)
+        # kept resident (keep_alive=-1) + Qwen2.5-Coder-7B (~5 GB) small tier + OrbStack +
+        # dev tools + browser. Its own table: "~32 GB tight but feasible, single large only".
+        "label": "Meta/Llama 4 pick (35B-A3B ~20 GB resident + Qwen2.5-Coder-7B ~5 GB + OrbStack)",
+        "models": [("35B-A3B 4-bit ('Qwen3.5-35B-A3B' — fabricated tag)", 20.0, 0.07),
+                   ("Qwen2.5-Coder-7B Q4_K_M", 5.0, 0.03)],
+        "ctx": 32000,
+        "browser": True,
+    },
     "over-budget-demo": {
         "label": "The classic mistake: heavy MoE + mid reasoner + browser all resident",
         "models": [("Qwen3-Coder-30B-A3B q4", 18.0, 0.09),
