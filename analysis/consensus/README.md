@@ -1,8 +1,8 @@
 # `analysis/consensus/` — cross-response synthesis (RQ1)
 
-**Status: not started.** Formal synthesis begins once the remaining ~4 responses are in
-(currently 7: claude-sonnet-5, qwen-3.7-plus, deepseek-instant, deepseek-expert,
-deepseek-instant-deepthink, perplexity, gemini-3.1-pro).
+**Status: not started.** Formal synthesis begins once the remaining ~3 responses are in
+(currently 8: claude-sonnet-5, qwen-3.7-plus, deepseek-instant, deepseek-expert,
+deepseek-instant-deepthink, perplexity, gemini-3.1-pro, kimi-instant).
 
 ## What goes here
 
@@ -15,9 +15,9 @@ deepseek-instant-deepthink, perplexity, gemini-3.1-pro).
    non-consensus call explicitly labelled `[adjudicated]` with reasoning. This is the paper's
    synthesis section and the author's build brief.
 
-## Early signal (from 7 responses — provisional, not a result)
+## Early signal (from 8 responses — provisional, not a result)
 
-**Unanimous (7/7):**
+**Unanimous (8/8):**
 
 - MLX-family local inference (Ollama/MLX; llama.cpp as fallback/diagnostic).
 - 100+ logical agents = stored definitions/job-specs + task queue + small worker pool + model
@@ -45,11 +45,15 @@ deepseek-instant-deepthink, perplexity, gemini-3.1-pro).
   Gemini).
 - Research = **evidence-first / citation-grounded** (Claude, Qwen, both DeepSeek runs, Perplexity
   build a custom evidence pipeline; Gemini delegates it to **PaperQA2** off-the-shelf — 6/7).
-- **`sqlite-vec` vs ChromaDB** splits cleanly: Claude + Gemini pick sqlite-vec (in-process, no
-  daemon); Qwen + both DeepSeek runs pick ChromaDB; Perplexity picks Qdrant embedded. 3/7 now
-  explicitly avoid a standalone vector daemon.
-- **Aider** is the modal coding harness (Qwen, both DeepSeek runs, Gemini = 4/7); Claude + DeepSeek-
-  Expert pick Claude Code; Perplexity picks OpenHands SDK.
+- **`sqlite-vec` vs ChromaDB** split: **Claude + Gemini + Kimi** pick sqlite-vec (in-process,
+  no daemon, "explicitly not Chroma"); Qwen + both DeepSeek runs pick ChromaDB; Perplexity picks
+  Qdrant embedded. Now 4/8 explicitly avoid a standalone vector daemon; only 3/8 want Chroma.
+- **Aider** is the modal coding harness (Qwen, both DeepSeek runs, Gemini, Kimi = 5/8); Claude +
+  DeepSeek-Expert pick Claude Code; Perplexity + (Kimi as secondary) pick OpenHands SDK.
+- **Managed research APIs vs self-host:** Kimi (Firecrawl + Perplexity Sonar) and Perplexity
+  (paid-API fallback) lean on hosted research; Claude + Qwen + Gemini + DeepSeek-Expert build a
+  custom evidence pipeline; Gemini uses PaperQA2. All 8 agree "store retrieved content before
+  synthesis; verify citations".
 
 **Genuine disagreement:**
 
@@ -82,6 +86,7 @@ deepseek-instant-deepthink, perplexity, gemini-3.1-pro).
 | deepseek-expert | none (real tools; only stale point-versions) |
 | qwen-3.7-plus | none (stale but real) |
 | gemini-3.1-pro | none (real tools; stale model + cloud-fallback names — recency, not fabrication) |
+| kimi-instant | none (real tools; number inflation — "OpenCode 198k stars", "gpt-oss 98.3%" — and a stale cloud list) |
 | perplexity | none (2 arXiv IDs unverified — evidence-quality, not fabrication) |
 | claude-sonnet-5 | none |
 

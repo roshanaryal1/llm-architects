@@ -61,8 +61,25 @@ All notable changes to the corpus and analysis. Format loosely follows
   Sonnet" / "DeepSeek-V3"), no M6-specific facts.
 - `memory_budget.py`: +`gemini` preset. `decisions-matrix.csv`: 39 axes × 11 columns (7 filled).
 
+### Added — 2026-08-31 — CI fix + response 8 (Kimi Instant)
+- **CI:** fixed the always-failing `markdownlint` job (issue #1, PR #2). `.markdownlint.json`
+  disables cosmetic rules that verbatim captures trip; the job now lints authored prose only
+  (`data/responses/**` and `analysis/findings/**` exempt). Deprecated actions bumped
+  (checkout@v5, setup-node@v5, setup-python@v6). `validate` workflow green on `main`.
+- Web-checked Kimi free tier: latest is **Kimi K3** (2.8T MoE, 1M ctx, weights 2026-07-27);
+  interim K2.5/K2.6/K2.7-Code. Recorded in the capture's `model_version_id`.
+- `kimi-instant` — Moonshot AI, free chat, Instant mode. Trust: MEDIUM-HIGH. Ran web searches
+  (inline `cite web_search:N#M` markers — 0 resolvable URLs). All load-bearing tools real
+  (Aider, OpenCode, OpenHands, Goose, LiteLLM, Firecrawl, Tavily, Perplexity Sonar, sqlite-vec,
+  Cognee, Tailscale). Distinctive: **Ollama-0.19-MLX as the server**, **LiteLLM proxy** as a core
+  router, **Firecrawl + Perplexity Sonar** managed research (free tiers) instead of self-hosted
+  SearXNG, **sqlite-vec** camp (with Claude + Gemini). Weak: stale cloud fallback ("Claude 3.5
+  Sonnet / GPT-4o"), inflated numbers ("OpenCode 198k stars", "gpt-oss 98.3%"), no M6 facts.
+- `memory_budget.py`: +`kimi`, +`mistral`, +`mistral-two-resident` presets.
+- `decisions-matrix.csv`: 39 axes × 12 columns (8 filled).
+
 ### Pending
-- Responses: GPT-5, Grok 4, Mistral Large 3, Llama 4.
+- Responses: Mistral Large 3 (raw at repo root, next up), GPT-5, Grok 4, Llama 4.
 - `prompts/prompt-v2.md` / `prompt-v3.md` paraphrases for prompt-sensitivity (RQ6).
 - Second independent rater for the rubric; inter-rater agreement.
 - `analysis/consensus/` synthesis once ≥ 6 responses are in.
