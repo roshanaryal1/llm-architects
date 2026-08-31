@@ -1,0 +1,13 @@
+system,slug,canonical,base_model,mode,notes
+Anthropic Claude,claude-sonnet-5,yes,Claude Sonnet 5,Claude Code (browsing),anchor — not a blind peer; excluded from independent-sample tallies
+Mistral,mistral-large-3,yes,Mistral Large 3 (675B/41B),Le Chat free,—
+OpenAI ChatGPT,gpt-5,yes,GPT-5.6 Luna,free default,—
+Perplexity,perplexity,yes,Sonar (auto-select),free,—
+Moonshot Kimi,kimi-instant,yes,Kimi (K2.7/K3-class),free / Instant mode,only Kimi capture
+Google Gemini,gemini-3.1-pro,yes,Gemini 3.x Pro,free / Gemini app,only Gemini capture
+Alibaba Qwen,qwen-3.7-plus,yes,Qwen ~3.7,free chat,only Qwen capture
+Meta,meta-llama-4,yes,Llama 4 (variant not disclosed),Meta AI / hosted,only Meta capture
+DeepSeek,deepseek-expert,yes,DeepSeek-V4-Pro,DeepThink / deep-reasoning mode,CANONICAL DeepSeek answer — best-effort mode
+DeepSeek,deepseek-instant,no,DeepSeek-V4-Pro,fast / non-thinking mode,mode-variant — RQ2/RQ6 only; not counted in RQ1 per-system tallies
+DeepSeek,deepseek-instant-deepthink,no,DeepSeek-V4-Pro,Instant + DeepThink toggle,mode-variant — RQ2/RQ6 only; not counted in RQ1 per-system tallies
+xAI Grok,grok-4,,Grok 4,free (grok.com / X),PENDING (#6)
