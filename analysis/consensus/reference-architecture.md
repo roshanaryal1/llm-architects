@@ -1,351 +1,169 @@
 # Reference architecture
 
-**Purpose:** a build-ready synthesis of the 10 independent non-anchor system recommendations. This document deliberately separates **consensus constraints** from `[adjudicated]` implementation choices.
+The merged design: every layer is either the **cross-model consensus** (with the /10 count) or an
+**`[adjudicated]`** call resolving a split (reasoning in `disagreements.md`). This is the paper's
+synthesis section and the build brief for the real system.
 
-## 1. Design principles
+Target: Apple M6 Mac mini · 32 GB unified · ~170 GB/s · 512 GB internal + 1 TB external SSD ·
+always-on · primarily local.
 
-1. **Local-first:** the system remains useful with no paid cloud LLM.
-2. **Memory is the primary constraint:** design for 32 GB unified memory, not for an abstract model maximum.
-3. **One heavy inference slot:** do not co-reside two large models.
-4. **100 logical agents, bounded physical workers:** agent definitions are cheap; workers are scarce.
-5. **Durable state:** process memory is never the source of truth for task progress.
-6. **Evidence before synthesis:** research output is generated only from verified evidence.
-7. **Least privilege:** agents run as a dedicated non-admin user; stronger isolation is applied to untrusted execution.
-8. **Private remote access:** no public model endpoint; remote control goes through the private tailnet.
-9. **Replaceable components:** inference servers, coding executors and optional frameworks sit behind narrow interfaces.
+---
 
-## 2. System topology
+## 1. The stack
 
-```text
-                         ┌─────────────────────────┐
-                         │   Private remote UI/API  │
-                         │   FastAPI + dashboard    │
-                         └────────────┬────────────┘
-                                      │ Tailscale
-                                      ▼
-┌────────────────────────────────────────────────────────────────┐
-│                        SUPERVISOR                               │
-│  policy → planner → scheduler → leases → recovery → audit     │
-└──────────────┬──────────────────────────┬──────────────────────┘
-               │                          │
-               ▼                          ▼
-       ┌───────────────┐          ┌─────────────────┐
-       │ SQLite WAL    │          │ Model router    │
-       │ tasks/leases/ │          │ type + quality  │
-       │ events/audit  │          │ + memory/load   │
-       └───────────────┘          └────────┬────────┘
-                                          │
-                         ┌────────────────┴────────────────┐
-                         ▼                                 ▼
-                ┌────────────────┐                 ┌──────────────┐
-                │ Heavy worker   │                 │ Light pool   │
-                │ 1 slot         │                 │ 2–3 workers  │
-                └───────┬────────┘                 └──────┬───────┘
-                        │                                  │
-                        ▼                                  ▼
-                ┌────────────────┐                 ┌──────────────┐
-                │ Local inference│                 │ classifiers/ │
-                │ MLX-family     │                 │ summaries/IO │
-                └────────────────┘                 └──────────────┘
-                         │
-                         ▼
-              ┌──────────────────────┐
-              │ Coding / research   │
-              │ executors           │
-              │ Aider/OpenHands/etc │
-              └──────────────────────┘
-                         │
-                         ▼
-              ┌──────────────────────┐
-              │ Evidence + artifacts │
-              │ SQLite/filesystem    │
-              └──────────────────────┘
-```
-
-This is a **coordinator/worker architecture, not a swarm**. A task may create many logical specialist definitions, but only a bounded number of physical workers execute at once.
-
-## 3. Model and inference layer
-
-### [adjudicated] Heavy model
-
-Start with a **Qwen3-Coder-30B-A3B-class 4-bit MoE** as the benchmark baseline. The corpus gives this family the strongest direct support, while newer Qwen3.6-35B-A3B is a credible alternative. Do not encode the model name as permanent truth: benchmark candidate checkpoints on the actual M6 for quality, memory footprint, prompt processing and sustained generation.
-
-### [adjudicated] Inference runtime
-
-Use an **MLX-family serving adapter**, initially favouring `mlx-lm` or the best validated MLX server available at build time. Keep llama.cpp and Ollama as compatibility/fallback implementations behind the adapter. Do not make the supervisor depend directly on one server API.
-
-### Residency policy
-
-- One large model resident at a time.
-- One small helper may remain resident if measured memory headroom is safe.
-- Additional models load on demand.
-- Model swapping is task-policy-driven, not per trivial task.
-- Keep a hard RAM safety floor and monitor unified-memory pressure.
-
-### [adjudicated] Router
-
-Use a small deterministic policy table first:
-
-| Task class | Default route |
-|---|---|
-| classification / simple extraction | light model |
-| ordinary coding | heavy model + coding executor |
-| research retrieval / parsing | tool-only where possible; light model for extraction |
-| deep reasoning / synthesis | heavy model |
-| verification | light model first, heavy model when ambiguity is high |
-| cloud escalation | only after policy gate |
-
-Train a learned router only after enough task telemetry exists to justify it.
-
-## 4. Agent model
-
-An **agent is a durable logical definition**, not a running model process. Store:
-
-- `agent_id`
-- role
-- objective
-- model preference
-- tool allowlist
-- workspace
-- memory scope
-- permission tier
-- context/token budget
-- max steps
-- state
-
-The supervisor can create specialist definitions dynamically and enqueue tasks against them. Physical concurrency remains bounded by worker and model semaphores.
-
-## 5. Orchestration
-
-### [adjudicated] Supervisor
-
-Build a small Python supervisor around `asyncio`, SQLite and explicit state transitions. Use a framework such as LangGraph or PydanticAI only inside workflows where its durability/state semantics provide measurable value.
-
-The supervisor owns:
-
-- task decomposition
-- priority
-- leases
-- model routing
-- concurrency limits
-- approvals
-- retries
-- checkpointing
-- recovery
-- audit events
-
-This keeps the architecture portable if an agent framework changes or disappears.
-
-## 6. Coding execution
-
-### [adjudicated] Two execution modes
-
-**Interactive/git-safe:** Aider or OpenCode.
-
-**Autonomous/untrusted:** OpenHands inside a stronger sandbox, with per-task worktrees.
-
-Claude Code may be used as an optional accelerator where available, but it is not a required architectural dependency.
-
-Every autonomous coding task follows:
-
-```text
-plan → branch/worktree → edit → test → inspect diff → fix →
-repeat boundedly → commit → report → optional PR/review
-```
-
-Destructive operations require an approval policy regardless of model confidence.
-
-## 7. Research subsystem
-
-Research is a deterministic evidence pipeline:
-
-```text
-query
-  ↓
-discover sources
-  ↓
-filter primary/high-quality sources
-  ↓
-retrieve and store source material
-  ↓
-extract claims + evidence excerpts
-  ↓
-verify each claim against its source
-  ↓
-run contradiction detection
-  ↓
-assign verification/confidence status
-  ↓
-synthesize only from verified evidence
-  ↓
-validate citations
-```
-
-The evidence ledger is the source of truth. A generated claim without a supporting evidence record is `UNVERIFIED`, not silently accepted.
-
-## 8. Memory
-
-### Day one
-
-**SQLite + filesystem.** SQLite stores structured state, claims, evidence, tasks, leases and metadata. Markdown/JSON artifacts remain human-readable and versionable.
-
-### [adjudicated] Semantic retrieval
-
-Start with **sqlite-vec (embedded)** plus BM25/FTS. Do not deploy a standalone Qdrant/Chroma/Milvus/Weaviate service initially.
-
-### [adjudicated] Growth path
-
-Add a richer embedded vector layer only when retrieval tests show SQLite/FTS/vec is inadequate. Add a knowledge graph only after measured workloads demonstrate a multi-hop, temporal or entity-relationship need. The corpus does not justify Neo4j on day one.
-
-## 9. Queue and recovery
-
-### [adjudicated] Queue
-
-Use a **SQLite WAL-backed task queue**. A task has at least:
-
-`queued → leased → running → succeeded | failed | interrupted | cancelled`
-
-Leases expire. On supervisor restart, stale `running` tasks become `interrupted` and are requeued according to retry policy.
-
-Tasks should be idempotent where possible. Destructive actions must never be replayed blindly after recovery.
-
-Redis is a future scaling option, not a day-one dependency.
-
-## 10. Security and sandboxing
-
-Run the system under a **dedicated non-admin macOS account**. Use separate workspaces per project/task and strict filesystem permissions.
-
-### Capability tiers
-
-- **Autonomous:** safe local edits, tests, retrieval and non-destructive tooling.
-- **Notify/log:** actions with meaningful side effects; execute and record notification where policy permits.
-- **Approve:** network-sensitive, publication, account, deletion or infrastructure changes.
-- **Never:** credential extraction, privilege escalation, destructive host operations, arbitrary public exposure.
-
-### [adjudicated] Strong sandbox
-
-Use Docker/OrbStack or an equivalent isolated runtime for untrusted autonomous code when the workload warrants it. Do not require containers for every ordinary task because 32 GB makes unnecessary virtualization overhead costly.
-
-Secrets live in Keychain/environment injection outside the agent workspace; never write credentials into agent files.
-
-## 11. Remote control
-
-### [adjudicated] Network
-
-Use **Tailscale only** for routine remote access. Bind the dashboard/API to the tailnet interface or loopback-proxied path. Do not expose Ollama/MLX/llama.cpp endpoints directly to the Internet.
-
-### Control plane
-
-A small FastAPI service should expose:
-
-- system health
-- queue status
-- task submission/status
-- worker/model status
-- logs
-- approvals
-- emergency stop
-
-The emergency-stop endpoint should stop new work and request orderly cancellation of active tasks before any stronger kill operation.
-
-## 12. Always-on operation
-
-Use:
-
-- `launchd` `RunAtLoad` + `KeepAlive`
-- a separate watchdog/heartbeat
-- structured rotating logs
-- `caffeinate`/appropriate `pmset` policy while work is queued
-- startup recovery from SQLite
-
-Prefer queue-aware sleep prevention: when the queue is empty for a configured period, normal sleep can resume. When work is pending, the machine stays awake on AC power.
-
-## 13. Storage layout
-
-### Internal 512 GB SSD
-
-Keep latency-sensitive state here:
-
-- macOS and applications
-- Python/runtime environments
-- supervisor and inference binaries
-- SQLite databases/WAL
-- active repositories/worktrees
-- active cache
-- **[adjudicated] hot model weights** when practical
-
-Maintain a substantial free-space reserve; do not fill the internal disk simply because capacity exists.
-
-### External 1 TB SSD
-
-Use for:
-
-- full model library
-- research corpus and PDFs
-- datasets
-- archived repositories
-- experiment artifacts
-- long-term logs
-- backup sets
-- cold model weights
-
-The external SSD is storage, **not itself a backup strategy**; important state should have an additional backup destination.
-
-## 14. Cloud escalation policy
-
-Cloud is an optional second opinion/escape hatch.
-
-Escalate only when:
-
-1. local confidence is below threshold, or
-2. the task is explicitly marked frontier/hard, and
-3. privacy classification permits it, and
-4. the budget allows it, and
-5. the user/task policy permits external processing.
-
-Redact sensitive data before escalation. The system must remain operational if the cloud provider is unavailable.
-
-## 15. What not to build initially
-
-- Kubernetes/K3s
-- multiple concurrent large inference servers
-- a standalone vector-DB cluster
-- Neo4j or another heavy graph database
-- Redis/Celery before SQLite is measured as insufficient
-- a swarm of persistent LLM processes
-- public model endpoints
-- GUI/computer-use as the primary control path
-- a mega-stack containing every agent framework
-- a learned router before telemetry exists
-- a 70B+/80B dense model merely because it is larger
-
-## 16. Non-consensus decisions ledger
-
-| Decision | Status | Why |
+| Layer | Choice | Basis |
 |---|---|---|
-| Heavy model checkpoint | **[adjudicated]** | Start from Qwen3-Coder-30B-A3B class; benchmark newer 35B-A3B candidate. |
-| Inference server | **[adjudicated]** | MLX-family adapter; validate mlx-lm/Ollama/llama.cpp alternatives on real hardware. |
-| Orchestration framework | **[adjudicated]** | Custom supervisor owns architecture; frameworks are subordinate components. |
-| Coding executor | **[adjudicated]** | Aider/OpenCode interactive; OpenHands for autonomous sandboxed work. |
-| Vector implementation | **[adjudicated]** | sqlite-vec + FTS initially; migrate only on measured retrieval need. |
-| Sandbox depth | **[adjudicated]** | Dedicated user for ordinary work; stronger container/VM isolation for untrusted code. |
-| Queue backend | **[adjudicated]** | SQLite WAL first; Redis only after scale evidence. |
-| Cloud | **[adjudicated]** | Optional, privacy/budget/confidence gated. |
-| Monitoring | **[adjudicated]** | Native metrics + structured logs first; Prometheus/Grafana later if needed. |
+| **Inference engine** | `mlx-lm` server, fronted by **`llama-swap`** (request models by alias, TTL-unload idle) | MLX family `[consensus 10/10]`; server + swap layer `[adjudicated]` — Ollama-MLX is the acceptable simpler substitute |
+| **Heavy model** (1 resident) | **Qwen3-Coder-30B-A3B** 4-bit MLX (MoE, ~3B active) — or **Qwen3.6-35B-A3B** 4-bit if it benchmarks better on the unit | `[adjudicated]` — plurality real pick (4/10); "~30–35B Qwen MoE" class `[consensus 7/10]` |
+| **Small model** (1 resident) | **Qwen3-4B** (or 7–9B) 4-bit — routing, classification, extraction, summaries, cheap verification | `[consensus 10/10]` |
+| **Coding fallback** | **Devstral Small 2 24B** 4-bit — kept tested, swapped in if the MoE stalls | named by 4+ |
+| **Cloud burst** (optional, off by default) | one frontier API behind the router, `$/day` capped, `privacy_class`-gated | local-first + optional cloud `[consensus 7/10]` |
+| **Orchestrator** | **thin custom Python supervisor** (asyncio) — owns queue, scheduler, resource governor, permissions, remote control | `[consensus 10/10]` "no single harness fits" |
+| **Durable sub-graphs** | **LangGraph** *inside* the supervisor for the branchy research + coding flows only (not the outer loop) | `[adjudicated]` — plurality (5/10); `gpt-5`'s "framework ≠ operating system" argument |
+| **Coding — autonomous** | **OpenHands** in a container sandbox (long-horizon unattended, worktree per task) | `[consensus 8/10]` |
+| **Coding — interactive** | **Aider** (git-native, every change committed, transparent) | `[consensus 8/10]` |
+| **Tool protocol** | **MCP** for filesystem / terminal / git / browser / research / documents | `[consensus]` |
+| **Browser** | **Playwright** (headless, deterministic); GUI/computer-use only as a sandboxed last resort | `[consensus 10/10]` — "API > DOM > browser automation > GUI vision" |
+| **Task queue** | **SQLite** (WAL), durable states `queued│leased│running│blocked│done│failed`, lease-timeout requeue | `[consensus 8/10]` — Redis only when multi-machine |
+| **Model router** | **~80-line rule table**: task class + context size + budget + offline? → tier | `[consensus 10/10]`; LiteLLM optional if/when cloud is enabled |
+| **Memory — base** | **filesystem Markdown** (`AGENTS.md`, `MEMORY.md`, per-project notes) + **SQLite** (tasks, decisions, runs, evidence, audit) + **FTS5** | `[consensus 10/10]` |
+| **Memory — semantic** | **`sqlite-vec`** in the same DB file — added *only after* FTS5 retrieval starts missing things | `[adjudicated]` — plurality (5–6/10); Chroma acceptable if already known |
+| **Memory — later** | **Graphiti** (temporal / "facts supersede each other") or Cognee/Mem0 — only on proven multi-hop / cross-project need | `[consensus 10/10]`; **no Neo4j / graph DB on day 1** `[consensus 10/10]` |
+| **Research pipeline** | fixed stages: plan → discover (SearXNG **or** a managed API + OpenAlex/Semantic Scholar/arXiv/Crossref) → acquire (PyMuPDF; Marker/GROBID for structure) → extract `(claim, source, snippet, offsets)` → **independent verify** → **contradiction pass** → synthesize **from the verified-claims table only** → resolve DOIs | `[consensus 10/10]` |
+| **Sandbox — base** | **dedicated non-admin macOS user** (`agent`) + workspace jail on the external SSD (symlink-resolved `startswith(allowed_root)`) | `[consensus 10/10]` |
+| **Sandbox — per task** | **Colima** or **Apple `container`** (macOS 26) for OpenHands + untrusted code; **`sandbox-exec`** for one-off tool calls; default-deny egress + allowlist | `[adjudicated]` — avoids Docker Desktop; matches the anchor |
+| **Secrets** | **macOS Keychain** (your account) + a broker that issues short-lived scoped tokens; **never** in the agent's filesystem/context/env | `[consensus 10/10]` |
+| **Permissions** | explicit **autonomous / approval-required / never** tiers + destructive-command blocklist + **append-only audit log** (every tool call, model call, approval) | `[consensus 10/10]` |
+| **Always-on** | **`launchd`** LaunchDaemon (`RunAtLoad` + `KeepAlive` + `ThrottleInterval`) for the supervisor + a **separate watchdog** LaunchDaemon (health-check → `kickstart -k`) | `[consensus 10/10]` |
+| **Sleep** | **`caffeinate -dimsu`** wrapper + `pmset -a sleep 0 disablesleep 1` (desktop) | `[consensus 10/10]` |
+| **Crash recovery** | durable SQLite queue survives reboot; startup sweep requeues expired-lease tasks; steps checkpoint to the task row so they **resume, not restart**; `launchd` restarts services | `[consensus 10/10]` |
+| **Remote network** | **Tailscale** tailnet (WireGuard, no inbound ports); Tailscale SSH; ACLs limit the phone to the dashboard port + SSH | `[consensus 10/10]` |
+| **Remote control plane** | small **FastAPI** service bound to the **tailnet IP only**, bearer-token auth: `POST /tasks`, `GET /queue`, `GET /runs/{id}/logs` (SSE), `POST /approvals/{id}`, `POST /stop`, `GET /status` + a mobile-first HTML dashboard | `[consensus 10/10]` |
+| **Notifications** | **ntfy** (self-host or random topic) — approval-needed, done, budget-hit, crash; action buttons hit `/approvals/{id}` over the tailnet | `[consensus 10/10]` |
+| **Monitoring** | structured JSONL logs + `/system/health` + ntfy alerts (Phase 1–7); **Grafana/Prometheus is a Phase-8 option**, not day 1 | `[adjudicated]` — 8/10 minimal |
+| **Backups** | **restic** → external SSD + an offsite target (B2/S3, encrypted): memory, DBs, config, code. **Not** models (re-downloadable) | `[consensus]` |
 
-## 17. First implementation order
+---
 
-1. SQLite schema for tasks, leases, events, agents and approvals.
-2. Supervisor event loop and durable recovery.
-3. Model adapter + one heavy model + one light model.
-4. Concurrency semaphores: heavy=1, light=2–3.
-5. Model swap manager with RAM/headroom policy.
-6. Aider/OpenHands executor adapters.
-7. Research evidence ledger + verification pipeline.
-8. Dedicated-user permissions and task workspaces.
-9. launchd + watchdog + queue-aware `caffeinate`.
-10. Tailscale-only FastAPI dashboard and emergency stop.
-11. sqlite-vec/FTS retrieval.
-12. Benchmark and tune before adding frameworks, Redis, graph memory or cloud escalation.
+## 2. Layered diagram
 
-The architecture is intentionally **boring at the control-plane level and sophisticated at the policy/evidence level**. That is the central engineering lesson of the corpus.
+```text
+Phone / Laptop
+   │   Tailscale tailnet — WireGuard, no public ports
+   ▼
+FastAPI control plane (tailnet IP only) + HTML dashboard + ntfy push
+   │        launchd KeepAlive │ separate watchdog (health → kickstart -k)
+   ▼
+Always-on Supervisor (thin custom Python / asyncio)
+   loop: PAUSE? → sweep expired leases → schedule → observe → requeue/escalate
+   owns: permissions · resource governor (RAM / tokens / $ / wall-clock) · audit log
+   ▼
+Task Queue (SQLite WAL)   states: queued│leased│running│blocked│done│failed
+   │   bounded worker pool
+   │      HEAVY ×1        LIGHT ×2–3        CLOUD ×N (off by default, $-capped)
+   ▼
+Agent layer  — 100+ definitions as data (role · tools · perms · model tier · objective)
+   coordinator decomposes an objective → tasks → workers instantiate a definition per task
+   durable sub-graphs (LangGraph) for research + coding flows
+   ▼
+Model Router (rule table: task class + ctx size + budget + offline? → tier)
+   ├── local heavy   Qwen3-Coder-30B-A3B 4-bit  (via llama-swap → mlx-lm)
+   ├── local light   Qwen3-4B 4-bit
+   ├── local coder   Devstral Small 2 24B  (fallback)
+   └── cloud         one frontier API  (optional, gated)
+   ▼
+Sandbox layer   user 'agent' (non-admin) · workspace jail on ext SSD · git worktree per task
+                Colima / Apple container per risky exec · sandbox-exec for one-off calls
+                default-deny egress + allowlist
+   ▼
+Tools (MCP)   Terminal · Filesystem · Git · Browser (Playwright) · Python ·
+              Research (search + OpenAlex/S2/arXiv/Crossref + PyMuPDF/Marker/GROBID) · Documents
+   ▼
+Persistent memory (cross-cutting)
+   filesystem Markdown  +  SQLite (tasks/decisions/runs/evidence/audit) + FTS5
+   → sqlite-vec later → Graphiti only on proven multi-hop need
+```
+
+---
+
+## 3. Resource budget (32 GB, planning estimates — not M6-measured)
+
+| Component | Steady state (light) | Peak (heavy coding job) |
+|---|---:|---:|
+| macOS + services | ~7 GB | ~7 GB |
+| Small model resident (Qwen3-4B) | ~3 GB | ~3 GB |
+| Heavy model (Qwen3-Coder-30B-A3B 4-bit) | unloaded | ~18 GB |
+| KV cache @ 32K ctx | — | ~3 GB |
+| Supervisor + workers (Python) | ~2 GB | ~2 GB |
+| SQLite + vec index | ~0.5 GB | ~0.5 GB |
+| Headless browser | ~2.5 GB (when active) | evicted |
+| Free / FS cache | ~15 GB | **~1 GB (tight)** |
+
+**Rules the corpus is unanimous on:** 1 heavy inference request at a time · never two large models
+co-resident · context ≤ 32K local (64K ceiling, 128K only with SSD-tiered KV) · model swapping is
+worthwhile · keep 1 small model warm · memory **capacity** is the wall, then bandwidth, then the
+single heavy slot.
+
+`analysis/scripts/memory_budget.py` verdict for every response: heavy + small + browser **does not
+co-reside** — the design must serialise, which is exactly what the worker pool + swap layer do.
+
+---
+
+## 4. Security boundaries (unanimous)
+
+| Operation | Policy |
+|---|---|
+| Read/write inside the task workspace; run tests/linters/builds; local git branch/commit/worktree; local inference; allowlisted web GET | **autonomous** |
+| `git push` / open PR / touch a shared remote; write outside the workspace; network to a non-allowlisted host; any credential/token request; cloud spend above cap; create agent definition past a cap | **approval** (pushed to phone with a diff/summary) |
+| Read `~/.ssh`, Keychain, browser profiles, finance/tax dirs; `sudo`; disk utils; disable the audit log / watchdog / kill switch; `rm -rf` on real paths | **forbidden** — not reachable by the `agent` user by construction |
+
+**Kill switch:** `agentctl stop` writes `~/agentlab/PAUSE` (checked every loop) + SIGKILLs the
+worker process group; one tap from the phone; owned by your account.
+**Runaway protection:** per-task + per-day token/$/wall-clock caps; max subagents/objective; loop
+detector (same tool+args 3× → block); circuit breaker on repeated identical errors.
+
+---
+
+## 5. Build order (union of the roadmaps)
+
+| Phase | Deliverable | Done when |
+|---|---|---|
+| **1** | dedicated `agent` user + external-SSD layout; `mlx-lm` + `llama-swap` + Qwen3-Coder-30B-A3B + Qwen3-4B; supervisor + SQLite queue; a worker that runs one shell task in a git worktree | `agentctl submit "write fn + pytest"` converges to a committed worktree |
+| **2** | OpenHands (container) + Aider wired as the `coding` worker; `code-reviewer` gate; `git push` = approval | points at a real repo, iterates to green tests, stops at the push gate |
+| **3** | research pipeline: SearXNG (or a managed API) + OpenAlex/S2/arXiv/Crossref + PyMuPDF/Marker; evidence DB (`sources`/`claims`/`claim_links`); independent verifier + contradiction pass | a question with a known literature contradiction → report surfaces both sides, every claim has a resolvable citation |
+| **4** | memory: `memory/*.md` + frontmatter + `[[links]]`; per-project `.agentlab/memory/`; add `sqlite-vec` + hybrid recall **only when FTS5 misses** | session 2 recalls session 1's decisions without re-explaining |
+| **5** | formalise `agents/*.md` (role/prompt/tools/perm_tier/model_tier); coordinator emits a task DAG; pool `heavy=1, light=2, cloud=4`; `create_agent_definition` capped; stopping conditions per objective | one objective needing code+research+docs fans into ~15–40 tasks, one coherent deliverable |
+| **6** | `launchd` LaunchDaemon + watchdog + nightly "review & plan" job; `pmset` + `caffeinate`; lease-sweep on startup; `newsyslog` rotation | `killall python` mid-task → watchdog restarts ≤ 2 min, task resumes; `reboot` → back without login, queue drains |
+| **7** | `tailscale up --ssh`; FastAPI control plane on the tailnet IP; dashboard + SSE logs + STOP; broker → ntfy with action buttons; Claude Code Remote Control (optional) | from cellular: submit a task, stream logs, approve a push, hit STOP, workers die in seconds |
+| **8** | speculative decoding; prompt/KV caching per project; eval harness re-run on any model/prompt change; consider vLLM-MLX / oMLX; consider cloud-burst enablement; consider Grafana/Prometheus | measured tok/s + task success rate + $/day tracked; regressions caught before an overnight run |
+
+Each phase is independently useful and independently reversible.
+
+---
+
+## 6. What NOT to build (union of the "do not install" lists)
+
+Kubernetes / k3s / Nomad · standalone vector-DB **servers** (Milvus / Weaviate / Qdrant-server) ·
+Neo4j / any graph DB on day 1 · CrewAI / AutoGen / AutoGPT / MetaGPT as the backbone ·
+LangChain as core plumbing · Redis + Celery + RabbitMQ (SQLite is enough on one box) · PostgreSQL ·
+Airflow / n8n / Zapier · Docker **Desktop** (use Colima / Apple `container`) · three inference
+stacks at once (pick one server front) · a **70B+ dense** local model · the **80B Qwen3-Coder-Next**
+(doesn't fit) · pixel-level GUI computer-use as the primary interface · ngrok / public reverse
+proxy / exposed SSH · a trained model router (RouteLLM) · an opaque "memory product" as the source
+of truth · "every trending agent framework simultaneously".
+
+---
+
+## 7. Where this differs from the anchor (`claude-sonnet-5`)
+
+The anchor sits inside the modal choice on ~37 of 39 axes. The two exceptions, both explainable by
+it answering from inside Claude Code:
+
+- **Coding harness:** anchor = Claude Code + Goose; the merged design = **OpenHands + Aider** (the
+  8/10 peer consensus, and both open-source / local-model-capable).
+- **Orchestration substrate:** anchor = Claude Agent SDK; the merged design = **thin custom
+  supervisor + LangGraph for sub-graphs** (the peer plurality).
+
+Everything else — MLX, Qwen MoE, 1 heavy worker, SQLite queue, sqlite-vec, coordinator/worker,
+dedicated user, Tailscale, launchd + watchdog, evidence-first research, defer the graph DB — the
+anchor and the independent peers agree.

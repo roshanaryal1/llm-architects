@@ -1,15 +1,20 @@
 # `analysis/consensus/` — cross-response synthesis (RQ1)
 
-**Status: data collection complete (12 responses / 10 systems); synthesis not started.** Build the
-three real artefacts below now — this is issue #10, currently the critical-path item:
+**Status: synthesis drafted (issue #10, PR).** The three artefacts exist; refine as `prompt-v2/v3`
+(#8) and the rater scores (#9) land.
 
-1. **`consensus-matrix.md`** — per axis in `data/decisions-matrix.csv`: the modal choice, the count
-   of *independent* responses holding it (`claude-sonnet-5` excluded — it is the anchor, not a
-   blind peer), and a note on the spread.
-2. **`disagreements.md`** — the axes where responses genuinely conflict, with the competing
-   positions and the tradeoff. The interesting part of the paper.
-3. **`reference-architecture.md`** — one merged design; every non-consensus call labelled
-   `[adjudicated]` with reasoning. The paper's synthesis section and the author's build brief.
+1. **[`consensus-matrix.md`](consensus-matrix.md)** — every one of the 39 decision axes: modal
+   choice, count of the 10 non-anchor systems holding it, notable dissent. ~24 axes are unanimous.
+2. **[`disagreements.md`](disagreements.md)** — the 8 axes with a genuine split (inference server #1,
+   exact heavy model, per-task sandbox, task-queue backend, vector store, orchestration-framework
+   layer, monitoring depth, cloud dependence) — each with the positions, the tradeoff, and what
+   `reference-architecture.md` adjudicated. Plus 3 "non-disagreements" that resolve on inspection.
+3. **[`reference-architecture.md`](reference-architecture.md)** — the merged design: every layer
+   tagged `[consensus N/10]` or `[adjudicated]`, a layered diagram, the 32 GB resource budget, the
+   security-boundary table, an 8-phase build order, and the "what NOT to build" union. This is the
+   paper's synthesis section **and** the author's build brief.
+
+The early-signal notes below are kept for provenance; the numbers above supersede them.
 
 ---
 
