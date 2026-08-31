@@ -141,6 +141,17 @@ PRESETS: dict[str, dict] = {
         "ctx": 32000,
         "browser": False,
     },
+    "gpt5": {
+        # GPT-5.6 Luna: MLX-LM, Qwen3.6-35B-A3B 4-bit (~20.4 GB artifact) resident +
+        # Qwen3.5-4B 4-bit (~3 GB). Small model can be kept alongside per its budget
+        # table, but that "gets close to the physical ceiling surprisingly quickly".
+        # llama.cpp / Docker(OpenHands) also running. ctx: 8/16/32/64k tiers.
+        "label": "GPT-5.6 Luna pick (Qwen3.6-35B-A3B 4-bit + Qwen3.5-4B 4-bit, both resident)",
+        "models": [("Qwen3.6-35B-A3B 4-bit (20.4 GB artifact)", 20.4, 0.06),
+                   ("Qwen3.5-4B 4-bit", 3.0, 0.02)],
+        "ctx": 16000,
+        "browser": True,
+    },
     "over-budget-demo": {
         "label": "The classic mistake: heavy MoE + mid reasoner + browser all resident",
         "models": [("Qwen3-Coder-30B-A3B q4", 18.0, 0.09),
