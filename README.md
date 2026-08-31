@@ -10,7 +10,7 @@
 
 **A controlled comparison of how frontier LLMs design the same hard systems-architecture task.**
 
-Ten (target) AI systems are given one identical, evidence-demanding prompt: *design a 24/7
+Around a dozen frontier AI systems are each given one identical, evidence-demanding prompt: *design a 24/7
 autonomous AI development-and-research workstation for a 32 GB Apple M6 Mac mini.* Every response
 is captured verbatim, scored against a written rubric, and cross-checked for fabricated tools,
 stale recommendations, hardware-constraint violations, and citation quality. The corpus feeds a
@@ -41,7 +41,7 @@ study instrument and asks:
 | RQ2 | How often do they **fabricate** tools, versions, or benchmark numbers? | Per-response hallucination audit in the `## Reviewer notes` of each capture file |
 | RQ3 | Do they respect the **hardware envelope** (32 GB, ~170 GB/s, one GPU)? | `analysis/scripts/memory_budget.py` + rubric dimension |
 | RQ4 | Are recommendations **current** (2026) or stale defaults? | Rubric "Recency" score, cross-checked vs Claude's sourced baseline |
-| RQ5 | When models cite sources, do the citations **resolve and support** the claim? | Rubric "Citation quality"; only Claude cited anything so far |
+| RQ5 | When models cite sources, do the citations **resolve and support** the claim? | Rubric "Citation quality". Early finding: citation *count* is not a proxy — `meta-llama-4` has 99 refs, ~60% junk; `gpt-5` has ~20 solid inline attributions and 0 URLs |
 | RQ6 | Are responses **internally consistent**? | `internal_contradictions` row in the matrix |
 
 Full method: [`docs/methodology.md`](docs/methodology.md). Rubric: [`docs/rubric.md`](docs/rubric.md).
