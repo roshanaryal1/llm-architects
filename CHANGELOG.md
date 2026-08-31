@@ -126,8 +126,26 @@ All notable changes to the corpus and analysis. Format loosely follows
 - `memory_budget.py`: +`meta` preset (35B-A3B + Qwen2.5-Coder-7B both resident → ~7 GB over).
 - `decisions-matrix.csv`: `llama4` column filled (39 axes; **11 of 12 columns** — only `grok4` left).
 
-### Pending
-- Response: Grok 4 (#6). Optional follow-up probes (#12–#14). Then #8 #9 #10 #11.
+### Added — 2026-08-31 — response 12 (Grok 4) — closes #6 — **data collection complete**
+- `grok-4` — xAI Grok, free tier. Trust: **MEDIUM**. Engaged the real M6 spec **correctly**
+  (170 GB/s, 2s+4P+6E core layout) — unlike `meta-llama-4` which got bandwidth wrong. Primary
+  picks (Qwen 27B/35B-A3B, Devstral, OpenHands + Aider, custom supervisor + LangGraph, sqlite-vec,
+  Tailscale, launchd + watchdog) are all real and match the cross-model consensus almost exactly.
+  But **0 sources**, and it casually names three fabricated model families in its *alternatives*
+  lists: **`rapid-mlx`** (the 3rd response across 3 vendors — DeepSeek, Meta, xAI — to name
+  Rapid-MLX), **`Gemma 4 31B`** (the 3rd response to invent "Gemma 4", each giving a different
+  size: 26B / 12B / 31B — the confabulation signature), and **`GLM-4.7-Flash`** (unverified point
+  release). Bucket 2.
+- `data/systems.csv`: `grok-4` marked canonical (the only xAI capture).
+- `memory_budget.py`: +`grok` preset. `decisions-matrix.csv`: **39 axes × 12 columns — ALL FILLED**
+  (validator: 0 warnings).
+
+### Milestone: data collection complete
+- **12 responses from 10 systems** (9 non-anchor): Anthropic, Mistral, OpenAI, Perplexity,
+  Moonshot, Google, Alibaba, Meta, DeepSeek (3 modes), xAI.
+- Next: #8 (`prompt-v2/v3`, optional), #9 (2nd rater — required), #10 (`consensus-matrix.md` /
+  `disagreements.md` / `reference-architecture.md` — now unblocked), #11 (paper draft),
+  #12–#14 / #17 follow-up probes (optional, high value).
 - `prompts/prompt-v2.md` / `prompt-v3.md` paraphrases for prompt-sensitivity (RQ6).
 - Second independent rater for the rubric; inter-rater agreement.
 - `analysis/consensus/` synthesis once ≥ 6 responses are in.

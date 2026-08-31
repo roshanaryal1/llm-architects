@@ -1,7 +1,7 @@
 # `analysis/consensus/` — cross-response synthesis (RQ1)
 
-**Status: early-signal only.** The three real artefacts below are not written yet; build them once
-Grok 4 (#6) lands (11 of ~12 responses captured):
+**Status: data collection complete (12 responses / 10 systems); synthesis not started.** Build the
+three real artefacts below now — this is issue #10, currently the critical-path item:
 
 1. **`consensus-matrix.md`** — per axis in `data/decisions-matrix.csv`: the modal choice, the count
    of *independent* responses holding it (`claude-sonnet-5` excluded — it is the anchor, not a
@@ -13,14 +13,14 @@ Grok 4 (#6) lands (11 of ~12 responses captured):
 
 ---
 
-## Corpus: 11 responses from 9 systems
+## Corpus: 12 responses from 10 systems — **data collection complete**
 
 DeepSeek contributed 3 modes of one base model (DeepSeek-V4-Pro). `data/systems.csv` marks
 `deepseek-expert` as the **canonical** DeepSeek answer.
 
-- **Per-system claims below (RQ1 agreement, "how many models pick X")** count **9 systems**
-  (8 non-anchor): the canonical column per system.
-- **Per-response claims (RQ2 fabrication, RQ6 mode sensitivity)** use all **11 captures**.
+- **Per-system claims below (RQ1 agreement, "how many models pick X")** count **10 systems**
+  (9 non-anchor): the canonical column per system.
+- **Per-response claims (RQ2 fabrication, RQ6 mode sensitivity)** use all **12 captures**.
 - The 3 DeepSeek modes are a within-model finding of their own — see
   [`../deepseek-modes.md`](../deepseek-modes.md). Captures are never merged.
 
@@ -34,23 +34,25 @@ DeepSeek contributed 3 modes of one base model (DeepSeek-V4-Pro). `data/systems.
 | `deepseek-expert` | DeepSeek-V4-Pro (deep-reasoning mode) | ✔ | MED-HIGH | 0 | 2 |
 | `gemini-3.1-pro` | Google Gemini | ✔ | MEDIUM | 0 | 2 |
 | `qwen-3.7-plus` | Alibaba Qwen chat | ✔ | MEDIUM | 0 | 2 |
+| `grok-4` | xAI Grok | ✔ | MEDIUM | 0 (M6 spec correct) | 2 |
 | `meta-llama-4` | Meta AI / hosted Llama 4 | ✔ | LOW | **99 refs, ~60% junk** | 3 |
 | `deepseek-instant` | DeepSeek-V4-Pro (fast mode) | mode-variant | LOW | 0 | 3 |
 | `deepseek-instant-deepthink` | DeepSeek-V4-Pro (instant+DeepThink) | mode-variant | LOW | 0 | 3 |
 
-"Bucket" = the emerging 3-way recency/rigour split (see bottom).
+"Bucket" = the 3-way recency/rigour split (see bottom). **Bucket 1: 4 · Bucket 2: 5 · Bucket 3: 3.**
 
 ---
 
-## Early signal (from 11 responses — provisional, not a result)
+## Early signal (from 12 responses — provisional, not a result)
 
-> The `X/11` counts in this **early-signal** section are per-*response* (they include both
+> The `X/12` counts in this **early-signal** section are per-*response* (they include both
 > non-canonical DeepSeek modes). The formal per-*system* tally (one canonical column per system,
-> "of 9") is what `consensus-matrix.md` will produce — that is the number the paper reports for
+> "of 10") is what `consensus-matrix.md` will produce — that is the number the paper reports for
 > RQ1. Where the two differ it is because the DeepSeek fast modes echo `deepseek-expert`, so a
-> per-system count is usually `per-response count − 0..2`.
+> per-system count is usually `per-response count − 0..2`. Several `X/11` figures below predate
+> `grok-4` and are being refreshed in `consensus-matrix.md` (#10).
 
-### Unanimous (9/9 systems; 11/11 responses)
+### Unanimous (10/10 systems; 12/12 responses)
 
 - **MLX-family local inference** is the correct Apple-Silicon path (llama.cpp/Ollama as
   fallback/compat). Even the fabrication-heavy responses agree on this.
@@ -60,7 +62,7 @@ DeepSeek contributed 3 modes of one base model (DeepSeek-V4-Pro). `data/systems.
   co-reside in 32 GB. Every response states this.
 - **Coordinator/worker (supervisor) topology, explicitly NOT a swarm.**
 - **The orchestrator is mostly your own code**, not a framework you live inside
-  (CrewAI/AutoGen rejected by name in 9/11 "what NOT to install" lists).
+  (CrewAI/AutoGen rejected by name in 10/12 "what NOT to install" lists).
 - **SQLite** for the task queue + durable task state; requeue interrupted tasks on restart.
 - **`launchd` KeepAlive + a watchdog + `caffeinate`/`pmset`** for 24/7; crash recovery from the
   persistent queue.
@@ -102,7 +104,7 @@ DeepSeek contributed 3 modes of one base model (DeepSeek-V4-Pro). `data/systems.
 | **Monitoring** | custom/minimal (most) · Grafana + Prometheus (DeepSeek-Expert) |
 | **Memory headroom** | keep 2–6 GB free (Claude, Perplexity, GPT-5, Mistral) · "oversubscribe to 32–34 GB, acceptable" (DeepSeek-DeepThink — outlier, likely bad advice) |
 | **2026-edge tooling** | adopt it (Claude) · deliberately avoid, benchmark-first (Perplexity) · invent it (DeepSeek fast modes, Meta) |
-| **M6 memory bandwidth** | **170 GB/s (correct)** — Claude, Mistral, Perplexity, GPT-5 · **"~300+ GB/s" (wrong)** — Meta · not mentioned — the rest |
+| **M6 memory bandwidth** | **170 GB/s (correct)** — Claude, Mistral, Perplexity, GPT-5, Grok · **"~300+ GB/s" (wrong)** — Meta · not mentioned — Qwen, Gemini, Kimi, DeepSeek |
 
 ---
 
@@ -119,13 +121,26 @@ DeepSeek contributed 3 modes of one base model (DeepSeek-V4-Pro). `data/systems.
 | `kimi-instant` | none (real tools; number inflation — "OpenCode 198k stars", "gpt-oss 98.3%" — and a stale cloud list) |
 | `mistral-large-3` | none (~6 of ~36 "sources" are google.com/search URLs — evidence-quality, not fabrication) |
 | `gpt-5` | none (~20 specific inline attributions, no resolvable URL list — evidence-quality, not fabrication) |
+| `grok-4` | `rapid-mlx` (alt-list), `Gemma 4 31B` (alt-list), `GLM-4.7-Flash` (unverified) — minor, confined to alternatives; primary picks all real |
 | `perplexity` | none (2 arXiv IDs unverified — evidence-quality, not fabrication) |
 | `claude-sonnet-5` | none |
 
-**8 of 11 responses fabricate nothing.** The fabrication is concentrated in **DeepSeek's non-"expert"
-free modes and Meta / Llama 4** — a within-/cross-vendor mode effect, not a spread. Notably,
-**`Rapid-MLX` + the `raullenchai` Homebrew tap + `Gemma 4`** appear in *both* `deepseek-instant`
-and `meta-llama-4` — a shared hallucination attractor worth a paragraph in the paper.
+**9 of 12 responses fabricate nothing** (or only unverified point-versions in alt-lists, as
+`grok-4` and `deepseek-expert` do). Real fabrication is concentrated in **DeepSeek's non-"expert"
+free modes and Meta / Llama 4**.
+
+**The strongest RQ2 result — cross-vendor confabulation of the same non-existent things:**
+
+| Fabricated item | Appears in | Vendors |
+|---|---|---|
+| **`Rapid-MLX` / `rapid-mlx`** (+ the `raullenchai` Homebrew tap) | `deepseek-instant`, `meta-llama-4`, `grok-4` | DeepSeek, Meta, xAI (3) |
+| **`Gemma 4`** (sizes given: 26B / 12B / 31B — unstable = confabulated) | `deepseek-instant`, `meta-llama-4`, `grok-4` | DeepSeek, Meta, xAI (3) |
+| `Qwen3.5-35B-A3B` tag | `deepseek-instant-deepthink`, `meta-llama-4` | DeepSeek, Meta (2) |
+
+Three independent vendors inventing the *same* fake tool (`Rapid-MLX`) and the *same* fake model
+family (`Gemma 4`) is not random — it points to a shared training-data artefact or a shared
+hallucination attractor around "the obvious next version". This is a paragraph, maybe a figure,
+in the paper.
 
 ---
 
@@ -134,7 +149,7 @@ and `meta-llama-4` — a shared hallucination attractor worth a paragraph in the
 | Bucket | Responses | Character |
 |---|---|---|
 | **1 — sourced/retrieval + current + M6-aware** | `claude-sonnet-5`, `mistral-large-3`, `perplexity`, `gpt-5` | Browsed or retrieval-assisted; engage the real M6 spec (170 GB/s, dual NE, 2026-08-25) and the current GLM-5.2 / Kimi K3 / DeepSeek V4 / Qwen3.6 frontier landscape; hedge every throughput number. |
-| **2 — unsourced + ~12–18 months behind** | `qwen-3.7-plus`, `gemini-3.1-pro`, `kimi-instant`, `deepseek-expert` | Real tools, but 2024-era models and/or `Claude 3.5 Sonnet` as the cloud fallback; little or no M6-specific detail. |
+| **2 — unsourced + partly behind** | `qwen-3.7-plus`, `gemini-3.1-pro`, `kimi-instant`, `deepseek-expert`, `grok-4` | Real primary picks, but 0 (or unusable) sources. `qwen`/`gemini` are ~12–18 months behind on models and give no M6 detail; `kimi`/`deepseek-expert` are more current; `grok-4` gets the **M6 spec right (170 GB/s)** but drops 3 fabricated families into its alt-lists. |
 | **3 — confident futurism (invents tools/models)** | `deepseek-instant`, `deepseek-instant-deepthink`, `meta-llama-4` | Recommend plausible-sounding but non-existent tools (`Rapid-MLX`, `DSH`, `Ornith-1.0-9B`, `OpenClaw`, `memo`, `Clawtrol`, …). |
 
 Two cross-cuts that look like the actual paper contributions:
