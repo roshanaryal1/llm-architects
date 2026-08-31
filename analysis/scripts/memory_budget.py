@@ -162,6 +162,15 @@ PRESETS: dict[str, dict] = {
         "ctx": 32000,
         "browser": True,
     },
+    "grok": {
+        # Grok 4: one large model (Qwen 27B dense ~18 GB, or 35B-A3B MoE ~22 GB) + one small
+        # model / embeddings (~3 GB), 32-64k ctx. Its own line: primary + KV = 18-22 GB.
+        "label": "Grok 4 pick (Qwen 27B dense ~18 GB or 35B-A3B ~22 GB + small model, 1 large worker)",
+        "models": [("Qwen 27B dense q4 (~18 GB) / 35B-A3B ~22 GB", 18.0, 0.08),
+                   ("small model / embeddings", 3.0, 0.02)],
+        "ctx": 48000,
+        "browser": True,
+    },
     "over-budget-demo": {
         "label": "The classic mistake: heavy MoE + mid reasoner + browser all resident",
         "models": [("Qwen3-Coder-30B-A3B q4", 18.0, 0.09),
