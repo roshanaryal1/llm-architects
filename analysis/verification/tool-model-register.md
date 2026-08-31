@@ -73,7 +73,7 @@ This register is now the single source of truth for RQ2 (fabrication) and RQ4 (r
 |---|---|---|---|
 | Announced **2026-08-25** | mistral ("2026-08-25"), gpt-5 ("2026-08-25") | `REAL` | Apple newsroom + MacRumors, 2026-08-25. |
 | **170 GB/s** memory bandwidth (at 24/32 GB; 153 GB/s at 16 GB) | claude, mistral, gpt-5, perplexity, grok (in prose) | `REAL` | M6: up to 170 GB/s, up from M5 153 / M4 120. Config-dependent. |
-| "M6 expected **~300+ GB/s**" | grok-4 | `WRONG` | Real M6 = 170 GB/s. grok's own headline number contradicts its correct in-prose 170. |
+| "M6 expected **~300+ GB/s**" | meta-llama-4 (only) | `WRONG` | Real M6 = 170 GB/s. `grok-4`, by contrast, states the full spec incl. 170 GB/s correctly. |
 | M6 = 12-core CPU, dual 16-core Neural Engine | mistral, gpt-5 | `RE-VERIFY` | Check against Apple M6 spec page / Wikipedia. |
 | 32 GB max unified memory | all | `REAL` | Base Mac mini M6 tops out at 32 GB. |
 | "no M6-specific facts" (generic Apple Silicon only) | z-ai, qwen, gemini, kimi, deepseek (all modes), meta | n/a | Not an error — a recency gap. Feeds RQ4, not RQ2. |
@@ -99,7 +99,7 @@ These are **not** recency artefacts. They stay in the analysis.
 | `z-ai` | Qwen3-Coder-Next given as "8B ~5 GB" — real is 80B MoE. Load-bearing (it's the primary coding model). | model size error |
 | `z-ai` | Same model quoted at 5 GB (§1) and 14 GB (§C). | internal inconsistency |
 | `z-ai` | 3-instance concurrent co-resident diagram vs "primary stays loaded, others on-demand" prose; "fits within 32 GB with swapping". | internal inconsistency + hardware slip |
-| `grok-4` | M6 "~300+ GB/s" headline vs correct 170 GB/s in prose. | spec error + internal inconsistency |
+| `grok-4` | none beyond 0 sources — it gets the full M6 spec (incl. 170 GB/s) right; alt-list picks all real. | (no surviving factual defect) |
 | `deepseek-expert` | Recommends Docker in sections A/H, forbids "Docker for Mac" in J; dashboard binds `0.0.0.0` vs "no public exposure". | internal contradiction |
 | `deepseek-instant` | Recommends Ollama in Phase 4, forbids it in section J. | internal contradiction |
 | `deepseek-instant-deepthink` | 256K context claim vs 1–2 GB KV budget; advocates memory oversubscription (~32–34 GB always-loaded). | hardware violation |

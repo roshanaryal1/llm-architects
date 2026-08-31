@@ -409,6 +409,25 @@ NONE. Header says "Research Date: August 31, 2026. All recommendations are based
 
 ## Reviewer notes
 
+> ### CORRECTION 2026-09-01 — the RQ2 "hallucination" assessment below is SUPERSEDED
+> Web verification (`analysis/verification/tool-model-register.md`): items flagged below as
+> fabricated are **real, post-anchor-cutoff releases**:
+> - **`Ornith-1.0-9B`** / `ornith` — real: `huggingface.co/deepreinforce-ai/Ornith-1.0-9B`,
+>   Ollama `ornith:9b`. Self-improving agentic-coding family (9B/31B/35B-MoE/397B-MoE).
+> - **`WhipDesk`** — real: `github.com/BinaryBananaLLC/WhipDesk`. The "prompt fires at 3am when the
+>   session resets" feature the response describes is a real WhipDesk feature.
+> - **`LightAgent`** — real: `github.com/wanxingai/LightAgent`, arXiv 2509.09292.
+> - **`Qwen3-Coder-Next (80B MoE)`** in the upgrade path — real and correctly sized.
+> - `Cloak`, `Helmrig`, `RemoteVibe`, `Lody`, `DiffResearch`, `Engram-Mem` — `UNRESOLVED` (no web
+>   evidence either way; not counted as fabrication).
+> - `Qwen3.5-35B-A3B` tag — `UNRESOLVED`.
+>
+> **What survives as a genuine defect:** the RQ3 failure is real and unchanged — memory
+> oversubscription ("~32–34 GB … slight oversubscription acceptable" on a 32 GB machine), three
+> models held resident, 256K-context claim vs a 1–2 GB KV budget — plus 0 sources. This response
+> was *ahead of* the anchor on ecosystem currency; its real weaknesses are hardware reasoning and
+> rigour. Text below retained as primary evidence for the RQ2 cutoff-bias finding.
+
 ### Hallucination (RQ2) — SEVERE. Highest fabrication count in the corpus.
 Fabricated or unverifiable, presented as real recommendations:
 - **`Ornith-1.0-9B`** / **`ornith-claude-coder`** — a 9B model claimed at "69.4% SWE-Bench, beats 3–4× larger models, native tool calling", used as the primary coding model and installed via `ollama pull ornith-claude-coder`. No such model.

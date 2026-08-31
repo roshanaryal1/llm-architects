@@ -249,6 +249,23 @@ suggesting a current knowledge cutoff or silent retrieval.
 
 ## Reviewer notes
 
+> ### CORRECTION 2026-09-01 — the "alt-list fabrications" below are SUPERSEDED
+> Web verification (`analysis/verification/tool-model-register.md`): all three alt-list items are
+> **real, post-anchor-cutoff releases**:
+> - **`rapid-mlx`** — real: `github.com/raullenchai/Rapid-MLX` (ex vLLM-MLX, renamed Mar 2026).
+> - **`Gemma 4 31B`** — real: Gemma 4 released 2026-04-02; **31B dense is a real variant** (the
+>   "different vendors give different sizes ⇒ confabulation" argument was invalid — 26B, 31B and
+>   12B are all real Gemma 4 variants).
+> - **`GLM-4.7-Flash (30B-A3B)`** — real: Zhipu, released 2026-01-19, 30B-A3B MoE, MIT. grok's
+>   "30B-A3B" label is spec-accurate.
+> - `macos-harness`, `Agent Safehouse`, `Cua VMs` — `UNRESOLVED` (grok itself hedged these).
+>
+> **Net effect:** grok has **no surviving factual defect** — it also states the full M6 spec incl.
+> **170 GB/s correctly**. Its only real weakness is 0 sources. The bucket-2 placement rested partly
+> on "alt-list fabrications" that don't exist; on the rebuild it sits at the bucket-1/2 boundary,
+> held out of bucket 1 only by the missing source apparatus. Text below retained as evidence for
+> the RQ2 cutoff-bias finding.
+
 ### Trust — MEDIUM. M6-aware and consensus-aligned, but unsourced with minor alt-list fabrications.
 - **Engaged the real M6 spec correctly:** "2 nm, 12-core CPU (2 super + 4 P + 6 E), 12-core GPU
   with Neural Accelerators, dual 16-core Neural Engine, up to 170 GB/s, max 32 GB". This is the

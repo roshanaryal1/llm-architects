@@ -26,10 +26,21 @@ Rules:
    notes you are shown.
 3. **Cite the specific text** you are scoring on — one short quote per dimension in your
    justification.
-4. **Verify falsifiable sub-claims** where you can: does a named tool/model exist? does a version
-   number resolve? does the model set physically fit 32 GB? (weights + KV cache; a ~30B 4-bit MoE
-   ≈ 17–20 GB, a dense 32B 4-bit ≈ 19–20 GB, an 80B 4-bit ≈ 40 GB.) If you cannot verify, say so —
-   do not guess.
+4. **Verify falsifiable sub-claims by WEB SEARCH — do not score dims 3/4 from memory.** This study
+   already has one rater pass that scored tool/model factuality from training knowledge and
+   **false-flagged 14 real releases** (Rapid-MLX, Gemma 4, DeepSeek Harness, OpenClaw, Claw Code,
+   Ornith-1.0-9B, WhipDesk, LightAgent, GLM-4.7-Flash, Qwen3-Coder-Next, nono, Clawtrol) as
+   fabrications, because they were released after that rater's training cutoff. Do not repeat this.
+   For every named tool/model/version you are unsure of: **search the web**. Then:
+   - resolves to a real repo / HF model card / release note → it exists; NOT a fabrication, even
+     if you had never heard of it. Dim 3/4 stays 2 (or 1 for a minor version slip).
+   - you cannot find it either way → `UNRESOLVED` → dim 3/4 scores **1, never 0**.
+   - search positively shows it does not exist, OR a real model is given a wrong load-bearing
+     attribute (e.g. an 80B model called "8B") → dim 3/4 scores 0. Cite the URL.
+   Also check physical fit for dim 1: weights + KV cache; a ~30B 4-bit MoE ≈ 17–20 GB, a dense 32B
+   4-bit ≈ 19–20 GB, an 80B 4-bit ≈ 40 GB. The verified ground truth for the disputed names in
+   this corpus is in `analysis/verification/tool-model-register.md` — consult it, but still do
+   your own search for anything it marks `UNRESOLVED` or `RE-VERIFY`.
 5. Output one table per response (9 rows) plus a one-line justification per row. Then a summary
    table of all 13 × 9 scores. See the output template below.
 
@@ -39,8 +50,8 @@ Rules:
 |---|-----------|---|---|---|
 | 1 | **Hardware-constraint adherence** | ignores the 32 GB / 170 GB/s / one-GPU envelope, or a hard violation (recommends a model set that cannot fit; assumes CUDA/eGPU as the baseline) | acknowledges 32 GB but with a slip (co-resident set >32 GB once browser/DB counted; hand-waves KV cache; "fits with swapping") | quantified budget, model set fits with headroom **or** the tightness is explicitly called out |
 | 2 | **Recency** | pre-2024 defaults dominate (Llama-2/3.0-era, Chroma-only, LangChain-as-core) | mixed: some current, some stale point-versions | current tools **and** current model families/versions for 2026; engages M6 specifics |
-| 3 | **Tool factuality** | ≥ 1 fabricated tool/engine/framework presented as a real recommendation | minor errors only (wrong CLI syntax, wrong install path) but all named tools exist | every named tool/repo resolves |
-| 4 | **Model factuality** | ≥ 1 fabricated model or version number used as a primary pick | model families right, ≥ 1 point-version / size does not resolve | all model names/versions/sizes resolve for 2026 |
+| 3 | **Tool factuality** | ≥ 1 **web-verified non-existent** tool/engine/framework presented as a real recommendation (UNRESOLVED ≠ non-existent → score 1) | minor errors only (wrong CLI syntax, wrong install path) but all named tools exist | every named tool/repo resolves |
+| 4 | **Model factuality** | ≥ 1 **web-verified non-existent** model, or a wrong load-bearing attribute (size/arch) on a real model, used as a primary pick | model families right, ≥ 1 point-version / size does not resolve | all model names/versions/sizes resolve for 2026 |
 | 5 | **Benchmark factuality** | cites specific numbers that are fabricated or unattributable | vague/plausible numbers, no source | numbers cited to a primary source, or explicitly none given |
 | 6 | **Citation quality** | prompt asked for sources; none given, or none resolve, or the reference apparatus is mostly junk URLs | some sources given, some resolve/support | sources resolve **and** support the claim; primary preferred |
 | 7 | **Actionability** | vague prose, no commands/config | partial: some install commands, gaps in wiring | executable phased plan with commands, config, test, rollback |

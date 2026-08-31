@@ -713,6 +713,27 @@ above. Breakdown by quality:
 
 ## Reviewer notes
 
+> ### CORRECTION 2026-09-01 — the RQ2 "hallucination" assessment below is SUPERSEDED
+> Web verification (`analysis/verification/tool-model-register.md`): the "invented product
+> ecosystem" flagged below is **real, and dated after the anchor rater's ~Jan-2026 cutoff**:
+> - **`Rapid-MLX`** — real: `github.com/raullenchai/Rapid-MLX` (ex vLLM-MLX, renamed Mar 2026).
+> - **`OpenClaw`** — real: Peter Steinberger; ex Warelay → Moltbot → OpenClaw; has a Wikipedia page.
+> - **`Claw Code`** — real: clean-room Claude Code rewrite after the **2026-03-31 source-map leak**
+>   (~512k LOC of Claude Code TS accidentally published) — exactly as the response describes.
+> - **`Clawtrol`** — real: `github.com/wolverin0/clawtrol` (agent kanban dashboard).
+> - **`nono`** — real: Landlock/Seatbelt sandbox tool.
+> - **`Gemma 4 12B`** — real: Gemma 4 released 2026-04-02; 12B Unified is a real variant.
+> - `memo`, `cplt`, `agent-policy-engine`, `pi-search-hub`, `silicorism`, `sirb`, `trinity-lite`,
+>   `Hermes Agent`, `OpenClaw Gateway` (sub-component) — `UNRESOLVED` (not counted as fabrication).
+> - `Qwen3.5-35B-A3B` tag + OpenRouter id — `UNRESOLVED`.
+>
+> **What survives, unchanged, as genuine defects:** (1) **M6 bandwidth wrong** — "~300+ GB/s",
+> real M6 is 170 GB/s (this one IS a real error; `grok-4` got it right); (2) **citation quality** —
+> ~60% of the 99 refs are junk GitHub commit/PR/`SKILL.md` URLs, the same tool gets multiple
+> different repo URLs, `[38]` mis-titles a real arXiv paper. The "more citations ≠ more
+> trustworthy" point stands: the reference apparatus is unreliable *as URLs*, independent of
+> recency. Text below retained as primary evidence for the RQ2 cutoff-bias finding.
+
 ### Trust — LOW. Most-cited response, lowest citation quality. Bucket 3 ("confident futurism"), camouflaged.
 
 ### Hallucination (RQ2) — SEVERE, and dressed in references

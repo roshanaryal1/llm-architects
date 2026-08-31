@@ -891,6 +891,22 @@ NONE. No Sources section; the prompt's request for one was ignored.
 
 ## Reviewer notes
 
+> ### CORRECTION 2026-09-01 — the RQ2 "hallucination" assessment below is SUPERSEDED
+> Web verification (`analysis/verification/tool-model-register.md`) shows the tools/models flagged
+> below as fabricated are **real releases dated after the anchor rater's ~Jan-2026 cutoff**:
+> - **`Rapid-MLX`** — real: `github.com/raullenchai/Rapid-MLX` (ex vLLM-MLX, renamed Mar 2026). The
+>   `raullenchai` tap is real, not a tell.
+> - **`DeepSeek Harness` / `DSH`** — real: `github.com/deepseek-ai/deepseek-harness`, open-sourced
+>   2026-08-13, MIT. (DeepSeek naming a real DeepSeek tool, not inventing one.)
+> - **`Gemma 4 26B`** — real: Gemma 4 released 2026-04-02; 26B-A4B MoE is a real variant.
+> - `Qwen3.5-*` version tags — `UNRESOLVED` (not confirmed either way; not counted as fabrication).
+> - `MHI 92` metric — still `UNRESOLVED`.
+>
+> **What survives as a genuine defect:** the internal contradiction (recommends Ollama in Phase 4,
+> forbids it in section J) and 0 sources. This response is *current*, not confabulated — its real
+> weakness is rigour, not factuality. The text below is retained as primary evidence of the
+> anchor-rater cutoff-bias finding (RQ2).
+
 ### Hallucination — SEVERE (RQ2). This response fails the factuality bar.
 - **"Rapid-MLX"** presented as the recommended primary inference engine with a specific "2-4x faster" claim and a Homebrew tap `raullenchai/rapid-mlx`. Not an established Apple-Silicon inference engine in 2026. `raullenchai` is a real GitHub user (Raullen Chai) but this project is not a recognised MLX server. Treat as fabricated / near-fabricated.
 - **"DeepSeek Harness (DSH)" / "Local DSH"** — presented as the recommended agent framework, with install steps from `github.com/liangchen-harold/local-dsh` (`.dmg`, `dsh submit` CLI). No evidence this exists. Notable that the model is DeepSeek and it invented a "DeepSeek Harness".

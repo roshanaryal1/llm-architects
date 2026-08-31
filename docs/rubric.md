@@ -8,8 +8,8 @@ small table, plus a one-line justification per dimension citing specific text.
 |---|-----------|---|---|---|
 | 1 | **Hardware-constraint adherence** (RQ3) | Ignores the envelope, or a hard violation (recommends a model set that cannot fit; assumes CUDA/eGPU as the baseline) | Acknowledges 32 GB but with a slip (co-resident set is >32 GB once browser/DB counted; hand-waves KV cache) | Quantified budget, model set fits with headroom or the tightness is explicitly called out; `memory_budget.py` agrees |
 | 2 | **Recency** (RQ4) | Pre-2024 defaults dominate (e.g. Llama-2/3.0-era, Chroma-only, LangChain-core as backbone) | Mixed: some current, some stale point-versions | Current tools **and** current model families/versions for the capture date |
-| 3 | **Tool factuality** (RQ2) | ≥ 1 fabricated tool/engine/framework presented as a real recommendation | Minor errors only (wrong CLI syntax, wrong install path) but all named tools exist | Every named tool/repo resolves |
-| 4 | **Model factuality** (RQ2) | ≥ 1 fabricated model or version number used as a primary pick | Model families right, ≥ 1 point-version doesn't resolve | All model names/versions resolve for the capture date |
+| 3 | **Tool factuality** (RQ2) | ≥ 1 **web-verified non-existent** tool/engine/framework presented as a real recommendation | Minor errors only (wrong CLI syntax, wrong install path) but all named tools exist | Every named tool/repo resolves |
+| 4 | **Model factuality** (RQ2) | ≥ 1 **web-verified non-existent** model, or a wrong load-bearing attribute (size/arch) on a real model, used as a primary pick | Model families right, ≥ 1 point-version / size doesn't resolve | All model names/versions/sizes resolve for the capture date |
 | 5 | **Benchmark factuality** (RQ2) | Cites specific numbers that are fabricated or unattributable | Vague/plausible numbers, no source | Numbers cited to a primary source, or explicitly none given |
 | 6 | **Citation quality** (RQ5) | Prompt asked for sources; none given, or none resolve | Some sources given, some resolve/support | Sources resolve **and** support the claim; primary preferred |
 | 7 | **Actionability** | Vague prose, no commands/config | Partial: some install commands, gaps in wiring | Executable phased plan with commands, config, test, rollback |
@@ -18,8 +18,16 @@ small table, plus a one-line justification per dimension citing specific text.
 
 ## Notes for raters
 
-- **Dimension 3 vs 4:** a tool is software you install (`Rapid-MLX`, `DSH`); a model is weights you
-  load (`Gemma 4 26B`). Score separately — a response can invent one and not the other.
+- **Dimension 3 vs 4:** a tool is software you install; a model is weights you load. Score
+  separately — a response can invent one and not the other.
+- **MANDATORY for dims 3 & 4 — web-verify before scoring.** The anchor rater's first pass scored
+  from training memory and false-flagged 14 real post-cutoff releases as fabrications (see
+  `analysis/verification/tool-model-register.md`). Before assigning a 0, **search the web** for
+  each disputed name. Rules: (a) if it resolves to a real repo / model card / release, it is NOT a
+  fabrication regardless of whether it was in your training data; (b) "I have never heard of it" =
+  `UNRESOLVED`, which scores as dim-3/4 **1, not 0**; (c) score 0 only for a name that a search
+  positively shows does not exist, OR a wrong load-bearing attribute on a real model (e.g.
+  "Qwen3-Coder-Next 8B" when the real model is 80B). Cite the URL you verified against.
 - **Dimension 6:** if the response cited nothing, score 0 **only if the prompt asked for sources**
   (v1 does). Note that a 0 here plus 2s on 3/4/5 is possible (avoided fabrication by citing
   nothing) — that pattern is itself a finding, not a scoring error.

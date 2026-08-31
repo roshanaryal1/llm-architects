@@ -438,6 +438,25 @@ These indicate a web search was performed but cannot be resolved or checked. Sco
 
 ## Reviewer notes
 
+> ### CORRECTION 2026-09-01 — partial. One flagged item is a REAL defect; the framing changes.
+> Web verification (`analysis/verification/tool-model-register.md`):
+> - **`Qwen3-Coder-Next 8B` (~5 GB) — this IS a genuine error, and it survives.** The real
+>   Qwen3-Coder-Next is an **80B MoE / 3B active** (`huggingface.co/Qwen/Qwen3-Coder-Next`);
+>   `gpt-5` and `meta-llama-4` both name it correctly. z-ai uses the wrong-sized version as its
+>   load-bearing primary coding pick. Call it a **model-size error**, not "fabrication" — the model
+>   is real, the attribute is wrong.
+> - **`Claw Code`** (referenced) — real: clean-room Claude Code rewrite after the 2026-03-31
+>   source-map leak. Not a fabrication.
+> - `vLLM-MLX` — already noted as real; the throughput numbers around it stay `UNRESOLVED`.
+> - `Qwen3.5-0.8B` tag — `UNRESOLVED`.
+>
+> **What survives, unchanged:** the size error above **plus** the internal inconsistencies (5 GB
+> vs 14 GB for the same model; Qwen3-Coder-Next vs Devstral as "the" coding model; 3-instance
+> co-resident diagram vs on-demand prose), "fits within 32 GB with swapping", no M6-specific
+> facts, and the assumed third drive. z-ai remains the softest bucket-2 member — but for real
+> reasons (size error + inconsistency + no sourcing), not for inventing an ecosystem, which it
+> did not do.
+
 ### Trust — MEDIUM, leaning MEDIUM-LOW. Consensus-shaped, but unsourced with a load-bearing fabrication.
 
 ### Hallucination (RQ2) — one significant model-attribute fabrication + unattributed numbers
