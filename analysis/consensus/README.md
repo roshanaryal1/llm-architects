@@ -1,8 +1,8 @@
 # `analysis/consensus/` — cross-response synthesis (RQ1)
 
-**Status: not started.** Formal synthesis begins once the remaining ~5 responses are in
-(currently 6: claude-sonnet-5, qwen-3.7-plus, deepseek-instant, deepseek-expert,
-deepseek-instant-deepthink, perplexity).
+**Status: not started.** Formal synthesis begins once the remaining ~4 responses are in
+(currently 7: claude-sonnet-5, qwen-3.7-plus, deepseek-instant, deepseek-expert,
+deepseek-instant-deepthink, perplexity, gemini-3.1-pro).
 
 ## What goes here
 
@@ -15,9 +15,9 @@ deepseek-instant-deepthink, perplexity).
    non-consensus call explicitly labelled `[adjudicated]` with reasoning. This is the paper's
    synthesis section and the author's build brief.
 
-## Early signal (from 6 responses — provisional, not a result)
+## Early signal (from 7 responses — provisional, not a result)
 
-**Unanimous (6/6):**
+**Unanimous (7/7):**
 
 - MLX-family local inference (Ollama/MLX; llama.cpp as fallback/diagnostic).
 - 100+ logical agents = stored definitions/job-specs + task queue + small worker pool + model
@@ -38,11 +38,18 @@ deepseek-instant-deepthink, perplexity).
 **Strong majority:**
 
 - Heavy model = **Qwen3-Coder-30B-A3B** MoE (Claude, DeepSeek-Expert, Perplexity explicitly;
-  DeepSeek-Instant + DeepSeek-DeepThink name fabricated variants of the same idea). Only
-  Qwen 3.7 Plus picks a **dense 32B**.
-- Context held to **16–32K** locally despite 256K capability (Claude, Perplexity, DeepSeek-Expert).
-- Research = **evidence-first pipeline, model never cites from memory, mandatory contradiction
-  pass** (Claude, Qwen, both DeepSeek runs, Perplexity — 5/6).
+  DeepSeek-Instant + DeepSeek-DeepThink name fabricated variants of the same idea). **Qwen 3.7
+  Plus and Gemini 3.1 Pro both pick a dense 2024-era 32B** (Qwen2.5-Coder-32B) instead — the
+  two responses with the oldest model knowledge.
+- Context held to **16–32K** locally despite 256K capability (Claude, Perplexity, DeepSeek-Expert,
+  Gemini).
+- Research = **evidence-first / citation-grounded** (Claude, Qwen, both DeepSeek runs, Perplexity
+  build a custom evidence pipeline; Gemini delegates it to **PaperQA2** off-the-shelf — 6/7).
+- **`sqlite-vec` vs ChromaDB** splits cleanly: Claude + Gemini pick sqlite-vec (in-process, no
+  daemon); Qwen + both DeepSeek runs pick ChromaDB; Perplexity picks Qdrant embedded. 3/7 now
+  explicitly avoid a standalone vector daemon.
+- **Aider** is the modal coding harness (Qwen, both DeepSeek runs, Gemini = 4/7); Claude + DeepSeek-
+  Expert pick Claude Code; Perplexity picks OpenHands SDK.
 
 **Genuine disagreement:**
 
@@ -74,8 +81,11 @@ deepseek-instant-deepthink, perplexity).
 | deepseek-instant-deepthink | `Ornith-1.0-9B` / `ornith-claude-coder`, `Qwen3.5-35B-A3B` tag, `WhipDesk`, `Cloak`, `Helmrig`, `RemoteVibe`, `Lody`, `DiffResearch`, `LightAgent`, `Engram-Mem`, invented tok/s + SWE-bench numbers |
 | deepseek-expert | none (real tools; only stale point-versions) |
 | qwen-3.7-plus | none (stale but real) |
+| gemini-3.1-pro | none (real tools; stale model + cloud-fallback names — recency, not fabrication) |
 | perplexity | none (2 arXiv IDs unverified — evidence-quality, not fabrication) |
 | claude-sonnet-5 | none |
 
 Pattern so far: **the fabrication is concentrated in DeepSeek's non-"expert" free modes**, not
-across vendors — a within-provider mode effect worth calling out in the paper.
+across vendors — a within-provider mode effect worth calling out in the paper. 5 of 7 responses
+fabricate nothing; the recency split (Claude/Perplexity current; Qwen/Gemini ~12-18mo behind;
+DeepSeek non-expert invents a plausible-sounding future) is emerging as the more interesting axis.

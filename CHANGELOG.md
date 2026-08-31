@@ -48,8 +48,21 @@ All notable changes to the corpus and analysis. Format loosely follows
 - `decisions-matrix.csv`: now 39 axes × 11 model columns (6 filled: claude, qwen37plus,
   deepseek_instant, deepseek_expert, deepseek_deepthink, perplexity).
 
+### Added — 2026-08-31 — response 7 (Gemini 3.1 Pro)
+- Web-checked Gemini free tier: Pro-series left Google AI Studio's free tier 2026-04-01
+  (free tier is now Flash-class); Pro access is paid or via the Gemini app. Recorded in the
+  capture's `model_version_id`.
+- `gemini-3.1-pro` — Google. Trust: MEDIUM. 0 sources. All named tools real (llama.cpp, Aider,
+  PaperQA2, SearXNG, Crawl4AI, sqlite-vec, Lima, Mosh, Tailscale). Distinctive: only response to
+  pick **llama.cpp as the primary engine** (not MLX); only one to name **PaperQA2** for
+  citation-grounded research; agrees with Claude on **sqlite-vec** (vs the Chroma camp); runs
+  **2 llama.cpp slots of one model** (`-np 2`) instead of 1-heavy+N-light. Weak points: 2024-era
+  models (Qwen2.5-Coder-32B dense, R1-Distill-14B), stale cloud-fallback list ("Claude 3.5
+  Sonnet" / "DeepSeek-V3"), no M6-specific facts.
+- `memory_budget.py`: +`gemini` preset. `decisions-matrix.csv`: 39 axes × 11 columns (7 filled).
+
 ### Pending
-- Responses: GPT-5, Gemini 3 Pro, Grok 4, Mistral Large 3, Llama 4.
+- Responses: GPT-5, Grok 4, Mistral Large 3, Llama 4.
 - `prompts/prompt-v2.md` / `prompt-v3.md` paraphrases for prompt-sensitivity (RQ6).
 - Second independent rater for the rubric; inter-rater agreement.
 - `analysis/consensus/` synthesis once ≥ 6 responses are in.

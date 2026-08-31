@@ -106,6 +106,15 @@ PRESETS: dict[str, dict] = {
         "ctx": 8000,
         "browser": True,
     },
+    "gemini": {
+        # Gemini 3.1 Pro: single resident model (hot-swap Qwen2.5-Coder-32B <-> R1-Distill-14B,
+        # never both), 2 llama.cpp slots of the SAME model, 16k context split 2x8k. Its own map
+        # assumes a lean 5 GB macOS while also running Docker + SearXNG + Crawl4AI.
+        "label": "Gemini 3.1 Pro pick (Qwen2.5-Coder-32B Q4_K_M dense, single resident, -np 2)",
+        "models": [("Qwen2.5-Coder-32B q4_k_m (dense)", 19.8, 0.11)],
+        "ctx": 16000,
+        "browser": True,
+    },
     "over-budget-demo": {
         "label": "The classic mistake: heavy MoE + mid reasoner + browser all resident",
         "models": [("Qwen3-Coder-30B-A3B q4", 18.0, 0.09),
