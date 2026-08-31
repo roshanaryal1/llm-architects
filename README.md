@@ -17,9 +17,9 @@ stale recommendations, hardware-constraint violations, and citation quality. The
 research write-up (see [`docs/paper-options.md`](docs/paper-options.md)) and doubles as the design
 brief for the author's real build.
 
-> **Status:** data-collection phase. **11 / ~12 responses captured** — Claude Sonnet 5,
+> **Status:** data-collection phase. **12 / 12 responses captured — data collection complete** — Claude Sonnet 5,
 > Qwen 3.7 Plus, DeepSeek (Instant / Expert / Instant+DeepThink), Perplexity, Gemini 3.1 Pro,
-> Kimi Instant, Mistral Large 3, GPT-5.6 Luna, Meta / Llama 4. Pending: Grok 4.
+> Kimi Instant, Mistral Large 3, GPT-5.6 Luna, Meta / Llama 4, Grok 4. **All planned captures done.**
 > See [`CHANGELOG.md`](CHANGELOG.md) for the running log.
 >
 > **This repository is the canonical project folder.** Everything lives here — prompt,
@@ -53,12 +53,12 @@ milestone **v0.1 — data collection complete**. Open issues, in rough order:
 
 | # | Item | Status |
 |---|------|--------|
-| ~~#5 #7~~ | ~~Capture GPT-5 / Llama 4~~ | done (GPT-5.6 Luna, Meta/Llama 4) |
-| #6 | Capture Grok 4 | last one |
+| ~~#5 #6 #7~~ | ~~Capture GPT-5 / Grok 4 / Llama 4~~ | done — **12 responses / 10 systems** |
+| **#10** | Build `analysis/consensus/` synthesis | **unblocked — critical path** |
+| #9 | Second rubric rater + inter-rater agreement | required for paper |
 | #12 #13 #14 | Follow-up probes (fabrication-retraction, recency-vs-effort, cite-on-demand) | optional, high value |
 | #8 | `prompt-v2` / `v3` paraphrases (RQ6) | after captures |
 | #9 | Second rubric rater + inter-rater agreement | required for paper |
-| #10 | Build `analysis/consensus/` synthesis | blocked on ≥ 10 responses |
 | #11 | Draft the meta-study paper | blocked on #8 #9 #10 |
 
 Contribution flow is one branch + PR per issue — see [`CONTRIBUTING.md`](CONTRIBUTING.md).
