@@ -18,10 +18,10 @@ jobs:
   structure:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.12"
 
@@ -57,9 +57,16 @@ jobs:
   markdownlint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
-          node-version: "20"
+          node-version: "22"
       - run: npm install -g markdownlint-cli
-      - run: markdownlint '**/*.md' --ignore node_modules
+      # Lint AUTHORED prose only. data/responses/** is verbatim third-party output and
+      # analysis/findings/** is long-form quoted notes — both are exempt by rule
+      # (see CONTRIBUTING.md); .markdownlint.json is already lenient for the rest.
+      - run: >
+          markdownlint '**/*.md'
+          --ignore node_modules
+          --ignore 'data/responses/**'
+          --ignore 'analysis/findings/**'
