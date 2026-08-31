@@ -1,0 +1,48 @@
+# ---------------------------------------------------------------------------
+# .gitignore — this repo is text-only (Markdown + CSV + small Python).
+# Nothing large, generated, or secret should ever be committed.
+# ---------------------------------------------------------------------------
+
+# OS cruft
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+desktop.ini
+
+# Editors / IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.\#*
+\#*\#
+
+# Python (only analysis/scripts/ — keep it dependency-free, but ignore local venvs/caches)
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.env
+.python-version
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Generated analysis artifacts (regenerate with `make`; do not commit)
+/analysis/generated/
+*.rendered.md
+consensus-matrix.html
+
+# Never commit raw model dumps outside data/responses/, or scratch notes
+/scratch/
+/tmp/
+*.draft.md
+
+# Secrets — belt and braces (there should be none in this repo ever)
+*.pem
+*.key
+*_token*
+credentials*

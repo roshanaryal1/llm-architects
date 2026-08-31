@@ -1,0 +1,12 @@
+{
+  "//": "markdownlint config. Relaxed where the corpus needs it: verbatim model output often has long lines, bare URLs, and inconsistent heading styles that we must NOT rewrite.",
+  "default": true,
+  "MD013": false,
+  "MD033": false,
+  "MD041": false,
+  "MD024": { "siblings_only": true },
+  "MD034": false,
+  "MD040": false,
+  "MD029": { "style": "ordered" },
+  "MD026": false
+}

@@ -1,0 +1,64 @@
+name: "New model response"
+description: "Register that you are capturing (or have captured) a response from an AI system."
+title: "response: <model-slug>"
+labels: ["response", "data"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this to claim a model so two people don't capture the same one, and to track status.
+        The actual data lands via a PR (see `CONTRIBUTING.md`), not in this issue.
+  - type: input
+    id: slug
+    attributes:
+      label: "Model slug"
+      description: "lowercase-hyphenated, e.g. gpt-5, gemini-3-pro, llama-4-maverick"
+      placeholder: "gpt-5"
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: "Exact model version / ID (if known)"
+      placeholder: "gpt-5-2026-07"
+  - type: dropdown
+    id: browsing
+    attributes:
+      label: "Browsing / tools enabled?"
+      options: ["yes", "no", "unknown", "will run both on/off"]
+    validations:
+      required: true
+  - type: input
+    id: prompt_version
+    attributes:
+      label: "Prompt version used"
+      value: "v1"
+    validations:
+      required: true
+  - type: dropdown
+    id: status
+    attributes:
+      label: "Status"
+      options:
+        - "claimed — not run yet"
+        - "run — writing up capture file"
+        - "PR open"
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: "Notes on the run"
+      description: "Refusals, length limits, multi-message answers, clarifying questions asked, etc."
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: "Before opening the PR"
+      options:
+        - label: "Pasted ONLY the text between the START/END markers of the frozen prompt"
+        - label: "Response saved verbatim — no edits, no reformatting"
+        - label: "Front-matter complete incl. trust_rating + reason"
+        - label: "Model's own sources copied (or NONE)"
+        - label: "Reviewer notes cover recency / hallucination / 32 GB fit / consistency"
+        - label: "Column added to data/decisions-matrix.csv; `make validate` passes"
+        - label: "CHANGELOG.md updated"

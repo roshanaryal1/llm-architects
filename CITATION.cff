@@ -1,0 +1,29 @@
+# https://citation-file-format.github.io/
+cff-version: 1.2.0
+message: "If you use this dataset or its findings, please cite it as below."
+title: "llm-architecture-eval: a controlled comparison of LLM systems-architecture design"
+abstract: >-
+  A dataset and analysis comparing how multiple frontier large language models respond to one
+  identical, evidence-demanding systems-architecture prompt: designing a 24/7 autonomous AI
+  development-and-research workstation for a 32 GB Apple M6 Mac mini. Each response is captured
+  verbatim, extracted into a structured decision matrix, and audited for fabricated tools, stale
+  recommendations, hardware-constraint violations, internal contradictions, and citation quality.
+type: dataset
+authors:
+  - family-names: Aryal
+    given-names: Roshan
+    email: manaratharyal@gmail.com
+repository-code: "https://github.com/roshanaryal1/llm-architecture-eval"
+url: "https://github.com/roshanaryal1/llm-architecture-eval"
+version: "0.1.0"
+date-released: "2026-08-31"
+license: CC-BY-4.0
+keywords:
+  - large language models
+  - systems architecture
+  - LLM evaluation
+  - hallucination
+  - local inference
+  - Apple Silicon
+  - multi-agent systems
+  - benchmark

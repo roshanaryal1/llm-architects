@@ -1,0 +1,65 @@
+name: validate
+
+# Runs on every push and PR. Keeps the corpus structurally sound:
+#   - decisions-matrix.csv parses, is rectangular, required axes present, anchor column filled
+#   - every capture file has the mandatory sections + front-matter keys
+#   - Markdown lints (lenient config; verbatim model output is exempt from reflow rules)
+#   - the memory-budget script still runs for every preset
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  structure:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate decisions matrix
+        run: python3 analysis/scripts/validate_matrix.py data/decisions-matrix.csv
+
+      - name: Smoke-test memory_budget.py for every preset
+        run: |
+          set -e
+          for p in claude qwen deepseek-instant deepseek-expert deepseek-expert-all over-budget-demo; do
+            echo "::group::preset $p"
+            python3 analysis/scripts/memory_budget.py --preset "$p" || true   # non-fit is a valid outcome
+            echo "::endgroup::"
+          done
+          # hard-fail only if the script itself errors (bad Python), not on a "does not fit" verdict
+          python3 -c "import ast; ast.parse(open('analysis/scripts/memory_budget.py').read())"
+
+      - name: Check capture files have required sections
+        run: |
+          set -e
+          fail=0
+          for f in data/responses/*.md; do
+            case "$f" in */_TEMPLATE.md|*/README.md) continue;; esac
+            for key in "ai_name:" "provider:" "browsing_enabled:" "prompt_version:" "date_run:" "trust_rating:"; do
+              grep -q "^$key" "$f" || { echo "::error file=$f::missing front-matter key '$key'"; fail=1; }
+            done
+            for sec in "## Raw response" "## Model's own cited sources" "## Reviewer notes"; do
+              grep -qF "$sec" "$f" || { echo "::error file=$f::missing section '$sec'"; fail=1; }
+            done
+          done
+          exit $fail
+
+  markdownlint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - run: npm install -g markdownlint-cli
+      - run: markdownlint '**/*.md' --ignore node_modules

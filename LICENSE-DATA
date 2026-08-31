@@ -1,0 +1,30 @@
+# Data & Documentation License
+
+The **research corpus** (`data/`), **analysis** (`analysis/`), **documentation** (`docs/`, `README.md`),
+and **prompt instrument** (`prompts/`) in this repository are licensed under the
+
+**Creative Commons Attribution 4.0 International License (CC-BY-4.0)**
+<https://creativecommons.org/licenses/by/4.0/>
+
+You are free to share and adapt this material for any purpose, including commercially, provided you
+give appropriate credit to:
+
+> Roshan Aryal, *llm-architecture-eval*, 2026. https://github.com/roshanaryal1/llm-architecture-eval
+
+## Third-party content
+
+Files under `data/responses/` contain **verbatim output from third-party AI systems** (Anthropic
+Claude, Alibaba Qwen, DeepSeek, etc.), reproduced here for the purposes of research, criticism, and
+comparative review. Each such quotation is:
+
+- clearly delimited under a `## Raw response` heading,
+- attributed in YAML front-matter to its originating system and capture date,
+- unmodified except for the addition of clearly-marked reviewer commentary.
+
+These excerpts remain the product of their respective systems and vendors. Their inclusion here is
+fair-use/fair-dealing commentary and does not transfer any rights in the underlying model output.
+If you reuse a capture file, reproduce its attribution front-matter.
+
+## Code
+
+Original code is under the MIT License; see `LICENSE`.
