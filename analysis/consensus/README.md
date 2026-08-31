@@ -13,21 +13,30 @@ Grok 4 (#6) lands (11 of ~12 responses captured):
 
 ---
 
-## Responses in the corpus (11)
+## Corpus: 11 responses from 9 systems
 
-| slug | vendor / free tier | trust | sources | bucket |
-|---|---|---|---|---|
-| `claude-sonnet-5` | Anthropic (Claude Code, browsing) | HIGH (anchor, not blind) | ~97 URLs | 1 |
-| `mistral-large-3` | Mistral Le Chat (Large 3) | HIGH | ~36 rated | 1 |
-| `gpt-5` | OpenAI ChatGPT (GPT-5.6 Luna) | HIGH | ~20 inline, 0 URLs | 1 |
-| `perplexity` | Perplexity (Sonar) | MED-HIGH | ~17 URLs | 1 |
-| `kimi-instant` | Moonshot Kimi (Instant) | MED-HIGH | search markers, 0 URLs | 2 |
-| `deepseek-expert` | DeepSeek-V4-Pro (deep mode) | MED-HIGH | 0 | 2 |
-| `gemini-3.1-pro` | Google Gemini | MEDIUM | 0 | 2 |
-| `qwen-3.7-plus` | Alibaba Qwen chat | MEDIUM | 0 | 2 |
-| `deepseek-instant` | DeepSeek-V4-Pro (fast mode) | LOW | 0 | 3 |
-| `deepseek-instant-deepthink` | DeepSeek-V4-Pro (instant+DeepThink) | LOW | 0 | 3 |
-| `meta-llama-4` | Meta AI / hosted Llama 4 | LOW | **99 refs, ~60% junk** | 3 |
+DeepSeek contributed 3 modes of one base model (DeepSeek-V4-Pro). `data/systems.csv` marks
+`deepseek-expert` as the **canonical** DeepSeek answer.
+
+- **Per-system claims below (RQ1 agreement, "how many models pick X")** count **9 systems**
+  (8 non-anchor): the canonical column per system.
+- **Per-response claims (RQ2 fabrication, RQ6 mode sensitivity)** use all **11 captures**.
+- The 3 DeepSeek modes are a within-model finding of their own — see
+  [`../deepseek-modes.md`](../deepseek-modes.md). Captures are never merged.
+
+| slug | vendor / free tier | canonical | trust | sources | bucket |
+|---|---|---|---|---|---|
+| `claude-sonnet-5` | Anthropic (Claude Code, browsing) | ✔ (anchor) | HIGH — not blind | ~97 URLs | 1 |
+| `mistral-large-3` | Mistral Le Chat (Large 3) | ✔ | HIGH | ~36 rated | 1 |
+| `gpt-5` | OpenAI ChatGPT (GPT-5.6 Luna) | ✔ | HIGH | ~20 inline, 0 URLs | 1 |
+| `perplexity` | Perplexity (Sonar) | ✔ | MED-HIGH | ~17 URLs | 1 |
+| `kimi-instant` | Moonshot Kimi (Instant) | ✔ | MED-HIGH | search markers, 0 URLs | 2 |
+| `deepseek-expert` | DeepSeek-V4-Pro (deep-reasoning mode) | ✔ | MED-HIGH | 0 | 2 |
+| `gemini-3.1-pro` | Google Gemini | ✔ | MEDIUM | 0 | 2 |
+| `qwen-3.7-plus` | Alibaba Qwen chat | ✔ | MEDIUM | 0 | 2 |
+| `meta-llama-4` | Meta AI / hosted Llama 4 | ✔ | LOW | **99 refs, ~60% junk** | 3 |
+| `deepseek-instant` | DeepSeek-V4-Pro (fast mode) | mode-variant | LOW | 0 | 3 |
+| `deepseek-instant-deepthink` | DeepSeek-V4-Pro (instant+DeepThink) | mode-variant | LOW | 0 | 3 |
 
 "Bucket" = the emerging 3-way recency/rigour split (see bottom).
 
@@ -35,7 +44,13 @@ Grok 4 (#6) lands (11 of ~12 responses captured):
 
 ## Early signal (from 11 responses — provisional, not a result)
 
-### Unanimous (11/11)
+> The `X/11` counts in this **early-signal** section are per-*response* (they include both
+> non-canonical DeepSeek modes). The formal per-*system* tally (one canonical column per system,
+> "of 9") is what `consensus-matrix.md` will produce — that is the number the paper reports for
+> RQ1. Where the two differ it is because the DeepSeek fast modes echo `deepseek-expert`, so a
+> per-system count is usually `per-response count − 0..2`.
+
+### Unanimous (9/9 systems; 11/11 responses)
 
 - **MLX-family local inference** is the correct Apple-Silicon path (llama.cpp/Ollama as
   fallback/compat). Even the fabrication-heavy responses agree on this.
