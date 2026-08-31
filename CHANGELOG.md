@@ -78,8 +78,22 @@ All notable changes to the corpus and analysis. Format loosely follows
 - `memory_budget.py`: +`kimi`, +`mistral`, +`mistral-two-resident` presets.
 - `decisions-matrix.csv`: 39 axes × 12 columns (8 filled).
 
+### Added — 2026-08-31 — response 9 (Mistral Large 3)
+- Web-checked Mistral free tier: **Mistral Large 3** (675B total / 41B active, MoE, Apache-2.0,
+  released 2025-12-02) is the 2026 flagship and the Le Chat free-tier model.
+- `mistral-large-3` — converted from the raw `./Mistral.md` the user dropped at the repo root
+  (wrapped as a proper capture, body byte-for-byte unchanged; root copy deleted). Trust: **HIGH** —
+  the most rigorously-sourced response after the anchor: explicit Methodology / Limitations /
+  Open Questions sections, ~36 credibility-rated sources with dates, engaged M6 specifics
+  (170 GB/s, dual Neural Engine, 2 nm, ship dates), current 2026 frontier-model landscape
+  (GLM-5.2 744B/40B-active, Kimi K3 2.8T, DeepSeek V4 — correctly ruled out for local), current
+  tooling (mlx-lm 0.31.x, **oMLX SSD-tiered KV cache**, vllm-mlx, llama-swap v201, GPT-Researcher,
+  Graphiti). Zero fabrications. Only response to raise SSD KV-cache spill and MLX
+  RDMA-over-Thunderbolt clustering. Weakness: ~6 of ~36 "sources" are `google.com/search` URLs.
+- `decisions-matrix.csv`: `mistral_large3` column filled (39 axes; 9 of 12 columns filled).
+
 ### Pending
-- Responses: Mistral Large 3 (raw at repo root, next up), GPT-5, Grok 4, Llama 4.
+- Responses: GPT-5, Grok 4, Llama 4.
 - `prompts/prompt-v2.md` / `prompt-v3.md` paraphrases for prompt-sensitivity (RQ6).
 - Second independent rater for the rubric; inter-rater agreement.
 - `analysis/consensus/` synthesis once ≥ 6 responses are in.

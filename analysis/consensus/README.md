@@ -1,8 +1,8 @@
 # `analysis/consensus/` — cross-response synthesis (RQ1)
 
-**Status: not started.** Formal synthesis begins once the remaining ~3 responses are in
-(currently 8: claude-sonnet-5, qwen-3.7-plus, deepseek-instant, deepseek-expert,
-deepseek-instant-deepthink, perplexity, gemini-3.1-pro, kimi-instant).
+**Status: not started.** Formal synthesis begins once the remaining ~2 responses are in
+(currently 9: claude-sonnet-5, qwen-3.7-plus, deepseek-instant, deepseek-expert,
+deepseek-instant-deepthink, perplexity, gemini-3.1-pro, kimi-instant, mistral-large-3).
 
 ## What goes here
 
@@ -15,9 +15,9 @@ deepseek-instant-deepthink, perplexity, gemini-3.1-pro, kimi-instant).
    non-consensus call explicitly labelled `[adjudicated]` with reasoning. This is the paper's
    synthesis section and the author's build brief.
 
-## Early signal (from 8 responses — provisional, not a result)
+## Early signal (from 9 responses — provisional, not a result)
 
-**Unanimous (8/8):**
+**Unanimous (9/9):**
 
 - MLX-family local inference (Ollama/MLX; llama.cpp as fallback/diagnostic).
 - 100+ logical agents = stored definitions/job-specs + task queue + small worker pool + model
@@ -87,10 +87,19 @@ deepseek-instant-deepthink, perplexity, gemini-3.1-pro, kimi-instant).
 | qwen-3.7-plus | none (stale but real) |
 | gemini-3.1-pro | none (real tools; stale model + cloud-fallback names — recency, not fabrication) |
 | kimi-instant | none (real tools; number inflation — "OpenCode 198k stars", "gpt-oss 98.3%" — and a stale cloud list) |
+| mistral-large-3 | none (~6 of ~36 "sources" are google.com/search URLs — evidence-quality, not fabrication) |
 | perplexity | none (2 arXiv IDs unverified — evidence-quality, not fabrication) |
 | claude-sonnet-5 | none |
 
 Pattern so far: **the fabrication is concentrated in DeepSeek's non-"expert" free modes**, not
-across vendors — a within-provider mode effect worth calling out in the paper. 5 of 7 responses
-fabricate nothing; the recency split (Claude/Perplexity current; Qwen/Gemini ~12-18mo behind;
-DeepSeek non-expert invents a plausible-sounding future) is emerging as the more interesting axis.
+across vendors — a within-provider mode effect worth calling out in the paper. **7 of 9 responses
+fabricate nothing.** The more interesting axis is a 3-way recency/rigour split:
+
+1. **Sourced + current + M6-aware** — `claude-sonnet-5`, `mistral-large-3`, `perplexity`
+   (all browsed; explicit methodology/limitations; engaged 170 GB/s + ship dates + the
+   GLM-5.2 / Kimi K3 / DeepSeek V4 frontier landscape).
+2. **Unsourced + ~12-18 months behind** — `qwen-3.7-plus`, `gemini-3.1-pro`, `kimi-instant`
+   (real tools, but 2024-era models and/or `Claude 3.5 Sonnet` as the cloud fallback; no M6 facts).
+3. **Confident futurism** — `deepseek-instant`, `deepseek-instant-deepthink`
+   (invent plausible-sounding 2026 tools/models — Rapid-MLX, DSH, Ornith-1.0-9B, WhipDesk …).
+   `deepseek-expert` (same base model, "expert" mode) escapes this into bucket 2.
