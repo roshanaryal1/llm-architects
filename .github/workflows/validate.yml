@@ -62,11 +62,13 @@ jobs:
         with:
           node-version: "22"
       - run: npm install -g markdownlint-cli
-      # Lint AUTHORED prose only. data/responses/** is verbatim third-party output and
-      # analysis/findings/** is long-form quoted notes — both are exempt by rule
+      # Lint AUTHORED prose only. data/responses/** is verbatim third-party output,
+      # analysis/findings/** is long-form quoted notes, and analysis/scoring/rater-bundle.md
+      # is a generated concatenation of the verbatim responses — all exempt by rule
       # (see CONTRIBUTING.md); .markdownlint.json is already lenient for the rest.
       - run: >
           markdownlint '**/*.md'
           --ignore node_modules
           --ignore 'data/responses/**'
           --ignore 'analysis/findings/**'
+          --ignore 'analysis/scoring/rater-bundle.md'
