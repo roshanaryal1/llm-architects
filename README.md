@@ -17,9 +17,14 @@ stale recommendations, hardware-constraint violations, and citation quality. The
 research write-up (see [`docs/paper-options.md`](docs/paper-options.md)) and doubles as the design
 brief for the author's real build.
 
-> **Status:** data-collection phase. 4 / 10 responses captured
-> (Claude Sonnet 5, Qwen 3.7 Plus, DeepSeek Instant, DeepSeek Expert).
+> **Status:** data-collection phase. **9 / ~11 responses captured** — Claude Sonnet 5,
+> Qwen 3.7 Plus, DeepSeek (Instant / Expert / Instant+DeepThink), Perplexity, Gemini 3.1 Pro,
+> Kimi Instant, Mistral Large 3. Pending: GPT-5, Grok 4, Llama 4.
 > See [`CHANGELOG.md`](CHANGELOG.md) for the running log.
+>
+> **This repository is the canonical project folder.** Everything lives here — prompt,
+> responses, matrix, analysis, tooling. Earlier loose working files in the parent directory were
+> superseded and archived out of the way; nothing outside this repo is authoritative.
 
 ---
 
