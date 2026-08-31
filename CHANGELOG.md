@@ -140,12 +140,27 @@ All notable changes to the corpus and analysis. Format loosely follows
 - `memory_budget.py`: +`grok` preset. `decisions-matrix.csv`: **39 axes × 12 columns — ALL FILLED**
   (validator: 0 warnings).
 
-### Milestone: data collection complete
-- **12 responses from 10 systems** (9 non-anchor): Anthropic, Mistral, OpenAI, Perplexity,
-  Moonshot, Google, Alibaba, Meta, DeepSeek (3 modes), xAI.
-- Next: #8 (`prompt-v2/v3`, optional), #9 (2nd rater — required), #10 (`consensus-matrix.md` /
-  `disagreements.md` / `reference-architecture.md` — now unblocked), #11 (paper draft),
-  #12–#14 / #17 follow-up probes (optional, high value).
+### Added — 2026-08-31 — response 13 (z.ai / Zhipu GLM) — bonus system
+- `z-ai` — Zhipu z.ai free chat (GLM class). Response 13 / **system 11**. Trust: **MEDIUM**
+  (leaning MEDIUM-LOW). Architecture shape fully consensus-aligned and **no invented tool
+  ecosystem** (unlike `meta-llama-4` / `deepseek-instant`), but: **0 usable sources**
+  (`【turn0searchN】` markers only); **no M6-specific facts**; its load-bearing primary pick is a
+  **fabricated size — `Qwen3-Coder-Next 8B`** when the real model is an ~80B MoE (`gpt-5` and
+  `meta-llama-4` both name it at 80B); internal inconsistencies (5 GB vs 14 GB for the same model;
+  Qwen3-Coder-Next vs Devstral as "the" coding stack; swap-strategy vs a 3-instance concurrent
+  diagram); relies on swap ("Fits within 32GB RAM with swapping"); assumes a 3rd drive (2 TB HDD)
+  not in the spec. Distinctive: **vLLM-MLX as the #1 primary engine** (first response to do so —
+  the tool is real, the "130-464 tok/s" numbers are not); **Caddy** reverse proxy (unique);
+  **Redis** for both task queue and working memory; recommends its own GLM-4.5-Air. Bucket 2.
+- `data/systems.csv`: `z-ai` appended, canonical. `memory_budget.py`: +`zai` preset.
+- `decisions-matrix.csv`: `z_ai` column added — **39 axes × 13 columns, all filled**.
+
+### Milestone: data collection (13 responses / 11 systems)
+- 11 systems (10 non-anchor): Anthropic, Mistral, OpenAI, Perplexity, Moonshot, Google, Alibaba,
+  Meta, DeepSeek (3 modes), xAI, Zhipu.
+- Next: #10 (`consensus-matrix.md` / `disagreements.md` / `reference-architecture.md` — critical
+  path), #9 (2nd rater — required for paper), #8 (`prompt-v2/v3`, optional), #11 (paper draft),
+  #12–#14 / #17 follow-up probes (optional).
 - `prompts/prompt-v2.md` / `prompt-v3.md` paraphrases for prompt-sensitivity (RQ6).
 - Second independent rater for the rubric; inter-rater agreement.
 - `analysis/consensus/` synthesis once ≥ 6 responses are in.
