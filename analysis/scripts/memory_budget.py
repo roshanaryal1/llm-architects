@@ -171,6 +171,18 @@ PRESETS: dict[str, dict] = {
         "ctx": 48000,
         "browser": True,
     },
+    "zai": {
+        # z.ai / Zhipu GLM: its §B diagram shows THREE large model instances co-resident
+        # (Qwen3-Coder ~5 GB [its fabricated "8B" size] + GLM-4.5-Air ~4 GB + Mistral Small
+        # ~6 GB), and its §C table sums to "32 GB ... Fits within 32GB RAM with swapping".
+        # Uses the §C figure (14 GB primary) since that is the one it defends numerically.
+        "label": "z.ai pick (3 model instances co-resident; §C says 'fits with swapping')",
+        "models": [("'Qwen3-Coder-Next 8B' — §C says 14 GB (fabricated size)", 14.0, 0.06),
+                   ("GLM-4.5-Air 4-bit", 4.0, 0.03),
+                   ("Mistral Small 3.1 4-bit", 6.0, 0.04)],
+        "ctx": 32000,
+        "browser": True,
+    },
     "over-budget-demo": {
         "label": "The classic mistake: heavy MoE + mid reasoner + browser all resident",
         "models": [("Qwen3-Coder-30B-A3B q4", 18.0, 0.09),
