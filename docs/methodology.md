@@ -37,6 +37,18 @@ this repo — with live browsing and partial authorship of the response format. 
 the **consensus anchor and the only sourced baseline**, and explicitly *excluded* from
 "independent sample" counts in RQ1/RQ4/RQ5 aggregates.
 
+**One response ≠ one system.** DeepSeek contributed three captures — `deepseek-expert`,
+`deepseek-instant`, `deepseek-instant-deepthink` — all the same base model (DeepSeek-V4-Pro) in
+three chat modes. `data/systems.csv` records the `slug → system → canonical` mapping.
+
+- **Per-system claims (RQ1 consensus, "how many models pick X"):** count one column per system,
+  the canonical one (`deepseek-expert`). Report as "N of 9 systems captured" (8 non-anchor).
+- **Per-response claims (RQ2 hallucination, RQ6 consistency and *mode* sensitivity):** use all 11
+  captures. The three DeepSeek modes are a within-model sensitivity measurement no other vendor
+  can provide — see `analysis/deepseek-modes.md`. Report as "N of 11 responses".
+
+Captures are never merged or deleted (verbatim-data rule, `CONTRIBUTING.md`).
+
 ## 4. Extraction
 
 Two artefacts per response:

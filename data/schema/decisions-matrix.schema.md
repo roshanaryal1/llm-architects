@@ -42,3 +42,18 @@ Optional-but-present axes (not enforced, keep if useful): `mid_reasoner_model`,
 `axis`, then `claude_sonnet5`, then captured responses in capture order, then blank placeholder
 columns for planned-but-uncaptured models. When a placeholder is captured, fill it in place
 (don't reorder) so historical diffs stay readable.
+
+## One column per response; consensus counts one column per *system*
+
+Every response gets its own column — including the three DeepSeek modes
+(`deepseek_instant`, `deepseek_expert`, `deepseek_deepthink`), which are the same base model
+(DeepSeek-V4-Pro) run in three chat modes.
+
+`data/systems.csv` maps each `slug` to its `system` and marks one **canonical** capture per system.
+Rules for using the matrix:
+
+- **RQ1 (agreement / "how many models pick X")** — count **one column per system**: the canonical
+  one (`deepseek_expert` for DeepSeek). Phrase results as "N of 9 systems" (8 non-anchor).
+- **RQ2 (hallucination) and RQ6 (consistency / mode sensitivity)** — use **all columns**, including
+  the two non-canonical DeepSeek modes. Phrase as "N of 11 responses".
+- Never merge or delete a response column. See `analysis/deepseek-modes.md`.
