@@ -115,6 +115,32 @@ PRESETS: dict[str, dict] = {
         "ctx": 16000,
         "browser": True,
     },
+    "kimi": {
+        # Kimi Instant: Ollama-0.19-MLX, ONE large model resident (Qwen3-Coder-30B-A3B),
+        # small model swapped on demand, ctx 32-64k. Its RAM table budgets only 3-4 GB
+        # for macOS while also running Ollama + Playwright + Python + Docker(OpenHands).
+        "label": "Kimi Instant pick (Qwen3-Coder-30B-A3B Q4 resident, one large at a time)",
+        "models": [("Qwen3-Coder-30B-A3B q4 (~22 GB as stated)", 22.0, 0.09)],
+        "ctx": 32000,
+        "browser": True,
+    },
+    "mistral": {
+        # Mistral Large 3: ONE resident large MoE (Qwen3-Coder-30B-A3B 4-bit ~18-20 GB),
+        # small dense (Qwen3.5-9B Q8 ~11 GB) LOAD-ON-DEMAND via llama-swap (not co-resident),
+        # KV can spill to external SSD via oMLX. ctx 32-64k routine.
+        "label": "Mistral Large 3 pick (Qwen3-Coder-30B-A3B 4-bit resident; 9B swapped via llama-swap)",
+        "models": [("Qwen3-Coder-30B-A3B 4-bit", 19.0, 0.09)],
+        "ctx": 48000,
+        "browser": True,
+    },
+    "mistral-two-resident": {
+        # The tight case Mistral flags as "feasible but not recommended": both models resident.
+        "label": "Mistral Large 3, both models resident (flagged tight, not recommended)",
+        "models": [("Qwen3-Coder-30B-A3B 4-bit", 19.0, 0.09),
+                   ("Qwen3.5-9B Q8", 11.0, 0.04)],
+        "ctx": 32000,
+        "browser": False,
+    },
     "over-budget-demo": {
         "label": "The classic mistake: heavy MoE + mid reasoner + browser all resident",
         "models": [("Qwen3-Coder-30B-A3B q4", 18.0, 0.09),
