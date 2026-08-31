@@ -1,18 +1,25 @@
 # `analysis/consensus/` — cross-response synthesis (RQ1)
 
-**Status: synthesis drafted (issue #10, PR).** The three artefacts exist; refine as `prompt-v2/v3`
-(#8) and the rater scores (#9) land.
+**Status: synthesis drafted (issue #10).** Refine as `prompt-v2/v3` (#8) and the rater scores (#9)
+land.
 
-1. **[`consensus-matrix.md`](consensus-matrix.md)** — every one of the 39 decision axes: modal
-   choice, count of the 10 non-anchor systems holding it, notable dissent. ~24 axes are unanimous.
-2. **[`disagreements.md`](disagreements.md)** — the 8 axes with a genuine split (inference server #1,
-   exact heavy model, per-task sandbox, task-queue backend, vector store, orchestration-framework
-   layer, monitoring depth, cloud dependence) — each with the positions, the tradeoff, and what
-   `reference-architecture.md` adjudicated. Plus 3 "non-disagreements" that resolve on inspection.
-3. **[`reference-architecture.md`](reference-architecture.md)** — the merged design: every layer
-   tagged `[consensus N/10]` or `[adjudicated]`, a layered diagram, the 32 GB resource budget, the
-   security-boundary table, an 8-phase build order, and the "what NOT to build" union. This is the
-   paper's synthesis section **and** the author's build brief.
+1. **[`consensus-matrix.md`](consensus-matrix.md)** — the decision axes with, for each, the
+   modal/plurality choice, the count of the 10 non-anchor systems holding it, and a
+   spread/interpretation note.
+2. **[`disagreements.md`](disagreements.md)** — the ~10 axes with a genuine split (primary model,
+   inference server, orchestration substrate, coding executor, vector store, sandbox depth,
+   task-queue backend, cloud escalation, memory-residency policy, monitoring stack) — each with the
+   positions, the tradeoff, and the engineering implication. Plus what the split pattern means for
+   the paper.
+3. **[`reference-architecture.md`](reference-architecture.md)** — the merged design in 17 sections:
+   9 design principles, a topology diagram, per-subsystem picks tagged `[adjudicated]` where the
+   corpus splits, a 32 GB resource-budget table, a `[adjudicated]` decisions ledger, a
+   "what NOT to build initially" list, and a 12-step first-implementation order. The paper's
+   synthesis section **and** the author's build brief.
+
+> A fuller alternative draft of these three files (grouped-by-category matrix with a 🟢🟡🟠🔴
+> legend, an 8-phase build order with test/rollback per phase) exists in git history at
+> `61b658f` / `d94e211` / `8227151` — cherry-pick from it if useful.
 
 The early-signal notes below are kept for provenance; the numbers above supersede them.
 
