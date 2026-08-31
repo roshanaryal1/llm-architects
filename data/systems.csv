@@ -11,3 +11,4 @@ DeepSeek,deepseek-expert,yes,DeepSeek-V4-Pro,DeepThink / deep-reasoning mode,CAN
 DeepSeek,deepseek-instant,no,DeepSeek-V4-Pro,fast / non-thinking mode,mode-variant — RQ2/RQ6 only; not counted in RQ1 per-system tallies
 DeepSeek,deepseek-instant-deepthink,no,DeepSeek-V4-Pro,Instant + DeepThink toggle,mode-variant — RQ2/RQ6 only; not counted in RQ1 per-system tallies
 xAI Grok,grok-4,yes,Grok 4,free (grok.com / X),—
+Zhipu AI (z.ai / GLM),z-ai,yes,GLM-4.6/4.7 class (not disclosed),z.ai free chat,recommends its own GLM-4.5-Air as the fast-utility model; response 13 / system 11
