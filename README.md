@@ -46,6 +46,22 @@ study instrument and asks:
 
 Full method: [`docs/methodology.md`](docs/methodology.md). Rubric: [`docs/rubric.md`](docs/rubric.md).
 
+## Roadmap
+
+Tracked work is in **[the project board](https://github.com/users/roshanaryal1/projects/6)** and
+milestone **v0.1 — data collection complete**. Open issues, in rough order:
+
+| # | Item | Status |
+|---|------|--------|
+| #5 #6 #7 | Capture GPT-5 / Grok 4 / Llama 4 | next |
+| #12 #13 #14 | Follow-up probes (fabrication-retraction, recency-vs-effort, cite-on-demand) | optional, high value |
+| #8 | `prompt-v2` / `v3` paraphrases (RQ6) | after captures |
+| #9 | Second rubric rater + inter-rater agreement | required for paper |
+| #10 | Build `analysis/consensus/` synthesis | blocked on ≥ 10 responses |
+| #11 | Draft the meta-study paper | blocked on #8 #9 #10 |
+
+Contribution flow is one branch + PR per issue — see [`CONTRIBUTING.md`](CONTRIBUTING.md).
+
 ---
 
 ## Repository layout
