@@ -1,0 +1,14 @@
+slug,D1,D2,D3,D4,D5,D6,D7,D8,D9
+claude-sonnet-5,2,2,2,2,1,0,1,1,2
+mistral-large-3,2,2,2,2,1,2,2,2,2
+gpt-5,2,2,2,2,1,1,2,2,2
+perplexity,2,2,2,2,1,1,1,1,2
+kimi-instant,1,1,2,1,1,0,1,1,1
+deepseek-expert,2,2,2,2,1,0,2,2,2
+gemini-3.1-pro,2,2,2,2,1,1,2,2,2
+qwen-3.7-plus,2,2,2,2,1,1,2,1,2
+grok-4,2,2,2,2,1,1,2,2,2
+z-ai,1,1,1,1,1,0,1,1,1
+meta-llama-4,2,1,2,1,1,0,1,1,2
+deepseek-instant,2,2,2,2,1,0,2,2,2
+deepseek-instant-deepthink,1,2,2,2,1,0,2,2,2

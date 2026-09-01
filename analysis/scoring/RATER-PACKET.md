@@ -26,21 +26,18 @@ Rules:
    notes you are shown.
 3. **Cite the specific text** you are scoring on — one short quote per dimension in your
    justification.
-4. **Verify falsifiable sub-claims by WEB SEARCH — do not score dims 3/4 from memory.** This study
-   already has one rater pass that scored tool/model factuality from training knowledge and
-   **false-flagged 14 real releases** (Rapid-MLX, Gemma 4, DeepSeek Harness, OpenClaw, Claw Code,
-   Ornith-1.0-9B, WhipDesk, LightAgent, GLM-4.7-Flash, Qwen3-Coder-Next, nono, Clawtrol) as
-   fabrications, because they were released after that rater's training cutoff. Do not repeat this.
-   For every named tool/model/version you are unsure of: **search the web**. Then:
+4. **Verify falsifiable sub-claims by WEB SEARCH — do not score dims 3/4 from memory.** Your
+   training cutoff predates the study date; assuming a tool is fake because you have not heard of
+   it is the single most common error here. For every named tool/model/version: **search the
+   web**. Then:
    - resolves to a real repo / HF model card / release note → it exists; NOT a fabrication, even
-     if you had never heard of it. Dim 3/4 stays 2 (or 1 for a minor version slip).
+     if it is unfamiliar. Dim 3/4 stays 2 (or 1 for a minor version slip).
    - you cannot find it either way → `UNRESOLVED` → dim 3/4 scores **1, never 0**.
    - search positively shows it does not exist, OR a real model is given a wrong load-bearing
-     attribute (e.g. an 80B model called "8B") → dim 3/4 scores 0. Cite the URL.
+     attribute (e.g. an 80B model called "8B") → dim 3/4 scores 0. Cite the URL you checked.
    Also check physical fit for dim 1: weights + KV cache; a ~30B 4-bit MoE ≈ 17–20 GB, a dense 32B
-   4-bit ≈ 19–20 GB, an 80B 4-bit ≈ 40 GB. The verified ground truth for the disputed names in
-   this corpus is in `analysis/verification/tool-model-register.md` — consult it, but still do
-   your own search for anything it marks `UNRESOLVED` or `RE-VERIFY`.
+   4-bit ≈ 19–20 GB, an 80B 4-bit ≈ 40 GB. Do **not** read `analysis/verification/` or any other
+   file in this repo before scoring — score only from your own searches and the raw responses.
 5. Output one table per response (9 rows) plus a one-line justification per row. Then a summary
    table of all 13 × 9 scores. See the output template below.
 

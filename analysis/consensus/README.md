@@ -172,20 +172,26 @@ which the anchor's own recency limits made it least able to verify.
 
 ---
 
-## The recency/rigour split — MUST BE RECOMPUTED (2026-09-01)
+## The recency/rigour split — recomputed against the adjudicated rubric scores (2026-09-01)
 
 > The original 3-way split put `deepseek-instant`, `deepseek-instant-deepthink` and `meta-llama-4`
-> in a "confident futurism / invents tools" bucket. Web verification killed that premise: those
-> responses were **ahead of the anchor** on ecosystem currency, not confabulating. The split
-> below is the **provisional** re-draw; the formal version waits on the rater-2 pass (issue #9),
-> which will score tool/model factuality against the verification register, not against any
-> rater's training memory.
+> in a "confident futurism / invents tools" bucket. Web verification killed that premise. The
+> buckets below are now backed by the **adjudicated 9-dimension rubric scores** from the
+> four-rater pass (issue #9 — see `analysis/scoring/rater-agreement-2026-09-01.md`), not by
+> rater judgement of "fabrication".
+>
+> **Adjudicated totals (/18, non-anchor):** perplexity 18 · mistral-large-3 16 · gpt-5 14 ·
+> grok-4 14 · kimi-instant 12 · gemini-3.1-pro 12 · qwen-3.7-plus 12 · meta-llama-4 11 ·
+> deepseek-expert 9 · deepseek-instant 9 · deepseek-instant-deepthink 7 · z-ai 5.
+> Anchor `claude-sonnet-5`: 15 (excluded from cross-response stats).
+> Inter-rater: exact 68 %, within-1 97 %, Cohen's κ_w +0.64, Krippendorff's α +0.20.
+> **D6 citation-quality is the cleanest separator** — the top 4 score 2/2/2/0, everyone else 0.
 
-| Bucket (provisional) | Responses | Character |
+| Bucket (adjudicated) | Responses | Character |
 |---|---|---|
-| **1 — sourced/retrieval + current + M6-aware** | `claude-sonnet-5`, `mistral-large-3`, `perplexity`, `gpt-5` | Browsed or retrieval-assisted; engage the real M6 spec (170 GB/s, dual NE, 2026-08-25) and the current frontier landscape; hedge every throughput number; **and** cite (or explicitly decline to). |
-| **2 — current but unsourced / internally shaky** | `deepseek-instant`, `deepseek-instant-deepthink`, `meta-llama-4`, `kimi-instant`, `grok-4`, `z-ai` | Tool/model picks are **real and current** (often more current than the anchor), but 0 usable sources, and the real weaknesses show elsewhere: internal contradictions (both DeepSeek fast modes), memory oversubscription (DeepSeek-DeepThink), ~60% junk citation URLs + M6 bandwidth error (Meta), M6 headline error (Grok), load-bearing model-size error + 5-vs-14 GB inconsistency (z-ai). |
-| **3 — behind on models** | `qwen-3.7-plus`, `gemini-3.1-pro`, (`deepseek-expert` partially) | Real tools, but model families and cloud-fallback lists are ~12–18 months stale; no M6 engagement. This is the genuine low-recency bucket. |
+| **1 — sourced + current + M6-aware** (adj. 16–18) | `perplexity` (18), `mistral-large-3` (16) — plus anchor `claude-sonnet-5` (15) | Retrieval-grounded; engage the real M6 spec (170 GB/s, dual NE, 2026-08-25); hedge every throughput number; **and** cite (D6 = 2). The only responses that score 2 on citation quality. |
+| **2 — current, real picks, but 0 usable sources** (adj. 11–14) | `gpt-5` (14), `grok-4` (14), `kimi-instant` (12), `gemini-3.1-pro` (12), `qwen-3.7-plus` (12), `meta-llama-4` (11) | Tool/model picks real; D6 = 0 (or 1 for gpt-5). Held out of bucket 1 purely by the missing source apparatus. `gpt-5` and `grok-4` are a hair below on D5/D7 too; `qwen`/`gemini` also carry a genuine model-recency lag; `meta` also carries the ~60 % junk-URL problem and the M6 bandwidth error. |
+| **3 — real internal defects** (adj. ≤ 9) | `deepseek-expert` (9), `deepseek-instant` (9), `deepseek-instant-deepthink` (7), `z-ai` (5) | Not "confident futurism" — the tools are real. They score low for **verifiable** reasons: `deepseek-expert` / `deepseek-instant` each recommend a tool their own "do not install" list forbids (D9 = 0); `deepseek-instant-deepthink` advocates 32–34 GB memory oversubscription (D1 = 0); `z-ai` has a load-bearing model-size error (Qwen3-Coder-Next 8B vs 80B) and a 5-vs-14 GB self-contradiction (D1/D4/D9 = 0). |
 
 Cross-cuts that still look like paper contributions:
 
