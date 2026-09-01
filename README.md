@@ -6,9 +6,10 @@
   update the "Repository layout" section and docs/methodology.md in the same commit.
 -->
 
-# llm-architecture-eval
+# llm-architects
 
 **A controlled comparison of how frontier LLMs design the same hard systems-architecture task.**
+Formerly `llm-architecture-eval` (renamed 2026-09-01; the old GitHub URL redirects).
 
 Around a dozen frontier AI systems are each given one identical, evidence-demanding prompt: *design a 24/7
 autonomous AI development-and-research workstation for a 32 GB Apple M6 Mac mini.* Every response
@@ -71,7 +72,7 @@ Contribution flow is one branch + PR per issue — see [`CONTRIBUTING.md`](CONTR
 ## Repository layout
 
 ```
-llm-architecture-eval/
+llm-architects/
 ├── prompts/                     The study instrument (frozen)
 │   ├── prompt-v1.md             Canonical prompt. DO NOT EDIT after freeze.
 │   ├── prompt-v2.md             Paraphrase for prompt-sensitivity testing (RQ6). [planned]
@@ -183,4 +184,4 @@ Short version (full version in [`CONTRIBUTING.md`](CONTRIBUTING.md)):
 
 See [`CITATION.cff`](CITATION.cff). Short form:
 
-> Aryal, R. (2026). *llm-architecture-eval: a controlled comparison of LLM systems-architecture design.* GitHub. https://github.com/roshanaryal1/llm-architecture-eval
+> Aryal, R. (2026). *llm-architects: a controlled comparison of LLM systems-architecture design.* GitHub. https://github.com/roshanaryal1/llm-architects

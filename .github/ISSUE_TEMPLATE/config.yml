@@ -1,8 +1,8 @@
 blank_issues_enabled: true
 contact_links:
   - name: "Methodology question"
-    url: "https://github.com/roshanaryal1/llm-architecture-eval/blob/main/docs/methodology.md"
+    url: "https://github.com/roshanaryal1/llm-architects/blob/main/docs/methodology.md"
     about: "Read the protocol before proposing a change to how responses are scored or captured."
   - name: "Prompt change proposal"
-    url: "https://github.com/roshanaryal1/llm-architecture-eval/blob/main/prompts/README.md"
+    url: "https://github.com/roshanaryal1/llm-architects/blob/main/prompts/README.md"
     about: "The v1 prompt is frozen. Changes mean a new versioned prompt + a full re-run — open a normal issue to discuss."

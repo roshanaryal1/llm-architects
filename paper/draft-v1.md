@@ -7,7 +7,7 @@
 # LLMs as Systems Architects: A Controlled Study of Consensus, Fabrication, and Constraint Reasoning on One Hard Design Task
 
 **Draft v1 — 2026-09-01.** Data, prompts, rubric, per-rater scores and checking scripts:
-`github.com/roshanaryal1/llm-architecture-eval`.
+`github.com/roshanaryal1/llm-architects`.
 
 ---
 
@@ -545,7 +545,7 @@ reserve a measured RAM floor.
 
 ## 12. Release
 
-`github.com/roshanaryal1/llm-architecture-eval` — MIT (code) / CC-BY-4.0 (data):
+`github.com/roshanaryal1/llm-architects` — MIT (code) / CC-BY-4.0 (data):
 
 - `prompts/prompt-v1.md` — the frozen instrument
 - `data/responses/*.md` — 13 verbatim captures + front-matter + per-capture reviewer notes
