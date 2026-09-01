@@ -785,7 +785,7 @@ code, performed the verification and adjudication, and wrote the manuscript.
 
 [15] J. Cohen. *A Coefficient of Agreement for Nominal Scales.* Educational and Psychological Measurement, 20(1):37–46, 1960.
 
-[16] K. Krippendorff. *Content Analysis: An Introduction to Its Methodology*, 4th ed. SAGE, 2019.
+[16] K. Krippendorff. *Reliability in content analysis: some common misconceptions and recommendations.* Human Communication Research, 30(3):411–433, 2004.
 
 [17] K. L. Gwet. *Computing Inter-Rater Reliability and Its Variance in the Presence of High Agreement.* British Journal of Mathematical and Statistical Psychology, 61(1):29–48, 2008.
 
