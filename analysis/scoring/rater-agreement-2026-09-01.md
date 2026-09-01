@@ -41,8 +41,33 @@ Full per-response justifications: `analysis/scoring/<id>-*-2026-09-01.md`.
 | within 1 point | **96.6 %** |
 | Cohen's kappa, unweighted | **+0.494** (moderate) |
 | Cohen's kappa, quadratic-weighted | **+0.637** (substantial) |
+| Gwet's AC1, unweighted | **+0.543** |
+| Gwet's AC1, quadratic-weighted | **+0.728** (robust to the 2-heavy prevalence that deflates alpha) |
 | Krippendorff's alpha, ordinal (pair) | **+0.198** |
 | Krippendorff's alpha, ordinal (all 4 raters) | **+0.118** |
+
+The kappa_w / AC1_w ≈ 0.64–0.73 vs alpha ≈ 0.20 gap is a prevalence artefact: several
+dimensions are almost all 2s, which inflates alpha's chance term. Gwet's AC1 is designed for
+that skew and agrees with the weighted kappa. Report all of them; read agreement as moderate
+and dimension-dependent.
+
+### Rank-order stability of per-response totals
+
+Per-response total (/18) rank correlation, every rater pair:
+
+| pair | Spearman rho | Kendall tau_b |
+|---|---:|---:|
+| rater-1 vs gpt-5.6-sol | +0.712 | +0.578 |
+| rater-1 vs grok-4 | +0.452 | +0.381 |
+| rater-1 vs deepseek-chat | +0.083 | +0.056 |
+| gpt-5.6-sol vs grok-4 | +0.371 | +0.326 |
+| gpt-5.6-sol vs deepseek-chat | +0.406 | +0.243 |
+| grok-4 vs deepseek-chat | +0.114 | +0.072 |
+| **mean over all pairs** | **+0.356** | **+0.276** |
+
+The canonical pair rank-correlates moderately (rho 0.71); the heavier-scoring raters do not.
+**Do not claim a stable fine-grained ranking.** What is reportable is coarse performance bands
+(top / bottom membership is stable). The paper's §10.1 is stated as bands for this reason.
 
 The raters almost always agree on **direction** (which response is stronger on a dimension) and
 disagree on **exact level**. Only 4 of 117 cells are 2-point gaps.

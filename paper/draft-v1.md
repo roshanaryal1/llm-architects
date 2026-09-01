@@ -1,12 +1,6 @@
-<!--
-  paper/draft-v1.md — working draft of the meta-study paper (Option 1 in docs/paper-options.md).
-  Status: DRAFT. Numbers are pulled from the repo artefacts named inline; if an artefact changes,
-  update the corresponding sentence here in the same PR. Not yet submitted anywhere.
--->
-
 # LLMs as Systems Architects: A Controlled Study of Consensus, Fabrication, and Constraint Reasoning on One Hard Design Task
 
-**Draft v1 — 2026-09-01.** Data, prompts, rubric, per-rater scores and checking scripts:
+Data, prompts, rubric, per-rater scores and checking scripts:
 `github.com/roshanaryal1/llm-architects`.
 
 ---
@@ -23,20 +17,27 @@ across 39 decision axes the systems converge almost unanimously on the *shape* o
 (one large model resident at a time, coordinator/worker topology, durable SQLite state,
 Apple-Silicon-native inference, private-network remote access, least-privilege isolation) while
 splitting on the *products* that realise each choice. (2) **LLM-as-rater training-cutoff bias:**
-our first rater — itself an LLM — flagged 14 tools and models as hallucinated; on web
-verification **zero were confirmed fabricated** and at least twelve are real releases dated
-*after that rater's training cutoff*. The false positives cluster on the responses that were most
-up to date. (3) **Citation quantity is anti-correlated with citation quality:** the response with
-the largest reference apparatus (99 numbered URLs) is the least reliable (~60 % junk links),
-while the responses that score highest on citation quality cite fewer, resolving, primary
-sources. (4) **Reasoning mode dominates model identity:** the only system we captured in multiple
-modes moves a full grounding-and-fabrication tier between its fast and its deep-reasoning mode,
-holding weights and prompt fixed.
+our study-internal rater — itself an LLM — flagged 14 tools and models as hallucinated; on web
+verification **none of the 14 was confirmed nonexistent** and at least twelve are real releases
+dated *after that rater's training cutoff*. The false positives cluster on the responses that
+were most up to date. This is a rater failure, not an absence of defects: independent
+verification did find genuine factual errors elsewhere in the corpus (one nonexistent future
+model, several model-attribute errors, internal contradictions), none of them among the 14
+flags. (3) **Citation quantity does not predict citation quality:** in this small corpus the
+response with the largest reference apparatus (99 numbered URLs) is the least reliable (59 / 99
+non-supporting or unresolvable), while the responses that score highest on citation quality
+cite fewer, resolving, primary sources. (4) **Reasoning mode produces large within-model
+variation:** the one system we captured in multiple modes moves a full grounding-and-fabrication
+tier between its fast and its deep-reasoning mode, holding weights and prompt fixed.
 
-We release the full corpus, a nine-dimension rubric, four independent rater score sets with
-inter-rater agreement (Cohen's κ_w = 0.64; Krippendorff's α = 0.20), a stdlib memory-budget
-checker, a web-verified tool/model register, and the synthesised reference architecture the
-corpus supports.
+We release the full corpus, a nine-dimension rubric, four rater score sets scored independently
+by the same procedure (one study-internal, three frontier LLMs), a stdlib memory-budget
+checker, a web-verified tool/model register, and the synthesised reference-architecture
+recommendation the corpus supports. Agreement is dimension-dependent: within-one-point
+agreement is 96.6 % and the canonical rater pair reaches quadratic-weighted Cohen's κ_w = 0.64
+(Gwet's AC1_w = 0.73), but per-response *totals* rank-correlate only moderately across raters
+(mean Spearman ρ = 0.36), so we report broad performance bands rather than fine-grained ranks
+and treat the numeric total as a secondary summary.
 
 ---
 
@@ -99,11 +100,14 @@ RQ5 categories and our RQ2 vocabulary. *Detecting and Correcting Reference Hallu
 Commercial LLMs and Deep Research Agents* (arXiv 2604.03173) and *Source or It Didn't Happen: A
 Multi-Agent Framework for Citation Hallucination Detection* (arXiv 2605.08583) define the
 taxonomy we reuse in the verification register — **total fabrication, partial attribute
-corruption, identifier hijacking, placeholder hallucination, semantic hallucination** — and
-report vendor fabrication rates of 14–95 % with no batch-size relationship. Crucially, that
-literature already names **temporal cutoffs (recently published content)** as a knowledge-boundary
-cause of *models* fabricating citations; *Do Deployment Constraints Make LLMs Hallucinate
-Citations?* (arXiv 2603.07287) studies four models across five prompting regimes. Our
+corruption, identifier hijacking, placeholder hallucination, semantic hallucination**. On
+large URL corpora (DRBench, ExpertQA) 2604.03173 measures 3–13 % of citation URLs outright
+hallucinated (no Wayback record) and 5–18 % non-resolving, with deep-research agents worse than
+search-augmented LLMs. Crucially, that literature already names **temporal cutoffs (recently
+published content)** as a knowledge-boundary cause of *models* fabricating citations; *Do
+Deployment Constraints Make LLMs Hallucinate Citations?* (arXiv 2603.07287) studies four models
+across five prompting regimes and finds no model exceeds a 0.475 citation-existence rate, with
+the temporal-window regime the steepest drop. Our
 contribution is to move that same cutoff mechanism from the *author* to the *judge*: it is not
 (only) that a model with an old cutoff invents post-cutoff sources — it is that a *rater* with an
 old cutoff flags real post-cutoff artefacts as invented.
@@ -171,10 +175,19 @@ phrase per decision axis in `data/decisions-matrix.csv` (39 axes, `docs/comparis
 
 Scoring: `docs/rubric.md`, nine dimensions each 0/1/2 — hardware-constraint adherence, recency,
 tool factuality, model factuality, benchmark factuality, citation quality, actionability,
-security model, internal consistency. Four independent raters (§9.3). Falsifiable sub-claims are
+security model, internal consistency. Four raters applied this procedure independently — one
+author-derived baseline, three frontier LLMs on an identical packet (§9.3). Falsifiable
+sub-claims are
 checked and recorded verbatim: tool/version existence against a registry/repo fixed to the
 capture date (`analysis/verification/tool-model-register.md`); memory fit via
 `analysis/scripts/memory_budget.py`.
+
+We follow the reporting guidelines of Baltes et al., *Guidelines for Empirical Studies in
+Software Engineering involving Large Language Models* (arXiv 2508.15503): §3.1 declares the LLM
+usage and role, §3.2 reports model/version/interface/browsing state per capture, the prompts
+are released verbatim (Appendix A), session provenance is recorded in each capture's
+front-matter, and an open-weight system is included in the corpus. The AI-assistance
+declaration for the study itself is in §11.
 
 ---
 
@@ -265,18 +278,37 @@ Verifying every flag against 2026 web sources (`analysis/verification/tool-model
 | `Qwen3-Coder-Next` (referenced) | **real, 80B MoE** | `huggingface.co/Qwen/Qwen3-Coder-Next` |
 | `Helmrig`, `Cloak`, `DiffResearch`, `cplt`, `memo`, `agent-policy-engine`, `pi-search-hub` | **unresolved** | no web evidence either way — **not** counted as fabrication |
 
-**Zero of 14 confirmed fabricated. At least twelve are real releases dated after the rater's
-cutoff.** The false positives cluster precisely on the *most current* responses: the rater
-penalised recency it could not verify.
+**None of the 14 was confirmed nonexistent. At least twelve are real releases dated after the
+rater's cutoff.** The false positives cluster precisely on the *most current* responses: the
+rater penalised recency it could not verify.
+
+**This is a statement about the 14 flags, not about the corpus.** We keep three populations
+separate:
+
+- **(A) initial-rater fabrication flags** — the 14 names above. Verification outcome: 0
+  confirmed nonexistent, ≥ 12 real post-cutoff, 2 unresolved.
+- **(B) the wider set of flagged-or-doubted names** — ~18 once later passes are included; still
+  0 confirmed nonexistent, 4 unresolvable (`Helmrig`, `DiffResearch`, `cplt`,
+  `agent-policy-engine`).
+- **(C) factual defects found by independent verification, *not* raised as fabrication flags**
+  — one genuinely nonexistent future model (`deepseek-expert`'s `Qwen3-Coder-70B`), several
+  model-attribute errors (`z-ai`'s `Qwen3-Coder-Next` size, `GLM-4.5-Air` spec), and internal
+  contradictions. These are real and stay in the analysis (§5.4).
+
+So the corpus is **not** fabrication-free; the *initial rater's fabrication verdicts* were.
+`analysis/verification/tool-model-register.md` carries the per-entity table (entity exists /
+identity correct / attribute correct / claim supported / final category).
 
 ### 5.3 The reframed finding
 
 > **An LLM used as an evaluator of technical currency systematically misclassifies real
-> post-cutoff artefacts as hallucinations.** The anchor rater's initial audit produced 14
-> "fabrication" flags; on web verification 0 were confirmed fabricated and ≥ 12 were real
-> releases dated after the rater's training cutoff. A subsequent pass on the wider set of
-> flagged-or-doubted names reached ~18 names, still 0 confirmed fabricated (4 unresolvable). The
-> false positives concentrate on the responses that engaged the newest ecosystem.
+> post-cutoff artefacts as hallucinations.** The study-internal rater's initial audit produced
+> 14 "fabrication" flags; on web verification none was confirmed nonexistent and ≥ 12 were real
+> releases dated after the rater's training cutoff. Widening to every flagged-or-doubted name
+> reaches ~18, still 0 confirmed nonexistent (4 unresolvable). Independent verification did find
+> genuine factual errors elsewhere (population C above) — the rater's failure is
+> false *positives* on currency, not blanket leniency. The false positives concentrate on the
+> responses that engaged the newest ecosystem.
 
 The citation-hallucination literature (§2) already names temporal cutoffs as a knowledge-boundary
 cause of *models* fabricating post-cutoff sources; our result moves that mechanism from the
@@ -313,8 +345,7 @@ RQ2 is not empty. These are real and stay in the analysis:
 |---|---|---|
 | `z-ai` | `Qwen3-Coder-Next` given as "8B / ~5 GB" — real model is 80B MoE; it is the load-bearing primary coding pick | model-attribute error |
 | `z-ai` | same model quoted at 5 GB and 14 GB; 3-instance co-resident diagram vs on-demand prose | internal inconsistency |
-| `grok-4` | none — states the full M6 spec incl. 170 GB/s correctly; alt-list picks all real | (no surviving factual defect; only 0 sources) |
-| `meta-llama-4` | "M6 ≈ 300+ GB/s" (real: 170); ~60 % of 99 citation URLs are junk; same tool given multiple repo URLs; `[38]` mis-titles a real arXiv paper | spec error + citation quality |
+| `meta-llama-4` | "M6 ≈ 300+ GB/s" (real: 170); 59 / 99 citation URLs non-supporting or unresolvable; same tool given multiple repo URLs; `[38]` mis-titles a real arXiv paper | spec error + citation quality |
 | `z-ai` | `GLM-4.5-Air` treated as a ~4 GB fast-utility model — official spec is 106B total / 12B active | model-attribute error |
 | `deepseek-expert` | recommends Docker in one section, forbids "Docker for Mac" in the "do not install" list; binds a dashboard to `0.0.0.0` while claiming "no public exposure" | internal contradiction |
 | `deepseek-expert` | future primary model `Qwen3-Coder-70B` does not exist (the Qwen3-Coder line is 30B-A3B, 480B, and the separate 80B Coder-Next) | model fabrication (future pick) |
@@ -325,9 +356,15 @@ RQ2 is not empty. These are real and stay in the analysis:
 *(The `Qwen3-Coder-70B`, DeepSeek-V4-architecture and GLM-4.5-Air rows were surfaced by the clean
 dims-3/4 re-run, §9.3.)*
 
+`grok-4` records **no** surviving factual defect — it states the full M6 spec including
+170 GB/s correctly and its alternate-tool list resolves entirely — so it does not appear in the
+table above; its only weakness is zero cited sources (a §8 citation-quality point, not a
+fabrication one). We flag this explicitly because an earlier draft mis-attributed a
+"~300 GB/s" bandwidth error to `grok-4`; the error belongs to `meta-llama-4` only.
+
 The corrected picture: the low-scoring responses are low-scoring for **verifiable** reasons —
-contradictions, a load-bearing size error, memory oversubscription, junk citations — not for
-inventing an ecosystem.
+contradictions, a load-bearing size error, memory oversubscription, an unreliable citation
+apparatus — not for inventing an ecosystem.
 
 ---
 
@@ -335,9 +372,16 @@ inventing an ecosystem.
 
 `analysis/scripts/memory_budget.py` (stdlib) estimates weights + KV cache for a response's
 *co-resident* model set (what it says stays loaded) against 32 GB, with presets for each capture.
+"Fails to fit" is defined against a fixed non-model reserve — macOS + WindowServer ≈ 5 GB, a
+headless browser ≈ 1.5 GB, the Python worker pool + runtime ≈ 2 GB, SQLite + vector index
+≈ 1 GB, and a 2 GB safety floor (≈ 11.5 GB total) — plus a KV cache sized at the response's own
+stated context length at 8-bit KV. Weight sizes are the actual 4-bit GGUF/MLX artefact sizes
+where published, else parameter-count × 0.5 bytes + 8 % runtime overhead. The script prints
+every line item and takes the reserve as overridable flags; §11 notes the sensitivity.
 
-**Every real response's stated co-resident set fails to fit**, once macOS, a headless browser, a
-Python worker pool, SQLite/indexes and a realistic KV cache are counted alongside the weights:
+**Every co-resident set that a response describes as simultaneously loaded exceeds 32 GB** once
+that reserve and KV cache are counted alongside the weights. The designs that fit are the ones
+that *do not* keep the heavy models co-resident:
 
 - Designs that keep **one** large MoE resident (Qwen3-Coder-30B-A3B ≈ 17–20 GB @ 4-bit) plus a
   small dense model swapped in are *tight but feasible* — several responses say so explicitly and
@@ -388,18 +432,24 @@ Only the anchor and four non-anchor responses cite anything resolvable.
 | `perplexity` | ~17 URLs | mostly | mostly | mixed (some aggregator mirrors; 2 arXiv IDs unverified) |
 | `mistral-large-3` | ~36 credibility-rated, dated entries | mostly | yes | mixed (~6 are `google.com/search` URLs) |
 | `gpt-5` | ~20 inline attributions, **0 URLs** | n/a | attributions are to real docs | n/a |
-| `meta-llama-4` | **99 numbered URLs** | ~40 % | patchy | mostly secondary; commits/PRs/`SKILL.md` |
+| `meta-llama-4` | **99 numbered URLs** | ~40 % resolve-and-support | patchy | mostly secondary; commits/PRs/`SKILL.md` |
 | all others | none | — | — | — |
 
-**Citation count is anti-correlated with citation quality on this corpus.** `meta-llama-4` has
-the largest apparatus and the worst — ~60 % junk links, the same tool given several different
-repo URLs, and one real arXiv URL under the wrong paper title. `gpt-5` cites zero URLs but every
-inline attribution ("Apple officially announced…", "OpenHands docs recommend…") points at a real,
-checkable source.
+**Citation quantity did not predict citation quality on this corpus** (exploratory — only five
+of thirteen responses carry any citation apparatus, so we report the pattern, not a correlation
+coefficient). The pattern is driven by the extremes: `meta-llama-4` has the largest apparatus
+and the worst — 59 of its 99 URLs are non-supporting or unresolvable, the same tool is given
+several different repo URLs, and one real arXiv URL sits under the wrong paper title — while
+`gpt-5` cites zero URLs but every inline attribution ("Apple officially announced…",
+"OpenHands docs recommend…") points at a real, checkable source. **Reference presence and
+evidential grounding are distinct properties.** We classify each URL on three axes — resolves /
+does not; supports / partly / does not support the claim; primary / secondary / tertiary /
+irrelevant — and count "non-supporting or unresolvable" as the union of *does-not-resolve* and
+*does-not-support* (`analysis/verification/` per-URL sheet); "junk" is not used as a category.
 
 **Consequence for evaluation design:** "has a Sources section" must not be used as a proxy for
 "is grounded". Scoring it that way ranks `meta-llama-4` above `gpt-5` — backwards. Dim 6 of our
-rubric scores a mostly-junk apparatus as 0, and it is the **cleanest single separator** in the
+rubric scores a mostly-unsupported apparatus as 0, and it is the **cleanest single separator** in the
 adjudicated scores: the top four responses score 2/2/2/0 on it, every other response scores 0.
 
 ---
@@ -428,34 +478,48 @@ DeepSeek is the only system captured in more than one mode — three captures, o
 | fast (`deepseek-instant`) | real tools + real models, all post-cutoff | Ollama recommend-then-forbid | 9 |
 | Instant+DeepThink (`deepseek-instant-deepthink`) | real tools; DeepSeek-V4 mislabelled dense | memory oversubscription, 256K-ctx-vs-KV | 6 |
 
-Holding weights and prompt fixed, **the reasoning mode changes the output category**: the two
-fast modes and the deep mode span three of the rubric's coarse tiers. The effect is *not
-monotone across every dimension* — after the clean dims-3/4 re-run (§9.3), `deepseek-instant`
-(9/18) actually scores *above* `deepseek-expert` (8/18), because the deep mode's more elaborate
-upgrade path reached for future models that do not exist while the fast mode's picks all
-resolved. "Which DeepSeek model" is the wrong question; "which mode" is the right one, and the
-answer is dimension-dependent. A controlled N-mode re-run is the obvious follow-up.
+Within this single DeepSeek case study, holding weights and prompt fixed, **the reasoning mode
+produced materially different factual and constraint profiles**: the two fast modes and the
+deep mode span three of the rubric's coarse tiers. The effect is *not monotone across every
+dimension* — after the clean dims-3/4 re-run (§9.3), `deepseek-instant` (9/18) actually scores
+*above* `deepseek-expert` (8/18), because the deep mode's more elaborate upgrade path reached
+for future models that do not exist while the fast mode's picks all resolved. On this evidence,
+mode is at least as large a factor as the base-model label for a fixed DeepSeek family; whether
+that generalises across model families is an open question and the obvious controlled
+follow-up (n = 1 family, n = 3 modes here).
 
 ### 9.3 Inter-rater agreement
 
-Four raters scored all 13 captures on the nine dimensions
-(`analysis/scoring/rater-agreement-2026-09-01.md`):
+The nine-dimension rubric was applied **independently** to all 13 captures by four raters — one
+study-internal and three frontier LLMs given the identical scoring packet
+(`analysis/scoring/rater-agreement-2026-09-01.md`). "Independent" here means each scored the
+same packet without seeing another rater's scores; it does **not** mean design-independent — the
+study-internal rater also wrote the rubric and the reviewer notes, so we treat it as an
+author-derived baseline, not a neutral fourth opinion, and use GPT-5.6 Sol as the canonical
+comparison rater.
 
-| rater | mean total / 18 |
-|---|---:|
-| rater-1 (this study, from reviewer notes, corrected basis) | 12.7 |
-| GPT-5.6 Sol (ChatGPT, paid, web search) — **canonical rater-2** | 11.1 |
-| Grok 4 (+ web verification) | 13.8 |
-| DeepSeek chat run | 14.7 |
+| rater | role | mean total / 18 |
+|---|---|---:|
+| study-internal (this study, from the reviewer notes) | author-derived baseline | 12.7 |
+| GPT-5.6 Sol (ChatGPT, paid, web search) | **canonical rater** | 11.1 |
+| Grok 4 (+ web verification) | additional LLM rater | 13.8 |
+| DeepSeek chat run | additional LLM rater | 14.7 |
 
-Canonical pair (rater-1 vs GPT-5.6 Sol), 117 paired ratings:
+Canonical pair (study-internal vs GPT-5.6 Sol), 117 paired ratings:
 
 | metric | value |
 |---|---|
 | exact agreement | 68.4 % |
 | within 1 point | 96.6 % |
 | Cohen's κ (unweighted / quadratic-weighted) | +0.49 / **+0.64** |
+| Gwet's AC1 (unweighted / quadratic-weighted) | +0.54 / **+0.73** |
 | Krippendorff's α (ordinal) | +0.20 (pair), +0.12 (all four) |
+
+The gap between κ_w = 0.64 and α = 0.20 is a prevalence effect: several dimensions are
+dominated by 2s, which inflates chance agreement in Krippendorff's ordinal α and depresses it
+relative to the weighted-κ / AC1 view. Gwet's AC1, which is designed for exactly this skew,
+sits with the weighted κ. We report all three and read agreement as **moderate and
+dimension-dependent**, not as a single number.
 
 Per-dimension: **reliable** — recency (κ 0.68), tool factuality (0.70), benchmark factuality
 (0.66); **weak** — citation quality (0.30), security model (0.32), actionability (0.36), and the
@@ -463,27 +527,35 @@ two worst, hardware-constraint (0.15) and internal-consistency (0.14). The weak 
 a fuzzy 0/1 or 1/2 boundary ("has commands" vs "has rollback too"; "acknowledges 32 GB" vs
 "reserves a floor"); the v2 rubric adds hard anchors for each.
 
-Two agreement results matter beyond the numbers:
+**Rank-order stability is limited, not established.** Rank-correlating the per-response totals
+between every rater pair gives a mean Spearman ρ = 0.36 / Kendall τ_b = 0.28. The canonical
+pair is the tightest (ρ = 0.71, τ_b = 0.58); the two heavier-scoring raters diverge sharply
+(study-internal vs DeepSeek ρ = 0.08). So we do **not** claim a stable fine-grained ranking.
+What survives across raters is coarse: the same responses land in the top and bottom bands
+(§10). The numeric total is a secondary summary and is always reported with the per-dimension
+κ, never as a headline.
 
-1. **Raters have a severity personality.** The same rubric on the same responses produces an
-   8.5 → 14.7 / 18 spread across four LLM raters; the DeepSeek run assigned 2 on five dimensions
-   almost uniformly (a low-information rater). LLM-as-rubric-rater is not a portable instrument
-   without anchored exemplars.
-2. **The rank order is stable even though the levels are not** (within-1 agreement 97 %). The
-   adjudicated ranking (§10) is robust; the absolute totals are not, and should be reported with
-   the per-dimension κ, never as a single headline number.
+Raters also have a **severity personality**: the same rubric on the same responses produces an
+11.1 → 14.7 / 18 spread of rater means, and the DeepSeek run assigned 2 on five dimensions
+almost uniformly (a low-information rater). LLM-as-rubric-rater is not a portable instrument
+without anchored exemplars.
 
-**Clean dims-3/4 re-run.** Because the packet used in the four-rater pass had leaked a list of
-real post-cutoff tools (§11), we re-scored dimensions 3 and 4 with an uncontaminated packet
-(names nothing; forbids reading the verification register; mandatory web verification;
-`unresolved → 1`). The canonical rater (GPT-5.6 Sol) reproduced its contaminated D3/D4 on **11 of
-13 responses**; the two changes (`meta-llama-4` D4 1→2, `deepseek-instant-deepthink` D4 2→0) were
-driven by specific web findings, not by removing the leak. Four further cells moved on new
-findings surfaced by the clean pass — `mistral` D3 2→1 (`brew install goose` installs the wrong
-formula), `kimi` D3 2→1 (`opencode config set model` is not a real command), `deepseek-expert`
-D4 2→1 (`Qwen3-Coder-70B` does not exist), `deepseek-instant-deepthink` D4 1→0 (DeepSeek-V4
-mislabelled dense) — and are folded into §10.1. **Net: the leak's measured effect on the
-reported scores is small; the ranking bands are unchanged.**
+**Which rater run feeds which result.** Two scoring passes exist; they are not
+interchangeable:
+
+| run | packet | raters | status | why |
+|---|---|---|---|---|
+| four-rater full pass (9 dims) | `RATER-PACKET.md` — **contained a leaked list of real post-cutoff tools** in rule 4 | study-internal, GPT-5.6 Sol, Grok 4, DeepSeek | **kept for agreement stats only**, not for D3/D4 levels | the leak contaminates the two factuality dimensions but not the other seven or the agreement structure |
+| clean D3/D4 re-run | `RATER-PACKET-D3D4.md` — names nothing; forbids reading `analysis/verification/`; mandatory web verify; `unresolved → 1` | GPT-5.6 Sol (kept), Perplexity (**discarded** — scored 7 responses' tool factuality = 0 from its own search misses, §5.3) | **canonical for D3/D4 levels** and folded into §10.1 | isolates the leak's effect on the factuality dimensions |
+
+The canonical rater reproduced its contaminated D3/D4 on **11 of 13 responses**; the two changes
+(`meta-llama-4` D4 1→2, `deepseek-instant-deepthink` D4 2→0) were driven by specific web
+findings, not by removing the leak. Four further cells moved on new findings surfaced by the
+clean pass — `mistral` D3 2→1 (`brew install goose` installs the wrong formula), `kimi` D3 2→1
+(`opencode config set model` is not a real command), `deepseek-expert` D4 2→1
+(`Qwen3-Coder-70B` does not exist), `deepseek-instant-deepthink` D4 1→0 (DeepSeek-V4 mislabelled
+dense) — and are folded into §10.1. **Net: the leak changed two D3/D4 cells directly and four
+more via newly found evidence; the top and bottom performance bands are unchanged.**
 
 ### 9.4 Prompt sensitivity (RQ6)
 
@@ -533,28 +605,40 @@ moves the product list, by an amount and in a direction that depend on the model
 
 ## 10. Synthesised reference architecture and adjudicated ranking
 
-### 10.1 Adjudicated rubric totals (non-anchor, / 18)
+### 10.1 Adjudicated rubric totals and performance bands (non-anchor, / 18)
 
-Adjudicated after the clean dims-3/4 re-run (§9.3):
+Adjudicated after the clean dims-3/4 re-run (§9.3). **What is reportable across raters is the
+band, not the exact rank** (§9.3: mean Spearman ρ = 0.36 on per-response totals). A one-point
+gap inside a band carries no claim; the band boundaries fall at natural gaps in the adjudicated
+totals and are stable to which non-canonical rater is substituted in.
 
-| rank | response | total | one-line |
-|---:|---|---:|---|
-| 1 | `perplexity` | 18 | quantified budget with a reserved floor; refuses to fake M6 numbers; most security-thorough; the only response to score 2 on every dimension |
-| 2 | `mistral-large-3` | 15 | explicit methodology/limitations/open-questions; rated, dated sources; loses a point on a wrong `brew install goose` path |
-| 3 | `gpt-5` | 14 | all picks real and current; strong epistemic discipline; loses points for 0 URLs and a memory table that touches the ceiling |
-| 3 | `grok-4` | 14 | M6 spec correct incl. 170 GB/s; consensus-aligned real picks, all web-verified; only defect is 0 sources |
-| 5 | `gemini-3.1-pro` | 12 | real tools, clean plan, explicit permission matrix; ~12–18-month model lag, 0 sources |
-| 5 | `qwen-3.7-plus` | 12 | honest 2024-snapshot answer; dense-32B primary, 0 sources |
-| 7 | `kimi-instant` | 11 | real tools, reserved RAM floor; number inflation, a wrong `opencode` command, 0 usable sources |
-| 7 | `meta-llama-4` | 11 | aggressively current real ecosystem; M6 bandwidth wrong; largest and worst citation apparatus |
-| 9 | `deepseek-instant` | 9 | real (post-cutoff) picks, all resolve; Ollama recommend-then-forbid; 0 sources |
-| 10 | `deepseek-expert` | 8 | best-*grounded* DeepSeek mode on tools, but names a non-existent future model (`Qwen3-Coder-70B`); Docker recommend-then-forbid; 0 sources |
-| 11 | `deepseek-instant-deepthink` | 6 | real picks; DeepSeek-V4 mislabelled dense; advocates memory oversubscription; 0 sources |
-| 12 | `z-ai` | 5 | consensus-shaped but a load-bearing model-size error (Qwen3-Coder-Next 8-vs-80B; GLM-4.5-Air 4 GB-vs-106B), a 5-vs-14 GB self-contradiction, relies on swap, no M6 facts |
+| band | responses (adjudicated total /18) | character |
+|---|---|---|
+| **Strong** | `perplexity` (18), `mistral-large-3` (15) | quantified memory budget with a reserved floor, methodology/limits stated, dated sources that resolve |
+| **Good** | `gpt-5` (14), `grok-4` (14) | all picks real and current, strong epistemic discipline; both lose points only on citations (0 URLs / 0 sources) |
+| **Mixed** | `gemini-3.1-pro` (12), `qwen-3.7-plus` (12), `kimi-instant` (11), `meta-llama-4` (11) | real tools and a workable plan, but a model-era lag, a wrong command, an M6-bandwidth error, or an unreliable citation apparatus |
+| **Weak** | `deepseek-instant` (9), `deepseek-expert` (8), `deepseek-instant-deepthink` (6), `z-ai` (5) | recommend-then-forbid contradictions, a nonexistent future model, memory oversubscription, or a load-bearing model-size error |
 
-Anchor `claude-sonnet-5`: 15 (excluded from the ranking). Movement vs the pre-re-run table:
+Per-response notes (the point-level detail behind the bands):
+
+| response | total | one-line |
+|---|---:|---|
+| `perplexity` | 18 | quantified budget with a reserved floor; refuses to fake M6 numbers; most security-thorough; the only response to score 2 on every dimension |
+| `mistral-large-3` | 15 | explicit methodology/limitations/open-questions; rated, dated sources; loses a point on a wrong `brew install goose` path |
+| `gpt-5` | 14 | all picks real and current; strong epistemic discipline; loses points for 0 URLs and a memory table that touches the ceiling |
+| `grok-4` | 14 | M6 spec correct incl. 170 GB/s; consensus-aligned real picks, all web-verified; only defect is 0 sources |
+| `gemini-3.1-pro` | 12 | real tools, clean plan, explicit permission matrix; ~12–18-month model lag, 0 sources |
+| `qwen-3.7-plus` | 12 | honest 2024-snapshot answer; dense-32B primary, 0 sources |
+| `kimi-instant` | 11 | real tools, reserved RAM floor; number inflation, a wrong `opencode` command, 0 usable sources |
+| `meta-llama-4` | 11 | aggressively current real ecosystem; M6 bandwidth wrong; largest and worst citation apparatus |
+| `deepseek-instant` | 9 | real (post-cutoff) picks, all resolve; Ollama recommend-then-forbid; 0 sources |
+| `deepseek-expert` | 8 | best-*grounded* DeepSeek mode on tools, but names a non-existent future model (`Qwen3-Coder-70B`); Docker recommend-then-forbid; 0 sources |
+| `deepseek-instant-deepthink` | 6 | real picks; DeepSeek-V4 mislabelled dense; advocates memory oversubscription; 0 sources |
+| `z-ai` | 5 | consensus-shaped but a load-bearing model-size error (Qwen3-Coder-Next 8-vs-80B; GLM-4.5-Air 4 GB-vs-106B), a 5-vs-14 GB self-contradiction, relies on swap, no M6 facts |
+
+Anchor `claude-sonnet-5`: 15 (excluded from the bands). Movement vs the pre-re-run table:
 `mistral` 16→15, `kimi` 12→11, `deepseek-expert` 9→8, `deepseek-instant-deepthink` 7→6; band
-structure unchanged.
+membership unchanged.
 
 ### 10.2 The architecture the corpus supports
 
@@ -615,16 +699,28 @@ reserve a measured RAM floor.
   §5 is a direct demonstration of the risk (training-cutoff false positives). Mitigations:
   mandatory web verification for factual dimensions; a human-authored rubric; four raters with
   reported agreement; every falsifiable sub-claim recorded verbatim.
-- **We leaked part of the answer key — effect measured and small.** An intermediate version of
-  the rater packet listed the 12 real-but-post-cutoff tools while instructing raters to treat
-  them as real; all three four-rater-pass second-rater runs saw it. We ran a clean re-scoring of
-  the affected dimensions (3 and 4) with an uncontaminated packet (§9.3). The canonical rater
-  reproduced its contaminated D3/D4 on **11 of 13 responses**; its two changes were driven by
-  fresh web findings, not by the missing list. Four further cells moved on newly-surfaced
-  findings and are folded into §10.1. Dimensions 1, 2, 5–9 were never contaminated. The leak
-  remains a real defect in method — one rater was contaminatable in principle — but its effect on
-  the reported scores is now bounded by evidence rather than assumed. The packet is fixed for
-  future raters ("web-verify yourself; do not read the verification register before scoring").
+- **We leaked part of the answer key — effect measured.** An intermediate version of the rater
+  packet listed the 12 real-but-post-cutoff tools while instructing raters to treat them as
+  real; all three four-rater-pass second-rater runs saw it. We ran a clean re-scoring of the
+  affected dimensions (3 and 4) with an uncontaminated packet (§9.3). Outcome: the clean re-run
+  changed **two** canonical D3/D4 cells directly attributable to removing the leaked list, and
+  **four** additional D3/D4 cells on verification evidence newly found during the clean pass;
+  the canonical rater reproduced its contaminated D3/D4 on 11 of 13 responses; the top and
+  bottom performance bands (§10.1) are unchanged. Dimensions 1, 2, 5–9 were never contaminated.
+  The leak remains a real defect in method — one rater was contaminatable in principle — but its
+  effect on the reported scores is now bounded by evidence rather than assumed. The packet is
+  fixed for future raters ("web-verify yourself; do not read the verification register before
+  scoring").
+- **AI assistance in producing this study — disclosed in full.** (i) The consensus anchor
+  `claude-sonnet-5` is itself a frontier LLM, run inside an AI coding tool with live browsing
+  and partial authorship of the requested output format; it is excluded from every
+  cross-response aggregate (above). (ii) The repository — analysis scripts (`memory_budget.py`,
+  `agreement.py`, `validate_matrix.py`), data plumbing, and drafting of parts of this
+  manuscript — was built with an AI pair-programming assistant; every script is stdlib, is in
+  the release, and its outputs are reproducible from the released CSVs. (iii) Three of the four
+  rubric raters are frontier LLMs (§9.3), and §5 is a direct demonstration of the resulting
+  risk. All numeric results in the paper were regenerated from the released artefacts by
+  running the released scripts; no result is quoted from an un-scripted model statement.
 - **Rater severity variance** (§9.3): ~3.6 / 18 across four raters. Report per-dimension κ, not a
   single headline score.
 - **Self-scoring.** `grok-4` scored the `grok-4` response (16/18); the DeepSeek run scored the
