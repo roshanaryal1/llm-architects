@@ -40,16 +40,17 @@ This register is now the single source of truth for RQ2 (fabrication) and RQ4 (r
 | **WhipDesk** mobile control UI | deepseek-instant-deepthink | `REAL` | `github.com/BinaryBananaLLC/WhipDesk`. "Control AI coding agents from your phone." Includes a "prompt scheduled to fire at 3am when your session resets" feature — exactly as the response described. |
 | **LightAgent** | deepseek-instant-deepthink | `REAL` | `github.com/wanxingai/LightAgent`; arXiv 2509.09292. v0.10.0 (2026-08-15): durable Sessions, Capability Registry, Inbox/Goals/Budgets, SQLite FTS5. ~1000 LOC, no LangChain dep. |
 | **nono** kernel sandbox | meta-llama-4 | `REAL` | Sandbox tool using Landlock (Linux) / Seatbelt (macOS); file + network isolation. Referenced in 2026-05 blog posts. |
-| **oMLX** (SSD-tiered KV cache) | mistral-large-3, kimi | `UNRESOLVED` | No direct source located yet. Re-search before treating as real or fake. |
+| **oMLX** (SSD-tiered KV cache) | mistral-large-3, kimi | `REAL` | `github.com/jundot/omlx`, `omlx.ai`, `ml-explore/mlx` discussion #3203. Native macOS MLX inference server with **paged SSD KV caching** — two-tier hot(RAM)/cold(SSD, safetensors), block-based à la vLLM, persists across restart; drops repeated-context TTFT from 30–90 s to 1–3 s. Exactly what mistral & kimi described. Verified 2026-09-01. |
 | **vllm-mlx** / vLLM-MLX | z-ai (primary), mistral, meta | `REAL` | `github.com/waybarrios/vllm-mlx`. CLI is `vllm-mlx serve <model>` (responses that wrote `vllm-mlx-server --model` used the wrong form → dim-3 = 1, tool exists). Confirmed by the clean D3/D4 re-run, 2026-09-01. |
-| **memo** (memory pattern/tool) | meta-llama-4 | `UNRESOLVED` | Nearby real tools exist (MemOS `github.com/MemTensor/MemOS`, Memori). Exact "memo" not confirmed. |
-| **cplt** kernel sandbox | meta-llama-4 | `UNRESOLVED` | Not located. |
-| **agent-policy-engine** | meta-llama-4 | `UNRESOLVED` | Generic name; not located as a specific project. |
+| **memo** (memory tool) | meta-llama-4 (cited `jagoff/memo`) | `REAL` | `github.com/jagoff/memo`, PyPI `mlx-memo`. "Persistent memory for Claude Code/Codex/Cursor/MCP: Markdown source of truth, hybrid search (MLX/CPU + sqlite-vec), **time-machine, contradiction radar**, nightly self-optimization. No cloud." Matches meta's description *and* meta cited the right repo. Verified 2026-09-01. |
+| **Cloak** | deepseek-instant-deepthink (as a "remote tool" — mis-categorised) | `REAL`, but mislabelled | `getcloak.dev` + VS Code marketplace. Protects `.env` secrets from AI coding agents (encrypts, sandbox values, Touch ID gate). It is a **secrets-protection** tool, not a remote-control tool — deepseek-deepthink listed it among "end-to-end encrypted remote tools", which is wrong. Tool exists; the categorisation is the error. Verified 2026-09-01. |
+| **pi-search-hub** (12 search backends) | z-ai | `REAL` | `github.com/ronnieops/pi-search-hub`. Unified web-search + content-extraction extension for the `pi` coding agent — 12 backends (DuckDuckGo, Jina, Tavily, Brave, Exa, Serper, Firecrawl, Marginalia, LangSearch, WebSearchAPI, Perplexity Sonar, SearXNG), auto-fallback, RRF combine. z-ai said "12–19 backends" — 12 is right. Verified 2026-09-01. |
 | **Clawtrol / OpenClaw "channels"**, `openclaw onboard --install-daemon` | meta-llama-4 | `UNRESOLVED` | Parent projects real; exact CLI/subfeatures not verified. |
-| **DiffResearch** research pipeline | deepseek-instant-deepthink | `UNRESOLVED` | Not located. |
-| **WhipDesk siblings: Cloak, Helmrig** | deepseek-instant-deepthink | `UNRESOLVED` | Not located; possible misspellings. |
-| **pi-search-hub** (12–19 search backends) | z-ai | `UNRESOLVED` | Not located. |
-| **"Agent Safehouse", "Cua VMs"** | grok-4 | `UNRESOLVED` | grok itself hedged these as unverified. |
+| **cplt** kernel sandbox | meta-llama-4 | `UNRESOLVED` — likely fabricated | No project by this name after targeted search. (Note: Apple has **deprecated `sandbox-exec`** as of 2026 — affects the reference architecture's isolation recommendation.) |
+| **agent-policy-engine** | meta-llama-4 | `UNRESOLVED` — generic | Not a specific project. "Policy engine for agents" is a real *pattern* (Open Policy Agent model); no tool ships under this exact name. |
+| **DiffResearch** research pipeline | deepseek-instant-deepthink | `UNRESOLVED` — likely fabricated | No project by this name after targeted search. |
+| **Helmrig** (WhipDesk "sibling") | deepseek-instant-deepthink | `UNRESOLVED` — likely fabricated | No project by this name after targeted search. (`WhipDesk` and `Cloak` from the same list are both real; `Helmrig` is not located.) |
+| **"Agent Safehouse", "Cua VMs"** | grok-4 | `UNRESOLVED` | grok itself hedged these as unverified. (`Safehouse` — a macOS AI-coding-agent sandbox, `tessl.io` blog — **is** real and was named by qwen v3; whether grok's "Agent Safehouse" is the same is not confirmed.) |
 | llama-swap, sqlite-vec, LiteLLM, OpenHands, Aider, OpenCode, LangGraph, PydanticAI, Goose, GPT-Researcher, Firecrawl, Exa, PaperQA2, Graphiti, Mem0, Letta, Caddy, OrbStack, Lima, `sandbox-exec` | many | `REAL` | Established pre-cutoff; not disputed. Spot-check versions only. |
 
 ## B. Models
@@ -135,12 +136,25 @@ These are **not** recency artefacts. They stay in the analysis.
    false-positive hallucination flags in systems-architecture evaluation."* Ground-truth table =
    section A + B of this file.
 
-## G. Still to verify (next web pass)
+## G. Still to verify
 
 *Cleared by the clean D3/D4 re-run (2026-09-01): `vllm-mlx` → REAL; `Qwen3-Coder-70B` /
 `Qwen3-Coder-32B` → do not exist; `DeepSeek-Coder-V3` → unresolved; GLM-5.2 = 753B.*
 
-Still open: oMLX · memo · cplt · DiffResearch · Cloak · Helmrig · pi-search-hub · agent-policy-engine ·
+*Cleared by the §2/§G verification pass (2026-09-01): **`oMLX` → REAL** (`jundot/omlx`);
+**`memo` → REAL** (`jagoff/memo`, and meta cited the right repo); **`Cloak` → REAL** (`getcloak.dev`
+— but deepseek-deepthink mis-categorised it as a remote-control tool; it protects `.env`);
+**`pi-search-hub` → REAL** (`ronnieops/pi-search-hub`, 12 backends as z-ai said).*
+
+**Genuinely unresolved after targeted search — 4 names, likely fabricated:**
+`Helmrig` (deepseek-instant-deepthink) · `DiffResearch` (deepseek-instant-deepthink) ·
+`cplt` (meta-llama-4) · `agent-policy-engine` (meta-llama-4, generic pattern name).
+Plus not-load-bearing: `Clawtrol` sub-CLI details, grok's "Agent Safehouse"/"Cua VMs".
+
+**Running RQ2 tally:** of ~18 names the anchor rater or the corpus flagged as fabricated,
+**0 are confirmed fabricated** and ~4 remain unresolvable (all in the two lowest-scoring
+responses, `deepseek-instant-deepthink` and `meta-llama-4`). Everything else is a real,
+web-verifiable release — most dated after the anchor's ~Jan-2026 training cutoff.
 "Agent Safehouse" · "Cua VMs" · exact Qwen3-Coder-30B-A3B / Qwen3.6-35B-A3B / Qwen3.5-35B-A3B tags ·
 GLM-5.2 · Gemini 3.1 Pro naming · M6 core layout · OpenHands SWE-bench % · Devstral Small 2 ·
 Mistral Small 3.1 · Phi-4-14B.

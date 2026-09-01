@@ -72,21 +72,47 @@ Our contributions:
 
 ## 2. Related work
 
-**LLM evaluation on open-ended tasks.** Most agentic benchmarks (SWE-bench, Terminal-Bench,
-WebArena) score against an execution oracle. Design/architecture tasks lack one; prior work here
-is largely qualitative case studies. We borrow the "score only falsifiable sub-claims + measure
-consensus" stance from systematic-review methodology (PRISMA-S, Cochrane; see
+**LLM evaluation on open-ended tasks.** Agentic benchmarks — SWE-bench and its Verified /
+Multimodal variants, Terminal-Bench, WebArena, OSWorld, Tau-Bench, AgentBench — all score
+against an execution oracle: the task has a hidden pass/fail and the scope has widened from
+function-level generation to environment-grounded interaction, but the answer key is always
+present (surveys: *AI Agent Systems: Architectures, Applications, and Evaluation*, arXiv
+2601.01743; *Act As a Real Researcher*, arXiv 2606.07462, which evaluates frontier LLMs across a
+research lifecycle). Constrained *design* has no such oracle. We take the "score only falsifiable
+sub-claims, and measure consensus rather than correctness" stance from systematic-review
+methodology — PRISMA-S for reporting a reproducible search, PRESS for peer-reviewing a search
+strategy, the National Academies' reproducibility/replicability framing (all summarised in
 `docs/deep-research-methodology.md`).
 
-**Hallucination and citation fabrication.** Studies of fabricated citations in LLM output
-(reference-hallucination taxonomies) motivate our RQ5 categories: does the cited artefact exist,
-does it resolve, does it support the claim, is it primary or secondary. Our RQ2 result adds a
-failure mode specific to *using an LLM as the checker*: the checker's own cutoff manufactures
-false positives.
+**LLM-as-judge and its biases.** Using an LLM to score another LLM's output is now standard and
+its failure modes are catalogued: *A Survey on LLM-as-a-Judge* (arXiv 2411.15594) and follow-ups
+document **position bias, verbosity bias, self-enhancement**, and (in *Reliability without
+Validity*, arXiv 2606.19544) high agreement with low validity; *Judging the Judges* (arXiv
+2604.23178) surveys mitigation. The standard fixes are randomised ordering, repeated runs, and
+**rubric-based scoring that constrains the judge to factual criteria** — which is exactly the
+instrument we use. Our §5 result adds a bias not on those lists: **training-cutoff recency
+bias** — when the judged content is more current than the judge's own knowledge, the judge
+systematically emits *false-positive fabrication flags*.
 
-**LLMs for code and infrastructure.** Line-level and repo-level code generation is well studied;
-whole-system design under resource constraints is not. The closest analogue is capacity-planning
-and "rightsizing" work, which is human-expert-driven.
+**Citation and reference hallucination.** The reference-hallucination literature gives us our
+RQ5 categories and our RQ2 vocabulary. *Detecting and Correcting Reference Hallucinations in
+Commercial LLMs and Deep Research Agents* (arXiv 2604.03173) and *Source or It Didn't Happen: A
+Multi-Agent Framework for Citation Hallucination Detection* (arXiv 2605.08583) define the
+taxonomy we reuse in the verification register — **total fabrication, partial attribute
+corruption, identifier hijacking, placeholder hallucination, semantic hallucination** — and
+report vendor fabrication rates of 14–95 % with no batch-size relationship. Crucially, that
+literature already names **temporal cutoffs (recently published content)** as a knowledge-boundary
+cause of *models* fabricating citations; *Do Deployment Constraints Make LLMs Hallucinate
+Citations?* (arXiv 2603.07287) studies four models across five prompting regimes. Our
+contribution is to move that same cutoff mechanism from the *author* to the *judge*: it is not
+(only) that a model with an old cutoff invents post-cutoff sources — it is that a *rater* with an
+old cutoff flags real post-cutoff artefacts as invented.
+
+**LLMs for code and infrastructure.** Line-level and repo-level code generation is heavily
+studied (SWE-agent, AutoCodeRover, Agentless, OpenHands explore different issue-resolution agent
+designs). Whole-system design under a fixed resource envelope is not — the nearest analogue is
+human-expert capacity-planning / "rightsizing". We treat "produce a deployable architecture from
+a hardware spec + requirements list" as an evaluable LLM task.
 
 ---
 
@@ -246,14 +272,29 @@ penalised recency it could not verify.
 ### 5.3 The reframed finding
 
 > **An LLM used as an evaluator of technical currency systematically misclassifies real
-> post-cutoff artefacts as hallucinations.** On this corpus the false-positive rate on
-> "fabrication" flags was 100 % (14/14), concentrated on the responses that engaged the newest
-> ecosystem.
+> post-cutoff artefacts as hallucinations.** The anchor rater's initial audit produced 14
+> "fabrication" flags; on web verification 0 were confirmed fabricated and ≥ 12 were real
+> releases dated after the rater's training cutoff. A subsequent pass on the wider set of
+> flagged-or-doubted names reached ~18 names, still 0 confirmed fabricated (4 unresolvable). The
+> false positives concentrate on the responses that engaged the newest ecosystem.
 
-This is a hazard for any pipeline that uses an LLM to judge the factuality of another LLM's
-technical claims. The mitigation we adopted: dims 3 and 4 of the rubric now **require the rater
-to web-verify each name before scoring**, and "not in my training data" scores 1 (unresolved),
+The citation-hallucination literature (§2) already names temporal cutoffs as a knowledge-boundary
+cause of *models* fabricating post-cutoff sources; our result moves that mechanism from the
+author to the **judge**. The catalogued LLM-as-judge biases — position, verbosity,
+self-enhancement — are all about *how the judge is influenced by the candidate's form*; this one
+is about *what the judge cannot know*, and it does not wash out with randomised ordering or
+repeated runs. The mitigation we adopted: dims 3 and 4 of the rubric now **require the rater to
+web-verify each name before scoring**, and "not in my training data" scores 1 (unresolved),
 never 0.
+
+A follow-up verification pass (2026-09-01) also cleared the last unresolved names from the
+earlier "confident futurism" reading: `oMLX` (`jundot/omlx`, a real paged-SSD-KV MLX server),
+`memo` (`jagoff/memo` — `meta-llama-4` even cited the correct repository), `Cloak`
+(`getcloak.dev` — real, though `deepseek-instant-deepthink` mis-categorised it), and
+`pi-search-hub` (`ronnieops/pi-search-hub`, exactly the 12 backends `z-ai` listed) are all real.
+**Of ~18 names flagged as fabricated across the whole corpus, 0 are confirmed fabricated and 4
+remain unresolvable** (`Helmrig`, `DiffResearch`, `cplt`, `agent-policy-engine`), all four in the
+two lowest-scoring responses.
 
 The failure mode also reproduces *in a rater given exactly that instruction*. In a clean
 re-scoring of dims 3–4 (§9.3), one of two fresh raters (Perplexity) scored "tool factuality" = 0
