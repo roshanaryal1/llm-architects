@@ -1,6 +1,11 @@
 # Consensus matrix
 
-**Status:** synthesis complete (issue #10).
+**Status:** synthesis complete (issue #10). **Partly corrected 2026-09-01** — the
+`heavy_local_model`, `recency_of_recommendations`, `sources_cited_count`, `internal_contradictions`
+and `trust_rating` rows mention "fabricated" variants that web verification later cleared as real
+post-cutoff releases (`analysis/verification/tool-model-register.md`); the RQ1 *counts* are
+unaffected (they were never fabrication-dependent) but read "fabricated/incorrect variants" as
+"one genuine size error in z-ai, plus unverified point-version tags elsewhere".
 
 This is the formal RQ1 synthesis from `data/decisions-matrix.csv`. Counts use the **10 non-anchor canonical systems** only: Qwen 3.7 Plus, DeepSeek Expert, Perplexity, Gemini 3.1 Pro, Kimi Instant, Mistral Large 3, GPT-5, Grok-4, Meta/Llama 4, and z.ai. Claude Sonnet 5 is the anchor and is excluded; the two non-canonical DeepSeek captures are excluded from the per-system tally but remain part of the RQ2/RQ6 corpus.
 

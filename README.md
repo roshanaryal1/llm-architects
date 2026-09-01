@@ -17,10 +17,13 @@ stale recommendations, hardware-constraint violations, and citation quality. The
 research write-up (see [`docs/paper-options.md`](docs/paper-options.md)) and doubles as the design
 brief for the author's real build.
 
-> **Status:** data-collection phase. **13 responses / 11 systems captured — data collection complete** — Claude Sonnet 5,
-> Qwen 3.7 Plus, DeepSeek (Instant / Expert / Instant+DeepThink), Perplexity, Gemini 3.1 Pro,
-> Kimi Instant, Mistral Large 3, GPT-5.6 Luna, Meta / Llama 4, Grok 4, z.ai / GLM. **All planned captures done + 3 bonus.**
-> See [`CHANGELOG.md`](CHANGELOG.md) for the running log.
+> **Status:** analysis complete, **paper drafted**. 13 responses / 11 systems captured (Claude
+> Sonnet 5, Qwen 3.7 Plus, DeepSeek ×3 modes, Perplexity, Gemini 3.1 Pro, Kimi Instant, Mistral
+> Large 3, GPT-5.6 Luna, Meta / Llama 4, Grok 4, z.ai / GLM); all falsifiable sub-claims
+> web-verified ([`analysis/verification/`](analysis/verification/)); four independent rater score
+> sets with agreement stats ([`analysis/scoring/`](analysis/scoring/)); consensus synthesis and
+> reference architecture ([`analysis/consensus/`](analysis/consensus/)); meta-study draft in
+> [`paper/draft-v1.md`](paper/draft-v1.md). See [`CHANGELOG.md`](CHANGELOG.md) for the running log.
 >
 > **This repository is the canonical project folder.** Everything lives here — prompt,
 > responses, matrix, analysis, tooling. Earlier loose working files in the parent directory were

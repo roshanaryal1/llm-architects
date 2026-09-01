@@ -1,5 +1,14 @@
 # DeepSeek: one model, three modes
 
+> **Correction 2026-09-01.** The "fabrications" columns below (`Rapid-MLX`, `DeepSeek Harness`,
+> `Gemma 4 26B`, `Ornith-1.0-9B`, `WhipDesk`, `LightAgent`, …) are **superseded** — web
+> verification shows these are real releases dated after the anchor rater's training cutoff. See
+> `analysis/verification/tool-model-register.md`. The **mode effect itself still holds** on the
+> corrected basis: adjudicated rubric totals are `deepseek-expert` (deep) higher than
+> `deepseek-instant` 9/18 and `deepseek-instant-deepthink` 7/18, and the fast modes carry the
+> real defects (recommend-then-forbid contradiction; memory oversubscription). What changes is
+> *why* the fast modes score lower — internal defects, not invented tools.
+
 DeepSeek is the only system in the corpus with more than one capture. All three are the **same base
 model — DeepSeek-V4-Pro** (the free `chat.deepseek.com` default since 2026-04-24) — run in three
 different chat modes:
