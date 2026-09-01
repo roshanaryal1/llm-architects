@@ -104,8 +104,9 @@ install" list.
 
 Two controlled variants are frozen (`prompt-v2.md`, `prompt-v3.md`): v2 is a full paraphrase (RFC
 framing, reshuffled sections, no shared sentences); v3 is v1 with the anti-anchoring /
-anti-popularity steer removed. They are written but **not yet run**, so the results below are for
-the v1 phrasing; the v2/v3 subset run is the last item before submission (§11).
+anti-popularity steer removed. Both were re-run on a five-system subset (`perplexity`, `gpt-5`,
+`gemini-3.1-pro`, `qwen-3.7-plus`, `z-ai`); the prompt-sensitivity results are in §9.4. The
+matrices and rankings elsewhere in this paper are for the v1 captures.
 
 ### 3.2 Corpus
 
@@ -443,6 +444,50 @@ D4 2→1 (`Qwen3-Coder-70B` does not exist), `deepseek-instant-deepthink` D4 1�
 mislabelled dense) — and are folded into §10.1. **Net: the leak's measured effect on the
 reported scores is small; the ranking bands are unchanged.**
 
+### 9.4 Prompt sensitivity (RQ6)
+
+Five systems (`perplexity`, `gpt-5`, `gemini-3.1-pro`, `qwen-3.7-plus`, `z-ai`) were re-run on
+two controlled prompt variants: **v2**, a full paraphrase (RFC framing, reshuffled sections, no
+shared sentences), and **v3**, v1 with the anti-anchoring / anti-popularity steer removed. Each
+`(system, variant)` is a fresh session. Deltas are tracked axis-by-axis in
+`analysis/rq6-prompt-sensitivity.md`.
+
+**Primary result — framing moves products, not topology.** Across all 15 captures (5 systems × 3
+framings), **every response keeps its architecture** — coordinator/worker topology, logical
+agents as data, one heavy + one small model, SQLite state, dedicated non-admin user, launchd,
+Tailscale — and changes only which *products* realise each layer. This holds under both kinds of
+perturbation (full paraphrase; targeted steer ablation). It is the strongest single-corpus
+support for the RQ1 finding that the models agree on shape and disagree on products.
+
+**Effect size is strongly model-dependent.** `gpt-5`'s primary inference-engine pick is
+*different in each of the three framings* (MLX-LM in v1, llama.cpp in v2, Ollama in v3); its
+orchestration substrate and coding executor also change each time. `perplexity` and
+`gemini-3.1-pro` sit at the other extreme — `gemini`'s v1 and v2 captures (both browsing-off,
+both the same model era) are nearly identical down to the primary model, inference engine,
+vector store and stale cloud-fallback name.
+
+**The anti-anchoring / anti-popularity steer does real work, but its sign is not uniform.**
+Removing it (v3) made `gpt-5` and `qwen-3.7-plus` name *more* products — `gpt-5` went from 2
+model names to 7 and added Prefect, Nemotron and Docker Desktop; `qwen` went from ~9 named tools
+to ~14 and added a graph layer and two named research products. `z-ai` (GLM-5.2) went the *other*
+way, becoming more conservative and reverting to tools on its own v2 exclusion list. So the steer
+is not inert, but it does not have a single direction of effect.
+
+**Free chat tiers are not reproducible instruments across sessions.** Two of the five systems
+served a *different underlying model* between paraphrase runs: `z-ai` self-reported knowledge
+cutoff "~mid-2025" for v2 and "Late 2024" for v3 under the same "GLM-5.2" label; `gemini`
+self-reported "Gemini 2.5 Pro" / "2026" for v2 and **"Gemini 1.5 Pro" / "January 2025"** for v3
+— a materially older model. No `gemini` pair holds the model fixed. Only `gpt-5` and `perplexity`
+held their model identity across all three framings; the clean prompt-sensitivity comparison
+exists only for those two. This is a threat to validity that generalises to any study using a
+consumer chat product as an instrument.
+
+**No effect on fabrication rate or architecture.** Across all ten v2/v3 captures, zero
+fabrications were confirmed on web verification (one *hallucinated-context* item — `gemini` v3
+closed by asking about non-existent user projects "safeRoute" and "RentMate" — is logged
+separately). Paraphrase does not move the architecture and does not move the fabrication rate; it
+moves the product list, by an amount and in a direction that depend on the model.
+
 ---
 
 ## 10. Synthesised reference architecture and adjudicated ranking
@@ -512,8 +557,16 @@ reserve a measured RAM floor.
 
 ## 11. Threats to validity
 
-- **n = 1 base prompt.** Generality is limited to the v1 phrasing. Paraphrase re-runs
-  (`prompt-v2/v3`) and a second hardware spec are the mitigation and are not yet done.
+- **n = 1 base prompt — partly mitigated.** The v1 phrasing is the primary instrument. Two
+  controlled paraphrases (v2: full reword + RFC framing; v3: anti-anchoring-steer ablation) were
+  re-run on a 5-system subset (§9.4): the architecture was stable across all framings and no new
+  fabrications appeared, so the RQ1/RQ2 findings are not v1-phrasing artefacts. The product-level
+  results (RQ1 disagreement axes, §10.1 ranking) *are* somewhat phrasing-sensitive and should be
+  read as "for the v1 instrument". A second hardware spec is still not done.
+- **Consumer chat tiers are not reproducible instruments** (§9.4). For `z-ai` and `gemini`, the
+  free product served a different underlying model between paraphrase runs. Any per-system claim
+  for those two is a snapshot, not a controlled measurement; `gpt-5` and `perplexity` are the
+  only systems whose model identity was stable across all three framings.
 - **Anchor contamination.** `claude-sonnet-5` is not blind (built the repo, browsing on, partial
   format authorship). Handled by exclusion from every cross-response aggregate; reported
   separately.
