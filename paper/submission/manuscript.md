@@ -19,9 +19,9 @@ language model (LLM) evaluation, but many real tasks have no single correct answ
 one such task, *designing a 24/7 autonomous AI development-and-research workstation for a 32 GB
 Apple M6 Mac mini*, as an LLM evaluation problem: an open-ended design with no ground-truth
 solution but many individually falsifiable sub-claims (does this model fit in 32 GB? does this
-tool exist? does the response contradict itself?). We give thirteen verbatim captures from
-eleven frontier LLM systems one identical, evidence-demanding prompt and characterise where the
-systems agree, diverge, and fail. Four results stand out. (1) *Architectural convergence
+tool exist? does the response contradict itself?). We give one identical, evidence-demanding
+prompt to eleven frontier LLM systems, capture thirteen verbatim responses, and characterise
+where the systems agree, diverge, and fail. Four results stand out. (1) *Architectural convergence
 despite implementation disagreement:* across 39 decision axes the systems converge almost
 unanimously on the shape of the machine (one large model resident at a time, coordinator/worker
 topology, durable SQLite state, Apple-Silicon-native inference, private-network remote access,
@@ -261,11 +261,22 @@ No majority; recorded as adjudication points, not facts
 | cloud dependence | optional burst, local core useful at $0 (8/10) · pure-local main strategy (2) |
 | monitoring | minimal/custom (most) · Prometheus+Grafana (2) |
 
+**Quantifying the split.** Tag each of the 33 architecture axes as *structural* (topology,
+state model, security boundary, concurrency stance, memory architecture — 24 axes) or *product*
+(which named tool or model realises a layer — 9 axes) and take the modal-agreement count per
+axis over the 10 non-anchor systems (`analysis/scripts/consensus_split.py`, re-tabulating the
+per-axis counts from the consensus matrix; the per-axis tags are listed in the script so the
+classification can be audited):
+
+| group | axes | median agreement | mean | axes at ≥ 9/10 |
+|---|---:|---:|---:|---:|
+| structural | 24 | **10 / 10** | 9.0 | 18 / 24 |
+| product | 9 | **5 / 10** | 5.7 | 1 / 9 |
+
 **The consensus result** is that the systems agree on constraints and topology and disagree on
-implementation at the boundary of those constraints — which separates robust architectural
+implementation at the boundary of those constraints — a five-point gap in median modal
+agreement between the structural and product axes. This separates robust architectural
 principles from fast-moving product preference more cleanly than a superficial majority vote.
-A structural / product split of the 39 axes and a formal agreement rate per group is the
-obvious quantitative follow-up.
 
 ## 5. Fabrication, and the rater that manufactured it
 
@@ -295,7 +306,12 @@ Verifying every flag against 2026 web sources
 | `nono` | **real** | Landlock / Seatbelt sandbox tool |
 | `GLM-4.7-Flash` (30B-A3B) | **real** | Zhipu, 2026-01-19, 30B-A3B MoE |
 | `Qwen3-Coder-Next` (referenced) | **real, 80B MoE** | `huggingface.co/Qwen/Qwen3-Coder-Next` |
-| `Helmrig`, `Cloak`, `DiffResearch`, `cplt`, `memo`, `agent-policy-engine`, `pi-search-hub` | **unresolved** | no web evidence either way — **not** counted as fabrication |
+| `Helmrig`, `Cloak`, `DiffResearch`, `cplt`, `memo`, `agent-policy-engine`, `pi-search-hub` | **unresolved at first pass** | no web evidence either way — **not** counted as fabrication |
+
+A follow-up verification pass (Section 5.3) later resolved three of those seven — `Cloak`
+(`getcloak.dev`), `memo` (`jagoff/memo`) and `pi-search-hub` (`ronnieops/pi-search-hub`) — to
+real projects, leaving four genuinely unresolvable: `Helmrig`, `DiffResearch`, `cplt`,
+`agent-policy-engine`.
 
 **None of the 14 was confirmed nonexistent. At least twelve are real releases dated after the
 rater's cutoff.** The false positives cluster precisely on the *most current* responses.

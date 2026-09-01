@@ -7,10 +7,11 @@ Data, prompts, rubric, per-rater scores and checking scripts:
 
 ## Abstract
 
-We give thirteen captures from eleven frontier LLM systems one identical, evidence-demanding
-prompt — *design a 24/7 autonomous AI development-and-research workstation for a 32 GB Apple M6
-Mac mini* — and characterise empirically where the models agree, diverge, and fail on an
-open-ended task that has **no single ground-truth answer** but many **falsifiable sub-claims**.
+We give one identical, evidence-demanding prompt — *design a 24/7 autonomous AI
+development-and-research workstation for a 32 GB Apple M6 Mac mini* — to eleven frontier LLM
+systems, capture thirteen verbatim responses, and characterise empirically where the models
+agree, diverge, and fail on an open-ended task that has **no single ground-truth answer** but
+many **falsifiable sub-claims**.
 
 Four findings stand out. (1) **Architectural convergence despite implementation disagreement:**
 across 39 decision axes the systems converge almost unanimously on the *shape* of the machine
@@ -243,8 +244,21 @@ No majority; recorded as adjudication points, not facts (`analysis/consensus/dis
 | cloud dependence | optional burst, local core useful at $0 (8/10) · pure-local main strategy (2) |
 | monitoring | minimal/custom (most) · Prometheus+Grafana (2) |
 
+**Quantifying the split.** Tag each of the 33 architecture axes as *structural* (topology,
+state model, security boundary, concurrency stance, memory architecture — 24 axes) or *product*
+(which named tool or model realises a layer — 9 axes) and take the modal-agreement count per
+axis over the 10 non-anchor systems (`analysis/scripts/consensus_split.py`, re-tabulating the
+per-axis counts from `analysis/consensus/consensus-matrix.md` and §4.2; the per-axis tags are
+listed in the script so the classification can be audited):
+
+| group | axes | median agreement | mean | axes at ≥ 9/10 |
+|---|---:|---:|---:|---:|
+| structural | 24 | **10 / 10** | 9.0 | 18 / 24 |
+| product | 9 | **5 / 10** | 5.7 | 1 / 9 |
+
 **The RQ1 result** is that the models agree on constraints and topology and disagree on
-implementation at the boundary of those constraints. That separates robust architectural
+implementation at the boundary of those constraints — a five-point gap in median modal
+agreement between the structural and product axes. That separates robust architectural
 principles from fast-moving product preference more cleanly than a superficial majority vote
 would.
 
@@ -277,7 +291,12 @@ Verifying every flag against 2026 web sources (`analysis/verification/tool-model
 | `nono` | **real** | Landlock/Seatbelt sandbox tool |
 | `GLM-4.7-Flash` (30B-A3B) | **real** | Zhipu, 2026-01-19, 30B-A3B MoE |
 | `Qwen3-Coder-Next` (referenced) | **real, 80B MoE** | `huggingface.co/Qwen/Qwen3-Coder-Next` |
-| `Helmrig`, `Cloak`, `DiffResearch`, `cplt`, `memo`, `agent-policy-engine`, `pi-search-hub` | **unresolved** | no web evidence either way — **not** counted as fabrication |
+| `Helmrig`, `Cloak`, `DiffResearch`, `cplt`, `memo`, `agent-policy-engine`, `pi-search-hub` | **unresolved at first pass** | no web evidence either way — **not** counted as fabrication |
+
+A follow-up verification pass (§5.3) later resolved three of those seven — `Cloak`
+(`getcloak.dev`), `memo` (`jagoff/memo`) and `pi-search-hub` (`ronnieops/pi-search-hub`) — to
+real projects, leaving **four** genuinely unresolvable: `Helmrig`, `DiffResearch`, `cplt`,
+`agent-policy-engine`.
 
 **None of the 14 was confirmed nonexistent. At least twelve are real releases dated after the
 rater's cutoff.** The false positives cluster precisely on the *most current* responses: the
@@ -750,7 +769,8 @@ reserve a measured RAM floor.
 - `analysis/scoring/` — four rater score sets + `agreement.py` + the adjudication report; the
   clean dims-3/4 re-run (`RATER-PACKET-D3D4.md`, `d3d4-*`, `d3d4-clean-rerun-result.md`);
   `scores-adjudicated-2026-09-01.csv` (the reportable table)
-- `analysis/scripts/memory_budget.py`, `validate_matrix.py` — the checkers
+- `analysis/scripts/memory_budget.py`, `validate_matrix.py`, `consensus_split.py` — the checkers
+  and the structural/product agreement tabulation (§4.2)
 - `analysis/consensus/` — the consensus matrix, disagreement ledger, and reference architecture
 
 ---
