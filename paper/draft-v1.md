@@ -63,8 +63,9 @@ Our contributions:
 - An empirical **consensus map** across eleven systems (§4).
 - A characterisation of **fabrication** on this task that turns out to be mostly a
   characterisation of **the LLM rater** (§5).
-- **Constraint-reasoning** and **recency** results, including a memory-fit checker that every
-  real response's co-resident model set fails (§6, §7).
+- **Constraint-reasoning** and **recency** results, including a memory-fit checker under which
+  every co-resident model set a response describes as simultaneously loaded exceeds 32 GB
+  (§6, §7).
 - A **citation-quality** analysis (§8) and a **reasoning-mode sensitivity** result (§9).
 - The **synthesised reference architecture** (§10) and a frank **threats-to-validity** section
   (§11) that includes a methodological error we made and its fix.
@@ -695,8 +696,9 @@ reserve a measured RAM floor.
 - **Anchor contamination.** `claude-sonnet-5` is not blind (built the repo, browsing on, partial
   format authorship). Handled by exclusion from every cross-response aggregate; reported
   separately.
-- **The evaluator is an LLM.** Both the first rater and two of the three second raters are LLMs.
-  §5 is a direct demonstration of the risk (training-cutoff false positives). Mitigations:
+- **The evaluator is an LLM.** Three of the four raters are frontier LLMs (the fourth is the
+  author-derived baseline). §5 is a direct demonstration of the risk (training-cutoff false
+  positives). Mitigations:
   mandatory web verification for factual dimensions; a human-authored rubric; four raters with
   reported agreement; every falsifiable sub-claim recorded verbatim.
 - **We leaked part of the answer key — effect measured.** An intermediate version of the rater
