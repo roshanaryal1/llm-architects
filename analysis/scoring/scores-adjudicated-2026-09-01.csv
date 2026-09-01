@@ -1,14 +1,14 @@
 slug,D1,D2,D3,D4,D5,D6,D7,D8,D9,total,note
 claude-sonnet-5,1,2,2,2,2,1,1,2,2,15,anchor - excluded from cross-response stats
-mistral-large-3,2,2,2,1,1,2,2,2,2,16,
+mistral-large-3,2,2,1,1,1,2,2,2,2,15,D3 1 per clean D3/D4 re-run (brew install goose -> wrong formula)
 gpt-5,1,2,2,2,1,1,1,2,2,14,
 perplexity,2,2,2,2,2,2,2,2,2,18,
-kimi-instant,2,1,2,2,0,0,1,2,2,12,
-deepseek-expert,1,1,1,2,1,0,1,2,0,9,
+kimi-instant,2,1,1,2,0,0,1,2,2,11,D3 1 per clean D3/D4 re-run (opencode config set model not a documented command)
+deepseek-expert,1,1,1,1,1,0,1,2,0,8,D4 1 per clean D3/D4 re-run (DeepSeek-Coder-V3 + Qwen3-Coder-70B do not resolve)
 gemini-3.1-pro,1,1,1,2,2,0,1,2,2,12,
 qwen-3.7-plus,1,1,1,2,2,0,2,2,1,12,
 grok-4,2,2,2,2,1,0,1,2,2,14,
 z-ai,0,1,1,0,0,0,1,2,0,5,
-meta-llama-4,1,2,1,1,1,0,2,2,1,11,
+meta-llama-4,1,2,1,1,1,0,2,2,1,11,D4 kept 1 - clean re-run scored 2 but the Qwen3.5-35B-A3B primary tag is still unresolved (register)
 deepseek-instant,1,2,1,2,0,0,1,2,0,9,
-deepseek-instant-deepthink,0,2,1,1,0,0,1,1,1,7,
+deepseek-instant-deepthink,0,2,1,0,0,0,1,1,1,6,D4 0 per clean D3/D4 re-run (DeepSeek-V4 described as dense; real V4-Pro/Flash are MoE)

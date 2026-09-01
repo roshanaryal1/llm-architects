@@ -15,6 +15,9 @@ Four raters scored all 13 responses on the 9-dimension rubric.
 | `grok-4-rater-2026-09-01.md` + `scores-grok-4-2026-09-01.csv` | Grok 4 | variance check |
 | `deepseek-chat-rater-2026-09-01.md` + `scores-deepseek-chat-2026-09-01.csv` | DeepSeek chat run | variance check (low-information — near-uniform 2s) |
 | `scores-rater-1-2026-09-01.csv` | rater-1 (this repo, from capture reviewer notes) | first rater |
+| `RATER-PACKET-D3D4.md` + `d3d4-gpt-5.6-sol-2026-09-01.md` (+ csv) | GPT-5.6 Sol | **clean D3/D4 re-run** — used to override the contaminated #9 D3/D4 |
+| `d3d4-perplexity-2026-09-01.md` (+ csv) | Perplexity | clean D3/D4 attempt — **discarded** (violated `UNRESOLVED → 1`) |
+| `d3d4-clean-rerun-result.md` | — | the D3/D4 re-run verdict + the four cell changes |
 
 Recompute: `python3 ../scripts/agreement.py`.
 
@@ -27,18 +30,31 @@ Recompute: `python3 ../scripts/agreement.py`.
   internal-consistency (κ 0.14), D7 actionability, D8 security-model.
 - Rater severity spread: 8.5 → 14.7 / 18 across the four raters on the same responses.
 
-## Adjudicated ranking (non-anchor)
+## Adjudicated ranking (non-anchor) — after the clean D3/D4 re-run (2026-09-01)
 
-`perplexity` 18 · `mistral-large-3` 16 · `gpt-5` 14 · `grok-4` 14 · `kimi-instant` 12 ·
-`gemini-3.1-pro` 12 · `qwen-3.7-plus` 12 · `meta-llama-4` 11 · `deepseek-expert` 9 ·
-`deepseek-instant` 9 · `deepseek-instant-deepthink` 7 · `z-ai` 5. Anchor `claude-sonnet-5`: 15
+`perplexity` 18 · `mistral-large-3` 15 · `gpt-5` 14 · `grok-4` 14 · `gemini-3.1-pro` 12 ·
+`qwen-3.7-plus` 12 · `kimi-instant` 11 · `meta-llama-4` 11 · `deepseek-instant` 9 ·
+`deepseek-expert` 8 · `deepseek-instant-deepthink` 6 · `z-ai` 5. Anchor `claude-sonnet-5`: 15
 (excluded from cross-response stats).
+
+## Clean D3/D4 re-run (2026-09-01)
+
+`RATER-PACKET-D3D4.md` — dims 3 & 4 only, no leaked list, mandatory web verification. Files:
+`d3d4-gpt-5.6-sol-2026-09-01.md` (+ csv), `d3d4-perplexity-2026-09-01.md` (+ csv, **discarded**
+— violated `UNRESOLVED → 1`), `d3d4-clean-rerun-result.md` (the verdict).
+
+**Result:** the canonical rater's clean D3/D4 matched its contaminated #9 pass on 11/13
+responses. The leak's effect on the reported scores is small. Four cells moved on new web
+findings: `mistral` D3 2→1, `kimi` D3 2→1, `deepseek-expert` D4 2→1, `deepseek-instant-deepthink`
+D4 1→0.
 
 ## Threats to validity (full list in the report)
 
-1. **Dims 3 & 4 were not blind** for the rater-2 runs — an earlier version of `RATER-PACKET.md`
-   leaked the list of real-but-post-cutoff tools. Fixed in the packet now; re-run for a clean
-   D3/D4 if the paper needs it.
+1. **Dims 3 & 4 were not blind** for the #9 rater-2 runs — an earlier `RATER-PACKET.md` leaked
+   the real-but-post-cutoff tool list. **Bounded by the clean re-run above**: the canonical
+   rater's uncontaminated D3/D4 reproduced its contaminated pass on 11/13 responses, so the
+   leak's effect on the table is small. The threat is still listed (the leak was real) but its
+   severity is now measured, not assumed.
 2. Rater severity varies ~3.6 / 18. `deepseek-chat` is near-uniform 2s (low information).
 3. `grok-4` self-scored `grok-4`; `deepseek-chat` scored the DeepSeek responses.
 4. `rater-1` is not design-independent (wrote the rubric).

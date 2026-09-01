@@ -135,29 +135,45 @@ Net effect of adjudication vs `rater-1`: claude 18→15, gpt-5 16→14, perplexi
 
 ## Adjudicated final scores
 
+**Updated 2026-09-01** after the clean D3/D4 re-run (`d3d4-clean-rerun-result.md`): four D3/D4
+cells moved. The canonical rater's clean uncontaminated D3/D4 pass reproduced its contaminated #9
+pass on 11/13 responses, so the leak's effect on the table is small; the changes below come from
+new web findings, not from removing the leak.
+
 | slug | D1 | D2 | D3 | D4 | D5 | D6 | D7 | D8 | D9 | **/18** |
 |---|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
 | perplexity | 2 | 2 | 2 | 2 | 2 | 2 | 2 | 2 | 2 | **18** |
-| mistral-large-3 | 2 | 2 | 2 | 1 | 1 | 2 | 2 | 2 | 2 | **16** |
+| mistral-large-3 | 2 | 2 | **1** | 1 | 1 | 2 | 2 | 2 | 2 | **15** |
 | gpt-5 | 1 | 2 | 2 | 2 | 1 | 1 | 1 | 2 | 2 | **14** |
 | grok-4 | 2 | 2 | 2 | 2 | 1 | 0 | 1 | 2 | 2 | **14** |
-| kimi-instant | 2 | 1 | 2 | 2 | 0 | 0 | 1 | 2 | 2 | **12** |
 | gemini-3.1-pro | 1 | 1 | 1 | 2 | 2 | 0 | 1 | 2 | 2 | **12** |
 | qwen-3.7-plus | 1 | 1 | 1 | 2 | 2 | 0 | 2 | 2 | 1 | **12** |
+| kimi-instant | 2 | 1 | **1** | 2 | 0 | 0 | 1 | 2 | 2 | **11** |
 | meta-llama-4 | 1 | 2 | 1 | 1 | 1 | 0 | 2 | 2 | 1 | **11** |
-| deepseek-expert | 1 | 1 | 1 | 2 | 1 | 0 | 1 | 2 | 0 | **9** |
 | deepseek-instant | 1 | 2 | 1 | 2 | 0 | 0 | 1 | 2 | 0 | **9** |
-| deepseek-instant-deepthink | 0 | 2 | 1 | 1 | 0 | 0 | 1 | 1 | 1 | **7** |
+| deepseek-expert | 1 | 1 | 1 | **1** | 1 | 0 | 1 | 2 | 0 | **8** |
+| deepseek-instant-deepthink | 0 | 2 | 1 | **0** | 0 | 0 | 1 | 1 | 1 | **6** |
 | z-ai | 0 | 1 | 1 | 0 | 0 | 0 | 1 | 2 | 0 | **5** |
 | *claude-sonnet-5 (anchor)* | 1 | 2 | 2 | 2 | 2 | 1 | 1 | 2 | 2 | *15* |
 
+**D3/D4 re-run changes:** `mistral` D3 2→1 (`brew install goose` → wrong formula); `kimi` D3 2→1
+(`opencode config set model` not a real command); `deepseek-expert` D4 2→1 (future primary
+`Qwen3-Coder-70B` does not exist); `deepseek-instant-deepthink` D4 1→0 (calls DeepSeek-V4 dense;
+it is MoE). Local flip: `deepseek-instant` (9) now scores above `deepseek-expert` (8) — the deep
+mode's fabricated future-model tags cost it on D4 while the fast mode's picks all resolved.
+
+A second attempted clean rater (Perplexity) is **discarded**: it scored D3 = 0 for seven
+responses by treating its own search misses as proof of nonexistence, violating `UNRESOLVED → 1`
+— a live reproduction of the paper's §5 failure mode. Details: `d3d4-perplexity-2026-09-01.md`.
+
 ## What this says for the paper
 
-1. **The adjudicated ranking matches the qualitative buckets** and survives the fabrication
-   correction: `perplexity` / `mistral` / `gpt-5` on top (sourced + current + M6-aware);
-   `grok-4` joins that band once its false fabrication flags are removed; `deepseek` fast modes +
-   `z-ai` at the bottom — but now for **real** reasons (internal contradictions, memory
-   oversubscription, a load-bearing model-size error), not for inventing tools.
+1. **The adjudicated ranking matches the qualitative buckets** and survives both the fabrication
+   correction and the clean D3/D4 re-run: `perplexity` / `mistral` / `gpt-5` / `grok-4` on top
+   (sourced-or-consensus-aligned + current + M6-aware); `deepseek` fast modes + `z-ai` at the
+   bottom — but now for **verifiable** reasons (recommend-then-forbid contradictions, memory
+   oversubscription, a load-bearing model-size error, one genuine future-model fabrication), not
+   for inventing an ecosystem.
 2. **D6 citation-quality is the single biggest differentiator** — it is the only dimension where
    the top 4 separate cleanly from the rest (2/2/2/0 vs mostly 0). It also confirms the "citation
    count != citation quality" finding: `meta-llama-4` has the largest apparatus and scores 0.

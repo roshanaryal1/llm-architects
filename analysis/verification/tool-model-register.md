@@ -41,6 +41,7 @@ This register is now the single source of truth for RQ2 (fabrication) and RQ4 (r
 | **LightAgent** | deepseek-instant-deepthink | `REAL` | `github.com/wanxingai/LightAgent`; arXiv 2509.09292. v0.10.0 (2026-08-15): durable Sessions, Capability Registry, Inbox/Goals/Budgets, SQLite FTS5. ~1000 LOC, no LangChain dep. |
 | **nono** kernel sandbox | meta-llama-4 | `REAL` | Sandbox tool using Landlock (Linux) / Seatbelt (macOS); file + network isolation. Referenced in 2026-05 blog posts. |
 | **oMLX** (SSD-tiered KV cache) | mistral-large-3, kimi | `UNRESOLVED` | No direct source located yet. Re-search before treating as real or fake. |
+| **vllm-mlx** / vLLM-MLX | z-ai (primary), mistral, meta | `REAL` | `github.com/waybarrios/vllm-mlx`. CLI is `vllm-mlx serve <model>` (responses that wrote `vllm-mlx-server --model` used the wrong form → dim-3 = 1, tool exists). Confirmed by the clean D3/D4 re-run, 2026-09-01. |
 | **memo** (memory pattern/tool) | meta-llama-4 | `UNRESOLVED` | Nearby real tools exist (MemOS `github.com/MemTensor/MemOS`, Memori). Exact "memo" not confirmed. |
 | **cplt** kernel sandbox | meta-llama-4 | `UNRESOLVED` | Not located. |
 | **agent-policy-engine** | meta-llama-4 | `UNRESOLVED` | Generic name; not located as a specific project. |
@@ -62,9 +63,13 @@ This register is now the single source of truth for RQ2 (fabrication) and RQ4 (r
 | **Qwen3-Coder-30B-A3B** 4-bit MoE (consensus heavy model) | claude, perplexity, deepseek-expert, kimi, mistral, gpt-5 (alt) | `REAL` — **re-verify exact tag** | Qwen3-Coder family real. Confirm the precise "30B-A3B" tag and 4-bit artifact size against Qwen's model card. |
 | **Qwen3.6-35B-A3B** | gpt-5 (primary), mistral (alt) | `REAL` — **re-verify** | Confirm against Qwen releases. |
 | **Qwen3.5-35B-A3B** tag + OpenRouter id `qwen/qwen3.5-35b-a3b-20260224` | deepseek-instant-deepthink, meta-llama-4 | `UNRESOLVED` — **re-verify** | May be a real point-release or a wrong tag for 3.6/Coder-30B. Check OpenRouter + Qwen. |
-| **GLM-4.5-Air** (~4 GB 4-bit) | z-ai (light model) | `REAL` — 2025-dated | Real Zhipu model; note it's an older pick than GLM-4.7-Flash. |
-| **GLM-5.2** (cloud burst) | mistral, gpt-5 | `REAL` — **re-verify** | Check Zhipu's current flagship. |
+| **GLM-4.5-Air** — **106B total / 12B active** (not a ~4 GB model) | z-ai (light "~4 GB" model) | `REAL`, but z-ai's size framing is **wrong** | Real Zhipu 2025 model; official card = 106B/12B-active. z-ai treats it as a ~4 GB fast-utility model — a load-bearing size error (feeds §E). Confirmed by clean D3/D4 re-run. |
+| **GLM-5.2** — **753B** per official card | mistral ("744B"), gpt-5 | `REAL`; mistral's "744B" is a minor size slip | `huggingface.co/zai-org/GLM-5.2`. Does not change "far too big for 32 GB". |
 | **gpt-oss-20b** | claude (mid reasoner) | `REAL` | OpenAI open-weight model. |
+| **Qwen3-Coder-70B** | deepseek-expert (future primary) | `DOES NOT EXIST` | No Qwen card. Real Qwen3-Coder line: 30B-A3B, 480B, + the separate 80B Qwen3-Coder-Next. A genuine future-model fabrication. Confirmed by clean D3/D4 re-run. |
+| **Qwen3-Coder-32B** | z-ai (alt list) | `DOES NOT EXIST` | `Qwen2.5-Coder-32B` is real; there is no Qwen3 32B Coder tag. |
+| **DeepSeek-Coder-V3** | deepseek-expert (alt) | `UNRESOLVED` | No authoritative DeepSeek card; third-party refs only. |
+| **DeepSeek-V4 as a "dense" model needing 96–128 GB** | deepseek-instant-deepthink (upgrade path) | `WRONG` | DeepSeek-V4-Pro is MoE 1.6T / 49B-active; V4-Flash is MoE 284B / 13B-active. Describing V4 as dense is a load-bearing architecture error (feeds §E). Confirmed by clean D3/D4 re-run. |
 | **Frontier free-tier identities** — GPT-5.6 Luna, DeepSeek-V4-Pro, Kimi K3, Mistral Large 3, Gemini 3.1 Pro | n/a (the raters themselves) | `REAL` | Web-checked 2026-08-31; see project memory. Re-confirm Gemini 3.1 Pro naming. |
 
 ## C. Hardware — Apple M6 Mac mini
@@ -101,8 +106,11 @@ These are **not** recency artefacts. They stay in the analysis.
 | `z-ai` | 3-instance concurrent co-resident diagram vs "primary stays loaded, others on-demand" prose; "fits within 32 GB with swapping". | internal inconsistency + hardware slip |
 | `grok-4` | none beyond 0 sources — it gets the full M6 spec (incl. 170 GB/s) right; alt-list picks all real. | (no surviving factual defect) |
 | `deepseek-expert` | Recommends Docker in sections A/H, forbids "Docker for Mac" in J; dashboard binds `0.0.0.0` vs "no public exposure". | internal contradiction |
+| `deepseek-expert` | Future primary `Qwen3-Coder-70B` does not exist (real line: 30B-A3B / 480B / 80B Coder-Next); `DeepSeek-Coder-V3` unresolved. *(clean D3/D4 re-run, 2026-09-01)* | model fabrication (future pick) |
 | `deepseek-instant` | Recommends Ollama in Phase 4, forbids it in section J. | internal contradiction |
 | `deepseek-instant-deepthink` | 256K context claim vs 1–2 GB KV budget; advocates memory oversubscription (~32–34 GB always-loaded). | hardware violation |
+| `deepseek-instant-deepthink` | Upgrade path describes DeepSeek-V4 as **dense** (96–128 GB); V4-Pro/V4-Flash are MoE (1.6T/49B-active; 284B/13B-active). *(clean D3/D4 re-run)* | model architecture error |
+| `z-ai` | GLM-4.5-Air treated as a ~4 GB fast-utility model; official card is 106B total / 12B active. *(clean D3/D4 re-run)* | model size error |
 | `meta-llama-4` | 99 numbered refs; ~60% are junk GitHub commit/PR/issue/`SKILL.md` URLs; same tool given multiple different repo URLs; ref [38] mis-titles a real arXiv paper. | citation quality (verifiable independent of recency) |
 | `gemini`, `kimi` | Stale cloud fallback list (Claude 3.5 Sonnet / GPT-4o). | recency (RQ4) |
 
@@ -129,7 +137,10 @@ These are **not** recency artefacts. They stay in the analysis.
 
 ## G. Still to verify (next web pass)
 
-oMLX · memo · cplt · DiffResearch · Cloak · Helmrig · pi-search-hub · agent-policy-engine ·
+*Cleared by the clean D3/D4 re-run (2026-09-01): `vllm-mlx` → REAL; `Qwen3-Coder-70B` /
+`Qwen3-Coder-32B` → do not exist; `DeepSeek-Coder-V3` → unresolved; GLM-5.2 = 753B.*
+
+Still open: oMLX · memo · cplt · DiffResearch · Cloak · Helmrig · pi-search-hub · agent-policy-engine ·
 "Agent Safehouse" · "Cua VMs" · exact Qwen3-Coder-30B-A3B / Qwen3.6-35B-A3B / Qwen3.5-35B-A3B tags ·
 GLM-5.2 · Gemini 3.1 Pro naming · M6 core layout · OpenHands SWE-bench % · Devstral Small 2 ·
 Mistral Small 3.1 · Phi-4-14B.

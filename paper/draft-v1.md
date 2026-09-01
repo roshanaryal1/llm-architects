@@ -252,6 +252,15 @@ technical claims. The mitigation we adopted: dims 3 and 4 of the rubric now **re
 to web-verify each name before scoring**, and "not in my training data" scores 1 (unresolved),
 never 0.
 
+The failure mode also reproduces *in a rater given exactly that instruction*. In a clean
+re-scoring of dims 3–4 (§9.3), one of two fresh raters (Perplexity) scored "tool factuality" = 0
+for seven responses by treating *its own search misses* as evidence of non-existence — its
+"could not resolve" list contained `Rapid-MLX`, `OpenClaw`, `Clawtrol`, `nono`, `Ornith-1.0-9B`,
+`DeepSeek Harness` and `Gemma 4 31B/12B`, every one of which the other fresh rater (GPT-5.6 Sol)
+resolved to a real repository or model card on the same task. We discard that rater's scores; it
+is a live demonstration that "not found by my search" collapses to "does not exist" unless the
+rubric and the rater actively resist it.
+
 ### 5.4 Defects that survive verification
 
 RQ2 is not empty. These are real and stay in the analysis:
@@ -262,9 +271,15 @@ RQ2 is not empty. These are real and stay in the analysis:
 | `z-ai` | same model quoted at 5 GB and 14 GB; 3-instance co-resident diagram vs on-demand prose | internal inconsistency |
 | `grok-4` | none — states the full M6 spec incl. 170 GB/s correctly; alt-list picks all real | (no surviving factual defect; only 0 sources) |
 | `meta-llama-4` | "M6 ≈ 300+ GB/s" (real: 170); ~60 % of 99 citation URLs are junk; same tool given multiple repo URLs; `[38]` mis-titles a real arXiv paper | spec error + citation quality |
+| `z-ai` | `GLM-4.5-Air` treated as a ~4 GB fast-utility model — official spec is 106B total / 12B active | model-attribute error |
 | `deepseek-expert` | recommends Docker in one section, forbids "Docker for Mac" in the "do not install" list; binds a dashboard to `0.0.0.0` while claiming "no public exposure" | internal contradiction |
+| `deepseek-expert` | future primary model `Qwen3-Coder-70B` does not exist (the Qwen3-Coder line is 30B-A3B, 480B, and the separate 80B Coder-Next) | model fabrication (future pick) |
 | `deepseek-instant` | recommends Ollama in Phase 4, forbids it in the "do not install" list | internal contradiction |
 | `deepseek-instant-deepthink` | 256K-context claim vs a 1–2 GB KV budget; advocates ~32–34 GB always-loaded ("slight oversubscription acceptable") | hardware violation |
+| `deepseek-instant-deepthink` | upgrade path describes DeepSeek-V4 as a dense model needing 96–128 GB — V4-Pro / V4-Flash are MoE (1.6T/49B-active; 284B/13B-active) | model-architecture error |
+
+*(The `Qwen3-Coder-70B`, DeepSeek-V4-architecture and GLM-4.5-Air rows were surfaced by the clean
+dims-3/4 re-run, §9.3.)*
 
 The corrected picture: the low-scoring responses are low-scoring for **verifiable** reasons —
 contradictions, a load-bearing size error, memory oversubscription, junk citations — not for
@@ -363,16 +378,19 @@ Material self-contradictions in 3 of 13 captures:
 DeepSeek is the only system captured in more than one mode — three captures, one base model
 (DeepSeek-V4-Pro), three chat modes (`analysis/deepseek-modes.md`):
 
-| mode | grounding | internal defects |
-|---|---|---|
-| deep-reasoning (`deepseek-expert`) | real tools throughout; only point-versions lag | one contradiction (Docker) |
-| fast (`deepseek-instant`) | real tools (post-cutoff); adjudicated total 9/18 | recommend-then-forbid contradiction |
-| Instant+DeepThink (`deepseek-instant-deepthink`) | real tools (post-cutoff); adjudicated total 7/18 — lowest non-`z-ai` | memory oversubscription, 256K-ctx-vs-KV |
+| mode | grounding | internal defects | adj. /18 |
+|---|---|---|---:|
+| deep-reasoning (`deepseek-expert`) | real tools; but a non-existent future model (`Qwen3-Coder-70B`) and an unresolved `DeepSeek-Coder-V3` | Docker recommend-then-forbid | 8 |
+| fast (`deepseek-instant`) | real tools + real models, all post-cutoff | Ollama recommend-then-forbid | 9 |
+| Instant+DeepThink (`deepseek-instant-deepthink`) | real tools; DeepSeek-V4 mislabelled dense | memory oversubscription, 256K-ctx-vs-KV | 6 |
 
-Holding weights and prompt fixed, **toggling extended reasoning moves the output a full tier** on
-constraint reasoning and internal consistency (adjudicated totals 9 → 7 for the two fast modes vs
-the deep mode's higher rubric profile). "Which DeepSeek model" is the wrong question; "which
-mode" is the right one. A controlled N-mode re-run is the obvious follow-up.
+Holding weights and prompt fixed, **the reasoning mode changes the output category**: the two
+fast modes and the deep mode span three of the rubric's coarse tiers. The effect is *not
+monotone across every dimension* — after the clean dims-3/4 re-run (§9.3), `deepseek-instant`
+(9/18) actually scores *above* `deepseek-expert` (8/18), because the deep mode's more elaborate
+upgrade path reached for future models that do not exist while the fast mode's picks all
+resolved. "Which DeepSeek model" is the wrong question; "which mode" is the right one, and the
+answer is dimension-dependent. A controlled N-mode re-run is the obvious follow-up.
 
 ### 9.3 Inter-rater agreement
 
@@ -411,28 +429,44 @@ Two agreement results matter beyond the numbers:
    adjudicated ranking (§10) is robust; the absolute totals are not, and should be reported with
    the per-dimension κ, never as a single headline number.
 
+**Clean dims-3/4 re-run.** Because the packet used in the four-rater pass had leaked a list of
+real post-cutoff tools (§11), we re-scored dimensions 3 and 4 with an uncontaminated packet
+(names nothing; forbids reading the verification register; mandatory web verification;
+`unresolved → 1`). The canonical rater (GPT-5.6 Sol) reproduced its contaminated D3/D4 on **11 of
+13 responses**; the two changes (`meta-llama-4` D4 1→2, `deepseek-instant-deepthink` D4 2→0) were
+driven by specific web findings, not by removing the leak. Four further cells moved on new
+findings surfaced by the clean pass — `mistral` D3 2→1 (`brew install goose` installs the wrong
+formula), `kimi` D3 2→1 (`opencode config set model` is not a real command), `deepseek-expert`
+D4 2→1 (`Qwen3-Coder-70B` does not exist), `deepseek-instant-deepthink` D4 1→0 (DeepSeek-V4
+mislabelled dense) — and are folded into §10.1. **Net: the leak's measured effect on the
+reported scores is small; the ranking bands are unchanged.**
+
 ---
 
 ## 10. Synthesised reference architecture and adjudicated ranking
 
 ### 10.1 Adjudicated rubric totals (non-anchor, / 18)
 
+Adjudicated after the clean dims-3/4 re-run (§9.3):
+
 | rank | response | total | one-line |
 |---:|---|---:|---|
 | 1 | `perplexity` | 18 | quantified budget with a reserved floor; refuses to fake M6 numbers; most security-thorough; the only response to score 2 on every dimension |
-| 2 | `mistral-large-3` | 16 | explicit methodology/limitations/open-questions; rated, dated sources; engages the 2026 frontier landscape |
+| 2 | `mistral-large-3` | 15 | explicit methodology/limitations/open-questions; rated, dated sources; loses a point on a wrong `brew install goose` path |
 | 3 | `gpt-5` | 14 | all picks real and current; strong epistemic discipline; loses points for 0 URLs and a memory table that touches the ceiling |
-| 3 | `grok-4` | 14 | M6 spec correct incl. 170 GB/s; consensus-aligned real picks; only defect is 0 sources |
-| 5 | `kimi-instant` | 12 | real tools, reserved RAM floor; number inflation and 0 usable sources |
+| 3 | `grok-4` | 14 | M6 spec correct incl. 170 GB/s; consensus-aligned real picks, all web-verified; only defect is 0 sources |
 | 5 | `gemini-3.1-pro` | 12 | real tools, clean plan, explicit permission matrix; ~12–18-month model lag, 0 sources |
 | 5 | `qwen-3.7-plus` | 12 | honest 2024-snapshot answer; dense-32B primary, 0 sources |
-| 8 | `meta-llama-4` | 11 | aggressively current real ecosystem; M6 bandwidth wrong; largest and worst citation apparatus |
-| 9 | `deepseek-expert` | 9 | best-grounded DeepSeek mode; Docker recommend-then-forbid contradiction; 0 sources |
-| 9 | `deepseek-instant` | 9 | real (post-cutoff) picks; Ollama recommend-then-forbid; 0 sources |
-| 11 | `deepseek-instant-deepthink` | 7 | real picks; advocates memory oversubscription; 0 sources |
-| 12 | `z-ai` | 5 | consensus-shaped but a load-bearing model-size error, 5-vs-14 GB self-contradiction, relies on swap, no M6 facts |
+| 7 | `kimi-instant` | 11 | real tools, reserved RAM floor; number inflation, a wrong `opencode` command, 0 usable sources |
+| 7 | `meta-llama-4` | 11 | aggressively current real ecosystem; M6 bandwidth wrong; largest and worst citation apparatus |
+| 9 | `deepseek-instant` | 9 | real (post-cutoff) picks, all resolve; Ollama recommend-then-forbid; 0 sources |
+| 10 | `deepseek-expert` | 8 | best-*grounded* DeepSeek mode on tools, but names a non-existent future model (`Qwen3-Coder-70B`); Docker recommend-then-forbid; 0 sources |
+| 11 | `deepseek-instant-deepthink` | 6 | real picks; DeepSeek-V4 mislabelled dense; advocates memory oversubscription; 0 sources |
+| 12 | `z-ai` | 5 | consensus-shaped but a load-bearing model-size error (Qwen3-Coder-Next 8-vs-80B; GLM-4.5-Air 4 GB-vs-106B), a 5-vs-14 GB self-contradiction, relies on swap, no M6 facts |
 
-Anchor `claude-sonnet-5`: 15 (excluded from the ranking).
+Anchor `claude-sonnet-5`: 15 (excluded from the ranking). Movement vs the pre-re-run table:
+`mistral` 16→15, `kimi` 12→11, `deepseek-expert` 9→8, `deepseek-instant-deepthink` 7→6; band
+structure unchanged.
 
 ### 10.2 The architecture the corpus supports
 
@@ -485,12 +519,16 @@ reserve a measured RAM floor.
   §5 is a direct demonstration of the risk (training-cutoff false positives). Mitigations:
   mandatory web verification for factual dimensions; a human-authored rubric; four raters with
   reported agreement; every falsifiable sub-claim recorded verbatim.
-- **We leaked part of the answer key.** An intermediate version of the rater packet listed the 12
-  real-but-post-cutoff tools while instructing raters to treat them as real. All three
-  second-rater runs saw it; one quotes it back. **Dimensions 3 and 4 are therefore not blind**
-  and their agreement figures are a lower bound on difficulty, not clean reliability. Dimensions
-  1, 2, 5–9 are unaffected. The packet is fixed for future raters ("web-verify yourself; do not
-  read the verification register before scoring"); a clean D3/D4 re-run is outstanding.
+- **We leaked part of the answer key — effect measured and small.** An intermediate version of
+  the rater packet listed the 12 real-but-post-cutoff tools while instructing raters to treat
+  them as real; all three four-rater-pass second-rater runs saw it. We ran a clean re-scoring of
+  the affected dimensions (3 and 4) with an uncontaminated packet (§9.3). The canonical rater
+  reproduced its contaminated D3/D4 on **11 of 13 responses**; its two changes were driven by
+  fresh web findings, not by the missing list. Four further cells moved on newly-surfaced
+  findings and are folded into §10.1. Dimensions 1, 2, 5–9 were never contaminated. The leak
+  remains a real defect in method — one rater was contaminatable in principle — but its effect on
+  the reported scores is now bounded by evidence rather than assumed. The packet is fixed for
+  future raters ("web-verify yourself; do not read the verification register before scoring").
 - **Rater severity variance** (§9.3): ~3.6 / 18 across four raters. Report per-dimension κ, not a
   single headline score.
 - **Self-scoring.** `grok-4` scored the `grok-4` response (16/18); the DeepSeek run scored the
@@ -515,8 +553,9 @@ reserve a measured RAM floor.
 - `data/systems.csv` — slug → system → canonical mapping
 - `docs/rubric.md`, `docs/methodology.md`, `docs/comparison-axes.md` — the protocol
 - `analysis/verification/tool-model-register.md` — web-verified tool/model verdicts
-- `analysis/scoring/` — four rater score sets, `agreement.py`, the adjudication report,
-  `scores-adjudicated-2026-09-01.csv`
+- `analysis/scoring/` — four rater score sets + `agreement.py` + the adjudication report; the
+  clean dims-3/4 re-run (`RATER-PACKET-D3D4.md`, `d3d4-*`, `d3d4-clean-rerun-result.md`);
+  `scores-adjudicated-2026-09-01.csv` (the reportable table)
 - `analysis/scripts/memory_budget.py`, `validate_matrix.py` — the checkers
 - `analysis/consensus/` — the consensus matrix, disagreement ledger, and reference architecture
 

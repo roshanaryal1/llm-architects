@@ -180,18 +180,19 @@ which the anchor's own recency limits made it least able to verify.
 > four-rater pass (issue #9 — see `analysis/scoring/rater-agreement-2026-09-01.md`), not by
 > rater judgement of "fabrication".
 >
-> **Adjudicated totals (/18, non-anchor):** perplexity 18 · mistral-large-3 16 · gpt-5 14 ·
-> grok-4 14 · kimi-instant 12 · gemini-3.1-pro 12 · qwen-3.7-plus 12 · meta-llama-4 11 ·
-> deepseek-expert 9 · deepseek-instant 9 · deepseek-instant-deepthink 7 · z-ai 5.
+> **Adjudicated totals (/18, non-anchor; after the clean D3/D4 re-run 2026-09-01):**
+> perplexity 18 · mistral-large-3 15 · gpt-5 14 · grok-4 14 · gemini-3.1-pro 12 ·
+> qwen-3.7-plus 12 · kimi-instant 11 · meta-llama-4 11 · deepseek-instant 9 ·
+> deepseek-expert 8 · deepseek-instant-deepthink 6 · z-ai 5.
 > Anchor `claude-sonnet-5`: 15 (excluded from cross-response stats).
 > Inter-rater: exact 68 %, within-1 97 %, Cohen's κ_w +0.64, Krippendorff's α +0.20.
 > **D6 citation-quality is the cleanest separator** — the top 4 score 2/2/2/0, everyone else 0.
 
 | Bucket (adjudicated) | Responses | Character |
 |---|---|---|
-| **1 — sourced + current + M6-aware** (adj. 16–18) | `perplexity` (18), `mistral-large-3` (16) — plus anchor `claude-sonnet-5` (15) | Retrieval-grounded; engage the real M6 spec (170 GB/s, dual NE, 2026-08-25); hedge every throughput number; **and** cite (D6 = 2). The only responses that score 2 on citation quality. |
-| **2 — current, real picks, but 0 usable sources** (adj. 11–14) | `gpt-5` (14), `grok-4` (14), `kimi-instant` (12), `gemini-3.1-pro` (12), `qwen-3.7-plus` (12), `meta-llama-4` (11) | Tool/model picks real; D6 = 0 (or 1 for gpt-5). Held out of bucket 1 purely by the missing source apparatus. `gpt-5` and `grok-4` are a hair below on D5/D7 too; `qwen`/`gemini` also carry a genuine model-recency lag; `meta` also carries the ~60 % junk-URL problem and the M6 bandwidth error. |
-| **3 — real internal defects** (adj. ≤ 9) | `deepseek-expert` (9), `deepseek-instant` (9), `deepseek-instant-deepthink` (7), `z-ai` (5) | Not "confident futurism" — the tools are real. They score low for **verifiable** reasons: `deepseek-expert` / `deepseek-instant` each recommend a tool their own "do not install" list forbids (D9 = 0); `deepseek-instant-deepthink` advocates 32–34 GB memory oversubscription (D1 = 0); `z-ai` has a load-bearing model-size error (Qwen3-Coder-Next 8B vs 80B) and a 5-vs-14 GB self-contradiction (D1/D4/D9 = 0). |
+| **1 — sourced-or-consensus + current + M6-aware** (adj. 14–18) | `perplexity` (18), `mistral-large-3` (15), `gpt-5` (14), `grok-4` (14) — plus anchor `claude-sonnet-5` (15) | Engage the real M6 spec (170 GB/s, dual NE, 2026-08-25); hedge throughput; picks all real and current. `perplexity`/`mistral` also cite (D6 = 2); `gpt-5`/`grok-4` are held a step down by 0 usable source URLs. |
+| **2 — current, real picks, 0 usable sources, model-recency lag or a spec slip** (adj. 11–12) | `gemini-3.1-pro` (12), `qwen-3.7-plus` (12), `kimi-instant` (11), `meta-llama-4` (11) | D6 = 0. `qwen`/`gemini` carry a ~12–18-month model lag and no M6 engagement; `kimi` a wrong CLI + number inflation; `meta` the ~60 % junk-URL apparatus and the M6 "300+ GB/s" bandwidth error. |
+| **3 — real internal defects** (adj. ≤ 9) | `deepseek-instant` (9), `deepseek-expert` (8), `deepseek-instant-deepthink` (6), `z-ai` (5) | Not "confident futurism" — the tools are real. They score low for **verifiable** reasons: `deepseek-expert` / `deepseek-instant` each recommend a tool their own "do not install" list forbids (D9 = 0), and `deepseek-expert` additionally names a non-existent future model `Qwen3-Coder-70B` (D4 = 1); `deepseek-instant-deepthink` advocates 32–34 GB oversubscription (D1 = 0) and mislabels DeepSeek-V4 as dense (D4 = 0); `z-ai` has a load-bearing model-size error (Qwen3-Coder-Next 8B vs 80B; GLM-4.5-Air ~4 GB vs 106B/12B) and a 5-vs-14 GB self-contradiction (D1/D4/D9 = 0). |
 
 Cross-cuts that still look like paper contributions:
 
