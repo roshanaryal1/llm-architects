@@ -102,8 +102,10 @@ coordinating "100+ logical agents without running 100 LLMs", remotely controllab
 sandboxed; and asks for deliverables A–K including an exact install plan and a "what NOT to
 install" list.
 
-Paraphrases `prompt-v2/v3` are planned but not yet run; generality is currently limited to the
-v1 phrasing (§11).
+Two controlled variants are frozen (`prompt-v2.md`, `prompt-v3.md`): v2 is a full paraphrase (RFC
+framing, reshuffled sections, no shared sentences); v3 is v1 with the anti-anchoring /
+anti-popularity steer removed. They are written but **not yet run**, so the results below are for
+the v1 phrasing; the v2/v3 subset run is the last item before submission (§11).
 
 ### 3.2 Corpus
 

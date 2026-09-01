@@ -4,6 +4,13 @@ Nine dimensions, each scored **0 / 1 / 2**. Max 18. Score every response indepen
 compare-and-adjust. Record scores per rater in `analysis/scoring/<rater>-<YYYY-MM-DD>.md` as a
 small table, plus a one-line justification per dimension citing specific text.
 
+> **Versioning.** The table below is the **v1** instrument — the one used for every capture in
+> `data/responses/` and for the four-rater pass in `analysis/scoring/`. **v2 hard anchors** (see
+> the section after the table) sharpen the four low-agreement dimensions D1 / D7 / D8 / D9 (κ ≈
+> 0.14–0.36 in `analysis/scoring/rater-agreement-2026-09-01.md`). **Apply v2 to:** any re-scoring
+> pass, and every `prompt_version: v2` / `v3` capture. When a v2 anchor would change a v1 score,
+> record both and note it — do not silently overwrite the merged v1 scores.
+
 | # | Dimension | 0 | 1 | 2 |
 |---|-----------|---|---|---|
 | 1 | **Hardware-constraint adherence** (RQ3) | Ignores the envelope, or a hard violation (recommends a model set that cannot fit; assumes CUDA/eGPU as the baseline) | Acknowledges 32 GB but with a slip (co-resident set is >32 GB once browser/DB counted; hand-waves KV cache) | Quantified budget, model set fits with headroom or the tightness is explicitly called out; `memory_budget.py` agrees |
@@ -36,7 +43,51 @@ small table, plus a one-line justification per dimension citing specific text.
 - **Anchor:** score `claude-sonnet-5` like any other for completeness, but exclude it from
   cross-response means (it is not blind — see `docs/methodology.md` §3).
 
+## v2 hard anchors (for re-scoring and for `prompt_version: v2` / `v3` captures)
+
+The v1 wording left a fuzzy boundary on four dimensions; two raters disagreed on ~46 % of D1
+cells and ~54 % of D9 cells in the four-rater pass. v2 replaces the judgement call with a
+bright-line test.
+
+### D1 — Hardware-constraint adherence
+
+| score | v2 test |
+|:--:|---|
+| 2 | Quantified budget **and** a **named free-RAM floor** the design will not spend on models (e.g. "keep ≥ 4 GB for filesystem cache"). `memory_budget.py` on the co-resident set leaves headroom, or the tightness is called out *with* the reserved floor. |
+| 1 | Acknowledges 32 GB but: budget **sums to ~32 GB with no reserved margin**; or co-resident set > 32 GB once browser/DB/KV are counted; or "fits with swapping". |
+| 0 | Ignores the envelope; recommends a model set that cannot fit even serialised; assumes CUDA/eGPU as baseline; advocates memory oversubscription. |
+
+*"Sums to exactly 32.0 GB" is a 1, not a 2 — this is the single most common v1 disagreement.*
+
+### D7 — Actionability
+
+| score | v2 test |
+|:--:|---|
+| 2 | Phased plan with, **for at least the first two phases, all three of:** runnable commands/config, an explicit **test/verify** step, and a **rollback** path. |
+| 1 | Commands and config present, but **missing the test step or the rollback path** (or both) for the core phases. "Phased plan with commands" alone caps here. |
+| 0 | Vague prose; no commands or config. |
+
+### D8 — Security model
+
+| score | v2 test |
+|:--:|---|
+| 2 | Autonomous / approval tiers **and an explicit forbidden-action list** (operations the agent must *never* do, not merely "ask first") **and** a kill switch **and** per-task runaway limits (time / tokens / iterations / spend). All four. |
+| 1 | Mentions a dedicated user / permission tiers, but **no explicit forbidden list** — or the forbidden category is folded into "requires approval". |
+| 0 | Absent or a token sentence. |
+
+### D9 — Internal consistency
+
+| score | v2 test |
+|:--:|---|
+| 0 | **Automatic** if a section recommends installing / using a tool that the response's own "what NOT to install" (deliverable J) forbids — or any equivalent recommend-X-then-forbid-X. Also 0 for incoherent load-bearing numbers (same model, two different sizes). |
+| 1 | One minor inconsistency that does not change an architectural claim (e.g. a stale figure in a caption). |
+| 2 | Coherent throughout; deliverable J does not contradict deliverables A–I. |
+
+*Raters missed two clear recommend-then-forbid contradictions (DeepSeek Docker / Ollama) under
+v1 — v2 makes that check mechanical: diff deliverable J against A–I first.*
+
 ## Current scores
 
-Populated once a second rater is onboarded. Rater-1 provisional scores live in the
-`## Reviewer notes` of each capture file until then.
+- Four-rater pass on the v1 captures + adjudication: `analysis/scoring/rater-agreement-2026-09-01.md`
+  (adjudicated table = `analysis/scoring/scores-adjudicated-2026-09-01.csv`).
+- Clean dims-3/4 re-run: `analysis/scoring/d3d4-clean-rerun-result.md`.
