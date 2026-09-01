@@ -12,7 +12,7 @@ type: dataset
 authors:
   - family-names: Aryal
     given-names: Roshan
-    email: manaratharyal@gmail.com
+    email: roshanaryaal@gmail.com
 repository-code: "https://github.com/roshanaryal1/llm-architecture-eval"
 url: "https://github.com/roshanaryal1/llm-architecture-eval"
 version: "0.1.0"

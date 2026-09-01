@@ -2,7 +2,7 @@
 
 **Author.** Roshan Aryal
 Bachelor of Information Technology (AI & Data Science), Otago Polytechnic, Auckland, New Zealand
-Corresponding author: manaratharyal@gmail.com
+Corresponding author: roshanaryaal@gmail.com
 
 **Data and code availability.** All data, prompts, the rubric, the four rater score sets, the
 web-verified tool/model register, the checking scripts, and the adjudicated scores are released

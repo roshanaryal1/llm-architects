@@ -78,4 +78,4 @@ Repository: <https://github.com/roshanaryal1/llm-architects> (MIT code / CC-BY-4
 - **Update policy?** The corpus is frozen as a dated snapshot. Corrections are appended as
   dated notes, never silent edits. Any follow-up capture wave will be a separate, dated
   directory.
-- **Contact?** manaratharyal@gmail.com.
+- **Contact?** roshanaryaal@gmail.com.
