@@ -28,7 +28,7 @@ topology, durable SQLite state, Apple-Silicon-native inference, private-network 
 least-privilege isolation) while splitting on the products that realise each choice. (2)
 *LLM-as-rater training-cutoff bias:* our study-internal rater — itself an LLM — flagged 14
 tools and models as hallucinated; on web verification none of the 14 was confirmed nonexistent
-and at least twelve are real releases dated after that rater's training cutoff. This is a rater
+and at least 12 are real releases dated after that rater's training cutoff. This is a rater
 failure, not an absence of defects: independent verification did find genuine factual errors
 elsewhere, none of them among the 14 flags. (3) *Citation quantity does not predict citation
 quality:* the response with the largest reference apparatus (99 URLs) is the least reliable. (4)
@@ -66,7 +66,7 @@ Our contributions:
 - An empirical **consensus map** across eleven systems (Section 4).
 - A characterisation of **fabrication** on this task that turns out to be mostly a
   characterisation of **the LLM rater** (Section 5).
-- **Constraint-reasoning** and **recency** results, including a memory-fit checker under which
+- **Constraint-reasoning** and **recency** results, including a memory-fit checker showing that
   every co-resident model set a response describes as simultaneously loaded exceeds 32 GB
   (Sections 6, 7).
 - A **citation-quality** analysis (Section 8) and a **reasoning-mode sensitivity** result
@@ -313,7 +313,7 @@ A follow-up verification pass (Section 5.3) later resolved three of those seven 
 real projects, leaving four genuinely unresolvable: `Helmrig`, `DiffResearch`, `cplt`,
 `agent-policy-engine`.
 
-**None of the 14 was confirmed nonexistent. At least twelve are real releases dated after the
+**None of the 14 was confirmed nonexistent. At least 12 are real releases dated after the
 rater's cutoff.** The false positives cluster precisely on the *most current* responses.
 
 **This is a statement about the 14 flags, not about the corpus.** We keep three populations
@@ -522,8 +522,8 @@ Canonical pair (study-internal vs GPT-5.6 Sol), 117 paired ratings:
 | exact agreement | 68.4 % |
 | within 1 point | 96.6 % |
 | Cohen's kappa [15] (unweighted / quadratic-weighted) | +0.49 / **+0.64** |
-| Gwet's AC1 [17] (unweighted / quadratic-weighted) | +0.54 / **+0.73** |
 | Krippendorff's alpha [16] (ordinal) | +0.20 (pair), +0.12 (all four) |
+| Gwet's AC1 [17] (unweighted / quadratic-weighted) | +0.54 / **+0.73** |
 
 The gap between kappa_w = 0.64 and alpha = 0.20 is a prevalence effect: several dimensions are
 dominated by 2s, which inflates chance agreement in Krippendorff's ordinal alpha. Gwet's AC1,

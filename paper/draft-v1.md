@@ -19,7 +19,7 @@ across 39 decision axes the systems converge almost unanimously on the *shape* o
 Apple-Silicon-native inference, private-network remote access, least-privilege isolation) while
 splitting on the *products* that realise each choice. (2) **LLM-as-rater training-cutoff bias:**
 our study-internal rater — itself an LLM — flagged 14 tools and models as hallucinated; on web
-verification **none of the 14 was confirmed nonexistent** and at least twelve are real releases
+verification **none of the 14 was confirmed nonexistent** and at least 12 are real releases
 dated *after that rater's training cutoff*. The false positives cluster on the responses that
 were most up to date. This is a rater failure, not an absence of defects: independent
 verification did find genuine factual errors elsewhere in the corpus (one nonexistent future
@@ -64,7 +64,7 @@ Our contributions:
 - An empirical **consensus map** across eleven systems (§4).
 - A characterisation of **fabrication** on this task that turns out to be mostly a
   characterisation of **the LLM rater** (§5).
-- **Constraint-reasoning** and **recency** results, including a memory-fit checker under which
+- **Constraint-reasoning** and **recency** results, including a memory-fit checker showing that
   every co-resident model set a response describes as simultaneously loaded exceeds 32 GB
   (§6, §7).
 - A **citation-quality** analysis (§8) and a **reasoning-mode sensitivity** result (§9).
@@ -298,7 +298,7 @@ A follow-up verification pass (§5.3) later resolved three of those seven — `C
 real projects, leaving **four** genuinely unresolvable: `Helmrig`, `DiffResearch`, `cplt`,
 `agent-policy-engine`.
 
-**None of the 14 was confirmed nonexistent. At least twelve are real releases dated after the
+**None of the 14 was confirmed nonexistent. At least 12 are real releases dated after the
 rater's cutoff.** The false positives cluster precisely on the *most current* responses: the
 rater penalised recency it could not verify.
 
