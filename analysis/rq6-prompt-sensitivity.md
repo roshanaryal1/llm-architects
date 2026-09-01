@@ -30,7 +30,9 @@ gemini-3.1-pro, qwen-3.7-plus, z-ai** (adjust if a run is unavailable).
 | gpt-5 | ✅ `gpt-5-v2.md` | ✅ `gpt-5-v3.md` | — |
 | qwen-3.7-plus | ✅ `qwen-3.7-plus-v2.md` | ✅ `qwen-3.7-plus-v3.md` | **v1 did not browse; v2/v3 did.** v2↔v3 is the clean pair. |
 | z-ai | ✅ `z-ai-v2.md` | ✅ `z-ai-v3.md` | **v1 = different model (GLM-4.x) + broken browse; v2/v3 = GLM-5.2, no browse.** v2↔v3 is the clean pair (but v2/v3 self-report different cutoffs). |
-| gemini-3.1-pro | ⬜ pending | ⬜ pending | — |
+| gemini-3.1-pro | ✅ `gemini-3.1-pro-v2.md` | ✅ `gemini-3.1-pro-v3.md` | **NO Gemini pair holds the model fixed** — v2 self-reports "Gemini 2.5 Pro"/2026, v3 self-reports "Gemini 1.5 Pro"/Jan-2025. v1↔v2 (both browsing-off, both ~2.5-Pro-era) is the least-confounded pair and showed near-zero movement. |
+
+**All 5 systems captured (v2 + v3 each). RQ6 data collection complete.**
 
 ## Delta table — load-bearing axes
 
@@ -160,3 +162,39 @@ model + broken browse.)
    broken browsing for v1. For both, only the v2↔v3 pair is a clean phrasing comparison. This
    also means the corpus accidentally contains a small **browsing on/off** signal for Qwen (v1
    off, v2/v3 on) and a **model-upgrade** signal for z-ai — both worth a line in the paper.
+
+7. **The free tiers are not reproducible instruments across runs.** Two of the five systems
+   served a *different underlying model* between paraphrase runs: **z-ai** self-reported cutoff
+   "~mid-2025" (v2) vs "Late 2024" (v3) for the same "GLM-5.2" label; **Gemini** self-reported
+   "Gemini 2.5 Pro" / "2026" (v2) vs **"Gemini 1.5 Pro" / "January 2025"** (v3) — a materially
+   older model. No Gemini pair holds the model fixed. This is itself a paper finding (a
+   threat-to-validity that generalises: *"the same free chat product is not a stable model
+   across sessions"*), and it means the clean phrasing comparison exists only for **GPT-5** and
+   **Perplexity** (both held their model identity across all three framings).
+
+8. **Gemini and Perplexity are the low-sensitivity end.** Gemini v1↔v2 (the only Gemini pair
+   where both runs are browsing-off and ~2.5-Pro-era) is *nearly the same response* — identical
+   primary model, inference engine, orchestration, coding agent, vector store, and (stale) cloud
+   fallback. Perplexity's product picks barely move. GPT-5 is the high-sensitivity extreme (#1
+   inference engine differs in all three framings). Qwen and z-ai are mid, but confounded.
+
+9. **RQ2 note — one fabricated-*context* hallucination:** Gemini v3 closed by asking the operator
+   about prioritising work on "your existing projects like **safeRoute and RentMate**" — project
+   names not in the prompt, invented by the model. Distinct from inventing a tool/model; logged
+   for RQ2 as a hallucinated-context item.
+
+## What the RQ6 data supports for the paper
+
+- **Primary result:** across 5 systems × 3 framings, **every response keeps its architecture and
+  only changes products.** This is the strongest single-sentence support for the paper's
+  headline ("converge on shape, diverge on products") — and it holds under two different kinds of
+  prompt perturbation (full paraphrase, and a targeted anti-anchoring-steer ablation).
+- **Secondary result:** the anti-anchoring / anti-popularity steer *does* measurably change the
+  product list — but the **sign is model-dependent** (suppresses product-naming in GPT-5 and
+  Qwen; the opposite in GLM-5.2). Reportable as: "the steer is not inert, but it does not have a
+  uniform effect."
+- **Threat-to-validity result:** free chat tiers are not reproducible instruments — 2/5 systems
+  served a different model between runs. The paper's methods section must say the v2/v3 runs are
+  a *snapshot pair*, not a controlled A/B, for z-ai and Gemini.
+- **Not supported:** any claim that phrasing changes the *fabrication rate* (0 confirmed
+  fabrications across all 10 v2/v3 captures) or the *architecture*.
