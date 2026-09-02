@@ -23,7 +23,7 @@ analysis/
 2. Rater(s) score it against `docs/rubric.md` → `analysis/scoring/`.
 3. Deep-dive notes (optional, for high-interest responses) → `analysis/findings/`.
 4. When ≥ 6 responses: (re)build `analysis/consensus/`.
-5. `analysis/consensus/` + `docs/paper-options.md` → the write-up.
+5. `analysis/consensus/` → `paper/draft-v1.md` (the write-up).
 
 ## Scripts quick ref
 

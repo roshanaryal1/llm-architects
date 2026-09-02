@@ -10,7 +10,7 @@ All notable changes to the corpus and analysis. Format loosely follows
   dual licensing (MIT code / CC-BY-4.0 data), `.gitignore`, `.editorconfig`, `.markdownlint.json`,
   `Makefile`, GitHub issue/PR templates, `validate.yml` CI.
 - `prompts/prompt-v1.md` — canonical study instrument, frozen.
-- `docs/`: `methodology.md`, `rubric.md`, `comparison-axes.md`, `glossary.md`, `paper-options.md`.
+- `docs/`: `methodology.md`, `rubric.md`, `comparison-axes.md`, `glossary.md`.
 - `analysis/scripts/`: `memory_budget.py` (32 GB fit estimator), `validate_matrix.py` (CSV lint).
 - `data/decisions-matrix.csv` — 39 decision axes, 10 planned model columns.
 - `data/schema/decisions-matrix.schema.md`.

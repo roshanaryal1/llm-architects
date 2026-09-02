@@ -10,7 +10,7 @@ analysis.
   The text of that work is archived in-repo at
   [`../analysis/findings/claude-sonnet-5-findings.md`](../analysis/findings/claude-sonnet-5-findings.md).
 
-- **Paper framing options**: [`../docs/paper-options.md`](../docs/paper-options.md).
+- **Paper framing options**: [`../paper/draft-v1.md`](../paper/draft-v1.md).
 
 ## What does NOT go here
 

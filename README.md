@@ -15,7 +15,7 @@ Around a dozen frontier AI systems are each given one identical, evidence-demand
 autonomous AI development-and-research workstation for a 32 GB Apple M6 Mac mini.* Every response
 is captured verbatim, scored against a written rubric, and cross-checked for fabricated tools,
 stale recommendations, hardware-constraint violations, and citation quality. The corpus feeds a
-research write-up (see [`docs/paper-options.md`](docs/paper-options.md)) and doubles as the design
+research write-up and doubles as the design
 brief for the author's real build.
 
 > **Status:** analysis complete, **paper drafted**. 13 responses / 11 systems captured (Claude
@@ -102,7 +102,6 @@ llm-architects/
 │   ├── methodology.md           Full protocol: prompt design, model set, extraction, scoring
 │   ├── rubric.md                9-dimension scoring rubric (0/1/2 per dimension)
 │   ├── comparison-axes.md       The ~38 axes used in decisions-matrix.csv, defined
-│   ├── paper-options.md         Four possible write-ups; recommended path
 │   └── glossary.md              Terms used across responses (MoE, KV cache, worktree, …)
 │
 ├── reference/                   Non-study reference material

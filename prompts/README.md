@@ -14,7 +14,7 @@ Run v2 **and** v3 on ≥ 5 systems, chosen to span the corpus: keep 2 top-tier (
 `gpt-5` or `mistral`), 2 mid (`gemini`, `qwen` or `kimi`), 1 low (`z-ai` or a DeepSeek fast
 mode). Capture with `prompt_version: v2` / `v3` front-matter; extract into new matrix columns
 `<slug>_v2` / `<slug>_v3`; report per-system decision-axis deltas and fabrication-count deltas
-vs the v1 capture. See `paper/portfolio.md` P1.
+vs the v1 capture. See `paper/draft-v1.md`.
 
 ## Using it
 
