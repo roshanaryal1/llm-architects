@@ -1,7 +1,9 @@
 # https://citation-file-format.github.io/
 cff-version: 1.2.0
 message: "If you use this dataset or its findings, please cite it as below."
-title: "llm-architecture-eval: a controlled comparison of LLM systems-architecture design"
+title: >-
+  Large Language Models as Systems Architects: A Controlled Study of Consensus,
+  Fabrication, and Constraint Reasoning on One Hard Design Task (dataset and analysis code)
 abstract: >-
   A dataset and analysis comparing how multiple frontier large language models respond to one
   identical, evidence-demanding systems-architecture prompt: designing a 24/7 autonomous AI
@@ -13,17 +15,38 @@ authors:
   - family-names: Aryal
     given-names: Roshan
     email: roshanaryaal@gmail.com
-repository-code: "https://github.com/roshanaryal1/llm-architecture-eval"
-url: "https://github.com/roshanaryal1/llm-architecture-eval"
-version: "0.1.0"
-date-released: "2026-08-31"
+repository-code: "https://github.com/roshanaryal1/llm-architects"
+url: "https://github.com/roshanaryal1/llm-architects"
+version: "1.0.0"
+date-released: "2026-09-03"
 license: CC-BY-4.0
+doi: 10.5281/zenodo.22245991
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.22245991
+    description: Concept DOI (resolves to the latest version)
+  - type: doi
+    value: 10.5281/zenodo.22245992
+    description: Version DOI for v1.0
 keywords:
   - large language models
   - systems architecture
   - LLM evaluation
+  - LLM-as-a-judge
   - hallucination
+  - training cutoff bias
   - local inference
   - Apple Silicon
   - multi-agent systems
   - benchmark
+preferred-citation:
+  type: article
+  title: >-
+    Large Language Models as Systems Architects: A Controlled Study of Consensus,
+    Fabrication, and Constraint Reasoning on One Hard Design Task
+  authors:
+    - family-names: Aryal
+      given-names: Roshan
+  journal: "Cureus Journal of Computer Science"
+  year: 2026
+  notes: "Under review (Springer Nature)."

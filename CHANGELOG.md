@@ -5,6 +5,32 @@ All notable changes to the corpus and analysis. Format loosely follows
 
 ## [Unreleased]
 
+### Submission — 2026-09-03 — Cureus CJCS deferral revision + resubmission
+- Initial submission to Cureus Journal of Computer Science (Springer Nature) on 2026-09-02;
+  editor **deferred** at the initial quality check on 2026-09-03 with 10 required points.
+- All 10 addressed and the manuscript **resubmitted** (now back in the peer-review queue):
+  1. Table 1 de-duplicated (a stray pasted copy was removed) — single clean table.
+  2. Table 2 reformatted to three columns (axis / position / share) with one row per position.
+  3. Table 3 final row split into "resolved on follow-up" (`Cloak`, `memo`, `pi-search-hub` ->
+     real) and "unresolved" (`Helmrig`, `DiffResearch`, `cplt`, `agent-policy-engine`).
+  4. Unresolved count made consistent throughout — **four**, not "two" then "four".
+  5. Table 3 `nono` row clarified: "nono (kernel sandbox) — real — Landlock / Seatbelt".
+  6. Subheading "Fabrication, and the rater that manufactured it" -> "Apparent fabrication and
+     the rater that generated it".
+  7. Table 5 note added: GPT-5's apparatus is inline attribution, not URLs.
+  8. Prompt-sensitivity paragraph now names the systems (Zhipu z.ai + Google Gemini changed
+     model between runs; only GPT-5 + Perplexity held identity).
+  9. (= 1) Table 1 in proper tabular format.
+  10. Ref 8 (Gu et al., *A Survey on LLM-as-a-Judge*) updated to the published version —
+      *The Innovation* 2026;7:101253, doi:10.1016/j.xinn.2025.101253. The other 8 preprint-tagged
+      refs were re-checked; no peer-reviewed version exists yet, retained as `[PREPRINT]`.
+
+### Added — 2026-09-03 — Zenodo archive
+- v1.0 GitHub release cut and archived to Zenodo. Concept DOI
+  **10.5281/zenodo.22245991** (resolves to the latest version); v1.0 version DOI
+  10.5281/zenodo.22245992. Added to the Cureus Data Availability Statement and to the
+  manuscripts' data-availability lines.
+
 ### Added — 2026-08-31 — repository bootstrap
 - Enterprise repo scaffolding: `README`, `CONTRIBUTING`, `CODE_OF_CONDUCT`, `CITATION.cff`,
   dual licensing (MIT code / CC-BY-4.0 data), `.gitignore`, `.editorconfig`, `.markdownlint.json`,

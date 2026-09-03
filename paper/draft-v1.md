@@ -1,7 +1,7 @@
 # LLMs as Systems Architects: A Controlled Study of Consensus, Fabrication, and Constraint Reasoning on One Hard Design Task
 
 Data, prompts, rubric, per-rater scores and checking scripts:
-`github.com/roshanaryal1/llm-architects`.
+`github.com/roshanaryal1/llm-architects` (archived at Zenodo, concept DOI 10.5281/zenodo.22245991).
 
 ---
 
@@ -88,7 +88,7 @@ strategy, the National Academies' reproducibility/replicability framing (all sum
 `docs/deep-research-methodology.md`).
 
 **LLM-as-judge and its biases.** Using an LLM to score another LLM's output is now standard and
-its failure modes are catalogued: *A Survey on LLM-as-a-Judge* (arXiv 2411.15594) and follow-ups
+its failure modes are catalogued: *A Survey on LLM-as-a-Judge* (The Innovation, 2026) and follow-ups
 document **position bias, verbosity bias, self-enhancement**, and (in *Reliability without
 Validity*, arXiv 2606.19544) high agreement with low validity; *Judging the Judges* (arXiv
 2604.23178) surveys mitigation. The standard fixes are randomised ordering, repeated runs, and
@@ -264,7 +264,7 @@ would.
 
 ---
 
-## 5. RQ2 — Fabrication, and the rater that manufactured it
+## 5. RQ2 — Apparent fabrication and the rater that generated it
 
 ### 5.1 What we found first
 
@@ -288,7 +288,7 @@ Verifying every flag against 2026 web sources (`analysis/verification/tool-model
 | `Ornith-1.0-9B` | **real** | `huggingface.co/deepreinforce-ai/Ornith-1.0-9B`; Ollama `ornith:9b` |
 | `WhipDesk` | **real** | `github.com/BinaryBananaLLC/WhipDesk` |
 | `LightAgent` | **real** | `github.com/wanxingai/LightAgent`; arXiv 2509.09292 |
-| `nono` | **real** | Landlock/Seatbelt sandbox tool |
+| `nono` (kernel sandbox) | **real** | sandbox tool: Landlock (Linux) / Seatbelt (macOS); 2026-05 references |
 | `GLM-4.7-Flash` (30B-A3B) | **real** | Zhipu, 2026-01-19, 30B-A3B MoE |
 | `Qwen3-Coder-Next` (referenced) | **real, 80B MoE** | `huggingface.co/Qwen/Qwen3-Coder-Next` |
 | `Helmrig`, `Cloak`, `DiffResearch`, `cplt`, `memo`, `agent-policy-engine`, `pi-search-hub` | **unresolved at first pass** | no web evidence either way — **not** counted as fabrication |
@@ -306,9 +306,9 @@ rater penalised recency it could not verify.
 separate:
 
 - **(A) initial-rater fabrication flags** — the 14 names above. Verification outcome: 0
-  confirmed nonexistent, ≥ 12 real post-cutoff, 2 unresolved.
+  confirmed nonexistent, ≥ 12 real post-cutoff, 4 unresolvable.
 - **(B) the wider set of flagged-or-doubted names** — ~18 once later passes are included; still
-  0 confirmed nonexistent, 4 unresolvable (`Helmrig`, `DiffResearch`, `cplt`,
+  0 confirmed nonexistent, the same 4 unresolvable (`Helmrig`, `DiffResearch`, `cplt`,
   `agent-policy-engine`).
 - **(C) factual defects found by independent verification, *not* raised as fabrication flags**
   — one genuinely nonexistent future model (`deepseek-expert`'s `Qwen3-Coder-70B`), several
@@ -758,7 +758,7 @@ reserve a measured RAM floor.
 
 ## 12. Release
 
-`github.com/roshanaryal1/llm-architects` — MIT (code) / CC-BY-4.0 (data):
+`github.com/roshanaryal1/llm-architects` — MIT (code) / CC-BY-4.0 (data); archived at Zenodo, concept DOI 10.5281/zenodo.22245991:
 
 - `prompts/prompt-v1.md` — the frozen instrument
 - `data/responses/*.md` — 13 verbatim captures + front-matter + per-capture reviewer notes

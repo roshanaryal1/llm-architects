@@ -18,13 +18,17 @@ stale recommendations, hardware-constraint violations, and citation quality. The
 research write-up and doubles as the design
 brief for the author's real build.
 
-> **Status:** analysis complete, **paper drafted**. 13 responses / 11 systems captured (Claude
-> Sonnet 5, Qwen 3.7 Plus, DeepSeek ×3 modes, Perplexity, Gemini 3.1 Pro, Kimi Instant, Mistral
-> Large 3, GPT-5.6 Luna, Meta / Llama 4, Grok 4, z.ai / GLM); all falsifiable sub-claims
-> web-verified ([`analysis/verification/`](analysis/verification/)); four independent rater score
-> sets with agreement stats ([`analysis/scoring/`](analysis/scoring/)); consensus synthesis and
-> reference architecture ([`analysis/consensus/`](analysis/consensus/)); meta-study draft in
-> [`paper/draft-v1.md`](paper/draft-v1.md). See [`CHANGELOG.md`](CHANGELOG.md) for the running log.
+> **Status:** analysis complete; paper **submitted to Cureus Journal of Computer Science**
+> (Springer Nature) and, after a deferral at the initial quality check, **revised and
+> resubmitted on 2026-09-03** — now in the editor/peer-review queue. 13 responses / 11 systems
+> captured (Claude Sonnet 5, Qwen 3.7 Plus, DeepSeek ×3 modes, Perplexity, Gemini 3.1 Pro, Kimi
+> Instant, Mistral Large 3, GPT-5.6 Luna, Meta / Llama 4, Grok 4, z.ai / GLM); all falsifiable
+> sub-claims web-verified ([`analysis/verification/`](analysis/verification/)); four independent
+> rater score sets with agreement stats ([`analysis/scoring/`](analysis/scoring/)); consensus
+> synthesis and reference architecture ([`analysis/consensus/`](analysis/consensus/)); write-up
+> in [`paper/draft-v1.md`](paper/draft-v1.md). Archived at Zenodo — concept DOI
+> [10.5281/zenodo.22245991](https://doi.org/10.5281/zenodo.22245991). See
+> [`CHANGELOG.md`](CHANGELOG.md) for the running log.
 >
 > **This repository is the canonical project folder.** Everything lives here — prompt,
 > responses, matrix, analysis, tooling. Earlier loose working files in the parent directory were
@@ -183,4 +187,6 @@ Short version (full version in [`CONTRIBUTING.md`](CONTRIBUTING.md)):
 
 See [`CITATION.cff`](CITATION.cff). Short form:
 
-> Aryal, R. (2026). *llm-architects: a controlled comparison of LLM systems-architecture design.* GitHub. https://github.com/roshanaryal1/llm-architects
+> Aryal, R. (2026). *Large Language Models as Systems Architects: A Controlled Study of Consensus, Fabrication, and Constraint Reasoning on One Hard Design Task* (dataset and analysis code). Zenodo. https://doi.org/10.5281/zenodo.22245991
+
+Manuscript under review at *Cureus Journal of Computer Science* (Springer Nature).
