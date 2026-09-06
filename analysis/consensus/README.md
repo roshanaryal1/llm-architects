@@ -1,7 +1,8 @@
 # `analysis/consensus/` — cross-response synthesis (RQ1)
 
-**Status: synthesis drafted (issue #10).** Refine as `prompt-v2/v3` (#8) and the rater scores (#9)
-land.
+**Status: synthesis complete.** Built from all 13 responses; the four-rater scoring and the
+`prompt-v2`/`v3` paraphrase runs have landed and are folded in. This section feeds the paper's
+consensus section and the author's build brief.
 
 1. **[`consensus-matrix.md`](consensus-matrix.md)** — the decision axes with, for each, the
    modal/plurality choice, the count of the 10 non-anchor systems holding it, and a
