@@ -18,15 +18,20 @@ stale recommendations, hardware-constraint violations, and citation quality. The
 research write-up and doubles as the design
 brief for the author's real build.
 
-> **Status:** analysis complete; paper **submitted to Cureus Journal of Computer Science**
-> (Springer Nature) and, after a deferral at the initial quality check, **revised and
-> resubmitted on 2026-09-03** — now in the editor/peer-review queue. 13 responses / 11 systems
-> captured (Claude Sonnet 5, Qwen 3.7 Plus, DeepSeek ×3 modes, Perplexity, Gemini 3.1 Pro, Kimi
-> Instant, Mistral Large 3, GPT-5.6 Luna, Meta / Llama 4, Grok 4, z.ai / GLM); all falsifiable
-> sub-claims web-verified ([`analysis/verification/`](analysis/verification/)); four independent
-> rater score sets with agreement stats ([`analysis/scoring/`](analysis/scoring/)); consensus
-> synthesis and reference architecture ([`analysis/consensus/`](analysis/consensus/)); write-up
-> in [`paper/draft-v1.md`](paper/draft-v1.md). Archived at Zenodo — concept DOI
+> **Status:** analysis complete; manuscript **in peer review at Cureus Journal of Computer
+> Science** (Springer Nature, article 21832). Submitted 2026-09-02; the editor deferred at the
+> initial quality check, and two revision rounds followed — 2026-09-03 (ten editorial points)
+> and 2026-09-04 (eight preprint citations replaced with peer-reviewed sources). **Approved for
+> peer review on 2026-09-04**; the article is now locked for editing until reviewer reports
+> arrive. 13 responses / 11 systems captured (Claude Sonnet 5, Qwen 3.7 Plus, DeepSeek ×3
+> modes, Perplexity, Gemini 3.1 Pro, Kimi Instant, Mistral Large 3, GPT-5.6 Luna, Meta / Llama
+> 4, Grok 4, z.ai / GLM), plus `prompt-v2`/`v3` paraphrase runs for five of them; all
+> falsifiable sub-claims web-verified ([`analysis/verification/`](analysis/verification/)); four
+> independent rater score sets with agreement stats ([`analysis/scoring/`](analysis/scoring/));
+> consensus synthesis and reference architecture
+> ([`analysis/consensus/`](analysis/consensus/)); working draft in
+> [`paper/draft-v1.md`](paper/draft-v1.md), submitted version in
+> [`paper/submission/`](paper/submission/). Archived at Zenodo — concept DOI
 > [10.5281/zenodo.22245991](https://doi.org/10.5281/zenodo.22245991). See
 > [`CHANGELOG.md`](CHANGELOG.md) for the running log.
 >
@@ -45,7 +50,7 @@ study instrument and asks:
 
 | # | Question | How it is measured |
 |---|----------|--------------------|
-| RQ1 | Where do models **agree**? | Consensus matrix over ~38 decision axes ([`data/decisions-matrix.csv`](data/decisions-matrix.csv)) |
+| RQ1 | Where do models **agree**? | Consensus matrix over 39 decision axes ([`data/decisions-matrix.csv`](data/decisions-matrix.csv)) |
 | RQ2 | How often do they **fabricate** tools, versions, or benchmark numbers? | Per-response hallucination audit in the `## Reviewer notes` of each capture file |
 | RQ3 | Do they respect the **hardware envelope** (32 GB, ~170 GB/s, one GPU)? | `analysis/scripts/memory_budget.py` + rubric dimension |
 | RQ4 | Are recommendations **current** (2026) or stale defaults? | Rubric "Recency" score, cross-checked vs Claude's sourced baseline |
@@ -54,20 +59,20 @@ study instrument and asks:
 
 Full method: [`docs/methodology.md`](docs/methodology.md). Rubric: [`docs/rubric.md`](docs/rubric.md).
 
-## Roadmap
+## Status and next steps
 
-Tracked work is in **[the project board](https://github.com/users/roshanaryal1/projects/6)** and
-milestone **v0.1 — data collection complete**. Open issues, in rough order:
+Data collection and analysis are complete; the manuscript is in peer review (see **Status**
+above).
 
-| # | Item | Status |
-|---|------|--------|
-| ~~#5 #6 #7~~ | ~~Capture GPT-5 / Grok 4 / Llama 4~~ | done — **12 responses / 10 systems** |
-| **#10** | Build `analysis/consensus/` synthesis | **unblocked — critical path** |
-| #9 | Second rubric rater + inter-rater agreement | required for paper |
-| #12 #13 #14 | Follow-up probes (fabrication-retraction, recency-vs-effort, cite-on-demand) | optional, high value |
-| #8 | `prompt-v2` / `v3` paraphrases (RQ6) | after captures |
-| #9 | Second rubric rater + inter-rater agreement | required for paper |
-| #11 | Draft the meta-study paper | blocked on #8 #9 #10 |
+| Item | State |
+|------|-------|
+| Data collection — 13 base responses / 11 systems + `v2`/`v3` paraphrases for five systems | done |
+| Falsifiable-claim verification ([`analysis/verification/`](analysis/verification/)) | done |
+| Four-rater scoring + inter-rater agreement ([`analysis/scoring/`](analysis/scoring/)) | done |
+| Consensus synthesis + reference architecture ([`analysis/consensus/`](analysis/consensus/)) | done |
+| Cureus submission + two deferral revisions | done — in peer review |
+| Address reviewer reports | pending Cureus reviews |
+| Follow-up study on evaluator staleness | separate repo — [`the-rater-is-stale`](https://github.com/roshanaryal1/the-rater-is-stale) |
 
 Contribution flow is one branch + PR per issue — see [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
@@ -79,41 +84,49 @@ Contribution flow is one branch + PR per issue — see [`CONTRIBUTING.md`](CONTR
 llm-architects/
 ├── prompts/                     The study instrument (frozen)
 │   ├── prompt-v1.md             Canonical prompt. DO NOT EDIT after freeze.
-│   ├── prompt-v2.md             Paraphrase for prompt-sensitivity testing (RQ6). [planned]
-│   └── prompt-v3.md             Second paraphrase. [planned]
+│   ├── prompt-v2.md             Paraphrase 1 for prompt-sensitivity testing (RQ6).
+│   └── prompt-v3.md             Paraphrase 2.
 │
 ├── data/
-│   ├── responses/               One verbatim capture per AI system
+│   ├── responses/               One verbatim capture per run
 │   │   ├── _TEMPLATE.md         Copy this to add a new response
-│   │   ├── claude-sonnet-5.md
-│   │   ├── qwen-3.7-plus.md
-│   │   ├── deepseek-instant.md
-│   │   └── deepseek-expert.md
-│   ├── decisions-matrix.csv     Structured extraction: 1 row per decision axis, 1 column per AI
+│   │   ├── claude-sonnet-5.md … 13 base captures (one per system; DeepSeek ×3 modes)
+│   │   └── <system>-v2.md / -v3.md   Paraphrase runs (gemini, gpt-5, perplexity, qwen, z-ai)
+│   ├── decisions-matrix.csv     Structured extraction: 1 row per decision axis (39), 1 column per run
+│   ├── systems.csv              System / model / provider / browsing / capture date
 │   └── schema/
 │       └── decisions-matrix.schema.md   What each row/column means; allowed values
 │
 ├── analysis/
+│   ├── verification/            Falsifiable-claim checks (tool / model register)
+│   ├── scoring/                 Four rater packets, per-rater score CSVs, agreement stats
+│   ├── consensus/               Cross-response synthesis (RQ1) — the paper's consensus section
 │   ├── findings/                Deep per-response research notes (long form)
-│   │   └── claude-sonnet-5-findings.md
-│   ├── consensus/              Cross-response synthesis (RQ1) — the paper's Section 7
-│   │   └── README.md
-│   └── scripts/                Reproducible checks
+│   └── scripts/                 Reproducible checks
 │       ├── memory_budget.py     Estimate weights + KV cache vs 32 GB for a given model set
 │       └── validate_matrix.py   Lint decisions-matrix.csv (shape, required rows, no empty anchor col)
 │
+├── paper/
+│   ├── draft-v1.md              Working long-form write-up
+│   └── submission/              Cureus CJCS submission
+│       ├── manuscript-cureus.md   The submitted manuscript (portal source of record)
+│       ├── manuscript.md          Portable Markdown mirror
+│       ├── references.bib         All references — peer-reviewed, no preprints
+│       └── datasheet.md
+│
 ├── docs/
 │   ├── methodology.md           Full protocol: prompt design, model set, extraction, scoring
+│   ├── deep-research-methodology.md   How the verification pass was run
 │   ├── rubric.md                9-dimension scoring rubric (0/1/2 per dimension)
-│   ├── comparison-axes.md       The ~38 axes used in decisions-matrix.csv, defined
+│   ├── comparison-axes.md       The 39 axes used in decisions-matrix.csv, defined
 │   └── glossary.md              Terms used across responses (MoE, KV cache, worktree, …)
 │
 ├── reference/                   Non-study reference material
-│   └── (architecture artifacts, external links)
 │
-├── .github/                     Issue/PR templates + CI (markdown + CSV validation)
+├── .github/                     Issue/PR templates + CI (validate.yml: markdown + CSV)
 ├── CONTRIBUTING.md              How to submit a new model response
 ├── CODE_OF_CONDUCT.md
+├── SECURITY.md                  Coordinated-disclosure contact
 ├── CITATION.cff                 Cite this dataset
 ├── CHANGELOG.md                 Running log of captures + analysis milestones
 ├── Makefile                     `make validate` / `make budget` / `make lint`
@@ -161,10 +174,11 @@ Short version (full version in [`CONTRIBUTING.md`](CONTRIBUTING.md)):
 
 ## Known limitations (read before citing)
 
-- **n = 1 base prompt.** Paraphrases (`prompt-v2/v3`) are planned to test sensitivity; until then,
-  generality is limited.
-- **Reviewer subjectivity.** Scoring is one rater so far. The rubric is written to reduce this;
-  a second independent rater + inter-rater agreement is a prerequisite for the paper.
+- **One base prompt.** Paraphrase runs (`prompt-v2`/`v3`) were collected for five systems; they
+  probe prompt-sensitivity but do not make the result robust to arbitrary rewordings.
+- **Rater subjectivity.** Scoring is four independent rater sets with inter-rater agreement
+  statistics ([`analysis/scoring/`](analysis/scoring/)); the rubric constrains but does not
+  eliminate judgement calls.
 - **Claude is not a blind peer.** It answered from inside the tool that built this repo, with live
   browsing and partial authorship of the response format. It is used as the *consensus anchor and
   the only sourced baseline*, not as an independent sample. See its capture file's note.
@@ -189,4 +203,4 @@ See [`CITATION.cff`](CITATION.cff). Short form:
 
 > Aryal, R. (2026). *Large Language Models as Systems Architects: A Controlled Study of Consensus, Fabrication, and Constraint Reasoning on One Hard Design Task* (dataset and analysis code). Zenodo. https://doi.org/10.5281/zenodo.22245991
 
-Manuscript under review at *Cureus Journal of Computer Science* (Springer Nature).
+Manuscript in peer review at *Cureus Journal of Computer Science* (Springer Nature), article 21832.
