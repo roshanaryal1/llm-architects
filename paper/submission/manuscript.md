@@ -280,6 +280,20 @@ implementation at the boundary of those constraints — a five-point gap in medi
 agreement between the structural and product axes. This separates robust architectural
 principles from fast-moving product preference more cleanly than a superficial majority vote.
 
+**Constraint artefact or transferable principle.** With one hardware instrument we cannot fully
+separate consensus that the 32 GB ceiling forces from consensus that would hold on any host; a
+sweep across hardware envelopes is the obvious follow-up. The structural agreements split into
+two groups. One is constraint-shaped — one resident heavy model, a single concurrent
+heavy-inference slot, model swapping with an anti-thrash policy, "100 agents" as cheap state
+rather than 100 processes — and would relax on a larger machine where several heavy models can
+co-reside. The other is standard distributed-systems practice independent of memory size:
+hierarchical coordinator/worker over a swarm, a durable queue with leases and checkpoints that
+never replays destructive actions, an evidence-first pipeline that writes final prose only from
+a verified ledger, a dedicated non-admin user with workspace isolation, a Tailscale-only
+network with no public exposure, and launchd + watchdog supervision. The second group is what
+we expect to transfer to server or cluster deployments; the first is a reading of the
+constraint.
+
 ## 5. Apparent fabrication and the rater that generated it
 
 ### 5.1 What we found first
@@ -411,6 +425,13 @@ that *do not* keep the heavy models co-resident:
   before OS / browser / KV, with the text calling oversubscription "acceptable". `z-ai`'s
   three-instance worker-pool diagram (Qwen3-Coder + GLM-4.5-Air + Mistral Small co-resident)
   plus "fits within 32 GB with swapping" is the second.
+
+**Sensitivity to the reserve.** The ≈ 11.5 GB reserve is a desktop-macOS figure. A headless
+Linux host or a stripped macOS profile with no window server removes ≈ 3–4 GB, putting the
+reserve near 6–8 GB and lifting the fit ceiling by about the same. We check the verdicts against
+both 11.5 GB and a 7 GB lower bound. The two explicit violations above exceed 32 GB **on weights
+alone**, before any reserve or KV, so they hold either way; only the *tight but feasible*
+one-large-MoE-plus-small-dense designs move, gaining a comfortable margin under 7 GB.
 
 **Scoring (adjudicated, D1):** 2 → `perplexity`, `mistral`, `kimi`, `grok-4`; 1 → `claude`,
 `gpt-5`, `gemini`, `qwen`, `deepseek-expert`, `deepseek-instant`, `meta-llama-4`; 0 → `z-ai`,
@@ -565,6 +586,17 @@ the clean pass — `mistral` D3 2→1, `kimi` D3 2→1, `deepseek-expert` D4 2�
 (`Qwen3-Coder-70B` does not exist), `deepseek-instant-deepthink` D4 1→0 — and are folded into
 Section 10.1. **Net: the leak changed two D3/D4 cells directly and four more via newly found
 evidence; the top and bottom performance bands are unchanged.**
+
+**Effect of the Perplexity discard on the agreement statistics.** The discarded Perplexity run
+appears only in the clean D3/D4 re-run; it is not one of the four raters in the full pass and
+enters none of the agreement figures above. Every value in the table — pairwise weighted kappa
+0.64, Gwet's AC1 0.73, Krippendorff's alpha +0.20 (pair) / +0.12 (all four) — is computed over
+{study-internal, GPT-5.6 Sol, Grok 4, DeepSeek} and is unchanged by the exclusion. The
+canonical D3/D4 levels come from the surviving clean-packet rater (GPT-5.6 Sol); recomputing
+the canonical-pair agreement on the clean D3/D4 scores keeps tool factuality in the reliable
+band (kappa 0.66–0.70) and leaves the top and bottom bands unchanged. `analysis/scripts/agreement.py`
+regenerates every figure from the scored packets, so any rater can be added or dropped and the
+statistics rerun directly.
 
 ### 9.4 Prompt sensitivity
 
