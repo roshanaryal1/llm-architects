@@ -18,12 +18,11 @@ stale recommendations, hardware-constraint violations, and citation quality. The
 research write-up and doubles as the design
 brief for the author's real build.
 
-> **Status:** analysis complete; manuscript **in peer review at Cureus Journal of Computer
-> Science** (Springer Nature, article 21832). Submitted 2026-09-02; the editor deferred at the
-> initial quality check, and two revision rounds followed — 2026-09-03 (ten editorial points)
-> and 2026-09-04 (eight preprint citations replaced with peer-reviewed sources). **Approved for
-> peer review on 2026-09-04**; the article is now locked for editing until reviewer reports
-> arrive. 13 responses / 11 systems captured (Claude Sonnet 5, Qwen 3.7 Plus, DeepSeek ×3
+> **Status:** analysis complete; manuscript **through peer review at Cureus Journal of Computer
+> Science** (Springer Nature, article 21832) and **in production (copy editing)** since the
+> editorial review completed on 2026-10-17. Submitted 2026-09-02; two pre-review revision rounds
+> followed (2026-09-03 and 2026-09-04) and reviewer re-review completed 2026-09-13. Until the
+> article is published, cite the Zenodo record below. 13 responses / 11 systems captured (Claude Sonnet 5, Qwen 3.7 Plus, DeepSeek ×3
 > modes, Perplexity, Gemini 3.1 Pro, Kimi Instant, Mistral Large 3, GPT-5.6 Luna, Meta / Llama
 > 4, Grok 4, z.ai / GLM), plus `prompt-v2`/`v3` paraphrase runs for five of them; all
 > falsifiable sub-claims web-verified ([`analysis/verification/`](analysis/verification/)); four
@@ -61,8 +60,8 @@ Full method: [`docs/methodology.md`](docs/methodology.md). Rubric: [`docs/rubric
 
 ## Status and next steps
 
-Data collection and analysis are complete; the manuscript is in peer review (see **Status**
-above).
+Data collection and analysis are complete; peer review is complete and the manuscript is in
+production (see **Status** above).
 
 | Item | State |
 |------|-------|
@@ -70,8 +69,8 @@ above).
 | Falsifiable-claim verification ([`analysis/verification/`](analysis/verification/)) | done |
 | Four-rater scoring + inter-rater agreement ([`analysis/scoring/`](analysis/scoring/)) | done |
 | Consensus synthesis + reference architecture ([`analysis/consensus/`](analysis/consensus/)) | done |
-| Cureus submission + two deferral revisions | done — in peer review |
-| Address reviewer reports | pending Cureus reviews |
+| Cureus submission + two deferral revisions | done |
+| Peer review | done; in production (copy editing) since 2026-10-17 |
 | Follow-up study on evaluator staleness | separate repo — [`the-rater-is-stale`](https://github.com/roshanaryal1/the-rater-is-stale) |
 
 Contribution flow is one branch + PR per issue — see [`CONTRIBUTING.md`](CONTRIBUTING.md).
@@ -203,4 +202,4 @@ See [`CITATION.cff`](CITATION.cff). Short form:
 
 > Aryal, R. (2026). *Large Language Models as Systems Architects: A Controlled Study of Consensus, Fabrication, and Constraint Reasoning on One Hard Design Task* (dataset and analysis code). Zenodo. https://doi.org/10.5281/zenodo.22245991
 
-Manuscript in peer review at *Cureus Journal of Computer Science* (Springer Nature), article 21832.
+Manuscript through peer review and in production at *Cureus Journal of Computer Science* (Springer Nature), article 21832.
