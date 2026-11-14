@@ -71,7 +71,7 @@ production (see **Status** above).
 | Consensus synthesis + reference architecture ([`analysis/consensus/`](analysis/consensus/)) | done |
 | Cureus submission + two deferral revisions | done |
 | Peer review | done; in production (copy editing) since 2026-10-17 |
-| Follow-up study on evaluator staleness | separate repo — [`the-rater-is-stale`](https://github.com/roshanaryal1/the-rater-is-stale) |
+| Follow-up study on evaluator staleness | separate repository, private until the study is submitted |
 
 Contribution flow is one branch + PR per issue — see [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
