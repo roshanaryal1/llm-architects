@@ -5,6 +5,21 @@ All notable changes to the corpus and analysis. Format loosely follows
 
 ## [Unreleased]
 
+### Submission - 2026-11-18 - Cureus publication-approval deferral fixes + resubmission
+- Editor deferred publication approval on 2026-11-16 with two points; both fixed in the
+  Cureus portal and the article resubmitted on 2026-11-18 (status: Editor Approval).
+  1. Introduction: "Whole-system design under a fixed resource envelope is not; ..." completed
+     to "... is not heavily studied; ...". Mirrored in `paper/submission/manuscript-cureus.md`.
+  2. First column of Tables 4, 5 and 6 changed from capture slugs to cased names, following
+     the editor's examples: `z-ai` -> z-AI, `deepseek-expert` -> DeepSeek-Expert,
+     `deepseek-instant` -> DeepSeek-Instant, `deepseek-instant-deepthink` ->
+     DeepSeek-Instant-DeepThink, `meta-llama-4` -> Meta-Llama-4, `claude-sonnet-5` ->
+     Claude-Sonnet-5, `perplexity` -> Perplexity, `mistral-large-3` -> Mistral-Large-3,
+     `gpt-5` -> GPT-5, "all others" -> "All others"; Table 6 rows now start Deep-reasoning /
+     Fast / Instant+DeepThink. These tables exist only in the portal, not in this repo.
+- No other changes, per the editor's instruction. Slugs elsewhere (Tables 1, 2, 8 and the
+  Table 4 caption) are unchanged.
+
 ### Submission — 2026-09-03 — Cureus CJCS deferral revision + resubmission
 - Initial submission to Cureus Journal of Computer Science (Springer Nature) on 2026-09-02;
   editor **deferred** at the initial quality check on 2026-09-03 with 10 required points.
