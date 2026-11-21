@@ -4,10 +4,12 @@
 Reads the CSVs that `sensitivity.py --csv analysis/sensitivity` writes, plus the
 axis counts in consensus_split.py, and writes four SVG files:
 
-  fig1-dimension-agreement.svg  per-dimension Cohen's kappa, canonical pair, 95% bootstrap interval
-  fig2-response-totals.svg      adjudicated total per response with the range across raters
+  fig1-response-totals.svg      adjudicated total per response with the range across raters
+  fig2-memory-breakeven.svg     break-even non-model reserve per captured design
   fig3-consensus-split.svg      modal agreement per decision axis, structural vs product
-  fig4-memory-breakeven.svg     break-even non-model reserve per captured design
+  fig4-dimension-agreement.svg  per-dimension Cohen's kappa, canonical pair, 95% bootstrap interval
+
+Numbered in the order the manuscript first mentions them.
 
 Usage:
     python3 analysis/scripts/sensitivity.py --csv analysis/sensitivity
@@ -108,7 +110,7 @@ def fig1(rows, out):
         svg.line(sx(lo), y, sx(hi), y, S1, 2)
         svg.circle(sx(pt), y, 6, S1)
         svg.text(sx(pt), y - 11, f"{pt:+.2f}", 12, INK2, "middle")
-    svg.save(out / "fig1-dimension-agreement.svg")
+    svg.save(out / "fig4-dimension-agreement.svg")
 
 
 def fig2(rows, out):
@@ -133,7 +135,7 @@ def fig2(rows, out):
         lo, hi, pt = int(r["rater_min"]), int(r["rater_max"]), int(r["adjudicated"])
         svg.line(sx(lo), y, sx(hi), y, S1, 2)
         svg.circle(sx(pt), y, 6, S1)
-    svg.save(out / "fig2-response-totals.svg")
+    svg.save(out / "fig1-response-totals.svg")
 
 
 def fig3(out):
@@ -192,7 +194,7 @@ def fig4(rows, out):
         svg.circle(sx(pt), y, 5, S1)
     svg.text(sx(7) - 4, T - 10, "lean host, 7 GB", 11, INK2, "end")
     svg.text(sx(11.5) - 4, T - 26, "estimator default with browser, 11.5 GB", 11, INK2, "end")
-    svg.save(out / "fig4-memory-breakeven.svg")
+    svg.save(out / "fig2-memory-breakeven.svg")
 
 
 def main(argv=None):
