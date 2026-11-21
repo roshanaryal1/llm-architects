@@ -5,6 +5,24 @@ All notable changes to the corpus and analysis. Format loosely follows
 
 ## [Unreleased]
 
+### Revision - 2026-11-22 - Cureus editorial deferral of 2026-11-21 (15 issues)
+- Editor deferred approval on 2026-11-21 with 10 major and 5 minor scientific issues;
+  resubmission due by 2027-01-02. Not yet resubmitted.
+- Added `analysis/scripts/sensitivity.py` (rater exclusion, dimension sensitivity, rank-based
+  thirds, bootstrap and Wilson intervals, break-even memory reserves, permutation test on the
+  consensus gap) with outputs in `analysis/sensitivity/`, and `analysis/scripts/figures.py`
+  with four figures in `paper/figures/`. `make figures` regenerates both.
+- Added `analysis/citation-audit/` (citation decision rules and a 99-row audit sheet for the
+  Meta references; the original 59-of-99 pass kept no per-URL record).
+- Revised `paper/submission/manuscript-cureus.md`; response letter and portal guide in
+  `paper/submission/revision-2026-11-21/`.
+- Corrections found on the way: the Methods memory-reserve description did not match
+  `memory_budget.py`; the claim that the z-ai design exceeds 32 GB on weights alone was wrong;
+  the "reliable dimensions" held only for the canonical rater pair.
+- `memory_budget.py`: preset labels aligned with the verification register, and
+  `deepseek-instant` marked as an alternative reading (the capture says one large model at a
+  time). No numbers changed.
+
 ### Submission - 2026-11-18 - Cureus publication-approval deferral fixes + resubmission
 - Editor deferred publication approval on 2026-11-16 with two points; both fixed in the
   Cureus portal and the article resubmitted on 2026-11-18 (status: Editor Approval).

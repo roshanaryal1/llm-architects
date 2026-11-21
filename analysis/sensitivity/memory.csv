@@ -1,0 +1,16 @@
+preset,stated_design,reading,weights_gb,kv_gb,ctx,rstar_kv_x0.5,rstar_kv_x1.0,rstar_kv_x2.0,verdict_R6.0,verdict_R7.0,verdict_R9.0,verdict_R11.5,verdict_R13.5,over_on_weights_alone
+claude,True,as stated by the response,21.0,1.44,16000,10.28,9.56,8.12,fit,fit,tight,over,over,False
+deepseek-deepthink,True,as stated by the response,31.6,1.12,8000,-0.16,-0.72,-1.84,over,over,over,over,over,False
+deepseek-expert,True,as stated by the response,21.0,2.88,32000,9.56,8.12,5.24,fit,tight,over,over,over,False
+deepseek-expert-all,False,all three named models loaded (pessimistic reading),34.0,2.88,32000,-3.44,-4.88,-7.76,over,over,over,over,over,True
+deepseek-instant,False,both models loaded; the response says one large model at a time,36.0,4.48,32000,-6.24,-8.48,-12.96,over,over,over,over,over,True
+gemini,True,as stated by the response,19.8,1.76,16000,11.32,10.44,8.68,fit,fit,tight,over,over,False
+gpt5,True,as stated by the response,23.4,0.96,16000,8.12,7.64,6.68,tight,tight,over,over,over,False
+grok,True,as stated by the response,21.0,3.84,48000,9.08,7.16,3.32,tight,tight,over,over,over,False
+kimi,True,as stated by the response,22.0,2.88,32000,8.56,7.12,4.24,tight,tight,over,over,over,False
+meta,True,as stated by the response,25.0,2.24,32000,5.88,4.76,2.52,over,over,over,over,over,False
+mistral,True,as stated by the response,19.0,4.32,48000,10.84,8.68,4.36,fit,tight,over,over,over,False
+mistral-two-resident,False,both models loaded; the response flags this as not recommended,30.0,2.88,32000,0.56,-0.88,-3.76,over,over,over,over,over,False
+perplexity,True,as stated by the response,22.0,1.44,16000,9.28,8.56,7.12,fit,tight,over,over,over,False
+qwen,True,as stated by the response,25.5,3.84,24000,4.58,2.66,-1.18,over,over,over,over,over,False
+zai,True,as stated by the response,24.0,1.92,32000,7.04,6.08,4.16,tight,over,over,over,over,False
