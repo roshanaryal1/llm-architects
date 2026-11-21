@@ -60,9 +60,9 @@ PRESETS: dict[str, dict] = {
         "browser": True,
     },
     "deepseek-instant": {
-        "label": "DeepSeek Instant pick (Qwen3-Coder-30B-A3B + 'Gemma 4 26B' [not real])",
+        "label": "DeepSeek Instant pick (Qwen3-Coder-30B-A3B + Gemma 4 26B, both hosted)",
         "models": [("Qwen3-Coder-30B-A3B q4", 17.0, 0.09),
-                   ("'Gemma 4 26B' q4 [FABRICATED MODEL]", 19.0, 0.14)],
+                   ("Gemma 4 26B q4 (real: 26B-A4B MoE, per register)", 19.0, 0.14)],
         "ctx": 32000,
         "browser": True,
     },
@@ -98,10 +98,11 @@ PRESETS: dict[str, dict] = {
         # DeepSeek Instant+DeepThink keeps THREE models loaded per its own diagram
         # ("Ornith-1.0-9B" + "Qwen2.5-Coder-7B" always loaded, "Qwen3.5-35B-A3B" on
         # demand) and calls the resulting ~32-34 GB "slight oversubscription acceptable".
-        # Model names are fabricated; sizes are as the response states them.
-        "label": "DeepSeek Instant+DeepThink pick (3 models 'always loaded'; names FABRICATED)",
-        "models": [("'Qwen3.5-35B-A3B' q4 [FABRICATED]", 22.0, 0.14),
-                   ("'Ornith-1.0-9B' q4 [FABRICATED]", 5.6, 0.03),
+        # Ornith-1.0-9B is REAL per the verification register; the Qwen3.5-35B-A3B tag is
+        # UNRESOLVED there. Sizes are as the response states them.
+        "label": "DeepSeek Instant+DeepThink pick (3 models 'always loaded')",
+        "models": [("Qwen3.5-35B-A3B q4 [tag UNRESOLVED]", 22.0, 0.14),
+                   ("Ornith-1.0-9B q4", 5.6, 0.03),
                    ("'Qwen2.5-Coder-7B' q4", 4.0, 0.03)],
         "ctx": 8000,
         "browser": True,
@@ -153,11 +154,11 @@ PRESETS: dict[str, dict] = {
         "browser": True,
     },
     "meta": {
-        # Meta / Llama 4: one hot large model (its "Qwen3.5-35B-A3B" fabricated tag, ~20 GB)
+        # Meta / Llama 4: one hot large model (its "Qwen3.5-35B-A3B" tag, UNRESOLVED, ~20 GB)
         # kept resident (keep_alive=-1) + Qwen2.5-Coder-7B (~5 GB) small tier + OrbStack +
         # dev tools + browser. Its own table: "~32 GB tight but feasible, single large only".
         "label": "Meta/Llama 4 pick (35B-A3B ~20 GB resident + Qwen2.5-Coder-7B ~5 GB + OrbStack)",
-        "models": [("35B-A3B 4-bit ('Qwen3.5-35B-A3B' — fabricated tag)", 20.0, 0.07),
+        "models": [("35B-A3B 4-bit (Qwen3.5-35B-A3B tag UNRESOLVED)", 20.0, 0.07),
                    ("Qwen2.5-Coder-7B Q4_K_M", 5.0, 0.03)],
         "ctx": 32000,
         "browser": True,
@@ -173,11 +174,11 @@ PRESETS: dict[str, dict] = {
     },
     "zai": {
         # z.ai / Zhipu GLM: its §B diagram shows THREE large model instances co-resident
-        # (Qwen3-Coder ~5 GB [its fabricated "8B" size] + GLM-4.5-Air ~4 GB + Mistral Small
+        # (Qwen3-Coder ~5 GB [its wrong "8B" size; the real model is 80B] + GLM-4.5-Air ~4 GB + Mistral Small
         # ~6 GB), and its §C table sums to "32 GB ... Fits within 32GB RAM with swapping".
         # Uses the §C figure (14 GB primary) since that is the one it defends numerically.
         "label": "z.ai pick (3 model instances co-resident; §C says 'fits with swapping')",
-        "models": [("'Qwen3-Coder-Next 8B' — §C says 14 GB (fabricated size)", 14.0, 0.06),
+        "models": [("'Qwen3-Coder-Next 8B' — §C says 14 GB (wrong size)", 14.0, 0.06),
                    ("GLM-4.5-Air 4-bit", 4.0, 0.03),
                    ("Mistral Small 3.1 4-bit", 6.0, 0.04)],
         "ctx": 32000,
