@@ -60,7 +60,7 @@ PRESETS: dict[str, dict] = {
         "browser": True,
     },
     "deepseek-instant": {
-        "label": "DeepSeek Instant pick (Qwen3-Coder-30B-A3B + Gemma 4 26B, both hosted)",
+        "label": "DeepSeek Instant, both models loaded (alternative reading: the response says one large model at a time)",
         "models": [("Qwen3-Coder-30B-A3B q4", 17.0, 0.09),
                    ("Gemma 4 26B q4 (real: 26B-A4B MoE, per register)", 19.0, 0.14)],
         "ctx": 32000,

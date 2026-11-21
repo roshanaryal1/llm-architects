@@ -59,6 +59,14 @@ GPT_CLEAN_D3D4 = SCORING / "scores-d3d4-gpt-5.6-sol-2026-09-01.csv"
 # agreement.py prints (reliable >= 0.6; weak 0.2-0.4; weakest < 0.2). D4 (0.46)
 # sits between the reliable and weak tiers and is kept in every reduced set.
 WEAKEST = ["D1", "D9"]
+
+# memory_budget.py presets that encode an alternative reading of a response
+# rather than the co-resident set the response itself states.
+ALT_READINGS = {
+    "deepseek-instant": "both models loaded; the response says one large model at a time",
+    "deepseek-expert-all": "all three named models loaded (pessimistic reading)",
+    "mistral-two-resident": "both models loaded; the response flags this as not recommended",
+}
 WEAK_OR_WEAKEST = ["D1", "D6", "D7", "D8", "D9"]
 
 
@@ -409,13 +417,19 @@ def section_e(out):
         for r in reserves:
             free = mb.TOTAL_GB - w - kv - r
             verdict.append("fit" if free >= 2 else ("tight" if free >= 0 else "over"))
-        print(f"  {name:<22}{w:>8.1f}{kv:>6.1f}{rstar[0.5]:>10.1f}{rstar[1.0]:>8.1f}{rstar[2.0]:>8.1f}"
+        tag = name + ("*" if name in ALT_READINGS else "")
+        print(f"  {tag:<22}{w:>8.1f}{kv:>6.1f}{rstar[0.5]:>10.1f}{rstar[1.0]:>8.1f}{rstar[2.0]:>8.1f}"
               f"   {'':<21}" + "".join(f"{v:>7}" for v in verdict))
-        rows.append({"preset": name, "weights_gb": w, "kv_gb": kv, "ctx": p["ctx"],
+        rows.append({"preset": name, "stated_design": name not in ALT_READINGS,
+                     "reading": ALT_READINGS.get(name, "as stated by the response"),
+                     "weights_gb": w, "kv_gb": kv, "ctx": p["ctx"],
                      **{f"rstar_kv_x{m}": round(v, 2) for m, v in rstar.items()},
                      **{f"verdict_R{r}": v for r, v in zip(reserves, verdict)},
                      "over_on_weights_alone": w > mb.TOTAL_GB})
-    print("\n  'over' = free < 0; 'tight' = 0 <= free < 2 GB; 'fit' = free >= 2 GB.")
+    print("\n  * = alternative reading, not the response's stated co-resident set:")
+    for k, v in ALT_READINGS.items():
+        print(f"      {k}: {v}")
+    print("  'over' = free < 0; 'tight' = 0 <= free < 2 GB; 'fit' = free >= 2 GB.")
     print("  R = 11.5 is memory_budget.py's defaults with the browser counted "
           "(7 OS + 1.5 workers + 0.5 DB + 2.5 browser);")
     print("  9.0 = the same without the browser; 6-7 = a lean headless host; 13.5 = heavier desktop.")

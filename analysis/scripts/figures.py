@@ -161,8 +161,10 @@ def fig3(out):
     svg.save(out / "fig3-consensus-split.svg")
 
 
-# Presets that are not the response's stated design but an alternative reading of it.
-ALT = {"deepseek-expert-all": "deepseek-expert (all 3 loaded)*",
+# Presets that are not the response's stated design but an alternative reading of it
+# (flagged by sensitivity.py in the memory.csv `stated_design` column).
+ALT = {"deepseek-instant": "deepseek-instant (both loaded)*",
+       "deepseek-expert-all": "deepseek-expert (all 3 loaded)*",
        "mistral-two-resident": "mistral (both loaded)*"}
 
 
