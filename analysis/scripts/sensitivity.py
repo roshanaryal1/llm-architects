@@ -95,21 +95,36 @@ def totals(scores, slugs, dims=DIMS):
 # ------------------------------------------------------- rank-based thirds ---
 
 def thirds(total_by_slug):
-    """Upper / middle / lower third by average rank (ties share a rank).
+    """Upper / middle / lower third by rank, with a fixed rule for ties.
 
-    With n items, an item is 'upper' if its average rank <= n/3 + 0.5,
-    'lower' if >= 2n/3 + 0.5, otherwise 'middle'. For n = 12 that is
-    rank <= 4.5 and rank >= 8.5. Ties straddling a boundary therefore land in
-    the middle third rather than being split arbitrarily.
+    Rank positions 1..n are split into thirds: positions 1..n/3 are upper,
+    positions 2n/3+1..n are lower, the rest middle (for n = 12: 1-4, 5-8,
+    9-12). A group of tied totals occupies a span of positions; it goes to
+    the upper (or lower) third only if its whole span lies inside that third.
+    A tie group whose span crosses a boundary goes to the middle third.
+    Returns (third by slug, average rank by slug).
     """
     slugs = sorted(total_by_slug)
     vals = [-total_by_slug[s] for s in slugs]  # descending score -> rank 1 = best
     ranks = ag._rank(vals)
     n = len(slugs)
-    hi_cut, lo_cut = n / 3 + 0.5, 2 * n / 3 + 0.5
+    upper_last, lower_first = n // 3, n - n // 3 + 1
+    # span of positions for each distinct total
+    ordered = sorted(set(vals))
+    span, pos = {}, 1
+    for v in ordered:
+        k = vals.count(v)
+        span[v] = (pos, pos + k - 1)
+        pos += k
     out = {}
-    for s, r in zip(slugs, ranks):
-        out[s] = "upper" if r <= hi_cut else ("lower" if r >= lo_cut else "middle")
+    for s, v in zip(slugs, vals):
+        first, last = span[v]
+        if last <= upper_last:
+            out[s] = "upper"
+        elif first >= lower_first:
+            out[s] = "lower"
+        else:
+            out[s] = "middle"
     return out, dict(zip(slugs, ranks))
 
 
@@ -303,7 +318,7 @@ def section_c(adjudicated, raters, gpt_clean, slugs12, out):
     print()
 
 
-def section_d(raters, adjudicated, slugs12, B, rng, out):
+def section_d(raters, adjudicated, gpt_clean, slugs12, B, rng, out):
     print("=" * 74)
     print(f"D. BOOTSTRAP 95% INTERVALS (editor issue #12; {B} resamples of responses)")
     print("=" * 74)
@@ -368,8 +383,9 @@ def section_d(raters, adjudicated, slugs12, B, rng, out):
                      "lo": round(lo, 2), "hi": round(hi, 2), "skipped": 0})
 
     print("\nThird-membership stability when each response's total is drawn from one")
-    print("of the four raters at random (independently per response):")
-    per = {n: totals(raters[n], slugs12) for n in names}
+    print("of the four raters at random (independently per response); GPT-5.6 Sol")
+    print("uses its clean D3/D4 scores, as in Table 8:")
+    per = {n: totals(gpt_clean if n == "gpt-5.6-sol" else raters[n], slugs12) for n in names}
     ref_thirds, _ = thirds(totals(adjudicated, slugs12))
     same = {s: 0 for s in slugs12}
     for _ in range(B):
@@ -383,8 +399,7 @@ def section_d(raters, adjudicated, slugs12, B, rng, out):
                      "point": round(same[s] / B, 3), "lo": "", "hi": "", "skipped": 0})
 
     print("\nWilson 95% intervals for counts reported in the text:")
-    for label, k, n in [("Meta URLs non-supporting or unresolvable", 59, 99)] + \
-            [(f"modal agreement {k}/10", k, 10) for k in (4, 5, 6, 7, 8, 9, 10)]:
+    for label, k, n in [(f"modal agreement {k}/10", k, 10) for k in (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)]:
         lo, hi = wilson(k, n)
         print(f"  {label:<42} {k}/{n} = {k / n:5.1%}  [{lo:5.1%}, {hi:5.1%}]")
     out["bootstrap"] = rows
@@ -463,6 +478,10 @@ def section_f(B, rng, out):
             hits += 1
     p = (hits + 1) / (perms + 1)
     print(f"difference in means {obs:+.2f}; one-sided permutation p = {p:.4f} ({perms} permutations)")
+    print("The interval is for the difference in medians; the permutation test uses the")
+    print("difference in means. It treats axis labels as exchangeable, which is an")
+    print("assumption: the axes are not independent, and structural answers were coded")
+    print("more broadly than product names.")
     print("Note: this tests agreement, not correctness. A high modal count says the")
     print("systems chose the same option; it does not say the option is right.")
     out["consensus"] = [{"structural_median": statistics.median(st),
@@ -498,7 +517,7 @@ def main(argv=None):
     section_a(raters, adjudicated, gpt_clean, slugs12, out)
     section_b(adjudicated, slugs12, out)
     section_c(adjudicated, raters, gpt_clean, slugs12, out)
-    section_d(raters, adjudicated, slugs12, args.boot, rng, out)
+    section_d(raters, adjudicated, gpt_clean, slugs12, args.boot, rng, out)
     section_e(out)
     section_f(args.boot, rng, out)
     if args.csv:
