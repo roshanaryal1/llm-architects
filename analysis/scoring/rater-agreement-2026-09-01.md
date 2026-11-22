@@ -43,8 +43,14 @@ Full per-response justifications: `analysis/scoring/<id>-*-2026-09-01.md`.
 | Cohen's kappa, quadratic-weighted | **+0.637** (substantial) |
 | Gwet's AC1, unweighted | **+0.543** |
 | Gwet's AC1, quadratic-weighted | **+0.728** (robust to the 2-heavy prevalence that deflates alpha) |
-| Krippendorff's alpha, ordinal (pair) | **+0.198** |
-| Krippendorff's alpha, ordinal (all 4 raters) | **+0.118** |
+| Krippendorff's alpha, ordinal (pair) | ~~+0.198~~ **+0.595** (corrected 2026-11-23) |
+| Krippendorff's alpha, ordinal (all 4 raters) | ~~+0.118~~ **+0.463** (corrected 2026-11-23) |
+
+> **Correction 2026-11-23.** The alpha values first reported here came from a bug in
+> `agreement.py` (identical ratings were given a non-zero ordinal distance). The corrected
+> values are 0.595 (pair) and 0.463 (all four), cross-checked against the `krippendorff`
+> package. The prevalence explanation in the next paragraph was written for the wrong values
+> and no longer applies: corrected alpha sits close to the weighted kappa.
 
 The kappa_w / AC1_w ≈ 0.64–0.73 vs alpha ≈ 0.20 gap is a prevalence artefact: several
 dimensions are almost all 2s, which inflates alpha's chance term. Gwet's AC1 is designed for

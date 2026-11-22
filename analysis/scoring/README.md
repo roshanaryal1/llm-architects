@@ -24,7 +24,8 @@ Recompute: `python3 ../scripts/agreement.py`.
 ## Headline numbers
 
 - Canonical pair (rater-1 vs GPT-5.6 Sol): exact 68 %, within-1 97 %, Cohen's κ +0.49
-  (unweighted) / **+0.64 (quadratic-weighted)**, Krippendorff's α +0.20.
+  (unweighted) / **+0.64 (quadratic-weighted)**, Krippendorff's α +0.595 (corrected 2026-11-23 from +0.20, which came from a bug in
+  `agreement.py`).
 - Reliable dimensions: D2 recency, D3 tool-factuality, D5 benchmark-factuality (κ ≈ 0.7).
 - Weak dimensions needing sharper v2 anchors: D1 hardware-constraint (κ 0.15), D9
   internal-consistency (κ 0.14), D7 actionability, D8 security-model.
