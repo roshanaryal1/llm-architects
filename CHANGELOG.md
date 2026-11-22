@@ -33,6 +33,10 @@ All notable changes to the corpus and analysis. Format loosely follows
   - Manuscript: fabrication counts (19 names in 14 table entries), clean-pass counts (3 cells,
     10/13), DeepSeek mode claims, memory verdicts, rater-robustness claims, and references [1]
     and [4] corrected.
+  - Second review round: Kendall tau-b joint ties fixed (`agreement.py`); DeepSeek Instant
+    presets include the active 9B summarizer; LLM-mean condition with clean D3/D4; prompt
+    sensitivity and model-identity claims corrected; Table 4's Meta count replaced in the
+    portal guide; dated count corrections in the scoring README and clean re-run report.
 
 ### Submission - 2026-11-18 - Cureus publication-approval deferral fixes + resubmission
 - Editor deferred publication approval on 2026-11-16 with two points; both fixed in the
