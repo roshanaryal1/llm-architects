@@ -185,8 +185,13 @@ def krippendorff_alpha_ordinal(units):
         return float("nan")
     nc = {c: sum(o[(c, k)] for k in cats) for c in cats}
 
-    # ordinal difference function
+    # ordinal difference function: (sum of n_g for g in [lo, hi]) - (n_lo + n_hi)/2,
+    # squared. Identical values have zero distance. (Fixed 2026-11-23: an earlier
+    # version returned n_c**2 on the diagonal, which understated alpha; perfect
+    # agreement scored 0.5. Cross-checked against the `krippendorff` package.)
     def delta(c, k):
+        if c == k:
+            return 0.0
         lo, hi = (c, k) if c <= k else (k, c)
         s = nc[lo] / 2 + nc[hi] / 2 + sum(nc[g] for g in cats if lo < g < hi)
         return s * s
