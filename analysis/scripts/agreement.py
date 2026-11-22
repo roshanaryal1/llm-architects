@@ -153,11 +153,13 @@ def kendall_tau_b(a, b):
                 conc += 1
             elif s < 0:
                 disc += 1
-            else:
-                if da == 0:
-                    ta += 1
-                if db == 0:
-                    tb += 1
+            # Pairs tied in only one variable count toward that variable's tie term;
+            # pairs tied in both count toward neither (fixed 2026-11-23: they were
+            # counted in both, so identical vectors with ties gave tau-b < 1).
+            elif da == 0 and db != 0:
+                ta += 1
+            elif db == 0 and da != 0:
+                tb += 1
     denom = ((conc + disc + ta) * (conc + disc + tb)) ** 0.5
     if denom == 0:
         return float("nan")
