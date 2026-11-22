@@ -2,8 +2,8 @@ statistic,scope,point,lo,hi,skipped
 kappa unweighted,canonical pair,0.494,0.332,0.633,0
 kappa quadratic-weighted,canonical pair,0.637,0.469,0.764,0
 Gwet AC1 quadratic-weighted,canonical pair,0.728,0.615,0.832,0
-Krippendorff alpha (pair),canonical pair,0.198,0.061,0.323,0
-Krippendorff alpha (all four),four raters,0.118,0.045,0.216,0
+Krippendorff alpha (pair),canonical pair,0.595,0.415,0.732,0
+Krippendorff alpha (all four),four raters,0.463,0.364,0.543,0
 kappa D1,canonical pair,0.148,-0.135,0.458,0
 kappa D2,canonical pair,0.683,0.235,1.0,5
 kappa D3,canonical pair,0.698,0.316,1.0,0
@@ -23,15 +23,15 @@ mean total rater-1,13 responses,12.69,10.54,14.69,0
 mean total gpt-5.6-sol,13 responses,11.08,9.54,12.69,0
 mean total grok-4,13 responses,13.77,12.23,15.15,0
 mean total deepseek-chat,13 responses,14.69,14.0,15.38,0
-third kept z-ai,lower,0.887,,,0
-third kept mistral-large-3,upper,0.803,,,0
-third kept perplexity,upper,0.799,,,0
-third kept gpt-5,upper,0.67,,,0
-third kept gemini-3.1-pro,middle,0.594,,,0
-third kept qwen-3.7-plus,middle,0.542,,,0
-third kept deepseek-instant-deepthink,lower,0.521,,,0
-third kept deepseek-instant,lower,0.464,,,0
-third kept grok-4,upper,0.433,,,0
-third kept deepseek-expert,lower,0.35,,,0
-third kept kimi-instant,middle,0.258,,,0
-third kept meta-llama-4,middle,0.237,,,0
+third kept z-ai,lower,0.847,,,0
+third kept perplexity,upper,0.76,,,0
+third kept qwen-3.7-plus,middle,0.751,,,0
+third kept mistral-large-3,upper,0.743,,,0
+third kept gemini-3.1-pro,middle,0.696,,,0
+third kept gpt-5,upper,0.53,,,0
+third kept deepseek-instant-deepthink,lower,0.51,,,0
+third kept meta-llama-4,middle,0.431,,,0
+third kept deepseek-instant,lower,0.393,,,0
+third kept kimi-instant,middle,0.376,,,0
+third kept deepseek-expert,lower,0.314,,,0
+third kept grok-4,upper,0.293,,,0
