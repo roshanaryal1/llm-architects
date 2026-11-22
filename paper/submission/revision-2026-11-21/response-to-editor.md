@@ -36,8 +36,8 @@ raters. The fabrication result does not depend on any rater's scores: it rests o
 verification of the 19 flagged names against dated public records, which a reader can repeat
 from the register. The consensus map is a coding of what each response recommends, not a
 quality judgement. The rubric totals are what could change: totals for one response differ by
-up to eight points across the four raters (new Figure 1), and only a few responses at the
-extremes keep their third of the ranking, so the paper now says the ranking should not be
+up to eight points across the four raters (new Figure 1), and only a handful of responses keep
+their third of the ranking, so the paper now says the ranking should not be
 relied on beyond upper-third membership for Perplexity and Mistral Large 3 and lower-third
 membership for the Zhipu, DeepSeek Expert and DeepSeek Instant-plus-DeepThink captures.
 
