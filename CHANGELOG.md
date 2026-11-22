@@ -22,6 +22,17 @@ All notable changes to the corpus and analysis. Format loosely follows
 - `memory_budget.py`: preset labels aligned with the verification register, and
   `deepseek-instant` marked as an alternative reading (the capture says one large model at a
   time). No numbers changed.
+- 2026-11-23, after an independent review of the branch:
+  - `agreement.py`: Krippendorff ordinal alpha fixed (identical ratings had a non-zero
+    distance). Canonical pair 0.198 -> 0.595, four raters 0.118 -> 0.463; checked against the
+    `krippendorff` package. This error was in the originally submitted paper.
+  - `memory_budget.py`: presets `deepseek-instant-qwen` and `deepseek-instant-gemma` for the
+    stated one-model-at-a-time design.
+  - `sensitivity.py`: thirds tie rule now matches its documentation; random-rater check uses
+    the clean D3/D4 scores; the unreproducible Meta 59/99 count removed.
+  - Manuscript: fabrication counts (19 names in 14 table entries), clean-pass counts (3 cells,
+    10/13), DeepSeek mode claims, memory verdicts, rater-robustness claims, and references [1]
+    and [4] corrected.
 
 ### Submission - 2026-11-18 - Cureus publication-approval deferral fixes + resubmission
 - Editor deferred publication approval on 2026-11-16 with two points; both fixed in the
