@@ -44,8 +44,9 @@ Recompute: `python3 ../scripts/agreement.py`.
 `d3d4-gpt-5.6-sol-2026-09-01.md` (+ csv), `d3d4-perplexity-2026-09-01.md` (+ csv, **discarded**
 — violated `UNRESOLVED → 1`), `d3d4-clean-rerun-result.md` (the verdict).
 
-**Result:** the canonical rater's clean D3/D4 matched its contaminated #9 pass on 11/13
-responses. The leak's effect on the reported scores is small. Four cells moved on new web
+**Result:** the canonical rater's clean D3/D4 matched its contaminated #9 pass on 10/13
+responses (corrected 2026-11-23 from 11/13: the CSVs show three changed cells; see
+`d3d4-clean-rerun-result.md`). The leak's effect on the reported scores is small. Four cells moved on new web
 findings: `mistral` D3 2→1, `kimi` D3 2→1, `deepseek-expert` D4 2→1, `deepseek-instant-deepthink`
 D4 1→0.
 
@@ -53,7 +54,7 @@ D4 1→0.
 
 1. **Dims 3 & 4 were not blind** for the #9 rater-2 runs — an earlier `RATER-PACKET.md` leaked
    the real-but-post-cutoff tool list. **Bounded by the clean re-run above**: the canonical
-   rater's uncontaminated D3/D4 reproduced its contaminated pass on 11/13 responses, so the
+   rater's uncontaminated D3/D4 reproduced its contaminated pass on 10/13 responses, so the
    leak's effect on the table is small. The threat is still listed (the leak was real) but its
    severity is now measured, not assumed.
 2. Rater severity varies ~3.6 / 18. `deepseek-chat` is near-uniform 2s (low information).
