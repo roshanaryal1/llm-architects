@@ -188,7 +188,10 @@ since the capture window.
    twelve were real and four unresolved, which cannot all be true. Table 3 lists 19 names in 14
    entries: 15 real (twelve at the first verification pass, three on a follow-up) and four
    unresolved. The text now uses those counts and describes the real projects as many released
-   or renamed after the rater's cutoff, rather than asserting a count of post-cutoff releases.
+   or renamed after the rater's cutoff, rather than asserting a count of post-cutoff releases. The previous abstract also said none of the
+   genuine factual errors concerned a flagged name; two do (a wrong size for Qwen3-Coder-Next and
+   a wrong description of Cloak), so the text now says the rater's error lay in its existence
+   verdicts.
 3. **Clean re-scoring counts.** The previous text said the clean pass changed two cells
    attributable to the leak and that the canonical rater reproduced its scores on 11 of 13
    responses. The score files show three changed cells, so 10 of 13. The text now gives those
