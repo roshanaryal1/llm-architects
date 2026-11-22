@@ -34,10 +34,11 @@ figures: sensitivity ## Draw the manuscript figures as SVG in paper/figures/
 CHROME ?= /Applications/Google Chrome.app/Contents/MacOS/Google Chrome
 .PHONY: figures-png
 figures-png: figures ## Render paper/figures/*.svg to PNG with headless Chrome (optional)
-	@cd paper/figures && for f in *.svg; do \
+	@set -e; cd paper/figures && for f in *.svg; do \
 		h=$$(grep -o 'height="[0-9]*"' "$$f" | head -1 | tr -dc 0-9); \
 		"$(CHROME)" --headless --disable-gpu --hide-scrollbars --force-device-scale-factor=3 \
-			--window-size=900,$$h --screenshot="$$PWD/$${f%.svg}.png" "file://$$PWD/$$f" 2>/dev/null; \
+			--window-size=900,$$h --screenshot="$$PWD/$${f%.svg}.png" "file://$$PWD/$$f" 2>/dev/null \
+			|| { echo "figures-png: Chrome failed on $$f" >&2; exit 1; }; \
 		echo "  $${f%.svg}.png"; \
 	done
 
