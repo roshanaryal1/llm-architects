@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="570" viewBox="0 0 900 570" font-family="Helvetica, Arial, sans-serif">
+<title>Adjudicated rubric total per response with rater range</title>
+<rect width="900" height="570" fill="#fcfcfb"/>
+<text x="24.0" y="32.0" font-size="18" fill="#0b0b0b" text-anchor="start" font-weight="bold">Rubric total per response (out of 18), non-anchor captures</text>
+<text x="24.0" y="54.0" font-size="13" fill="#52514e" text-anchor="start" font-weight="normal">Dot = adjudicated total; bar = lowest to highest total from the four raters before adjudication.</text>
+<text x="24.0" y="72.0" font-size="13" fill="#52514e" text-anchor="start" font-weight="normal">Dashed lines separate rank-based thirds.</text>
+<line x1="250.0" y1="86.0" x2="250.0" y2="500.0" stroke="#e4e3df" stroke-width="1"/>
+<text x="250.0" y="520.0" font-size="13" fill="#52514e" text-anchor="middle" font-weight="normal">4</text>
+<line x1="337.1" y1="86.0" x2="337.1" y2="500.0" stroke="#e4e3df" stroke-width="1"/>
+<text x="337.1" y="520.0" font-size="13" fill="#52514e" text-anchor="middle" font-weight="normal">6</text>
+<line x1="424.3" y1="86.0" x2="424.3" y2="500.0" stroke="#e4e3df" stroke-width="1"/>
+<text x="424.3" y="520.0" font-size="13" fill="#52514e" text-anchor="middle" font-weight="normal">8</text>
+<line x1="511.4" y1="86.0" x2="511.4" y2="500.0" stroke="#e4e3df" stroke-width="1"/>
+<text x="511.4" y="520.0" font-size="13" fill="#52514e" text-anchor="middle" font-weight="normal">10</text>
+<line x1="598.6" y1="86.0" x2="598.6" y2="500.0" stroke="#e4e3df" stroke-width="1"/>
+<text x="598.6" y="520.0" font-size="13" fill="#52514e" text-anchor="middle" font-weight="normal">12</text>
+<line x1="685.7" y1="86.0" x2="685.7" y2="500.0" stroke="#e4e3df" stroke-width="1"/>
+<text x="685.7" y="520.0" font-size="13" fill="#52514e" text-anchor="middle" font-weight="normal">14</text>
+<line x1="772.9" y1="86.0" x2="772.9" y2="500.0" stroke="#e4e3df" stroke-width="1"/>
+<text x="772.9" y="520.0" font-size="13" fill="#52514e" text-anchor="middle" font-weight="normal">16</text>
+<line x1="860.0" y1="86.0" x2="860.0" y2="500.0" stroke="#e4e3df" stroke-width="1"/>
+<text x="860.0" y="520.0" font-size="13" fill="#52514e" text-anchor="middle" font-weight="normal">18</text>
+<text x="555.0" y="544.0" font-size="14" fill="#52514e" text-anchor="middle" font-weight="normal">Rubric total (0 to 18)</text>
+<text x="24.0" y="106.0" font-size="12" fill="#52514e" text-anchor="start" font-weight="normal">upper third</text>
+<text x="238.0" y="114.0" font-size="14" fill="#0b0b0b" text-anchor="end" font-weight="normal">perplexity</text>
+<line x1="685.7" y1="109.0" x2="860.0" y2="109.0" stroke="#2a78d6" stroke-width="2"/>
+<circle cx="860.0" cy="109.0" r="6" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<text x="238.0" y="148.0" font-size="14" fill="#0b0b0b" text-anchor="end" font-weight="normal">mistral-large-3</text>
+<line x1="642.1" y1="143.0" x2="816.4" y2="143.0" stroke="#2a78d6" stroke-width="2"/>
+<circle cx="729.3" cy="143.0" r="6" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<text x="238.0" y="182.0" font-size="14" fill="#0b0b0b" text-anchor="end" font-weight="normal">gpt-5</text>
+<line x1="555.0" y1="177.0" x2="772.9" y2="177.0" stroke="#2a78d6" stroke-width="2"/>
+<circle cx="685.7" cy="177.0" r="6" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<text x="238.0" y="216.0" font-size="14" fill="#0b0b0b" text-anchor="end" font-weight="normal">grok-4</text>
+<line x1="555.0" y1="211.0" x2="772.9" y2="211.0" stroke="#2a78d6" stroke-width="2"/>
+<circle cx="685.7" cy="211.0" r="6" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="20.0" y1="228.0" x2="860.0" y2="228.0" stroke="#52514e" stroke-width="1" stroke-dasharray="4 4"/>
+<text x="24.0" y="242.0" font-size="12" fill="#52514e" text-anchor="start" font-weight="normal">middle third</text>
+<text x="238.0" y="250.0" font-size="14" fill="#0b0b0b" text-anchor="end" font-weight="normal">gemini-3.1-pro</text>
+<line x1="598.6" y1="245.0" x2="772.9" y2="245.0" stroke="#2a78d6" stroke-width="2"/>
+<circle cx="598.6" cy="245.0" r="6" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<text x="238.0" y="284.0" font-size="14" fill="#0b0b0b" text-anchor="end" font-weight="normal">qwen-3.7-plus</text>
+<line x1="555.0" y1="279.0" x2="729.3" y2="279.0" stroke="#2a78d6" stroke-width="2"/>
+<circle cx="598.6" cy="279.0" r="6" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<text x="238.0" y="318.0" font-size="14" fill="#0b0b0b" text-anchor="end" font-weight="normal">kimi-instant</text>
+<line x1="467.9" y1="313.0" x2="729.3" y2="313.0" stroke="#2a78d6" stroke-width="2"/>
+<circle cx="555.0" cy="313.0" r="6" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<text x="238.0" y="352.0" font-size="14" fill="#0b0b0b" text-anchor="end" font-weight="normal">meta-llama-4</text>
+<line x1="555.0" y1="347.0" x2="816.4" y2="347.0" stroke="#2a78d6" stroke-width="2"/>
+<circle cx="555.0" cy="347.0" r="6" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="20.0" y1="364.0" x2="860.0" y2="364.0" stroke="#52514e" stroke-width="1" stroke-dasharray="4 4"/>
+<text x="24.0" y="378.0" font-size="12" fill="#52514e" text-anchor="start" font-weight="normal">lower third</text>
+<text x="238.0" y="386.0" font-size="14" fill="#0b0b0b" text-anchor="end" font-weight="normal">deepseek-instant</text>
+<line x1="511.4" y1="381.0" x2="729.3" y2="381.0" stroke="#2a78d6" stroke-width="2"/>
+<circle cx="467.9" cy="381.0" r="6" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<text x="238.0" y="420.0" font-size="14" fill="#0b0b0b" text-anchor="end" font-weight="normal">deepseek-expert</text>
+<line x1="467.9" y1="415.0" x2="729.3" y2="415.0" stroke="#2a78d6" stroke-width="2"/>
+<circle cx="424.3" cy="415.0" r="6" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<text x="238.0" y="454.0" font-size="14" fill="#0b0b0b" text-anchor="end" font-weight="normal">deepseek-instant-deepthink</text>
+<line x1="380.7" y1="449.0" x2="729.3" y2="449.0" stroke="#2a78d6" stroke-width="2"/>
+<circle cx="337.1" cy="449.0" r="6" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<text x="238.0" y="488.0" font-size="14" fill="#0b0b0b" text-anchor="end" font-weight="normal">z-ai</text>
+<line x1="293.6" y1="483.0" x2="598.6" y2="483.0" stroke="#2a78d6" stroke-width="2"/>
+<circle cx="293.6" cy="483.0" r="6" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+</svg>

@@ -1,0 +1,13 @@
+slug,adjudicated,rank,third,total_rater-1,total_gpt-5.6-sol (clean D3/D4),total_grok-4,total_deepseek-chat,rater_min,rater_max
+perplexity,18,1.0,upper,17,18,14,16,14,18
+mistral-large-3,15,2.0,upper,17,13,17,16,13,17
+gpt-5,14,3.5,upper,16,11,16,15,11,16
+grok-4,14,3.5,upper,15,11,16,14,11,16
+gemini-3.1-pro,12,5.5,middle,13,12,16,14,12,16
+qwen-3.7-plus,12,5.5,middle,12,11,15,14,11,15
+kimi-instant,11,7.5,middle,12,9,9,15,9,15
+meta-llama-4,11,7.5,middle,11,13,11,17,11,17
+deepseek-instant,9,9.0,lower,10,11,15,15,10,15
+deepseek-expert,8,10.0,lower,12,9,15,15,9,15
+deepseek-instant-deepthink,6,11.0,lower,7,7,14,15,7,15
+z-ai,5,12.0,lower,5,5,8,12,5,12

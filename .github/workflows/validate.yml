@@ -31,7 +31,7 @@ jobs:
       - name: Smoke-test memory_budget.py for every preset
         run: |
           set -e
-          for p in claude qwen deepseek-instant deepseek-expert deepseek-expert-all over-budget-demo; do
+          for p in claude qwen deepseek-instant deepseek-instant-qwen deepseek-instant-gemma deepseek-expert deepseek-expert-all over-budget-demo; do
             echo "::group::preset $p"
             python3 analysis/scripts/memory_budget.py --preset "$p" || true   # non-fit is a valid outcome
             echo "::endgroup::"

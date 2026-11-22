@@ -24,7 +24,8 @@ Recompute: `python3 ../scripts/agreement.py`.
 ## Headline numbers
 
 - Canonical pair (rater-1 vs GPT-5.6 Sol): exact 68 %, within-1 97 %, Cohen's κ +0.49
-  (unweighted) / **+0.64 (quadratic-weighted)**, Krippendorff's α +0.20.
+  (unweighted) / **+0.64 (quadratic-weighted)**, Krippendorff's α +0.595 (corrected 2026-11-23 from +0.20, which came from a bug in
+  `agreement.py`).
 - Reliable dimensions: D2 recency, D3 tool-factuality, D5 benchmark-factuality (κ ≈ 0.7).
 - Weak dimensions needing sharper v2 anchors: D1 hardware-constraint (κ 0.15), D9
   internal-consistency (κ 0.14), D7 actionability, D8 security-model.
@@ -43,8 +44,10 @@ Recompute: `python3 ../scripts/agreement.py`.
 `d3d4-gpt-5.6-sol-2026-09-01.md` (+ csv), `d3d4-perplexity-2026-09-01.md` (+ csv, **discarded**
 — violated `UNRESOLVED → 1`), `d3d4-clean-rerun-result.md` (the verdict).
 
-**Result:** the canonical rater's clean D3/D4 matched its contaminated #9 pass on 11/13
-responses. The leak's effect on the reported scores is small. Four cells moved on new web
+**Result:** the canonical rater's clean D3/D4 matched its contaminated #9 pass on 10/13
+responses (corrected 2026-11-23 from 11/13: the CSVs show three changed cells; see
+`d3d4-clean-rerun-result.md`). This comparison cannot separate the effect of removing the leaked list from new
+verification evidence. Four cells moved on new web
 findings: `mistral` D3 2→1, `kimi` D3 2→1, `deepseek-expert` D4 2→1, `deepseek-instant-deepthink`
 D4 1→0.
 
@@ -52,9 +55,10 @@ D4 1→0.
 
 1. **Dims 3 & 4 were not blind** for the #9 rater-2 runs — an earlier `RATER-PACKET.md` leaked
    the real-but-post-cutoff tool list. **Bounded by the clean re-run above**: the canonical
-   rater's uncontaminated D3/D4 reproduced its contaminated pass on 11/13 responses, so the
-   leak's effect on the table is small. The threat is still listed (the leak was real) but its
-   severity is now measured, not assumed.
+   rater's uncontaminated D3/D4 reproduced its contaminated pass on 10/13 responses. That
+   comparison cannot separate the effect of removing the leaked list from new verification
+   evidence, so the threat stands; Grok 4 and the DeepSeek run have D3/D4 only from the
+   contaminated pass.
 2. Rater severity varies ~3.6 / 18. `deepseek-chat` is near-uniform 2s (low information).
 3. `grok-4` self-scored `grok-4`; `deepseek-chat` scored the DeepSeek responses.
 4. `rater-1` is not design-independent (wrote the rubric).
