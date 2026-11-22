@@ -39,8 +39,13 @@ study-internal rater". Note: Verdicts from web verification on 1 September 2026;
 is in the released verification register. "Unresolved" means no evidence was found either way;
 it is not a finding of fabrication.
 
-**Table 4.** Each row is a single observed defect that survives web verification, not a rate.
-The Grok 4 capture has no surviving defect and is omitted.
+**Table 4.** In the Meta row, replace "M6 approx 300+ GB/s (real: 170); 59 / 99 citation URLs
+non-supporting or unresolvable; same tool given multiple repo URLs; one reference mis-titles a
+real preprint" with "M6 approx 300+ GB/s (real: 170); most of the 99 references are repository,
+commit or skill-file URLs that do not support their claims (single-coder notes, no per-URL
+record); same tool given multiple repo URLs; one reference mis-titles a real preprint". Note:
+Each row is a single observed defect that survives web verification, not a rate. The Grok 4
+capture has no surviving defect and is omitted.
 
 **Table 5.** In the Meta row, change "~40% resolve-and-support" to "not counted (no per-URL
 record)". Note: The Meta assessment comes from a single-coder pass recorded
@@ -91,6 +96,7 @@ Title: **Sensitivity of the rank-based thirds to the rater set and the rubric di
 |---|---|---|
 | canonical LLM rater only (GPT-5.6 Sol, clean D3/D4) | 0.80 | 6: DeepSeek-Instant, Gemini-3.1-Pro, GPT-5, Grok-4, Kimi-Instant, Meta-Llama-4 |
 | mean of the three LLM raters | 0.85 | 4: DeepSeek-Instant, Gemini-3.1-Pro, Grok-4, Kimi-Instant |
+| same, all D3/D4 from the clean pass | 0.92 | 2: DeepSeek-Instant, Kimi-Instant |
 | Grok 4 only | 0.59 | 7, including Perplexity, DeepSeek-Expert and DeepSeek-Instant-DeepThink (all to the middle) |
 | DeepSeek chat run only | 0.32 | 8 |
 | author-derived rater only | 0.94 | 2: DeepSeek-Expert, Meta-Llama-4 |
@@ -98,7 +104,7 @@ Title: **Sensitivity of the rank-based thirds to the rater set and the rubric di
 | D1 and D9 dropped | 0.96 | 3: DeepSeek-Instant, Grok-4, Kimi-Instant |
 | only D2 to D5 kept | 0.87 | 3: DeepSeek-Instant, Kimi-Instant, Mistral-Large-3 |
 
-Note: In the first two rows (score sets that combine LLM raters without the author-derived
+Note: In the first three rows (score sets that combine LLM raters without the author-derived
 rater), Perplexity and Mistral-Large-3 stay in the upper third and z-AI, DeepSeek-Expert and
 DeepSeek-Instant-DeepThink stay in the lower third. Single LLM raters reorder even these. A tie
 group goes to an outer third only if all its tied rank positions fall inside it.
@@ -117,8 +123,8 @@ minus the stated co-resident weights minus the key-value cache. Dot: the estimat
 key-value rate; bar: rate doubled to halved. A design fits on a host whose non-model reserve is
 left of its dot. Dashed lines: 7 GB lean headless host; 11.5 GB estimator default with a
 browser. Asterisk: an alternative reading of a response, not its stated design. DeepSeek
-Instant's stated design swaps one large model at a time and appears as two phases (qwen,
-gemma). Sizes are as each response states them; the Zhipu (zai) sizes are known to be wrong.
+Instant's stated design swaps one large model at a time, with a 9B summarizer running
+alongside, and appears as two phases (qwen, gemma). Sizes are as each response states them; the Zhipu (zai) sizes are known to be wrong.
 
 **Figure 3** (`fig3-consensus-split.png`). Modal agreement per decision axis across the 10
 non-anchor systems, structural axes (24) and product axes (9). Each dot is one axis; the black

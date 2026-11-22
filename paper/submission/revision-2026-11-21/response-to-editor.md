@@ -36,9 +36,10 @@ raters. The fabrication result does not depend on any rater's scores: it rests o
 verification of the 19 flagged names against dated public records, which a reader can repeat
 from the register. The consensus map is a coding of what each response recommends, not a
 quality judgement. The rubric totals are what could change: totals for one response differ by
-up to eight points across the four raters (new Figure 1), and responses keep their position
-only at the extremes, so the paper now says the ranking should not be relied on beyond the
-two highest and three lowest responses.
+up to eight points across the four raters (new Figure 1), and only a few responses at the
+extremes keep their third of the ranking, so the paper now says the ranking should not be
+relied on beyond upper-third membership for Perplexity and Mistral Large 3 and lower-third
+membership for the Zhipu, DeepSeek Expert and DeepSeek Instant-plus-DeepThink captures.
 
 ## Issue 3 (Methods, rater procedure): circularity with the author-derived rater
 
@@ -53,7 +54,8 @@ DeepSeek totals below every rater's total.
 As requested, every ranking result is now also reported without the author-derived rater (new
 "Sensitivity analyses" subsection and Table 9). Using the canonical LLM rater alone, rank
 correlation with the adjudicated totals is 0.80 and six of twelve responses change third;
-using the mean of the three LLM raters, it is 0.85 and four change third. In both, Perplexity
+using the mean of the three LLM raters, it is 0.85 and four change third; with every rater's
+D3 and D4 taken from the clean pass, it is 0.92 and two change third. In all three, Perplexity
 and Mistral Large 3 stay at the top and z-ai, DeepSeek Expert and DeepSeek Instant-plus-DeepThink
 stay at the bottom; single LLM raters reorder even these, and the paper says so. Krippendorff's
 alpha across the three LLM raters alone is 0.45, against 0.46 with all four. The analysis also
@@ -104,9 +106,9 @@ report which responses change third under every alternative.
 The memory analysis now reports, for each design, the break-even reserve: how much memory the
 stated co-resident models and key-value cache leave for everything else. It is computed with
 the key-value rate halved, as set and doubled, and compared with the estimator's 11.5 GB
-desktop default, a 9 GB browser-free reserve and a 7 GB lean-host bound (new Figure 2). Under
-the 11.5 GB default only one stated configuration fits, and with less than the 2 GB headroom
-target; most single-large-model designs need a reserve between 7.1 and 8.7 GB, so whether they
+desktop default, a 9 GB browser-free reserve and a 7 GB lean-host bound (new Figure 2). No
+stated design fits under the 11.5 GB default; most single-large-model designs need a reserve
+between 7.1 and 8.7 GB, so whether they
 fit depends on the assumption more than on the design, and the text now says so. Only one
 design, DeepSeek Instant-plus-DeepThink, exceeds 32 GB before any operating-system memory at
 every key-value rate tested. Where a response's stated model sizes are known to be wrong
@@ -197,7 +199,8 @@ since the capture window.
    rate). It also said the Zhipu design exceeds 32 GB on model weights alone; on its own stated
    sizes it does not, but those sizes are wrong, and on the verified sizes the primary model
    alone needs about 40 GB. Both are corrected. DeepSeek Instant's stated design (one large
-   model at a time) now has its own estimate; the earlier preset loaded both models.
+   model at a time, with a 9B summarizer alongside) now has its own estimate; the earlier preset
+   loaded both large models.
 5. **DeepSeek modes.** The previous text said the three modes spanned three rubric tiers with
    weights held fixed. Their adjudicated totals are 9, 8 and 6, all in the lower third, and two
    captures record the model version as not shown. The text now reports the observed
@@ -206,7 +209,16 @@ since the capture window.
 6. **Reliable dimensions.** The previous text described recency, tool factuality and benchmark
    factuality as reliable. That holds for the canonical rater pair only and is now stated that
    way.
-7. **References.** References [1] and [4] have seven and six authors and are now listed in full,
+7. **Kendall's tau-b.** The released script counted pairs tied in both variables toward both
+   tie terms. Corrected to match the standard definition; the mean over rater pairs moves from
+   0.276 to 0.284 and the reported 0.28 is unchanged.
+8. **Prompt sensitivity.** The previous text said every one of the 15 paraphrase-study captures
+   kept its architecture and that GPT-5 and Perplexity held their model identity. Zhipu's base
+   capture differs from its variants on model residency and the Perplexity ablation capture is
+   incomplete; the GPT-5 base capture was the free-tier GPT-5.6 Luna and its variants the
+   paid-tier GPT-5.6 Sol, and Perplexity does not disclose its model. The text now reports these
+   exceptions and treats the comparison as one of product sessions, not fixed models.
+9. **References.** References [1] and [4] have seven and six authors and are now listed in full,
    per the journal's rule; they had been cut to "et al.".
 
 Two release-file fixes were also made that do not change any reported number: labels in the
