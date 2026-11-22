@@ -46,7 +46,8 @@ Recompute: `python3 ../scripts/agreement.py`.
 
 **Result:** the canonical rater's clean D3/D4 matched its contaminated #9 pass on 10/13
 responses (corrected 2026-11-23 from 11/13: the CSVs show three changed cells; see
-`d3d4-clean-rerun-result.md`). The leak's effect on the reported scores is small. Four cells moved on new web
+`d3d4-clean-rerun-result.md`). This comparison cannot separate the effect of removing the leaked list from new
+verification evidence. Four cells moved on new web
 findings: `mistral` D3 2→1, `kimi` D3 2→1, `deepseek-expert` D4 2→1, `deepseek-instant-deepthink`
 D4 1→0.
 
