@@ -55,9 +55,10 @@ D4 1→0.
 
 1. **Dims 3 & 4 were not blind** for the #9 rater-2 runs — an earlier `RATER-PACKET.md` leaked
    the real-but-post-cutoff tool list. **Bounded by the clean re-run above**: the canonical
-   rater's uncontaminated D3/D4 reproduced its contaminated pass on 10/13 responses, so the
-   leak's effect on the table is small. The threat is still listed (the leak was real) but its
-   severity is now measured, not assumed.
+   rater's uncontaminated D3/D4 reproduced its contaminated pass on 10/13 responses. That
+   comparison cannot separate the effect of removing the leaked list from new verification
+   evidence, so the threat stands; Grok 4 and the DeepSeek run have D3/D4 only from the
+   contaminated pass.
 2. Rater severity varies ~3.6 / 18. `deepseek-chat` is near-uniform 2s (low information).
 3. `grok-4` self-scored `grok-4`; `deepseek-chat` scored the DeepSeek responses.
 4. `rater-1` is not design-independent (wrote the rubric).
