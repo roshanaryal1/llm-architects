@@ -219,10 +219,20 @@ def section_a(raters, adjudicated, gpt_clean, slugs12, out):
         [sum(gpt_clean[s][d] for d in DIMS)]
         + [sum(raters[r][s][d] for d in DIMS) for r in ("grok-4", "deepseek-chat")])
         for s in slugs12}
+    # Grok 4 and the DeepSeek run only scored D3/D4 in the contaminated pass. This
+    # variant replaces their D3/D4 with the canonical rater's clean scores.
+    def clean_d34(r):
+        return {s: {d: (gpt_clean[s][d] if d in ("D3", "D4") else raters[r][s][d]) for d in DIMS}
+                for s in slugs12}
+    llm_mean_clean = {s: statistics.mean(
+        [sum(gpt_clean[s][d] for d in DIMS)]
+        + [sum(clean_d34(r)[s][d] for d in DIMS) for r in ("grok-4", "deepseek-chat")])
+        for s in slugs12}
     conditions = [
         ("adjudicated (as reported)", ref_tot),
         ("canonical LLM rater only (GPT-5.6 Sol, clean D3/D4)", totals(gpt_clean, slugs12)),
         ("mean of the three LLM raters (no author rater)", llm_mean),
+        ("same, all D3/D4 from the clean pass", llm_mean_clean),
         ("Grok 4 only", totals(raters["grok-4"], slugs12)),
         ("DeepSeek chat run only", totals(raters["deepseek-chat"], slugs12)),
         ("author-derived rater only (for contrast)", totals(raters["rater-1"], slugs12)),

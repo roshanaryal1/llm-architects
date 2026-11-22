@@ -181,7 +181,7 @@ def fig4(rows, out):
              "bar = KV rate doubled to halved.", 13, INK2)
     svg.text(24, 72, "A design fits on a host whose non-model reserve lies left of its dot. "
              "* = an alternative reading, not the stated design.", 13, INK2)
-    sx = x_axis(svg, L, W - R, T - 6, B, -14, 12, list(range(-14, 13, 2)), str,
+    sx = x_axis(svg, L, W - R, T - 6, B, -14, 14, list(range(-14, 15, 2)), str,
                 "Break-even reserve (GB); below 0 = over 32 GB before any OS or application memory")
     svg.line(sx(0), T - 6, sx(0), B, INK2, 1)
     for ref in (7, 11.5):
