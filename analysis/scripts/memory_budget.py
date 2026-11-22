@@ -66,6 +66,21 @@ PRESETS: dict[str, dict] = {
         "ctx": 32000,
         "browser": True,
     },
+    "deepseek-instant-qwen": {
+        # The design DeepSeek Instant states: "Only one large model loaded at a time. The 30B
+        # MoE and 26B model cannot coexist in memory." This is the Qwen phase.
+        "label": "DeepSeek Instant, stated design, Qwen3-Coder-30B-A3B phase (one large model at a time)",
+        "models": [("Qwen3-Coder-30B-A3B q4", 17.0, 0.09)],
+        "ctx": 32000,
+        "browser": True,
+    },
+    "deepseek-instant-gemma": {
+        # Same stated design, Gemma phase (the larger of the two swapped models).
+        "label": "DeepSeek Instant, stated design, Gemma 4 26B phase (one large model at a time)",
+        "models": [("Gemma 4 26B q4", 19.0, 0.14)],
+        "ctx": 32000,
+        "browser": True,
+    },
     "deepseek-expert": {
         # DeepSeek Expert's own resource table: 1 large model (18) + a 3 GB
         # "secondary model pool" loaded on-demand + browser. The 14B models are
