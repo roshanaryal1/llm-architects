@@ -68,16 +68,21 @@ PRESETS: dict[str, dict] = {
     },
     "deepseek-instant-qwen": {
         # The design DeepSeek Instant states: "Only one large model loaded at a time. The 30B
-        # MoE and 26B model cannot coexist in memory." This is the Qwen phase.
-        "label": "DeepSeek Instant, stated design, Qwen3-Coder-30B-A3B phase (one large model at a time)",
-        "models": [("Qwen3-Coder-30B-A3B q4", 17.0, 0.09)],
+        # MoE and 26B model cannot coexist in memory." Its worker diagram also shows the
+        # Qwen3.5-9B summarizer "Active" next to the heavy model; the response sizes that
+        # helper at 5-8 GB, and the lower bound is used here. This is the Qwen phase.
+        "label": "DeepSeek Instant, stated design, Qwen3-Coder-30B-A3B phase + active 9B summarizer",
+        "models": [("Qwen3-Coder-30B-A3B q4", 17.0, 0.09),
+                   ("Qwen3.5-9B summarizer (stated 5-8 GB; lower bound)", 5.0, 0.03)],
         "ctx": 32000,
         "browser": True,
     },
     "deepseek-instant-gemma": {
-        # Same stated design, Gemma phase (the larger of the two swapped models).
-        "label": "DeepSeek Instant, stated design, Gemma 4 26B phase (one large model at a time)",
-        "models": [("Gemma 4 26B q4", 19.0, 0.14)],
+        # Same stated design, Gemma phase (the diagram shows Gemma 4 26B and the 9B
+        # summarizer both "Active").
+        "label": "DeepSeek Instant, stated design, Gemma 4 26B phase + active 9B summarizer",
+        "models": [("Gemma 4 26B q4", 19.0, 0.14),
+                   ("Qwen3.5-9B summarizer (stated 5-8 GB; lower bound)", 5.0, 0.03)],
         "ctx": 32000,
         "browser": True,
     },
