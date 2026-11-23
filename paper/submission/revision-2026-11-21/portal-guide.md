@@ -36,12 +36,11 @@ systems a count is imprecise; Wilson 95% intervals: 2/10, 6% to 51%; 8/10, 49% t
 **Table 3.** Change the caption from "The 14 entities flagged as fabricated by the
 study-internal rater" to "The 19 names flagged as fabricated by the study-internal rater".
 Replace the last row ("Helmrig, DiffResearch, cplt, agent-policy-engine | unresolved | ...")
-with two rows:
+with one row:
 
 | flagged as fabricated | verdict | evidence |
 |---|---|---|
-| cplt, DiffResearch, agent-policy-engine | real (resolved during this revision) | github.com/navikt/cplt (created 2026-04-09); github.com/alanrbtx/DiffResearch (created 2026-01-25); github.com/visualops-ai/agent-policy-engine (created 2026-05-28) |
-| Helmrig | unresolved | no web evidence either way; not counted as fabrication |
+| cplt, DiffResearch, agent-policy-engine, Helmrig | real (resolved during this revision) | github.com/navikt/cplt (created 2026-04-09); github.com/alanrbtx/DiffResearch (created 2026-01-25); github.com/visualops-ai/agent-policy-engine (created 2026-05-28); npm helmrig (created 2026-04-21) and helmrig.app (Wayback 2026-04-27) |
 
 Note: Verdicts from web verification on 1 September 2026, with the follow-up passes described
 in the text; the evidence for each name is in the released verification register. "Unresolved"
@@ -50,7 +49,7 @@ means no evidence was found either way; it is not a finding of fabrication.
 **Table 4.** In the Meta row, replace "M6 approx 300+ GB/s (real: 170); 59 / 99 citation URLs
 non-supporting or unresolvable; same tool given multiple repo URLs; one reference mis-titles a
 real preprint" with "M6 approx 300+ GB/s (real: 170); citation apparatus built largely on
-unstarred copies and secondary sources (14 of 86 traceable references primary, 20 forks or
+forks, copies and secondary sources (14 of 86 traceable references primary, 20 forks or
 copies); the same tool given several different repository URLs", and change its type to "spec
 error + citation source quality". Note: Each row is a single observed defect that survives web
 verification, not a rate. The Grok 4 capture has no surviving defect and is omitted.
@@ -59,7 +58,7 @@ verification, not a rate. The Grok 4 capture has no surviving defect and is omit
 
 | response | apparatus | resolves? | supports? | primary? |
 |---|---|---|---|---|
-| Meta-Llama-4 | 99 numbered URLs | 86 traceable to the capture day; 13 gone with no archive copy | of 86: 67 fully, 18 partly, 1 not | 14 of 86; 20 are unstarred forks or copies |
+| Meta-Llama-4 | 99 numbered URLs | 86 traceable to the capture day; 13 not traceable (gone or blocked, no archive copy) | of 86: 66 fully, 18 partly, 2 not | 14 of 86; 20 are forks or copies |
 
 Note: The Meta row comes from a capture-day audit of all 99 references (Wayback Machine
 captures on or before 31 August 2026 and dated GitHub records); every verdict, its reason and
@@ -85,9 +84,9 @@ Title: **Adjudicated rubric totals with rank-based thirds and the range across r
 | Mistral-Large-3 | 15 | 2 | upper | 13 to 17 |
 | GPT-5 | 14 | 3.5 | upper | 11 to 16 |
 | Grok-4 | 14 | 3.5 | upper | 11 to 16 |
-| Meta-Llama-4 | 13 | 5 | middle | 11 to 17 |
-| Gemini-3.1-Pro | 12 | 6.5 | middle | 12 to 16 |
-| Qwen-3.7-Plus | 12 | 6.5 | middle | 11 to 15 |
+| Gemini-3.1-Pro | 12 | 6 | middle | 12 to 16 |
+| Meta-Llama-4 | 12 | 6 | middle | 11 to 17 |
+| Qwen-3.7-Plus | 12 | 6 | middle | 11 to 15 |
 | Kimi-Instant | 11 | 8 | middle | 9 to 15 |
 | DeepSeek-Instant | 9 | 9 | lower | 10 to 15 |
 | DeepSeek-Expert | 8 | 10 | lower | 9 to 15 |
@@ -100,7 +99,7 @@ Note: Thirds are the upper, middle and lower four of twelve by rank; tied totals
 rank, and a tie group goes to an outer third only if all its tied positions fall inside it.
 Rater totals use the canonical rater's clean D3 and D4 scores. Adjudication decides cell by
 cell, so an adjudicated total can be lower than every rater's total (three DeepSeek captures).
-Meta-Llama-4 is 13 after this revision's corrections to D4 and D6 (it was 11). The anchor
+Meta-Llama-4 is 12 after this revision's correction to D6 (it was 11). The anchor
 (Claude-Sonnet-5, 15) is excluded.
 
 ## Table 9 (new, in "Sensitivity analyses")
@@ -109,15 +108,15 @@ Title: **Sensitivity of the rank-based thirds to the rater set and the rubric di
 
 | Score set | Spearman rho with adjudicated totals | responses that change third |
 |---|---|---|
-| canonical LLM rater only (GPT-5.6 Sol, clean D3/D4) | 0.86 | 6: DeepSeek-Instant, Gemini-3.1-Pro, GPT-5, Grok-4, Kimi-Instant, Meta-Llama-4 |
-| mean of the three LLM raters | 0.86 | 4: DeepSeek-Instant, Gemini-3.1-Pro, Grok-4, Kimi-Instant |
+| canonical LLM rater only (GPT-5.6 Sol, clean D3/D4) | 0.84 | 6: DeepSeek-Instant, Gemini-3.1-Pro, GPT-5, Grok-4, Kimi-Instant, Meta-Llama-4 |
+| mean of the three LLM raters | 0.87 | 4: DeepSeek-Instant, Gemini-3.1-Pro, Grok-4, Kimi-Instant |
 | same, all D3/D4 from the clean pass | 0.95 | 2: DeepSeek-Instant, Kimi-Instant |
-| Grok 4 only | 0.52 | 7, including Perplexity, DeepSeek-Expert and DeepSeek-Instant-DeepThink (all to the middle) |
-| DeepSeek chat run only | 0.47 | 8 |
-| author-derived rater only | 0.89 | 2: DeepSeek-Expert, Meta-Llama-4 |
-| any single dimension left out | 0.98 to 1.00 | 0 to 3; Grok-4 moves when D1, D3 or D9 is left out |
-| D1 and D9 dropped | 0.95 | 4: DeepSeek-Instant, Grok-4, Kimi-Instant, Meta-Llama-4 |
-| only D2 to D5 kept | 0.85 | 3: DeepSeek-Instant, Kimi-Instant, Mistral-Large-3 |
+| Grok 4 only | 0.56 | 7, including Perplexity, DeepSeek-Expert and DeepSeek-Instant-DeepThink (all to the middle) |
+| DeepSeek chat run only | 0.40 | 8 |
+| author-derived rater only | 0.92 | 2: DeepSeek-Expert, Meta-Llama-4 |
+| any single dimension left out | 0.96 to 1.00 | 0 or 1 (DeepSeek-Instant, when D9 is left out) |
+| D1 and D9 dropped | 0.96 | 3: DeepSeek-Instant, Grok-4, Kimi-Instant |
+| only D2 to D5 kept | 0.86 | 3: DeepSeek-Instant, Kimi-Instant, Mistral-Large-3 |
 
 Note: In the first three rows (score sets that combine LLM raters without the author-derived
 rater), Perplexity and Mistral-Large-3 stay in the upper third, Qwen-3.7-Plus in the middle,

@@ -51,9 +51,9 @@ DeepSeek totals below every rater's total.
 
 As requested, every ranking result is now also reported without the author-derived rater (new
 "Sensitivity analyses" subsection and Table 9). Using the canonical LLM rater alone, rank
-correlation with the adjudicated totals is 0.86 and six of twelve responses change third;
-using the mean of the three LLM raters, it is also 0.86 and four change third; with every
-rater's D3 and D4 taken from the clean pass, it is 0.95 and two change third. In all three, Perplexity
+correlation with the adjudicated totals is 0.84 and six of twelve responses change third;
+using the mean of the three LLM raters, it is 0.87 and four change third; with every rater's
+D3 and D4 taken from the clean pass, it is 0.95 and two change third. In all three, Perplexity
 and Mistral Large 3 stay at the top and z-ai, DeepSeek Expert and DeepSeek Instant-plus-DeepThink
 stay at the bottom; single LLM raters reorder even these, and the paper says so. Krippendorff's
 alpha across the three LLM raters alone is 0.45, against 0.46 with all four. The analysis also
@@ -77,18 +77,15 @@ say the study shows that this failure occurs and does not estimate how often it 
 tasks. The Introduction says the judge "can emit" false-positive flags instead of
 "systematically emits", and a Discussion paragraph lists what the result does not show:
 frequency, magnitude on other tasks, and whether other raters share it. The counts are also
-corrected (see the corrections below): the rater flagged 19 names, of which 18 are real and
-one (Helmrig) remains unresolved.
+corrected (see the corrections below): the rater flagged 19 names, and all 19 are real.
 
 ## Issue 6 (Statistical analysis): weakly reliable dimensions
 
 New dimension sensitivity analyses (Methods and "Sensitivity analyses", Table 9). Leaving out
-any single dimension gives totals that rank-correlate 0.98 to 1.00 with the full totals and
-moves up to three responses between thirds; the most affected is Grok 4, one point above the
-next response, which drops a third when D1, D3 or D9 is left out. Dropping both of the weakest
-dimensions (D1 and D9) moves four responses (rho 0.95); keeping only the four more reliable
-dimensions moves three (rho 0.85). Perplexity, Gemini 3.1 Pro, Qwen 3.7 Plus, z-ai, DeepSeek
-Expert and DeepSeek Instant-plus-DeepThink keep their position in every set. The per-dimension kappa values now carry bootstrap intervals
+any single dimension gives totals that rank-correlate 0.96 to 1.00 with the full totals and
+moves at most one response between thirds. Dropping both of the weakest dimensions (D1 and D9)
+moves three responses (rho 0.96); keeping only the four more reliable dimensions also moves
+three (rho 0.86). Eight of the twelve responses keep their position in every set. The per-dimension kappa values now carry bootstrap intervals
 (Figure 4); the intervals for D1 and D9 include zero.
 
 ## Issue 7 (Statistical analysis): the Strong, Good, Mixed and Weak bands
@@ -135,11 +132,11 @@ pass recorded only as summary notes, so I audited all 99 again against these rul
 evidence of each page's state on the capture day: a Wayback Machine capture on or before
 31 August 2026 where one exists, and for GitHub references the object's own dated record (a
 commit, an issue or pull request, or the README at the last commit before the cutoff). The
-result changes the finding. Of the 86 references that can be traced, 67 support their claim
-fully, 18 partly and one not at all; 13 are gone with no archive copy. The share that is
-unresolvable or non-supporting is therefore between 1 percent (1 of 86) and 14 percent (14 of
+result changes the finding. Of the 86 references that can be traced, 66 support their claim
+fully, 18 partly and two not at all; 13 cannot be traced to the capture day. The share that is
+unresolvable or non-supporting is therefore between 2 percent (2 of 86) and 15 percent (15 of
 99), not the 59 of 99 reported before. The weakness of this apparatus is source authority: only
-14 of the 86 are primary sources, and 20 point to unstarred forks or copies of the project they
+14 of the 86 are primary sources, and 20 point to forks or copies of the project they
 describe. The citation results, Tables 4 and 5, the abstract and the Meta capture's citation
 score are revised accordingly. The first coding pass was made by an AI assistant from the
 capture-day evidence; the evidence-collection scripts, every verdict and its reason are
@@ -192,12 +189,12 @@ state on the capture day rather than its current state.
    values and is removed.
 2. **Fabrication counts.** The previous text said the rater flagged 14 names, of which at least
    twelve were real and four unresolved, which cannot all be true. Table 3 lists 19 names. A
-   further check during this revision found three of the four "unresolved" names (cplt,
-   DiffResearch, agent-policy-engine) to be public repositories created before the capture day,
-   so 18 are real and one (Helmrig) remains unresolved. The text now uses those counts and describes the real projects as many released
+   further check during this revision found all four "unresolved" names (cplt, DiffResearch,
+   agent-policy-engine, Helmrig) to be public projects created before the capture day, so all
+   19 are real. The text now uses those counts and describes the real projects as many released
    or renamed after the rater's cutoff, rather than asserting a count of post-cutoff releases. The previous abstract also said none of the
-   genuine factual errors concerned a flagged name; two do (a wrong size for Qwen3-Coder-Next and
-   a wrong description of Cloak), so the text now says the rater's error lay in its existence
+   genuine factual errors concerned a flagged name; some do (for example a wrong size for
+   Qwen3-Coder-Next and a wrong description of Cloak), so the text now says the rater's error lay in its existence
    verdicts.
 3. **Clean re-scoring counts.** The previous text said the clean pass changed two cells
    attributable to the leak and that the canonical rater reproduced its scores on 11 of 13
@@ -232,10 +229,11 @@ state on the capture day rather than its current state.
    came from summary notes that mixed up low source authority with lack of support; the
    capture-day audit described under Issue 10 replaces it. The earlier claim that one Meta
    reference gives a real preprint under the wrong title was also wrong: reference [38] is
-   correctly titled, and only partly supports the claim attached to it. Two of the Meta capture's
-   rubric scores change as a result: citation quality from 0 to 1, and model factuality from 1 to
-   2, because the model tag that had held it at 1 (Qwen3.5-35B-A3B) is a real release. Its total
-   moves from 11 to 13 and it stays in the middle third; the sensitivity analyses were rerun.
+   correctly titled, and only partly supports the claim attached to it. The Meta capture's
+   citation-quality score changes from 0 to 1 as a result, and its total from 11 to 12; it stays
+   in the middle third, and the sensitivity analyses were rerun. Its model-factuality score stays
+   at 1: the model tag first given as the reason (Qwen3.5-35B-A3B) is a real release, but the
+   capture also gives a wrong size for DeepSeek V4 Flash.
 10. **References.** References [1] and [4] have seven and six authors and are now listed in full,
    per the journal's rule; they had been cut to "et al.".
 
