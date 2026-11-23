@@ -49,7 +49,7 @@ means no evidence was found either way; it is not a finding of fabrication.
 **Table 4.** In the Meta row, replace "M6 approx 300+ GB/s (real: 170); 59 / 99 citation URLs
 non-supporting or unresolvable; same tool given multiple repo URLs; one reference mis-titles a
 real preprint" with "M6 approx 300+ GB/s (real: 170); citation apparatus built largely on
-forks, copies and secondary sources (14 of 86 traceable references primary, 20 forks or
+forks, copies and secondary sources (13 of 86 traceable references primary, 20 forks or
 copies); the same tool given several different repository URLs", and change its type to "spec
 error + citation source quality". Note: Each row is a single observed defect that survives web
 verification, not a rate. The Grok 4 capture has no surviving defect and is omitted.
@@ -58,7 +58,7 @@ verification, not a rate. The Grok 4 capture has no surviving defect and is omit
 
 | response | apparatus | resolves? | supports? | primary? |
 |---|---|---|---|---|
-| Meta-Llama-4 | 99 numbered URLs | 86 traceable to the capture day; 13 not traceable (gone or blocked, no archive copy) | of 86: 66 fully, 18 partly, 2 not | 14 of 86; 20 are forks or copies |
+| Meta-Llama-4 | 99 numbered URLs | 86 traceable to the capture day; 13 not traceable (gone or blocked, no archive copy) | of 86: 66 fully, 18 partly, 2 not | 13 of 86; 20 are forks or copies |
 
 Note: The Meta row comes from a capture-day audit of all 99 references (Wayback Machine
 captures on or before 31 August 2026 and dated GitHub records); every verdict, its reason and

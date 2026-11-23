@@ -8,7 +8,7 @@ All notable changes to the corpus and analysis. Format loosely follows
 ### Revision - 2026-11-23 - Capture-day citation audit (Cureus issue 10) and archive (issue 15)
 - `analysis/citation-audit/`: all 99 Meta references audited against their state on
   31 Aug 2026 (Wayback captures; dated GitHub records via the API). 86 traceable: 66 full,
-  18 partial, 2 none; 13 not traceable to the capture day; 14 primary; 20 forks or copies. Replaces the
+  18 partial, 2 none; 13 not traceable to the capture day; 13 primary; 20 forks or copies. Replaces the
   unrecorded "59 of 99". First pass by an AI assistant, every verdict with its reason and
   evidence; `second-coder-sheet.csv` holds a blind 20-row sample for the author.
 - `meta-llama-4` re-adjudicated: D6 0 -> 1; D4 stays 1 (Qwen3.5-35B-A3B is real, but DeepSeek

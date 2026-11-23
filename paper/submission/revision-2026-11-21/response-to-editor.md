@@ -136,7 +136,7 @@ result changes the finding. Of the 86 references that can be traced, 66 support 
 fully, 18 partly and two not at all; 13 cannot be traced to the capture day. The share that is
 unresolvable or non-supporting is therefore between 2 percent (2 of 86) and 15 percent (15 of
 99), not the 59 of 99 reported before. The weakness of this apparatus is source authority: only
-14 of the 86 are primary sources, and 20 point to forks or copies of the project they
+13 of the 86 are primary sources, and 20 point to forks or copies of the project they
 describe. The citation results, Tables 4 and 5, the abstract and the Meta capture's citation
 score are revised accordingly. The first coding pass was made by an AI assistant from the
 capture-day evidence; the evidence-collection scripts, every verdict and its reason are

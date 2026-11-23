@@ -56,7 +56,7 @@ ref,source_label,title_as_given,url,inline_uses,resolves,supports,source_tier,no
 55,swarm-ai-safety/swarm,Add Letta (MemGPT) bridge for stateful agent runtime,https://github.com/swarm-ai-safety/swarm/commit/a7e40992e9d80565354576e3d9eb6b53f9fd99d5,1,yes,full,secondary,"commit 2026-02-21 adding a Letta bridge, describes three-tier memory"
 56,dev.to,The 10 Best AI Memory Layers for Agents in 2026,https://dev.to/jonathanfarrow/the-10-best-ai-memory-layers-for-agents-in-2026-448e,1,yes,full,tertiary,dev.to listicle (Wayback) with the cited Letta description
 57,kpachhai/engram,Engram memory comparison,https://github.com/kpachhai/engram,1,unknown-at-capture,,,repository not found today; no Wayback capture
-58,srock44/rmbr,Give your agent memory and knowledge,https://github.com/srock44/rmbr,1,yes,full,primary,project README at cutoff: LLM fact extraction decides what to remember
+58,srock44/rmbr,Give your agent memory and knowledge,https://github.com/srock44/rmbr,1,yes,full,secondary,"rmbr README at cutoff states LLM fact extraction decides what to remember; the claim describes mem0, so this is another project's description (secondary)"
 59,m4ikz/vector-arena,A comprehensive benchmark for evaluating vector database performance,https://github.com/m4ikz/vector-arena,2,yes,full,secondary,benchmark repo at cutoff describing LanceDB and Chroma
 60,reaatech/hybrid-rag,Production-grade hybrid RAG in TypeScript,https://github.com/reaatech/hybrid-rag,3,yes,full,secondary,"README at cutoff: embedded LanceDB, no service"
 61,jaschadub/vectorpin,Add audit-lancedb and audit-chroma CLI commands,https://github.com/jaschadub/vectorpin/commit/850e4b2cb1ece9cbf13c7069e8ab90b51bffca,3,unknown-at-capture,,,commit SHA not found in the repository today; no Wayback capture

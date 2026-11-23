@@ -832,7 +832,7 @@ cited URL; do not score "has a Sources section" as a proxy for "is grounded".
   fully support their claim, 18 support it only partly and 2 do not. The other 13 cannot be
   traced (gone or blocking automated access, no archive copy), so their capture-day state is
   unknown.
-- The weakness is source authority, not support: only 14 of the 86 are primary sources, and 20
+- The weakness is source authority, not support: only 13 of the 86 are primary sources, and 20
   point to forks (zero or one star today) instead of the original repository.
 - The earlier "~60% junk URLs" note above mixed up low source authority with lack of support.
   Many of the URLs are weak sources (commits, forks, personal repos), but only 2 of the 86
