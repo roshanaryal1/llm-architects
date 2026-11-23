@@ -9,6 +9,6 @@ gemini-3.1-pro,1,1,1,2,2,0,1,2,2,12,
 qwen-3.7-plus,1,1,1,2,2,0,2,2,1,12,
 grok-4,2,2,2,2,1,0,1,2,2,14,
 z-ai,0,1,1,0,0,0,1,2,0,5,
-meta-llama-4,1,2,1,2,1,1,2,2,1,13,"2026-11-23: D4 1->2 (Qwen3.5-35B-A3B tag is real: Hugging Face Qwen/Qwen3.5-35B-A3B, created 2026-02-24; clean re-run scored 2); D6 0->1 (citation audit, analysis/citation-audit/: 86 of 99 refs traceable at capture day, 67 full / 18 partial / 1 none, only 14 primary, 20 forks)"
+meta-llama-4,1,2,1,1,1,1,2,2,1,12,"2026-11-23: D6 0->1 (citation audit, analysis/citation-audit/: 86 of 99 refs traceable at capture day, 66 full / 18 partial / 2 none, only 14 primary, 20 forks or copies); D4 stays 1: the Qwen3.5-35B-A3B tag is real (Hugging Face, created 2026-02-24), but DeepSeek V4 Flash is given as 158B-A13B (real: 284B/13B)"
 deepseek-instant,1,2,1,2,0,0,1,2,0,9,
 deepseek-instant-deepthink,0,2,1,0,0,0,1,1,1,6,D4 0 per clean D3/D4 re-run (DeepSeek-V4 described as dense; real V4-Pro/Flash are MoE)
