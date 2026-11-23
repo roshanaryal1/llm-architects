@@ -1,100 +1,100 @@
 ref,source_label,title_as_given,url,inline_uses,resolves,supports,source_tier,notes
-1,Compute Market,MLX vs llama.cpp on Apple Silicon — 2026 Benchmark Comparison,https://www.compute-market.com/blog/mlx-vs-llama-cpp-apple-silicon-2026,12,,,,
-2,casualuser/rapid-mlx,The fastest local AI engine for Apple Silicon. 4.2x faster than Ollama,https://github.com/casualuser/rapid-mlx,17,,,,
-3,petems/qwen-local-silicon-32to64gb-macbook-guide,Guide to running QWEN Coder locally on a Silicon CPU Macbook,https://github.com/petems/qwen-local-silicon-32to64gb-macbook-guide,13,,,,
-4,VentureBeat,"Qwen3-Coder-Next offers vibe coders a powerful open source, ultra-sparse model",https://venturebeat.com/technology/qwen3-coder-next-offers-vibe-coders-a-powerful-open-source-ultra-sparse,4,,,,
-5,0xheguoxing/awesome-cli-coding-agents,Curated directory of terminal-native AI coding agents,https://github.com/0xheguoxing/awesome-cli-coding-agents,11,,,,
-6,molecule-ai/molecule-core,feat: evaluate pydantic-ai as workspace template adapter — native A2A + MCP,https://github.com/molecule-ai/molecule-core/issues/721,2,,,,
-7,All-Hands-AI/OpenHands,Open-source agentic developer environment,https://github.com/All-Hands-AI/OpenHands,3,,,,
-8,ahmdngi/sirb,"agnostic multi-agent task swarm with thread-safe queue, worker pool",https://github.com/ahmdngi/sirb,2,,,,
-9,cpiprint/memo,Persistent semantic memory for AI agents — 100% local on Apple Silicon (MLX),https://github.com/cpiprint/memo,18,,,,
-10,agent-of-empires/agent-of-empires,feat: prefer Tailscale Funnel over Cloudflare quick tunnel,https://github.com/agent-of-empires/agent-of-empires/commit/7e21f0b46ef4367796136c29e95905bd1798f58a,3,,,,
-11,ryanmkrol/localjobs,Self-hosted job orchestrator + Next.js dashboard for an always-on Mac Mini,https://github.com/ryanmkrol/localjobs,4,,,,
-12,zot24/macos-container-benchmarks,"Benchmarks comparing Colima, Docker Desktop, and OrbStack",https://github.com/zot24/macos-container-benchmarks,5,,,,
-13,sunholo-data/ailang,eval: add Qwen 3.5 35B-A3B (OpenRouter via motoko),https://github.com/sunholo-data/ailang/commit/87202a157a461db20b0f057c30c662edb0d50fc4,2,,,,
-14,isaacrowntree/local-llm-coding-guide,Run Qwen3.5-9B locally as a coding assistant,https://github.com/isaacrowntree/local-llm-coding-guide,3,,,,
-15,dev.to,Qwen3-Coder-Next for Local AI in 2026: Which GPU Can Actually Run Alibaba's #1 Coding Agent?,https://dev.to/jovan_chan_9500711396d4e6/qwen3-coder-next-for-local-ai-in-2026-which-gpu-can-actually-run-alibabas-1-coding-agent-4b4g,1,,,,
-16,Hugging Face Blog,The Best Open Source and Open-Weight LLM Models to Run Locally in 2026,https://huggingface.co/blog/daya-shankar/open-source-llm-models-to-run-locally,1,,,,
-17,r4ck/mikrob,local-llm-offload skill,https://github.com/r4ck/mikrob/blob/HEAD/./seed-skills/local-llm-offload/SKILL.md,3,,,,
-18,arXiv,When Quantization Is Free: An int4 KV Cache That Outruns fp16 on Apple Silicon,https://arxiv.org/html/2605.05699,2,,,,
-19,mixelpixx/local-llm-autotune,"Zero-config optimization for Ollama, LM Studio, and Apple Silicon MLX",https://github.com/mixelpixx/local-llm-autotune,2,,,,
-20,suaroman/fitllm-engine,Accurate LLM memory & speed calculator,https://github.com/suaroman/fitllm-engine,1,,,,
-21,jperrello/opencode-saturn,The open source coding agent,https://github.com/jperrello/opencode-saturn,4,,,,
-22,alvinreal/awesome-opensource-ai,Research Add PydanticAI,https://github.com/alvinreal/awesome-opensource-ai/pull/247,3,,,,
-23,pydantic/pydantic-ai,Release v2.35.3 (2026-08-27),https://github.com/pydantic/pydantic-ai/releases/tag/v2.35.3,1,,,,
-24,hinvec/security-scanned-skills,pydanticai-type-safe-ai-agent-framework,https://github.com/hinvec/security-scanned-skills/blob/HEAD/skills/pydanticai-type-safe-ai-agent-framework/SKILL.md,1,,,,
-25,Hacker News,Pydantic-DeepAgents – A Python Framework for Building Autonomous AI Agents,https://news.ycombinator.com/item?id=46261099,1,,,,
-26,franklinbaldo/egregora,feat(agents): Add dynamic skill injection system for pydantic-ai agents,https://github.com/franklinbaldo/egregora/commit/d1a761be837fef2f3ada9bac6bae51997eaf1470,1,,,,
-27,dev.to,Top 5 AI Agent Frameworks for 2026 (Honest Guide),https://dev.to/nebulagg/top-5-ai-agent-frameworks-for-2026-honest-guide-13jn,3,,,,
-28,openagents.org,CrewAI vs LangGraph vs AutoGen vs OpenAgents — Best AI Agent Framework (2026),https://openagents.org/blog/posts/2026-02-23-open-source-ai-agent-frameworks-compared,2,,,,
-29,levelop.dev,Best AI Agent Frameworks 2026: LangGraph & CrewAI,https://levelop.dev/blog/best-ai-agent-frameworks-2026-langgraph-crewai-autogen-compared,1,,,,
-30,Towards AI,LangGraph vs CrewAI vs AutoGen,https://pub.towardsai.net/langgraph-vs-crewai-vs-autogen-which-ai-agent-framework-should-your-enterprise-use-in-2026-3a9ebb407b09?gi=f38720f11cf2,1,,,,
-31,awesome-cli-coding-agents,Orchestrators & autonomous loops,https://github.com/0xheguoxing/awesome-cli-coding-agents,2,,,,
-32,karthiksubramanian07/shepherd,feat: multi-agent orchestration with an action queue,https://github.com/karthiksubramanian07/shepherd/commit/707d8b8fa80ccec574fe55eedb5ec543d29dcac1,3,,,,
-33,venheads/reusable-multi-agent-orchestration-system,Reusable multi-agent orchestration system,https://github.com/venheads/reusable-multi-agent-orchestration-system,1,,,,
-34,onerkiz/agent-nexus,Experimental multi-agent orchestration platform for local-first AI software delivery,https://github.com/onerkiz/agent-nexus,3,,,,
-35,huzy123/trinity-lite,Local-first multi-agent orchestration for CLI AI agents,https://github.com/huzy123/trinity-lite,1,,,,
-36,naveen-og/silicorism,Silicon + Tribalism: high-throughput multi-agent task orchestrator,https://github.com/naveen-og/silicorism,5,,,,
-37,magnus919/agent-skills,fix: SkillOpt Epoch 3 — pydanticai framework boundaries,https://github.com/magnus919/agent-skills/commit/f3ebdedc8763069963d65d179e244de935d16633,1,,,,
-38,arXiv,TheAgentCompany: Benchmarking LLM Agents on Consequential Real World Tasks,https://arxiv.org/html/2412.14161v2,3,,,,
-39,mutdmour/ai-builders-deep-dive,Technical deep dives into how AI coding tools work,https://github.com/mutdmour/ai-builders-deep-dive,2,,,,
-40,Medium,Top Open Source Coding Agents to Replace Claude Code in 2026,https://medium.com/@moksh45/top-open-source-coding-agents-to-replace-claude-code-in-2026-6aaa3aa781fb,2,,,,
-41,theeditorial.news,Cursor vs Cline vs Aider vs Windsurf: AI Coding Agents Tested,https://theeditorial.news/ai-agents/cursor-vs-cline-vs-aider-vs-windsurf-vs-devin-vs-openhands-bug-fix-accuracy-refactoring-safety-c-mpl5xv0z,1,,,,
-42,dev.to,Local Free Claude & Codex with Ollama,https://dev.to/tak089/local-free-claude-codex-with-ollama-5fg5,1,,,,
-43,agentjoey/opencode-remote-control,fix: /agent and /model actually switch in opencode + TUI,https://github.com/agentjoey/opencode-remote-control/commit/e56a3968dc82f18279eccdcd4c8e220dcc2fea9f,1,,,,
-44,markusstrasser/agent-infra,research Agentic search API comparison — Brave/Exa/Tavily/Firecrawl/Perplexity/Parallel,https://github.com/markusstrasser/agent-infra/commit/f78012b1fe92c2776e63345dd8f2a11e44eb911a,2,,,,
-45,firecrawl.dev,Best Search Tools for AI Agents in 2026,https://www.firecrawl.dev/blog/best-search-tools-for-agents,4,,,,
-46,firecrawl.dev,Best News API for Apps and Agents in 2026,https://www.firecrawl.dev/blog/best-news-api,3,,,,
-47,atomlab/pi-search-hub,Unified web search + content extraction extension for pi,https://github.com/atomlab/pi-search-hub,6,,,,
-48,busigui2023/mcp-server-metasearch,A local MCP server aggregating 15 web search & extraction tools,https://github.com/busigui2023/mcp-server-metasearch,2,,,,
-49,FMATheNomad/deep-research-skill,Massive autonomous web research for AI coding agents,https://github.com/FMATheNomad/deep-research-skill,1,,,,
-50,FasalZein/deep-research-skill,Autonomous deep research skill for Claude Code,https://github.com/FasalZein/deep-research-skill,3,,,,
-51,fasalzein/autonomous-research-skill,Autonomous deep research skill for Claude Code,https://github.com/fasalzein/autonomous-research-skill,1,,,,
-52,ronnieops/pi-search-hub,Unified web search + content extraction extension for pi with 19 backends,https://github.com/ronnieops/pi-search-hub,1,,,,
-53,api-evangelist/letta-ai,Letta (formerly MemGPT) builds stateful AI agents,https://github.com/api-evangelist/letta-ai,1,,,,
-54,ultroncore/claude-skill-vault,letta-memgpt skill,https://github.com/ultroncore/claude-skill-vault/blob/HEAD/skills/ai-ml/letta-memgpt/SKILL.md,1,,,,
-55,swarm-ai-safety/swarm,Add Letta (MemGPT) bridge for stateful agent runtime,https://github.com/swarm-ai-safety/swarm/commit/a7e40992e9d80565354576e3d9eb6b53f9fd99d5,1,,,,
-56,dev.to,The 10 Best AI Memory Layers for Agents in 2026,https://dev.to/jonathanfarrow/the-10-best-ai-memory-layers-for-agents-in-2026-448e,1,,,,
-57,kpachhai/engram,Engram memory comparison,https://github.com/kpachhai/engram,1,,,,
-58,srock44/rmbr,Give your agent memory and knowledge,https://github.com/srock44/rmbr,1,,,,
-59,m4ikz/vector-arena,A comprehensive benchmark for evaluating vector database performance,https://github.com/m4ikz/vector-arena,2,,,,
-60,reaatech/hybrid-rag,Production-grade hybrid RAG in TypeScript,https://github.com/reaatech/hybrid-rag,3,,,,
-61,jaschadub/vectorpin,Add audit-lancedb and audit-chroma CLI commands,https://github.com/jaschadub/vectorpin/commit/850e4b2cb1ece9cbf13c7069e8ab90b51bffca,3,,,,
-62,sebduffy-prog/sebduffy,rag/vector-store-setup skill,https://github.com/sebduffy-prog/sebduffy/blob/HEAD/skills/rag/vector-store-setup/SKILL.md,2,,,,
-63,botmonster.com,Open source vector databases: Qdrant vs Milvus vs Weaviate,https://botmonster.com/ai/open-source-vector-databases-qdrant-milvus-weaviate/,1,,,,
-64,yoanbernabeu/grepai-skills,grepai-embeddings-ollama skill,https://github.com/yoanbernabeu/grepai-skills/blob/HEAD/skills/embeddings/grepai-embeddings-ollama/SKILL.md,3,,,,
-65,ealbertoav/rag_platform,"Production-grade local RAG platform — Hybrid Search, BGE-M3",https://github.com/ealbertoav/rag_platform,2,,,,
-66,jrjohn/arcana-skills,claude-session-archive-skill v1.3.2: bge-m3 model + parallel backfill,https://github.com/jrjohn/arcana-skills/commit/d9dc6aef66a29ce2efa37e4a3c88297057d44120,2,,,,
-67,cboone/reports,macOS native containers,https://github.com/cboone/reports,1,,,,
-68,apple/containerization,Cross-runtime performance regression suite,https://github.com/apple/containerization/issues/729,2,,,,
-69,agonistickatai/team-pulse,Football team stats management platform,https://github.com/agonistickatai/team-pulse,2,,,,
-70,OpenRouterLabs/spawn,feat: add --beta sandbox for Docker-based local agent sandboxing,https://github.com/OpenRouterLabs/spawn/pull/3127,1,,,,
-71,santobedi/cplt,Sandbox wrapper for AI coding agents,https://github.com/santobedi/cplt,6,,,,
-72,conavdevx/nono,"A secure, kernel-enforced capability sandbox for AI agents",https://github.com/conavdevx/nono,2,,,,
-73,nordnes/nono,"Secure, kernel-enforced sandbox CLI and SDKs for AI agents",https://github.com/nordnes/nono,5,,,,
-74,visualops-ai/agent-policy-engine,Policy-based control layer for AI agent tool use,https://github.com/visualops-ai/agent-policy-engine,5,,,,
-75,draganescu/hisohiso,CLI: first-class background service install for always-on hosts,https://github.com/draganescu/hisohiso/issues/125,2,,,,
-76,draganescu/hisohiso,feat(daemon): per-user background service install,https://github.com/draganescu/hisohiso/commit/9cfa3beb94108fb336c22d3f21670e99de437c74,1,,,,
-77,godlydonuts/mycelia,feat(daemon): run as an OS background service — launchd + systemd,https://github.com/godlydonuts/mycelia/commit/ed45923a04ced5a29cf72fc5863814eeaba509b6,1,,,,
-78,mwq2026/openclaw,Your own personal AI assistant,https://github.com/mwq2026/openclaw,6,,,,
-79,openclaw/openclaw,fix(gateway): handle concurrent launchd bootstrap restart race,https://github.com/openclaw/openclaw/pull/84722,1,,,,
-80,openclaw/openclaw,fix(daemon): replace bootout with kickstart -k for launchd restarts on macOS,https://github.com/openclaw/openclaw/commit/3c0fd3dffe67759f60685a6fb1b016f0d6f5f3cd,4,,,,
-81,axioma-ai-labs/claude-agent-monitor,feat: Add launchd daemon mode for persistent background operation,https://github.com/axioma-ai-labs/claude-agent-monitor/commit/3a24865f0ec08ff026ada700f26318f3ef6cca6c,2,,,,
-82,rezcarbon/openclaw-dashboards,A list of OpenClaw custom dashboards,https://github.com/rezcarbon/openclaw-dashboards,3,,,,
-83,mirkanu/gsd-dashboard,feat(quick-43): swap tunnel from tailscale funnel to cloudflared,https://github.com/mirkanu/gsd-dashboard/commit/aa7be40f3573f154c8b71bfadd4149885bf90436,2,,,,
-84,michaelcjoseph/jarvis,"docs(p16): rewrite tunnel runbook Funnel-first, Cloudflare as fallback",https://github.com/michaelcjoseph/jarvis/commit/ae1f42b59797cd5542e7815e25022a0beb0ed2bb,2,,,,
-85,bizyos/clawtrol,Open-source dashboard for OpenClaw AI agents,https://github.com/bizyos/clawtrol,2,,,,
-86,rezcarbon/openclaw-dashboards,Clawtrol dashboard entry,https://github.com/rezcarbon/openclaw-dashboards,1,,,,
-87,Pawloland/guacamole-docker-compose,"Guacamole with docker-compose using PostgreSQL, nginx IP whitelist",https://github.com/Pawloland/guacamole-docker-compose,1,,,,
-88,rezcarbon/openclaw-dashboards,Feature Comparison Matrix,https://github.com/rezcarbon/openclaw-dashboards,1,,,,
-89,TechRadar,How to add a super-fast SSD to your Mac mini M4,https://www.techradar.com/computing/macs/i-upgraded-my-mac-mini-m4-with-a-4tb-ssd-and-avoided-paying-apples-ridiculous-storage-prices-heres-how,3,,,,
-90,drumih/turbo-fieldfare,"Benchmark: Apple M4, 16 GB RAM / 256 GB SSD, internal vs external SSD",https://github.com/drumih/turbo-fieldfare/issues/23,1,,,,
-91,leonardcser/smelt,Rust TUI coding agent,https://github.com/leonardcser/smelt,1,,,,
-92,ypollak2/llm-router,feat: add Ollama local model support,https://github.com/ypollak2/llm-router/commit/68e50b26910000090ae10c2e6a56833888189e27,1,,,,
-93,a777ance/localdns,Add stage 10: local-first LLM router (LiteLLM + Ollama),https://github.com/a777ance/localdns/commit/4f98ca6b4112715ae1a2ab2a0440901370c1435d,3,,,,
-94,ima-jin/imajin-ai,spike(infra): LiteLLM router in front of the 5090,https://github.com/ima-jin/imajin-ai/issues/1321,3,,,,
-95,vishalnagda1/mlx-lm-server,feat: implement OpenAI-compatible API endpoints,https://github.com/vishalnagda1/mlx-lm-server/commit/e93965089db8912f09058705703357b150e67fef,1,,,,
-96,melnikaite/mlx-openai-server,A high-performance API server that provides OpenAI-compatible endpoints for MLX models,https://github.com/melnikaite/mlx-openai-server,1,,,,
-97,coleleavitt/oh-my-opencode,the best agent harness,https://github.com/coleleavitt/oh-my-opencode,1,,,,
-98,4th-engineer/beaver-agent,feat(multi-agent): add multi-agent orchestration framework,https://github.com/4th-engineer/beaver-agent/commit/01079f57ca89164b50b1cd631f16cf11321feedb,3,,,,
-99,bunsdev/clawtrol,Open-source dashboard for OpenClaw AI agents,https://github.com/bunsdev/clawtrol,2,,,,
+1,Compute Market,MLX vs llama.cpp on Apple Silicon — 2026 Benchmark Comparison,https://www.compute-market.com/blog/mlx-vs-llama-cpp-apple-silicon-2026,12,yes,full,tertiary,Wayback 2026-08-04; states MLX 30-50% faster and ~230 tok/s; retailer benchmark round-up
+2,casualuser/rapid-mlx,The fastest local AI engine for Apple Silicon. 4.2x faster than Ollama,https://github.com/casualuser/rapid-mlx,17,yes,full,secondary,"zero-star fork of raullenchai/Rapid-MLX; README at cutoff states 4.2x vs Ollama, 0.08s TTFT, 17 tool parsers"
+3,petems/qwen-local-silicon-32to64gb-macbook-guide,Guide to running QWEN Coder locally on a Silicon CPU Macbook,https://github.com/petems/qwen-local-silicon-32to64gb-macbook-guide,13,yes,partial,tertiary,personal guide; supports Qwen3.5-35B-A3B fit and Coder-Next ~38 GB but not the Qwen3.6 variant
+4,VentureBeat,"Qwen3-Coder-Next offers vibe coders a powerful open source, ultra-sparse model",https://venturebeat.com/technology/qwen3-coder-next-offers-vibe-coders-a-powerful-open-source-ultra-sparse,4,unknown-at-capture,,,no Wayback capture before cutoff; live page returns 429 to automated fetch
+5,0xheguoxing/awesome-cli-coding-agents,Curated directory of terminal-native AI coding agents,https://github.com/0xheguoxing/awesome-cli-coding-agents,11,yes,full,tertiary,"fork of an awesome-list; README at cutoff states OpenCode stars, LSP, 80+ agents"
+6,molecule-ai/molecule-core,feat: evaluate pydantic-ai as workspace template adapter — native A2A + MCP,https://github.com/molecule-ai/molecule-core/issues/721,2,yes,full,secondary,"third-party issue 2026-04-17 describing pydantic-ai features (A2A + MCP, type-safe)"
+7,All-Hands-AI/OpenHands,Open-source agentic developer environment,https://github.com/All-Hands-AI/OpenHands,3,yes,partial,primary,OpenHands README at cutoff names the project and Docker but not CodeAct event sourcing or a CLI-only package
+8,ahmdngi/sirb,"agnostic multi-agent task swarm with thread-safe queue, worker pool",https://github.com/ahmdngi/sirb,2,unknown-at-capture,,,repository not found today; no Wayback capture
+9,cpiprint/memo,Persistent semantic memory for AI agents — 100% local on Apple Silicon (MLX),https://github.com/cpiprint/memo,18,yes,full,secondary,"one-star fork of jagoff/memo; README at cutoff states MLX-local, Markdown SoT, sqlite-vec + BM25, contradiction radar"
+10,agent-of-empires/agent-of-empires,feat: prefer Tailscale Funnel over Cloudflare quick tunnel,https://github.com/agent-of-empires/agent-of-empires/commit/7e21f0b46ef4367796136c29e95905bd1798f58a,3,yes,full,secondary,commit 2026-04-20 in agent-of-empires describing Funnel vs quick-tunnel order and stable ts.net URL
+11,ryanmkrol/localjobs,Self-hosted job orchestrator + Next.js dashboard for an always-on Mac Mini,https://github.com/ryanmkrol/localjobs,4,yes,full,secondary,project README at cutoff gives the tailscale serve setup it cites
+12,zot24/macos-container-benchmarks,"Benchmarks comparing Colima, Docker Desktop, and OrbStack",https://github.com/zot24/macos-container-benchmarks,5,yes,full,secondary,"benchmark repo at cutoff: OrbStack 2-7x volume reads, 130 Gbps C2C"
+13,sunholo-data/ailang,eval: add Qwen 3.5 35B-A3B (OpenRouter via motoko),https://github.com/sunholo-data/ailang/commit/87202a157a461db20b0f057c30c662edb0d50fc4,2,yes,full,secondary,"commit 2026-06-02 verifying OpenRouter id qwen3.5-35b-a3b-20260224, 262K ctx"
+14,isaacrowntree/local-llm-coding-guide,Run Qwen3.5-9B locally as a coding assistant,https://github.com/isaacrowntree/local-llm-coding-guide,3,yes,full,tertiary,personal guide at cutoff states the cited speeds and sizes
+15,dev.to,Qwen3-Coder-Next for Local AI in 2026: Which GPU Can Actually Run Alibaba's #1 Coding Agent?,https://dev.to/jovan_chan_9500711396d4e6/qwen3-coder-next-for-local-ai-in-2026-which-gpu-can-actually-run-alibabas-1-coding-agent-4b4g,1,yes,full,tertiary,"dev.to post (Wayback) states 71.3% OpenHands, 71.1% MiniSWE-Agent"
+16,Hugging Face Blog,The Best Open Source and Open-Weight LLM Models to Run Locally in 2026,https://huggingface.co/blog/daya-shankar/open-source-llm-models-to-run-locally,1,yes,partial,tertiary,HF community blog supports Qwen3 family ranking; no April 2026 table found
+17,r4ck/mikrob,local-llm-offload skill,https://github.com/r4ck/mikrob/blob/HEAD/./seed-skills/local-llm-offload/SKILL.md,3,yes,full,tertiary,"skill file at cutoff chooses qwen2.5-coder 7B q4_K_M for the <=7B tier (on a GTX 1660, not a Mac)"
+18,arXiv,When Quantization Is Free: An int4 KV Cache That Outruns fp16 on Apple Silicon,https://arxiv.org/html/2605.05699,2,yes,full,primary,arXiv paper: int4 KV cache faster than fp16 on Apple Silicon
+19,mixelpixx/local-llm-autotune,"Zero-config optimization for Ollama, LM Studio, and Apple Silicon MLX",https://github.com/mixelpixx/local-llm-autotune,2,unknown-at-capture,,,repository not found today; no Wayback capture
+20,suaroman/fitllm-engine,Accurate LLM memory & speed calculator,https://github.com/suaroman/fitllm-engine,1,yes,partial,secondary,"fork of fitllm-engine; states sliding-window/linear/MoE and 4-11x error, not MLA"
+21,jperrello/opencode-saturn,The open source coding agent,https://github.com/jperrello/opencode-saturn,4,yes,partial,secondary,"fork of OpenCode; supports LSP/provider-agnostic, not every attribute"
+22,alvinreal/awesome-opensource-ai,Research Add PydanticAI,https://github.com/alvinreal/awesome-opensource-ai/pull/247,3,yes,full,tertiary,awesome-list PR 2026-04-14 with the cited PydanticAI facts
+23,pydantic/pydantic-ai,Release v2.35.3 (2026-08-27),https://github.com/pydantic/pydantic-ai/releases/tag/v2.35.3,1,yes,full,primary,"GitHub release v2.35.3 published 2026-08-28, titled v2.35.3 (2026-08-27)"
+24,hinvec/security-scanned-skills,pydanticai-type-safe-ai-agent-framework,https://github.com/hinvec/security-scanned-skills/blob/HEAD/skills/pydanticai-type-safe-ai-agent-framework/SKILL.md,1,yes,full,tertiary,skills mirror at cutoff describing PydanticAI features
+25,Hacker News,Pydantic-DeepAgents – A Python Framework for Building Autonomous AI Agents,https://news.ycombinator.com/item?id=46261099,1,yes,partial,tertiary,HN link post 2025-12-14 shows Pydantic-DeepAgents exists; toolset names not on the page
+26,franklinbaldo/egregora,feat(agents): Add dynamic skill injection system for pydantic-ai agents,https://github.com/franklinbaldo/egregora/commit/d1a761be837fef2f3ada9bac6bae51997eaf1470,1,unknown-at-capture,,,commit not found today; no Wayback capture
+27,dev.to,Top 5 AI Agent Frameworks for 2026 (Honest Guide),https://dev.to/nebulagg/top-5-ai-agent-frameworks-for-2026-honest-guide-13jn,3,yes,full,tertiary,dev.to post (Wayback) with the cited framework picks
+28,openagents.org,CrewAI vs LangGraph vs AutoGen vs OpenAgents — Best AI Agent Framework (2026),https://openagents.org/blog/posts/2026-02-23-open-source-ai-agent-frameworks-compared,2,yes,full,tertiary,vendor blog (Wayback) on LangGraph durable execution
+29,levelop.dev,Best AI Agent Frameworks 2026: LangGraph & CrewAI,https://levelop.dev/blog/best-ai-agent-frameworks-2026-langgraph-crewai-autogen-compared,1,yes,full,tertiary,blog (Wayback) on LangGraph overtaking CrewAI
+30,Towards AI,LangGraph vs CrewAI vs AutoGen,https://pub.towardsai.net/langgraph-vs-crewai-vs-autogen-which-ai-agent-framework-should-your-enterprise-use-in-2026-3a9ebb407b09?gi=f38720f11cf2,1,unknown-at-capture,,,no Wayback capture; live page returns 403 to automated fetch
+31,awesome-cli-coding-agents,Orchestrators & autonomous loops,https://github.com/0xheguoxing/awesome-cli-coding-agents,2,yes,full,tertiary,same awesome-list fork as [5]; lists ORCH and the cited loop tools
+32,karthiksubramanian07/shepherd,feat: multi-agent orchestration with an action queue,https://github.com/karthiksubramanian07/shepherd/commit/707d8b8fa80ccec574fe55eedb5ec543d29dcac1,3,unknown-at-capture,,,commit SHA not found in the repository today; no Wayback capture
+33,venheads/reusable-multi-agent-orchestration-system,Reusable multi-agent orchestration system,https://github.com/venheads/reusable-multi-agent-orchestration-system,1,yes,full,primary,project README at cutoff documents --queue-dir daemon mode
+34,onerkiz/agent-nexus,Experimental multi-agent orchestration platform for local-first AI software delivery,https://github.com/onerkiz/agent-nexus,3,yes,partial,primary,README at cutoff states WORKER_CONCURRENCY and Redis + SQLite fallback; no OpenHands
+35,huzy123/trinity-lite,Local-first multi-agent orchestration for CLI AI agents,https://github.com/huzy123/trinity-lite,1,yes,full,secondary,fork of trinity-lite; README at cutoff: every agent gets a pull queue and polls on its own schedule
+36,naveen-og/silicorism,Silicon + Tribalism: high-throughput multi-agent task orchestrator,https://github.com/naveen-og/silicorism,5,yes,full,primary,"project README at cutoff: SQLite WAL, stdlib only, tmux panes"
+37,magnus919/agent-skills,fix: SkillOpt Epoch 3 — pydanticai framework boundaries,https://github.com/magnus919/agent-skills/commit/f3ebdedc8763069963d65d179e244de935d16633,1,yes,full,secondary,commit 2026-07-09 on PydanticAI agent as LangGraph node
+38,arXiv,TheAgentCompany: Benchmarking LLM Agents on Consequential Real World Tasks,https://arxiv.org/html/2412.14161v2,3,yes,partial,secondary,title correct; paper uses the OpenHands CodeAct agent but does not describe the unified action space (the CodeAct paper does)
+39,mutdmour/ai-builders-deep-dive,Technical deep dives into how AI coding tools work,https://github.com/mutdmour/ai-builders-deep-dive,2,yes,full,secondary,"deep-dive repo at cutoff: OpenHands Docker sandbox, event sourcing, SecretRegistry"
+40,Medium,Top Open Source Coding Agents to Replace Claude Code in 2026,https://medium.com/@moksh45/top-open-source-coding-agents-to-replace-claude-code-in-2026-6aaa3aa781fb,2,unknown-at-capture,,,no Wayback capture; live page returns 403 to automated fetch
+41,theeditorial.news,Cursor vs Cline vs Aider vs Windsurf: AI Coding Agents Tested,https://theeditorial.news/ai-agents/cursor-vs-cline-vs-aider-vs-windsurf-vs-devin-vs-openhands-bug-fix-accuracy-refactoring-safety-c-mpl5xv0z,1,unknown-at-capture,,,no Wayback capture; site does not resolve today
+42,dev.to,Local Free Claude & Codex with Ollama,https://dev.to/tak089/local-free-claude-codex-with-ollama-5fg5,1,yes,partial,tertiary,dev.to post supports base-URL override to Ollama; MLX OpenAI-compatible endpoint not stated
+43,agentjoey/opencode-remote-control,fix: /agent and /model actually switch in opencode + TUI,https://github.com/agentjoey/opencode-remote-control/commit/e56a3968dc82f18279eccdcd4c8e220dcc2fea9f,1,yes,full,secondary,commit 2026-05-15 on opencode agent/model switching
+44,markusstrasser/agent-infra,research Agentic search API comparison — Brave/Exa/Tavily/Firecrawl/Perplexity/Parallel,https://github.com/markusstrasser/agent-infra/commit/f78012b1fe92c2776e63345dd8f2a11e44eb911a,2,yes,full,secondary,commit 2026-03-03 with the cited search-API price comparison
+45,firecrawl.dev,Best Search Tools for AI Agents in 2026,https://www.firecrawl.dev/blog/best-search-tools-for-agents,4,yes,full,secondary,"Firecrawl blog (Wayback) with Exa 14.39, sub-425ms, pricing"
+46,firecrawl.dev,Best News API for Apps and Agents in 2026,https://www.firecrawl.dev/blog/best-news-api,3,yes,full,primary,Firecrawl blog published 2026-04-24 (live copy): markdown content for RAG
+47,atomlab/pi-search-hub,Unified web search + content extraction extension for pi,https://github.com/atomlab/pi-search-hub,6,yes,full,secondary,"fork of pi-search-hub; README at cutoff: Exa first 10 results, api.firecrawl.dev/v2/search data.web"
+48,busigui2023/mcp-server-metasearch,A local MCP server aggregating 15 web search & extraction tools,https://github.com/busigui2023/mcp-server-metasearch,2,yes,full,secondary,MCP aggregator README at cutoff: Firecrawl map 1 credit
+49,FMATheNomad/deep-research-skill,Massive autonomous web research for AI coding agents,https://github.com/FMATheNomad/deep-research-skill,1,yes,full,secondary,README at cutoff: uses OpenCode websearch (Exa) and webfetch
+50,FasalZein/deep-research-skill,Autonomous deep research skill for Claude Code,https://github.com/FasalZein/deep-research-skill,3,yes,full,primary,"skill README at cutoff: Exa + Firecrawl + AlphaXiv, subagent delegation"
+51,fasalzein/autonomous-research-skill,Autonomous deep research skill for Claude Code,https://github.com/fasalzein/autonomous-research-skill,1,yes,full,primary,same skill (other repo name) at cutoff with the cited description
+52,ronnieops/pi-search-hub,Unified web search + content extraction extension for pi with 19 backends,https://github.com/ronnieops/pi-search-hub,1,yes,full,primary,project README at cutoff: 19 backends incl. Perplexity Sonar
+53,api-evangelist/letta-ai,Letta (formerly MemGPT) builds stateful AI agents,https://github.com/api-evangelist/letta-ai,1,yes,full,secondary,API catalogue mirror describing Letta memory
+54,ultroncore/claude-skill-vault,letta-memgpt skill,https://github.com/ultroncore/claude-skill-vault/blob/HEAD/skills/ai-ml/letta-memgpt/SKILL.md,1,yes,full,tertiary,skills vault file describing Letta hierarchical memory
+55,swarm-ai-safety/swarm,Add Letta (MemGPT) bridge for stateful agent runtime,https://github.com/swarm-ai-safety/swarm/commit/a7e40992e9d80565354576e3d9eb6b53f9fd99d5,1,yes,full,secondary,"commit 2026-02-21 adding a Letta bridge, describes three-tier memory"
+56,dev.to,The 10 Best AI Memory Layers for Agents in 2026,https://dev.to/jonathanfarrow/the-10-best-ai-memory-layers-for-agents-in-2026-448e,1,yes,full,tertiary,dev.to listicle (Wayback) with the cited Letta description
+57,kpachhai/engram,Engram memory comparison,https://github.com/kpachhai/engram,1,unknown-at-capture,,,repository not found today; no Wayback capture
+58,srock44/rmbr,Give your agent memory and knowledge,https://github.com/srock44/rmbr,1,yes,full,primary,project README at cutoff: LLM fact extraction decides what to remember
+59,m4ikz/vector-arena,A comprehensive benchmark for evaluating vector database performance,https://github.com/m4ikz/vector-arena,2,yes,full,secondary,benchmark repo at cutoff describing LanceDB and Chroma
+60,reaatech/hybrid-rag,Production-grade hybrid RAG in TypeScript,https://github.com/reaatech/hybrid-rag,3,yes,full,secondary,"README at cutoff: embedded LanceDB, no service"
+61,jaschadub/vectorpin,Add audit-lancedb and audit-chroma CLI commands,https://github.com/jaschadub/vectorpin/commit/850e4b2cb1ece9cbf13c7069e8ab90b51bffca,3,unknown-at-capture,,,commit SHA not found in the repository today; no Wayback capture
+62,sebduffy-prog/sebduffy,rag/vector-store-setup skill,https://github.com/sebduffy-prog/sebduffy/blob/HEAD/skills/rag/vector-store-setup/SKILL.md,2,yes,full,tertiary,skill file at cutoff: migrate off Chroma around 1M vectors
+63,botmonster.com,Open source vector databases: Qdrant vs Milvus vs Weaviate,https://botmonster.com/ai/open-source-vector-databases-qdrant-milvus-weaviate/,1,yes,partial,tertiary,"blog (Wayback) compares Qdrant/Milvus/Weaviate; embedded mode stated for Milvus Lite, not the system the claim names"
+64,yoanbernabeu/grepai-skills,grepai-embeddings-ollama skill,https://github.com/yoanbernabeu/grepai-skills/blob/HEAD/skills/embeddings/grepai-embeddings-ollama/SKILL.md,3,yes,full,secondary,"skill file at cutoff: nomic ~500 MB, bge-m3 ~1.5 GB"
+65,ealbertoav/rag_platform,"Production-grade local RAG platform — Hybrid Search, BGE-M3",https://github.com/ealbertoav/rag_platform,2,yes,full,secondary,"README at cutoff: BGE-M3 1024 dims, nomic 768"
+66,jrjohn/arcana-skills,claude-session-archive-skill v1.3.2: bge-m3 model + parallel backfill,https://github.com/jrjohn/arcana-skills/commit/d9dc6aef66a29ce2efa37e4a3c88297057d44120,2,yes,full,secondary,commit 2026-04-28 with the cited embedding timings
+67,cboone/reports,macOS native containers,https://github.com/cboone/reports,1,unknown-at-capture,,,repository not found today; no Wayback capture
+68,apple/containerization,Cross-runtime performance regression suite,https://github.com/apple/containerization/issues/729,2,yes,full,secondary,apple/containerization issue 2026-05-07 with the cited benchmark numbers and 0.6 version
+69,agonistickatai/team-pulse,Football team stats management platform,https://github.com/agonistickatai/team-pulse,2,unknown-at-capture,,,"repository not found today; no Wayback capture; the response itself titles it a football-stats platform, cited for OrbStack/SSD advice"
+70,OpenRouterLabs/spawn,feat: add --beta sandbox for Docker-based local agent sandboxing,https://github.com/OpenRouterLabs/spawn/pull/3127,1,yes,full,secondary,PR 2026-03-31: OpenClaw warning skipped in sandbox mode
+71,santobedi/cplt,Sandbox wrapper for AI coding agents,https://github.com/santobedi/cplt,6,yes,full,secondary,zero-star fork of navikt/cplt; README at cutoff: kernel-level sandbox blocking credentials
+72,conavdevx/nono,"A secure, kernel-enforced capability sandbox for AI agents",https://github.com/conavdevx/nono,2,yes,partial,secondary,"fork of nolabs-ai/nono; kernel sandbox and chmod blocking stated, 'chmod 777' default not"
+73,nordnes/nono,"Secure, kernel-enforced sandbox CLI and SDKs for AI agents",https://github.com/nordnes/nono,5,yes,partial,secondary,"fork of nono; seccomp fd injection stated, Bitwarden integration not"
+74,visualops-ai/agent-policy-engine,Policy-based control layer for AI agent tool use,https://github.com/visualops-ai/agent-policy-engine,5,yes,partial,primary,README at cutoff: allow/deny/sandbox/approval decisions; symlink-escape blocking not stated
+75,draganescu/hisohiso,CLI: first-class background service install for always-on hosts,https://github.com/draganescu/hisohiso/issues/125,2,yes,full,secondary,issue 2026-05-29: per-user LaunchAgent with KeepAlive + RunAtLoad
+76,draganescu/hisohiso,feat(daemon): per-user background service install,https://github.com/draganescu/hisohiso/commit/9cfa3beb94108fb336c22d3f21670e99de437c74,1,yes,full,secondary,commit 2026-06-03 implementing that plist
+77,godlydonuts/mycelia,feat(daemon): run as an OS background service — launchd + systemd,https://github.com/godlydonuts/mycelia/commit/ed45923a04ced5a29cf72fc5863814eeaba509b6,1,yes,full,secondary,commit 2026-06-21: launchd/systemd service with low priority
+78,mwq2026/openclaw,Your own personal AI assistant,https://github.com/mwq2026/openclaw,6,yes,partial,secondary,"fork of openclaw/openclaw; onboard --install-daemon stated, port 18789 not found"
+79,openclaw/openclaw,fix(gateway): handle concurrent launchd bootstrap restart race,https://github.com/openclaw/openclaw/pull/84722,1,yes,full,primary,openclaw PR 2026-05-20: gateway as launchd LaunchAgent
+80,openclaw/openclaw,fix(daemon): replace bootout with kickstart -k for launchd restarts on macOS,https://github.com/openclaw/openclaw/commit/3c0fd3dffe67759f60685a6fb1b016f0d6f5f3cd,4,yes,full,primary,openclaw commit 2026-03-12: kickstart -k replaces bootout
+81,axioma-ai-labs/claude-agent-monitor,feat: Add launchd daemon mode for persistent background operation,https://github.com/axioma-ai-labs/claude-agent-monitor/commit/3a24865f0ec08ff026ada700f26318f3ef6cca6c,2,yes,full,secondary,"commit 2025-12-26: launchd daemon survives sleep, KeepAlive"
+82,rezcarbon/openclaw-dashboards,A list of OpenClaw custom dashboards,https://github.com/rezcarbon/openclaw-dashboards,3,yes,full,tertiary,fork of an OpenClaw dashboards list
+83,mirkanu/gsd-dashboard,feat(quick-43): swap tunnel from tailscale funnel to cloudflared,https://github.com/mirkanu/gsd-dashboard/commit/aa7be40f3573f154c8b71bfadd4149885bf90436,2,yes,full,secondary,commit 2026-04-11: Funnel 1-10s latency vs Cloudflare 100-170ms
+84,michaelcjoseph/jarvis,"docs(p16): rewrite tunnel runbook Funnel-first, Cloudflare as fallback",https://github.com/michaelcjoseph/jarvis/commit/ae1f42b59797cd5542e7815e25022a0beb0ed2bb,2,unknown-at-capture,,,commit not found today; no Wayback capture
+85,bizyos/clawtrol,Open-source dashboard for OpenClaw AI agents,https://github.com/bizyos/clawtrol,2,yes,full,secondary,fork of Clawtrol; README at cutoff matches the description
+86,rezcarbon/openclaw-dashboards,Clawtrol dashboard entry,https://github.com/rezcarbon/openclaw-dashboards,1,yes,full,tertiary,same dashboards-list fork as [82]
+87,Pawloland/guacamole-docker-compose,"Guacamole with docker-compose using PostgreSQL, nginx IP whitelist",https://github.com/Pawloland/guacamole-docker-compose,1,yes,full,secondary,fork; README at cutoff: Tailscale Funnel and Cloudflare tunnel
+88,rezcarbon/openclaw-dashboards,Feature Comparison Matrix,https://github.com/rezcarbon/openclaw-dashboards,1,yes,full,tertiary,same dashboards-list fork as [82]
+89,TechRadar,How to add a super-fast SSD to your Mac mini M4,https://www.techradar.com/computing/macs/i-upgraded-my-mac-mini-m4-with-a-4tb-ssd-and-avoided-paying-apples-ridiculous-storage-prices-heres-how,3,yes,partial,secondary,TechRadar (Wayback): APFS formatting supported; Samsung T5/T7 not named
+90,drumih/turbo-fieldfare,"Benchmark: Apple M4, 16 GB RAM / 256 GB SSD, internal vs external SSD",https://github.com/drumih/turbo-fieldfare/issues/23,1,yes,full,secondary,benchmark issue 2026-07-30: internal vs external APFS SSD
+91,leonardcser/smelt,Rust TUI coding agent,https://github.com/leonardcser/smelt,1,yes,none,irrelevant,"the four modes Normal/Plan/Apply/Yolo belong to smelt, a different agent; the claim attributes them to OpenCode"
+92,ypollak2/llm-router,feat: add Ollama local model support,https://github.com/ypollak2/llm-router/commit/68e50b26910000090ae10c2e6a56833888189e27,1,yes,partial,secondary,commit 2026-03-30: Ollama local then OpenAI; Anthropic tier not stated
+93,a777ance/localdns,Add stage 10: local-first LLM router (LiteLLM + Ollama),https://github.com/a777ance/localdns/commit/4f98ca6b4112715ae1a2ab2a0440901370c1435d,3,yes,full,secondary,"commit 2026-06-05: LiteLLM gateway, local Ollama first, cloud failover"
+94,ima-jin/imajin-ai,spike(infra): LiteLLM router in front of the 5090,https://github.com/ima-jin/imajin-ai/issues/1321,3,yes,full,secondary,issue 2026-07-16: LiteLLM router with small classifier
+95,vishalnagda1/mlx-lm-server,feat: implement OpenAI-compatible API endpoints,https://github.com/vishalnagda1/mlx-lm-server/commit/e93965089db8912f09058705703357b150e67fef,1,yes,partial,secondary,commit 2026-06-07: OpenAI-compatible /v1 endpoints; port 8080 not stated
+96,melnikaite/mlx-openai-server,A high-performance API server that provides OpenAI-compatible endpoints for MLX models,https://github.com/melnikaite/mlx-openai-server,1,yes,full,secondary,fork of mlx-openai-server; README at cutoff shows the launch command
+97,coleleavitt/oh-my-opencode,the best agent harness,https://github.com/coleleavitt/oh-my-opencode,1,yes,partial,secondary,"fork of oh-my-openagent; mentions opencode.json provider config, not the stated default-model switch"
+98,4th-engineer/beaver-agent,feat(multi-agent): add multi-agent orchestration framework,https://github.com/4th-engineer/beaver-agent/commit/01079f57ca89164b50b1cd631f16cf11321feedb,3,yes,full,secondary,"commit 2026-05-22: worker pool, JSON-file inbox"
+99,bunsdev/clawtrol,Open-source dashboard for OpenClaw AI agents,https://github.com/bunsdev/clawtrol,2,yes,full,secondary,fork of Clawtrol; README at cutoff: MagicDNS access on port 4781
