@@ -85,5 +85,5 @@ in `notes` because it bears on the source tier.
 
 First pass: 2026-11-23, by an AI assistant working from the evidence files and
 `claim_match.py`, with every row judged by hand against the rules above; each verdict has a
-one-line reason in `notes`. Second pass: the 20 rows in `second-coder-sheet.csv`, coded blind by
-the author.
+one-line reason in `notes`. Second pass: pending. The 20 rows in `second-coder-sheet.csv` are
+for blind coding by the author; `tally.py --second` reports the agreement.

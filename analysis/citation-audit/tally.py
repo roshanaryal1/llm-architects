@@ -101,6 +101,10 @@ def main(argv=None):
     print(f"references: {len(rows)}; unknown at capture: {len(unknown)} {unknown}")
     print(f"non-supporting or unresolvable: {k} of {n} = {k / n:.1%} "
           f"(Wilson 95% {lo:.1%} to {hi:.1%})")
+    ki = k + len(unknown)
+    lo2, hi2 = wilson(ki, len(rows))
+    print(f"inclusive (unknown counted as unresolvable): {ki} of {len(rows)} = {ki / len(rows):.1%} "
+          f"(Wilson 95% {lo2:.1%} to {hi2:.1%})")
     print("resolves:", {v: count('resolves', v) for v in ('yes', 'wrong-target', 'no')})
     print("supports (resolving rows):", {v: count('supports', v) for v in ('full', 'partial', 'none')})
     print("source tier:", {v: count('source_tier', v)
@@ -110,12 +114,18 @@ def main(argv=None):
         sec = load(a.second)
         check(sec, "second coder")
         common = sorted(set(sec) & set(rows))
-        pairs = [(int(failing(rows[i])), int(failing(sec[i]))) for i in common]
+        def verdict(r):
+            # three categories: unknown at capture, failing, passing
+            if r["resolves"] == "unknown-at-capture":
+                return 2
+            return int(failing(r))
+
+        pairs = [(verdict(rows[i]), verdict(sec[i])) for i in common]
         agree = sum(x == y for x, y in pairs)
-        print(f"\nsecond coder: {len(common)} rows; agreement on the derived verdict "
+        print(f"\nsecond coder: {len(common)} rows; agreement on the verdict (unknown / failing / passing) "
               f"{agree}/{len(common)}; Cohen kappa {ag.cohen_kappa(pairs):+.2f}")
         for i in common:
-            if failing(rows[i]) != failing(sec[i]):
+            if verdict(rows[i]) != verdict(sec[i]):
                 print(f"  disagree ref {i}: first {rows[i]['resolves']}/{rows[i]['supports']}"
                       f"  second {sec[i]['resolves']}/{sec[i]['supports']}")
     return 0
