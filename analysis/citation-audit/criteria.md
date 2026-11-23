@@ -65,3 +65,25 @@ is reported separately and excluded from the denominator.
    report the agreement on those 20 rows.
 3. Report the derived count with a Wilson 95% interval and replace "59 of 99" in the
    manuscript with the re-derived figure, whatever it is.
+
+## Addendum 2026-11-23: evidence for GitHub and dated pages (written before coding)
+
+Only 23 of the 99 references have a Wayback capture on or before 31 August 2026. 80 point at
+GitHub, whose objects carry their own dates, so their capture-day state is rebuilt with the
+GitHub API (`github_evidence.py`) instead of an archive: a commit is immutable and dated; an
+issue or pull request has a creation date; a repository's README and a file are read at the last
+commit on or before the cutoff. A dated publication (for example a blog post with a publication
+date before the cutoff) is read from its live copy, noted in `notes`. A reference that is gone
+today and has no archived copy stays `unknown-at-capture`, because it may have been deleted
+after the capture day.
+
+The tally is reported two ways: strict (unknown rows left out of the denominator) and inclusive
+(unknown rows counted as unresolvable). Whether a repository is a fork, and of what, is recorded
+in `notes` because it bears on the source tier.
+
+## Coding record
+
+First pass: 2026-11-23, by an AI assistant working from the evidence files and
+`claim_match.py`, with every row judged by hand against the rules above; each verdict has a
+one-line reason in `notes`. Second pass: the 20 rows in `second-coder-sheet.csv`, coded blind by
+the author.
