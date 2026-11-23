@@ -166,6 +166,16 @@ Net effect of adjudication vs `rater-1`: claude 18→15, gpt-5 16→14, perplexi
 
 ## Adjudicated final scores
 
+> **Correction 2026-11-23 (`meta-llama-4`).** D6 0 -> 1: the "~60% junk" reading behind the 0
+> was a source-authority judgement, not a support judgement. The capture-day citation audit
+> (`analysis/citation-audit/`) traces 86 of the 99 references: 67 support their claim fully, 18
+> partly, 1 not at all; only 14 are primary sources and 20 point to unstarred forks or copies. That
+> fits rubric level 1 (some resolve/support, primary not preferred), not 0. D4 1 -> 2: the
+> `Qwen3.5-35B-A3B` tag that kept D4 at 1 is real (Hugging Face `Qwen/Qwen3.5-35B-A3B`, created
+> 2026-02-24), and the clean re-run had scored 2. D9 stays 1: the same tool is still given several
+> different repository URLs; the earlier "[38] wrong title" part of that reason was wrong ([38] is
+> correctly titled). Total 11 -> 13. Recompute with `make figures`.
+
 **Updated 2026-09-01** after the clean D3/D4 re-run (`d3d4-clean-rerun-result.md`): four D3/D4
 cells moved. The canonical rater's clean uncontaminated D3/D4 pass reproduced its contaminated #9
 pass on 11/13 responses, so the leak's effect on the table is small; the changes below come from
