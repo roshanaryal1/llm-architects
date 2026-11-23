@@ -6,7 +6,8 @@ references point at GitHub and have no Wayback snapshot. GitHub objects carry
 their own dates, so their 31 Aug 2026 state can be rebuilt:
 
   commit   /commit/<sha>     immutable; commit date and message
-  PR/issue /pull|issues/<n>  created_at, title, body
+  PR/issue /pull|issues/<n>  created_at, title, body, and when the body was last edited
+                             (an edit after the cutoff means the body is not capture-day text)
   repo     /<owner>/<repo>   created_at, description, and the README at the last
                              commit on or before the cutoff
   file     /blob|tree/<ref>/<path>  the file at the last commit on or before the cutoff
@@ -44,6 +45,21 @@ def gh(path):
         return None, "bad json"
 
 
+EDITED_Q = ("query($o:String!,$n:String!,$num:Int!){repository(owner:$o,name:$n){"
+            "issueOrPullRequest(number:$num){... on Issue{lastEditedAt} ... on PullRequest{lastEditedAt}}}}")
+
+
+def body_last_edited(owner, repo, num):
+    p = subprocess.run(["gh", "api", "graphql", "-F", f"o={owner}", "-F", f"n={repo}",
+                        "-F", f"num={num}", "-f", f"query={EDITED_Q}"],
+                       capture_output=True, text=True, check=False)
+    try:
+        node = json.loads(p.stdout)["data"]["repository"]["issueOrPullRequest"]
+    except (json.JSONDecodeError, KeyError, TypeError):
+        return "unknown"
+    return (node or {}).get("lastEditedAt") or "never"
+
+
 def sha_at_cutoff(owner, repo, path=None):
     q = f"repos/{owner}/{repo}/commits?until={CUTOFF}&per_page=1"
     if path:
@@ -69,7 +85,8 @@ def collect(url):
     if not m:
         return None
     owner, repo, rest = m.group(1), m.group(2), (m.group(3) or "").rstrip("/")
-    out = {"kind": "", "created": "", "state_sha": "", "state_date": "", "error": "", "text": ""}
+    out = {"kind": "", "created": "", "state_sha": "", "state_date": "", "body_last_edited": "",
+           "error": "", "text": ""}
     if mm := re.match(r"/commit/([0-9a-f]{7,40})", rest):
         out["kind"] = "commit"
         d, err = gh(f"repos/{owner}/{repo}/commits/{mm.group(1)}")
@@ -84,6 +101,7 @@ def collect(url):
         d, err = gh(f"repos/{owner}/{repo}/issues/{mm.group(2)}")
         if d:
             out["created"] = d["created_at"]
+            out["body_last_edited"] = body_last_edited(owner, repo, int(mm.group(2)))
             out["text"] = f"TITLE: {d['title']}\nBODY: {(d.get('body') or '')[:20000]}"
         out["error"] = err
     elif mm := re.match(r"/(blob|tree)/([^/]+)/(.+)", rest):
@@ -108,7 +126,7 @@ def collect(url):
                 r, _ = gh(f"repos/{d['owner']['login']}/{d['name']}/readme?ref={sha}")
                 if r and r.get("content"):
                     readme = base64.b64decode(r["content"]).decode("utf-8", "replace")
-            out["text"] = f"DESCRIPTION: {d.get('description') or ''}\nREADME AT CUTOFF:\n{readme[:40000]}"
+            out["text"] = f"DESCRIPTION (today, not capture-day): {d.get('description') or ''}\nREADME AT CUTOFF:\n{readme[:40000]}"
             err = err2
         out["error"] = err
     return out
@@ -133,6 +151,7 @@ def main(argv=None):
         jp.write_text(json.dumps(data, indent=1))
         rows.append({"ref": n, "kind": g["kind"], "created": g["created"],
                      "state_sha": g["state_sha"], "state_date": g["state_date"],
+                     "body_last_edited": g["body_last_edited"],
                      "error": g["error"]})
         print(f"[{n:2d}] {g['kind']:<6} created={g['created'][:10]:<10} "
               f"state={g['state_date'][:10]:<10} {g['error'][:60]}", flush=True)
