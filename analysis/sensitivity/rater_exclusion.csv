@@ -1,8 +1,8 @@
 score_set,rho_vs_adjudicated,upper_same,lower_same,moved
 adjudicated (as reported),1.0,True,True,
-"canonical LLM rater only (GPT-5.6 Sol, clean D3/D4)",0.859,False,False,deepseek-instant;gemini-3.1-pro;gpt-5;grok-4;kimi-instant;meta-llama-4
-mean of the three LLM raters (no author rater),0.864,False,False,deepseek-instant;gemini-3.1-pro;grok-4;kimi-instant
-"same, all D3/D4 from the clean pass",0.951,True,False,deepseek-instant;kimi-instant
-Grok 4 only,0.517,False,False,deepseek-expert;deepseek-instant;deepseek-instant-deepthink;gemini-3.1-pro;kimi-instant;meta-llama-4;perplexity
-DeepSeek chat run only,0.466,False,False,deepseek-expert;deepseek-instant;deepseek-instant-deepthink;gemini-3.1-pro;gpt-5;grok-4;meta-llama-4;qwen-3.7-plus
-author-derived rater only (for contrast),0.892,True,False,deepseek-expert;meta-llama-4
+"canonical LLM rater only (GPT-5.6 Sol, clean D3/D4)",0.843,False,False,deepseek-instant;gemini-3.1-pro;gpt-5;grok-4;kimi-instant;meta-llama-4
+mean of the three LLM raters (no author rater),0.87,False,False,deepseek-instant;gemini-3.1-pro;grok-4;kimi-instant
+"same, all D3/D4 from the clean pass",0.947,True,False,deepseek-instant;kimi-instant
+Grok 4 only,0.559,False,False,deepseek-expert;deepseek-instant;deepseek-instant-deepthink;gemini-3.1-pro;kimi-instant;meta-llama-4;perplexity
+DeepSeek chat run only,0.402,False,False,deepseek-expert;deepseek-instant;deepseek-instant-deepthink;gemini-3.1-pro;gpt-5;grok-4;meta-llama-4;qwen-3.7-plus
+author-derived rater only (for contrast),0.918,True,False,deepseek-expert;meta-llama-4

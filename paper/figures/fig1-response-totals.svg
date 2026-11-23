@@ -36,11 +36,11 @@
 <circle cx="685.7" cy="211.0" r="6" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
 <line x1="20.0" y1="228.0" x2="860.0" y2="228.0" stroke="#52514e" stroke-width="1" stroke-dasharray="4 4"/>
 <text x="24.0" y="242.0" font-size="12" fill="#52514e" text-anchor="start" font-weight="normal">middle third</text>
-<text x="238.0" y="250.0" font-size="14" fill="#0b0b0b" text-anchor="end" font-weight="normal">meta-llama-4</text>
-<line x1="555.0" y1="245.0" x2="816.4" y2="245.0" stroke="#2a78d6" stroke-width="2"/>
-<circle cx="642.1" cy="245.0" r="6" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
-<text x="238.0" y="284.0" font-size="14" fill="#0b0b0b" text-anchor="end" font-weight="normal">gemini-3.1-pro</text>
-<line x1="598.6" y1="279.0" x2="772.9" y2="279.0" stroke="#2a78d6" stroke-width="2"/>
+<text x="238.0" y="250.0" font-size="14" fill="#0b0b0b" text-anchor="end" font-weight="normal">gemini-3.1-pro</text>
+<line x1="598.6" y1="245.0" x2="772.9" y2="245.0" stroke="#2a78d6" stroke-width="2"/>
+<circle cx="598.6" cy="245.0" r="6" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<text x="238.0" y="284.0" font-size="14" fill="#0b0b0b" text-anchor="end" font-weight="normal">meta-llama-4</text>
+<line x1="555.0" y1="279.0" x2="816.4" y2="279.0" stroke="#2a78d6" stroke-width="2"/>
 <circle cx="598.6" cy="279.0" r="6" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
 <text x="238.0" y="318.0" font-size="14" fill="#0b0b0b" text-anchor="end" font-weight="normal">qwen-3.7-plus</text>
 <line x1="555.0" y1="313.0" x2="729.3" y2="313.0" stroke="#2a78d6" stroke-width="2"/>

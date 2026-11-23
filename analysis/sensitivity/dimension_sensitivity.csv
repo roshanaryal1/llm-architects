@@ -1,15 +1,15 @@
 dimension_set,max,rho_vs_full,upper_same,lower_same,moved
 all nine dimensions (as reported),18,1.0,True,True,
-drop D1 (kappa 0.15),16,0.991,False,True,grok-4
-drop D9 (kappa 0.14),16,0.989,False,False,deepseek-instant;gpt-5;grok-4
-drop D1 and D9,14,0.949,False,False,deepseek-instant;grok-4;kimi-instant;meta-llama-4
-drop all five weak dims (keep D2-D5),8,0.853,False,False,deepseek-instant;kimi-instant;mistral-large-3
-leave out D1 only,16,0.991,False,True,grok-4
-leave out D2 only,16,0.991,True,True,
-leave out D3 only,16,0.995,False,True,gpt-5;grok-4
-leave out D4 only,16,0.998,True,True,
-leave out D5 only,16,0.979,True,True,
-leave out D6 only,16,0.979,True,True,
-leave out D7 only,16,0.986,True,True,
+drop D1 (kappa 0.15),16,0.995,True,True,
+drop D9 (kappa 0.14),16,0.991,True,False,deepseek-instant
+drop D1 and D9,14,0.963,False,False,deepseek-instant;grok-4;kimi-instant
+drop all five weak dims (keep D2-D5),8,0.861,False,False,deepseek-instant;kimi-instant;mistral-large-3
+leave out D1 only,16,0.995,True,True,
+leave out D2 only,16,0.986,True,True,
+leave out D3 only,16,1.0,True,True,
+leave out D4 only,16,0.993,True,True,
+leave out D5 only,16,0.961,True,True,
+leave out D6 only,16,0.973,True,True,
+leave out D7 only,16,0.98,True,True,
 leave out D8 only,16,1.0,True,True,
-leave out D9 only,16,0.989,False,False,deepseek-instant;gpt-5;grok-4
+leave out D9 only,16,0.991,True,False,deepseek-instant
