@@ -5,6 +5,18 @@ All notable changes to the corpus and analysis. Format loosely follows
 
 ## [Unreleased]
 
+### Revision - 2026-11-23 - Capture-day citation audit (Cureus issue 10) and archive (issue 15)
+- `analysis/citation-audit/`: all 99 Meta references audited against their state on
+  31 Aug 2026 (Wayback captures; dated GitHub records via the API). 86 traceable: 66 full,
+  18 partial, 2 none; 13 not traceable to the capture day; 13 primary; 20 forks or copies. Replaces the
+  unrecorded "59 of 99". First pass by an AI assistant, every verdict with its reason and
+  evidence; `second-coder-sheet.csv` holds a blind 20-row sample for the author.
+- `meta-llama-4` re-adjudicated: D6 0 -> 1; D4 stays 1 (Qwen3.5-35B-A3B is real, but DeepSeek
+  V4 Flash is given a wrong size); total 11 -> 12; sensitivity outputs and Figure 1 regenerated.
+- Verification register: cplt, DiffResearch, agent-policy-engine and Helmrig resolved to real
+  projects created before the capture day; all 19 flagged names are real. Reference [38] is correctly titled.
+- Key verification evidence saved to the Wayback Machine (`analysis/verification/`).
+
 ### Revision - 2026-11-22 - Cureus editorial deferral of 2026-11-21 (15 issues)
 - Editor deferred approval on 2026-11-21 with 10 major and 5 minor scientific issues;
   resubmission due by 2027-01-02. Not yet resubmitted.

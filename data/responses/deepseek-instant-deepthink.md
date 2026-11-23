@@ -476,3 +476,24 @@ Fabricated or unverifiable, presented as real recommendations:
 | Memory budget | oversubscribe to 32–34 GB ("acceptable") | keep headroom; heavy set does not co-reside |
 | Sources | 0 | ~97 |
 | Cloud | none (Ornith "drives Claude Code locally for free") | optional cloud < $30/mo |
+
+### Correction 2026-11-23: DiffResearch, Helmrig and the Qwen3.5-35B-A3B tag are real
+- `DiffResearch` is real: `https://github.com/alanrbtx/DiffResearch`, the URL the response
+  gives, created 2026-01-25. Its README at the last commit before the cutoff (2026-08-26)
+  confirms a multi-agent deep-research framework with ArXiv and Semantic Scholar retrieval,
+  `run_lite_deep_research.py`, `requirements.txt`, and the `MODEL_BACKEND=openai`, `BASE_URL`
+  and `MODEL_NAME` settings. The Phase 3 command is wrong: every version of the script before
+  the cutoff takes `--prompt`, not `--topic`. "Lightweight" and use with a local Ollama endpoint
+  are not confirmed. The response does not say the repo is mainly about diffusion language
+  models.
+- `Helmrig` is real: iPhone app "Helmrig Agents"
+  (`https://apps.apple.com/us/app/helmrig-agents/id6762804522`), released 2026-05-14; iPad app
+  "Helmrig Shell", released 2026-06-13; npm server `helmrig`, first version 2026-04-21. A Wayback
+  copy of `helmrig.app` from 2026-05-15 describes an end-to-end encrypted, self-hosted iPhone
+  client for Claude Code, which matches the response's table row. The earlier search missed it
+  because it covered GitHub, Hugging Face and PyPI only.
+- The `Qwen3.5-35B-A3B` tag is real: `https://huggingface.co/Qwen/Qwen3.5-35B-A3B`, created
+  2026-02-24; 35B total, 3B active, Apache 2.0, 262,144-token context, matching the response's
+  "MoE, 3B active, 256K, Apache 2.0". The Ollama tag `qwen3.5:35b-a3b-q4_K_M` was not checked.
+- The "invented" and `UNRESOLVED` labels above for these three are wrong. Evidence and dates:
+  `analysis/verification/tool-model-register.md` (correction 2026-11-23).

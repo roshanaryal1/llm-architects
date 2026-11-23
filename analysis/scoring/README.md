@@ -34,7 +34,7 @@ Recompute: `python3 ../scripts/agreement.py`.
 ## Adjudicated ranking (non-anchor) — after the clean D3/D4 re-run (2026-09-01)
 
 `perplexity` 18 · `mistral-large-3` 15 · `gpt-5` 14 · `grok-4` 14 · `gemini-3.1-pro` 12 ·
-`qwen-3.7-plus` 12 · `kimi-instant` 11 · `meta-llama-4` 11 · `deepseek-instant` 9 ·
+`qwen-3.7-plus` 12 · `kimi-instant` 11 · `meta-llama-4` 12 (corrected 2026-11-23 from 11; see the report) · `deepseek-instant` 9 ·
 `deepseek-expert` 8 · `deepseek-instant-deepthink` 6 · `z-ai` 5. Anchor `claude-sonnet-5`: 15
 (excluded from cross-response stats).
 

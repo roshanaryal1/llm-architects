@@ -119,9 +119,10 @@ PRESETS: dict[str, dict] = {
         # ("Ornith-1.0-9B" + "Qwen2.5-Coder-7B" always loaded, "Qwen3.5-35B-A3B" on
         # demand) and calls the resulting ~32-34 GB "slight oversubscription acceptable".
         # Ornith-1.0-9B is REAL per the verification register; the Qwen3.5-35B-A3B tag is
-        # UNRESOLVED there. Sizes are as the response states them.
+        # also REAL (Hugging Face Qwen/Qwen3.5-35B-A3B, released 2026-02-24). Sizes are as
+        # the response states them.
         "label": "DeepSeek Instant+DeepThink pick (3 models 'always loaded')",
-        "models": [("Qwen3.5-35B-A3B q4 [tag UNRESOLVED]", 22.0, 0.14),
+        "models": [("Qwen3.5-35B-A3B q4 [tag real, HF 2026-02-24]", 22.0, 0.14),
                    ("Ornith-1.0-9B q4", 5.6, 0.03),
                    ("'Qwen2.5-Coder-7B' q4", 4.0, 0.03)],
         "ctx": 8000,
@@ -174,11 +175,12 @@ PRESETS: dict[str, dict] = {
         "browser": True,
     },
     "meta": {
-        # Meta / Llama 4: one hot large model (its "Qwen3.5-35B-A3B" tag, UNRESOLVED, ~20 GB)
+        # Meta / Llama 4: one hot large model (its "Qwen3.5-35B-A3B" tag, real: Hugging Face,
+        # released 2026-02-24; ~20 GB as stated)
         # kept resident (keep_alive=-1) + Qwen2.5-Coder-7B (~5 GB) small tier + OrbStack +
         # dev tools + browser. Its own table: "~32 GB tight but feasible, single large only".
         "label": "Meta/Llama 4 pick (35B-A3B ~20 GB resident + Qwen2.5-Coder-7B ~5 GB + OrbStack)",
-        "models": [("35B-A3B 4-bit (Qwen3.5-35B-A3B tag UNRESOLVED)", 20.0, 0.07),
+        "models": [("35B-A3B 4-bit (Qwen3.5-35B-A3B, real, HF 2026-02-24)", 20.0, 0.07),
                    ("Qwen2.5-Coder-7B Q4_K_M", 5.0, 0.03)],
         "ctx": 32000,
         "browser": True,
