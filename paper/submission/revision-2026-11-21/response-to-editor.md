@@ -1,7 +1,6 @@
 # Response to the editor's comments (deferral of 21 November 2026)
 
-<!-- DRAFT. Text in [square brackets] needs the author's decision before this is sent:
-     Issue 2 (human raters), Issue 10 (re-code the Meta URLs or not), Issue 15 (archive DOI). -->
+<!-- Before sending: replace the archive DOI placeholder in Issue 15 with the v1.1 version DOI. -->
 
 Article: "Large Language Models as Systems Architects: A Controlled Study of Consensus,
 Fabrication, and Constraint Reasoning on One Hard Design Task"
@@ -28,7 +27,6 @@ Issues 6 and 7), and the limitation is restated in "Limitations".
 
 ## Issue 2 (Methods, rater procedure): no independent human expert raters
 
-[DECISION: keep this answer if no human raters are added; replace it if they are.]
 I have taken the editor's second option and discussed explicitly how conclusions may differ
 under human evaluation. The Methods now state that no independent human expert rated the
 responses. A new paragraph in the Discussion separates the results by how much they depend on
@@ -53,9 +51,9 @@ DeepSeek totals below every rater's total.
 
 As requested, every ranking result is now also reported without the author-derived rater (new
 "Sensitivity analyses" subsection and Table 9). Using the canonical LLM rater alone, rank
-correlation with the adjudicated totals is 0.80 and six of twelve responses change third;
-using the mean of the three LLM raters, it is 0.85 and four change third; with every rater's
-D3 and D4 taken from the clean pass, it is 0.92 and two change third. In all three, Perplexity
+correlation with the adjudicated totals is 0.86 and six of twelve responses change third;
+using the mean of the three LLM raters, it is also 0.86 and four change third; with every
+rater's D3 and D4 taken from the clean pass, it is 0.95 and two change third. In all three, Perplexity
 and Mistral Large 3 stay at the top and z-ai, DeepSeek Expert and DeepSeek Instant-plus-DeepThink
 stay at the bottom; single LLM raters reorder even these, and the paper says so. Krippendorff's
 alpha across the three LLM raters alone is 0.45, against 0.46 with all four. The analysis also
@@ -79,17 +77,18 @@ say the study shows that this failure occurs and does not estimate how often it 
 tasks. The Introduction says the judge "can emit" false-positive flags instead of
 "systematically emits", and a Discussion paragraph lists what the result does not show:
 frequency, magnitude on other tasks, and whether other raters share it. The counts are also
-corrected (see the corrections below): the rater flagged 19 names, grouped as 14 entries in
-Table 3, of which 15 are real and four unresolved.
+corrected (see the corrections below): the rater flagged 19 names, of which 18 are real and
+one (Helmrig) remains unresolved.
 
 ## Issue 6 (Statistical analysis): weakly reliable dimensions
 
 New dimension sensitivity analyses (Methods and "Sensitivity analyses", Table 9). Leaving out
-any single dimension gives totals that rank-correlate 0.96 to 1.00 with the full totals and
-moves at most one response between thirds. Dropping both of the weakest dimensions (D1 and D9)
-moves three responses (rho 0.96); keeping only the four more reliable dimensions also moves
-three (rho 0.87). Perplexity, z-ai, DeepSeek Expert and DeepSeek Instant-plus-DeepThink keep
-their position in every set. The per-dimension kappa values now carry bootstrap intervals
+any single dimension gives totals that rank-correlate 0.98 to 1.00 with the full totals and
+moves up to three responses between thirds; the most affected is Grok 4, one point above the
+next response, which drops a third when D1, D3 or D9 is left out. Dropping both of the weakest
+dimensions (D1 and D9) moves four responses (rho 0.95); keeping only the four more reliable
+dimensions moves three (rho 0.85). Perplexity, Gemini 3.1 Pro, Qwen 3.7 Plus, z-ai, DeepSeek
+Expert and DeepSeek Instant-plus-DeepThink keep their position in every set. The per-dimension kappa values now carry bootstrap intervals
 (Figure 4); the intervals for D1 and D9 include zero.
 
 ## Issue 7 (Statistical analysis): the Strong, Good, Mixed and Weak bands
@@ -131,14 +130,20 @@ of agreement, not of correctness.
 The Methods now give the decision rules for the three citation axes (resolves, supports,
 source tier), including how archived copies are used for pages that have changed since the
 capture window. The full rules, with examples, are released with the data. In preparing this
-I found that the classification of the Meta capture's 99 references was a single-coder pass
-recorded only as summary notes, without a per-URL record. Because that count cannot be
-reproduced, the manuscript now reports the Meta assessment qualitatively, without the earlier
-"59 of 99" figure, and the 99 references are released as an audit sheet against the published
-rules.
-[DECISION: if the 99 references are re-coded before resubmission, replace the last two
-sentences with the re-derived count, its interval, and the agreement on the double-coded
-sample.]
+I found that the earlier classification of the Meta capture's 99 references was a single-coder
+pass recorded only as summary notes, so I audited all 99 again against these rules, using
+evidence of each page's state on the capture day: a Wayback Machine capture on or before
+31 August 2026 where one exists, and for GitHub references the object's own dated record (a
+commit, an issue or pull request, or the README at the last commit before the cutoff). The
+result changes the finding. Of the 86 references that can be traced, 67 support their claim
+fully, 18 partly and one not at all; 13 are gone with no archive copy. The share that is
+unresolvable or non-supporting is therefore between 1 percent (1 of 86) and 14 percent (14 of
+99), not the 59 of 99 reported before. The weakness of this apparatus is source authority: only
+14 of the 86 are primary sources, and 20 point to unstarred forks or copies of the project they
+describe. The citation results, Tables 4 and 5, the abstract and the Meta capture's citation
+score are revised accordingly. The first coding pass was made by an AI assistant from the
+capture-day evidence; the evidence-collection scripts, every verdict and its reason are
+released so that each verdict can be checked.
 
 ## Issue 11 (Minor, organisation): results and interpretation interwoven
 
@@ -170,11 +175,12 @@ decision axis (Figure 3) and per-dimension agreement with intervals (Figure 4).
 
 ## Issue 15 (Minor, references): dynamic online sources
 
-[DECISION: requires the archived release to exist before sending.]
-The corpus, verification register, score files, analysis outputs and scripts are fixed in an
-archived release of the repository, cited in "Limitations" with its DOI. Each capture is a
-dated snapshot, and the citation rules require archived copies for pages that have changed
-since the capture window.
+The corpus, verification register, score files, citation-audit evidence, analysis outputs
+and scripts are fixed in an archived release of the repository on Zenodo (version 1.1,
+[ARCHIVE DOI]), cited in "Limitations". The pages used as verification evidence have also been
+saved to the Internet Archive's Wayback Machine, and their snapshot addresses are released with
+the data. Each capture is a dated snapshot, and the citation rules require evidence of a page's
+state on the capture day rather than its current state.
 
 ## Corrections found during this revision
 
@@ -185,9 +191,10 @@ since the capture window.
    the gap between alpha and weighted kappa as a prevalence effect was written for the wrong
    values and is removed.
 2. **Fabrication counts.** The previous text said the rater flagged 14 names, of which at least
-   twelve were real and four unresolved, which cannot all be true. Table 3 lists 19 names in 14
-   entries: 15 real (twelve at the first verification pass, three on a follow-up) and four
-   unresolved. The text now uses those counts and describes the real projects as many released
+   twelve were real and four unresolved, which cannot all be true. Table 3 lists 19 names. A
+   further check during this revision found three of the four "unresolved" names (cplt,
+   DiffResearch, agent-policy-engine) to be public repositories created before the capture day,
+   so 18 are real and one (Helmrig) remains unresolved. The text now uses those counts and describes the real projects as many released
    or renamed after the rater's cutoff, rather than asserting a count of post-cutoff releases. The previous abstract also said none of the
    genuine factual errors concerned a flagged name; two do (a wrong size for Qwen3-Coder-Next and
    a wrong description of Cloak), so the text now says the rater's error lay in its existence
@@ -221,7 +228,15 @@ since the capture window.
    incomplete; the GPT-5 base capture was the free-tier GPT-5.6 Luna and its variants the
    paid-tier GPT-5.6 Sol, and Perplexity does not disclose its model. The text now reports these
    exceptions and treats the comparison as one of product sessions, not fixed models.
-9. **References.** References [1] and [4] have seven and six authors and are now listed in full,
+9. **Meta citation finding.** The earlier "59 of 99 references non-supporting or unresolvable"
+   came from summary notes that mixed up low source authority with lack of support; the
+   capture-day audit described under Issue 10 replaces it. The earlier claim that one Meta
+   reference gives a real preprint under the wrong title was also wrong: reference [38] is
+   correctly titled, and only partly supports the claim attached to it. Two of the Meta capture's
+   rubric scores change as a result: citation quality from 0 to 1, and model factuality from 1 to
+   2, because the model tag that had held it at 1 (Qwen3.5-35B-A3B) is a real release. Its total
+   moves from 11 to 13 and it stays in the middle third; the sensitivity analyses were rerun.
+10. **References.** References [1] and [4] have seven and six authors and are now listed in full,
    per the journal's rule; they had been cut to "et al.".
 
 Two release-file fixes were also made that do not change any reported number: labels in the
