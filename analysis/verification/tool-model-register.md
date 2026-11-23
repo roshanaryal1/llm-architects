@@ -13,6 +13,36 @@ fabricated**; at least 12 are real products or model releases dated **after the 
 This register is now the single source of truth for RQ2 (fabrication) and RQ4 (recency). The
 `decisions-matrix.csv` reviewer notes and the consensus README must be corrected to match it.
 
+> **Correction 2026-11-23.** The four names this register listed as `UNRESOLVED` and the
+> `Qwen3.5-35B-A3B` tag were re-checked against dated public records (GitHub API, Hugging Face
+> API, OpenRouter API, npm registry, App Store, Wayback Machine). All of them existed before the
+> 31 August 2026 capture. Of the 19 names the study-internal rater flagged as fabricated, **19 are
+> now `REAL` and 0 are `UNRESOLVED`** (was 15 real and 4 unresolved).
+>
+> - `cplt`: `https://github.com/navikt/cplt`, created 2026-04-09, "Sandbox for AI coding agents
+>   ... inside a kernel-level sandbox". Meta cites a fork of it, `santobedi/cplt` [71].
+> - `agent-policy-engine`: `https://github.com/visualops-ai/agent-policy-engine`, created
+>   2026-05-28; returns allow, deny, sandbox or approval-required. Meta cites it directly as [74].
+> - `DiffResearch`: `https://github.com/alanrbtx/DiffResearch`, created 2026-01-25; multi-agent
+>   deep-research framework with ArXiv and Semantic Scholar retrieval. The response's
+>   `--topic` flag is wrong (the script takes `--prompt`). Details in section A.
+> - `Helmrig`: iPhone app "Helmrig Agents" (App Store, released 2026-05-14), iPad app "Helmrig
+>   Shell" (released 2026-06-13) and npm server `helmrig` (first version 2026-04-21). A Wayback
+>   copy of `helmrig.app` from 2026-05-15 describes an end-to-end encrypted iPhone client for
+>   Claude Code. The earlier search covered GitHub, Hugging Face and PyPI only.
+> - `Qwen3.5-35B-A3B` tag (not one of the 19): `https://huggingface.co/Qwen/Qwen3.5-35B-A3B`,
+>   created 2026-02-24 (35B total, 3B active, Apache 2.0, 262,144-token context). OpenRouter
+>   lists canonical slug `qwen/qwen3.5-35b-a3b-20260224`, the id Meta gives, and commit
+>   `https://github.com/sunholo-data/ailang/commit/87202a157a461db20b0f057c30c662edb0d50fc4`
+>   (2026-06-02, Meta's [13]) records checking that id against the live OpenRouter API.
+> - Meta reference [38] (arXiv 2412.14161) is correctly titled: the arXiv record is
+>   "TheAgentCompany: Benchmarking LLM Agents on Consequential Real World Tasks", as Meta gives
+>   it. The earlier note (section E) that it mis-titles the paper was wrong. The citation audit
+>   (`analysis/citation-audit/meta-llama-4-urls.csv`, row 38) finds it only partly supports the
+>   CodeAct unified-action-space claim it is attached to.
+>
+> Older text below is kept and marked, not deleted.
+
 ---
 
 ## Verdict codes
@@ -46,10 +76,10 @@ This register is now the single source of truth for RQ2 (fabrication) and RQ4 (r
 | **Cloak** | deepseek-instant-deepthink (as a "remote tool" — mis-categorised) | `REAL`, but mislabelled | `getcloak.dev` + VS Code marketplace. Protects `.env` secrets from AI coding agents (encrypts, sandbox values, Touch ID gate). It is a **secrets-protection** tool, not a remote-control tool — deepseek-deepthink listed it among "end-to-end encrypted remote tools", which is wrong. Tool exists; the categorisation is the error. Verified 2026-09-01. |
 | **pi-search-hub** (12 search backends) | z-ai | `REAL` | `github.com/ronnieops/pi-search-hub`. Unified web-search + content-extraction extension for the `pi` coding agent — 12 backends (DuckDuckGo, Jina, Tavily, Brave, Exa, Serper, Firecrawl, Marginalia, LangSearch, WebSearchAPI, Perplexity Sonar, SearXNG), auto-fallback, RRF combine. z-ai said "12–19 backends" — 12 is right. Verified 2026-09-01. |
 | **Clawtrol / OpenClaw "channels"**, `openclaw onboard --install-daemon` | meta-llama-4 | `UNRESOLVED` | Parent projects real; exact CLI/subfeatures not verified. |
-| **cplt** kernel sandbox | meta-llama-4 | `UNRESOLVED` — likely fabricated | No project by this name after targeted search. (Note: Apple has **deprecated `sandbox-exec`** as of 2026 — affects the reference architecture's isolation recommendation.) |
-| **agent-policy-engine** | meta-llama-4 | `UNRESOLVED` — generic | Not a specific project. "Policy engine for agents" is a real *pattern* (Open Policy Agent model); no tool ships under this exact name. |
-| **DiffResearch** research pipeline | deepseek-instant-deepthink | `UNRESOLVED` — likely fabricated | No project by this name after targeted search. |
-| **Helmrig** (WhipDesk "sibling") | deepseek-instant-deepthink | `UNRESOLVED` — likely fabricated | No project by this name after targeted search. (`WhipDesk` and `Cloak` from the same list are both real; `Helmrig` is not located.) |
+| **cplt** kernel sandbox | meta-llama-4 | `REAL` (re-verified 2026-11-23) | `https://github.com/navikt/cplt`, created 2026-04-09: "Sandbox for AI coding agents ... inside a kernel-level sandbox" (Seatbelt on macOS, Landlock and seccomp on Linux). Meta cites the fork `https://github.com/santobedi/cplt` [71] (created 2026-08-04); its README at the last commit before the cutoff (2026-08-03) states the kernel-level credential blocking and `git_guard.enabled` setting Meta describes. *Earlier entry (2026-09-01), superseded: `UNRESOLVED`, likely fabricated; "No project by this name after targeted search."* (Note: Apple has **deprecated `sandbox-exec`** as of 2026 — affects the reference architecture's isolation recommendation.) |
+| **agent-policy-engine** | meta-llama-4 | `REAL` (re-verified 2026-11-23) | `https://github.com/visualops-ai/agent-policy-engine`, created 2026-05-28. README at the last commit before the cutoff (2026-05-29): evaluates agent tool calls against YAML/JSON rules and returns `allow`, `deny`, `sandbox` or `approval_required`, with the same examples Meta gives (write to `src/` gives sandbox, shell command gives approval_required, `rm -rf` gives deny). Meta cites it directly as [74]. The symlink-escape blocking Meta also credits to it is not in that README. *Earlier entry (2026-09-01), superseded: `UNRESOLVED`, generic; "Not a specific project. "Policy engine for agents" is a real pattern (Open Policy Agent model); no tool ships under this exact name."* |
+| **DiffResearch** research pipeline | deepseek-instant-deepthink | `REAL` (re-verified 2026-11-23); CLI flag wrong | `https://github.com/alanrbtx/DiffResearch` (the URL the response gives), created 2026-01-25; README read at the last commit before the cutoff (`6836a9d`, 2026-08-26). Matches the response: a multi-agent deep-research framework; ArXiv and Semantic Scholar retrieval; `run_lite_deep_research.py` and `requirements.txt` exist; an OpenAI-compatible backend set by `MODEL_BACKEND=openai`, `BASE_URL` and `MODEL_NAME`. Wrong: the response runs `run_lite_deep_research.py --topic`, but every version of that script before the cutoff accepts `--prompt` only, so the command fails as written. Not confirmed: "lightweight" (the README says "easy-to-run" and uses no LangChain or LangGraph); that it works with a local Ollama endpoint (not run). The response does not mention the repo's main subject, diffusion language models with a DiffusionGemma default backend. *Earlier entry (2026-09-01), superseded: `UNRESOLVED`, likely fabricated; "No project by this name after targeted search."* |
+| **Helmrig** (WhipDesk "sibling") | deepseek-instant-deepthink | `REAL` (re-verified 2026-11-23) | iPhone app "Helmrig Agents", `https://apps.apple.com/us/app/helmrig-agents/id6762804522`, released 2026-05-14; iPad app "Helmrig Shell", `https://apps.apple.com/us/app/helmrig-shell/id6776371335`, released 2026-06-13; npm server `https://registry.npmjs.org/helmrig`, first version 2026-04-21, 47 versions before the cutoff. Wayback copy of `helmrig.app` dated 2026-05-15 (`https://web.archive.org/web/20260515221539/https://www.helmrig.app/`): "Helmrig brings Claude Code, your terminal, and your repos to iPhone", "End-to-end encrypted", "Self-hosted". Matches the response's row (iOS app, end-to-end, iOS-first). Its "Free?" is hedged; the App Store lists both apps as free today, capture-day price not checked. No GitHub repo, Hugging Face entry or PyPI package by this name. *Earlier entry (2026-09-01), superseded: `UNRESOLVED`, likely fabricated; "No project by this name after targeted search. (`WhipDesk` and `Cloak` from the same list are both real; `Helmrig` is not located.)"* |
 | **"Agent Safehouse", "Cua VMs"** | grok-4 | `UNRESOLVED` | grok itself hedged these as unverified. (`Safehouse` — a macOS AI-coding-agent sandbox, `tessl.io` blog — **is** real and was named by qwen v3; whether grok's "Agent Safehouse" is the same is not confirmed.) |
 | llama-swap, sqlite-vec, LiteLLM, OpenHands, Aider, OpenCode, LangGraph, PydanticAI, Goose, GPT-Researcher, Firecrawl, Exa, PaperQA2, Graphiti, Mem0, Letta, Caddy, OrbStack, Lima, `sandbox-exec` | many | `REAL` | Established pre-cutoff; not disputed. Spot-check versions only. |
 
@@ -63,7 +93,7 @@ This register is now the single source of truth for RQ2 (fabrication) and RQ4 (r
 | **Ornith-1.0-9B** (+ 31B / 35B-MoE / 397B-MoE) | deepseek-instant-deepthink (primary + "Claude Code backend") | `REAL` | `huggingface.co/deepreinforce-ai/Ornith-1.0-9B`; Ollama `ornith:9b`. Self-improving agentic-coding family, post-trained on Gemma 4 + Qwen 3.5, MIT. ~19 GB bf16. |
 | **Qwen3-Coder-30B-A3B** 4-bit MoE (consensus heavy model) | claude, perplexity, deepseek-expert, kimi, mistral, gpt-5 (alt) | `REAL` — **re-verify exact tag** | Qwen3-Coder family real. Confirm the precise "30B-A3B" tag and 4-bit artifact size against Qwen's model card. |
 | **Qwen3.6-35B-A3B** | gpt-5 (primary), mistral (alt) | `REAL` — **re-verify** | Confirm against Qwen releases. |
-| **Qwen3.5-35B-A3B** tag + OpenRouter id `qwen/qwen3.5-35b-a3b-20260224` | deepseek-instant-deepthink, meta-llama-4 | `UNRESOLVED` — **re-verify** | May be a real point-release or a wrong tag for 3.6/Coder-30B. Check OpenRouter + Qwen. |
+| **Qwen3.5-35B-A3B** tag + OpenRouter id `qwen/qwen3.5-35b-a3b-20260224` | deepseek-instant-deepthink, meta-llama-4 | `REAL` (re-verified 2026-11-23) | `https://huggingface.co/Qwen/Qwen3.5-35B-A3B`, createdAt 2026-02-24. Model card: 35B total, 3B activated, Apache 2.0, 262,144-token native context; the MoE, 3B-active, Apache 2.0 and 256K/262K figures both responses give match it. OpenRouter API lists `qwen/qwen3.5-35b-a3b` with canonical slug `qwen/qwen3.5-35b-a3b-20260224` (the id Meta gives), created 2026-02-25, linked to that Hugging Face repo. Commit `https://github.com/sunholo-data/ailang/commit/87202a157a461db20b0f057c30c662edb0d50fc4` (2026-06-02; Meta's [13]) records checking that id against the live OpenRouter API that day. Not checked: the ~20-22 GB 4-bit sizes, the Ollama tag `qwen3.5:35b-a3b-q4_K_M`, `mlx-community/Qwen3.5-35B-A3B-4bit`. *Earlier entry, superseded: `UNRESOLVED`, re-verify; "May be a real point-release or a wrong tag for 3.6/Coder-30B. Check OpenRouter + Qwen."* |
 | **GLM-4.5-Air** — **106B total / 12B active** (not a ~4 GB model) | z-ai (light "~4 GB" model) | `REAL`, but z-ai's size framing is **wrong** | Real Zhipu 2025 model; official card = 106B/12B-active. z-ai treats it as a ~4 GB fast-utility model — a load-bearing size error (feeds §E). Confirmed by clean D3/D4 re-run. |
 | **GLM-5.2** — **753B** per official card | mistral ("744B"), gpt-5 | `REAL`; mistral's "744B" is a minor size slip | `huggingface.co/zai-org/GLM-5.2`. Does not change "far too big for 32 GB". |
 | **gpt-oss-20b** | claude (mid reasoner) | `REAL` | OpenAI open-weight model. |
@@ -112,7 +142,7 @@ These are **not** recency artefacts. They stay in the analysis.
 | `deepseek-instant-deepthink` | 256K context claim vs 1–2 GB KV budget; advocates memory oversubscription (~32–34 GB always-loaded). | hardware violation |
 | `deepseek-instant-deepthink` | Upgrade path describes DeepSeek-V4 as **dense** (96–128 GB); V4-Pro/V4-Flash are MoE (1.6T/49B-active; 284B/13B-active). *(clean D3/D4 re-run)* | model architecture error |
 | `z-ai` | GLM-4.5-Air treated as a ~4 GB fast-utility model; official card is 106B total / 12B active. *(clean D3/D4 re-run)* | model size error |
-| `meta-llama-4` | 99 numbered refs; ~60% are junk GitHub commit/PR/issue/`SKILL.md` URLs; same tool given multiple different repo URLs; ref [38] mis-titles a real arXiv paper. | citation quality (verifiable independent of recency) |
+| `meta-llama-4` | 99 numbered refs; ~60% are junk GitHub commit/PR/issue/`SKILL.md` URLs; same tool given multiple different repo URLs; ref [38] mis-titles a real arXiv paper. *Corrected 2026-11-23: [38] is correctly titled, and the "~60% junk" figure is replaced by the capture-day citation audit (`analysis/citation-audit/`): of 86 references traceable to their capture-day state, 2 do not support their claims and 18 support them only partly; the main weakness is low source authority (14 of 86 primary; 20 point to forks), not lack of support. See the correction at the top.* | citation quality (verifiable independent of recency) |
 | `gemini`, `kimi` | Stale cloud fallback list (Claude 3.5 Sonnet / GPT-4o). | recency (RQ4) |
 
 ---
@@ -146,15 +176,30 @@ These are **not** recency artefacts. They stay in the analysis.
 — but deepseek-deepthink mis-categorised it as a remote-control tool; it protects `.env`);
 **`pi-search-hub` → REAL** (`ronnieops/pi-search-hub`, 12 backends as z-ai said).*
 
+*Cleared by the re-check (2026-11-23): **`cplt` → REAL** (`navikt/cplt`, created 2026-04-09);
+**`agent-policy-engine` → REAL** (`visualops-ai/agent-policy-engine`, created 2026-05-28);
+**`DiffResearch` → REAL** (`alanrbtx/DiffResearch`, created 2026-01-25; `--topic` flag wrong);
+**`Helmrig` → REAL** (App Store "Helmrig Agents", released 2026-05-14; npm `helmrig`, 2026-04-21);
+**`Qwen3.5-35B-A3B` tag → REAL** (`Qwen/Qwen3.5-35B-A3B`, created 2026-02-24). Evidence in
+sections A and B.*
+
+**Genuinely unresolved after targeted search (updated 2026-11-23): none of the 19 flagged
+names.** Still not verified, not load-bearing: `Clawtrol` sub-CLI details, grok's "Agent
+Safehouse"/"Cua VMs".
+
+*Superseded 2026-09-01 entry, kept for the record:*
 **Genuinely unresolved after targeted search — 4 names, likely fabricated:**
 `Helmrig` (deepseek-instant-deepthink) · `DiffResearch` (deepseek-instant-deepthink) ·
 `cplt` (meta-llama-4) · `agent-policy-engine` (meta-llama-4, generic pattern name).
 Plus not-load-bearing: `Clawtrol` sub-CLI details, grok's "Agent Safehouse"/"Cua VMs".
 
+*Updated 2026-11-23: of the 19 flagged names, 19 are real and 0 are unresolved. The 2026-09-01
+tally below is kept as written.*
+
 **Running RQ2 tally:** of ~18 names the anchor rater or the corpus flagged as fabricated,
 **0 are confirmed fabricated** and ~4 remain unresolvable (all in the two lowest-scoring
 responses, `deepseek-instant-deepthink` and `meta-llama-4`). Everything else is a real,
 web-verifiable release — most dated after the anchor's ~Jan-2026 training cutoff.
-"Agent Safehouse" · "Cua VMs" · exact Qwen3-Coder-30B-A3B / Qwen3.6-35B-A3B / Qwen3.5-35B-A3B tags ·
+"Agent Safehouse" · "Cua VMs" · exact Qwen3-Coder-30B-A3B / Qwen3.6-35B-A3B / Qwen3.5-35B-A3B tags (Qwen3.5-35B-A3B resolved 2026-11-23: `REAL`) ·
 GLM-5.2 · Gemini 3.1 Pro naming · M6 core layout · OpenHands SWE-bench % · Devstral Small 2 ·
 Mistral Small 3.1 · Phi-4-14B.
