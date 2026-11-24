@@ -150,9 +150,8 @@ bootstrap interval from 10,000 resamples of responses.
 
 ## Before pasting: open items
 
-1. **Archive DOI (issue 15).** After the final merge, the `v1.1` GitHub release is archived by
-   Zenodo automatically (the repository is already linked). Put its version DOI in place of the
-   placeholder in the manuscript's Limitations section and in the response letter's Issue 15.
+1. **Archive DOI (issue 15): done.** Release `v1.1` is archived on Zenodo as
+   https://doi.org/10.5281/zenodo.24455267 and is cited in Limitations and in Issue 15.
 2. **Optional, recommended (issue 10).** Code the 20 rows of
    `analysis/citation-audit/second-coder-sheet.csv` blind and run
    `python3 analysis/citation-audit/tally.py --second <your file>`; if you do, add one sentence

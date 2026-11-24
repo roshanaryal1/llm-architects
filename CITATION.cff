@@ -17,8 +17,8 @@ authors:
     email: roshanaryaal@gmail.com
 repository-code: "https://github.com/roshanaryal1/llm-architects"
 url: "https://github.com/roshanaryal1/llm-architects"
-version: "1.0.0"
-date-released: "2026-09-03"
+version: "1.1.0"
+date-released: "2026-11-23"
 license: CC-BY-4.0
 doi: 10.5281/zenodo.22245991
 identifiers:
@@ -28,6 +28,9 @@ identifiers:
   - type: doi
     value: 10.5281/zenodo.22245992
     description: Version DOI for v1.0
+  - type: doi
+    value: 10.5281/zenodo.24455267
+    description: Version DOI for v1.1 (Cureus revision)
 keywords:
   - large language models
   - systems architecture

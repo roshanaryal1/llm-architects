@@ -1,7 +1,5 @@
 # Response to the editor's comments (deferral of 21 November 2026)
 
-<!-- Before sending: replace the archive DOI placeholder in Issue 15 with the v1.1 version DOI. -->
-
 Article: "Large Language Models as Systems Architects: A Controlled Study of Consensus,
 Fabrication, and Constraint Reasoning on One Hard Design Task"
 
@@ -174,7 +172,7 @@ decision axis (Figure 3) and per-dimension agreement with intervals (Figure 4).
 
 The corpus, verification register, score files, citation-audit evidence, analysis outputs
 and scripts are fixed in an archived release of the repository on Zenodo (version 1.1,
-[ARCHIVE DOI]), cited in "Limitations". The pages used as verification evidence have also been
+https://doi.org/10.5281/zenodo.24455267), cited in "Limitations". The pages used as verification evidence have also been
 saved to the Internet Archive's Wayback Machine, and their snapshot addresses are released with
 the data. Each capture is a dated snapshot, and the citation rules require evidence of a page's
 state on the capture day rather than its current state.
