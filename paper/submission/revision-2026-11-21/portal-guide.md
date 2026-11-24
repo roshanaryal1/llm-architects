@@ -43,8 +43,8 @@ with one row:
 | cplt, DiffResearch, agent-policy-engine, Helmrig | real (resolved during this revision) | github.com/navikt/cplt (created 2026-04-09); github.com/alanrbtx/DiffResearch (created 2026-01-25); github.com/visualops-ai/agent-policy-engine (created 2026-05-28); npm helmrig (created 2026-04-21) and helmrig.app (Wayback 2026-04-27) |
 
 Note: Verdicts from web verification on 1 September 2026, with the follow-up passes described
-in the text; the evidence for each name is in the released verification register. "Unresolved"
-means no evidence was found either way; it is not a finding of fabrication.
+in the text; the evidence for each name is in the released verification register. (A sentence
+defining "unresolved" was dropped when pasting, since no row is unresolved any more.)
 
 **Table 4.** In the Meta row, replace "M6 approx 300+ GB/s (real: 170); 59 / 99 citation URLs
 non-supporting or unresolvable; same tool given multiple repo URLs; one reference mis-titles a
