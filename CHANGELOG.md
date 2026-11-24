@@ -16,6 +16,8 @@ All notable changes to the corpus and analysis. Format loosely follows
 - Verification register: cplt, DiffResearch, agent-policy-engine and Helmrig resolved to real
   projects created before the capture day; all 19 flagged names are real. Reference [38] is correctly titled.
 - Key verification evidence saved to the Wayback Machine (`analysis/verification/`).
+- Release `v1.1` archived on Zenodo: 10.5281/zenodo.24455267; cited in the manuscript and
+  letter; `CITATION.cff` updated to 1.1.0.
 
 ### Revision - 2026-11-22 - Cureus editorial deferral of 2026-11-21 (15 issues)
 - Editor deferred approval on 2026-11-21 with 10 major and 5 minor scientific issues;
