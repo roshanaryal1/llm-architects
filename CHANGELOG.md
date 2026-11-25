@@ -5,6 +5,13 @@ All notable changes to the corpus and analysis. Format loosely follows
 
 ## [Unreleased]
 
+### Publication - 2026-11-25 - Published in Cureus Journal of Computer Science
+- The editor approved the 2026-11-25 resubmission and the article was published the same day:
+  *Cureus Journal of Computer Science* 3: es44389-026-00392-5,
+  [doi:10.7759/s44389-026-00392-5](https://doi.org/10.7759/s44389-026-00392-5).
+- README status, status table and citation section, and the `CITATION.cff` preferred citation,
+  now point to the published article (#22).
+
 ### Revision - 2026-11-23 - Capture-day citation audit (Cureus issue 10) and archive (issue 15)
 - `analysis/citation-audit/`: all 99 Meta references audited against their state on
   31 Aug 2026 (Wayback captures; dated GitHub records via the API). 86 traceable: 66 full,

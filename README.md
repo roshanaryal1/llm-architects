@@ -18,13 +18,14 @@ stale recommendations, hardware-constraint violations, and citation quality. The
 research write-up and doubles as the design
 brief for the author's real build.
 
-> **Status:** analysis complete; manuscript **through peer review at Cureus Journal of Computer
-> Science** (Springer Nature, article 21832); editorial review completed on 2026-10-17.
-> Publication approval was deferred on 2026-11-16 for two editorial points (an incomplete
-> sentence and the casing of Table 4-6 first-column entries); both were fixed and the article
-> was resubmitted on 2026-11-18. **Awaiting editor approval.** Submitted 2026-09-02; two pre-review revision rounds
-> followed (2026-09-03 and 2026-09-04) and reviewer re-review completed 2026-09-13. Until the
-> article is published, cite the Zenodo record below. 13 responses / 11 systems captured (Claude Sonnet 5, Qwen 3.7 Plus, DeepSeek ×3
+> **Status:** **published** in *Cureus Journal of Computer Science* 3: es44389-026-00392-5
+> (Springer Nature, article 21832) on 2026-11-25,
+> [doi:10.7759/s44389-026-00392-5](https://doi.org/10.7759/s44389-026-00392-5). Submitted
+> 2026-09-02; two pre-review revision rounds (2026-09-03 and 2026-09-04); reviewer re-review
+> completed 2026-09-13; editorial review completed 2026-10-17. Publication approval was deferred
+> twice: on 2026-11-16 for two editorial points (resubmitted 2026-11-18) and on 2026-11-21 for 15
+> scientific issues (resubmitted 2026-11-25). Approved and published 2026-11-25. Cite the article
+> for the findings and the Zenodo record below for the data and code. 13 responses / 11 systems captured (Claude Sonnet 5, Qwen 3.7 Plus, DeepSeek ×3
 > modes, Perplexity, Gemini 3.1 Pro, Kimi Instant, Mistral Large 3, GPT-5.6 Luna, Meta / Llama
 > 4, Grok 4, z.ai / GLM), plus `prompt-v2`/`v3` paraphrase runs for five of them; all
 > falsifiable sub-claims web-verified ([`analysis/verification/`](analysis/verification/)); four
@@ -32,7 +33,7 @@ brief for the author's real build.
 > consensus synthesis and reference architecture
 > ([`analysis/consensus/`](analysis/consensus/)); working draft in
 > [`paper/draft-v1.md`](paper/draft-v1.md), submitted version in
-> [`paper/submission/`](paper/submission/). Archived at Zenodo — concept DOI
+> [`paper/submission/`](paper/submission/). Archived at Zenodo, concept DOI
 > [10.5281/zenodo.22245991](https://doi.org/10.5281/zenodo.22245991). See
 > [`CHANGELOG.md`](CHANGELOG.md) for the running log.
 >
@@ -62,8 +63,7 @@ Full method: [`docs/methodology.md`](docs/methodology.md). Rubric: [`docs/rubric
 
 ## Status and next steps
 
-Data collection and analysis are complete; peer review is complete and the manuscript is
-awaiting final editor approval (see **Status** above).
+Data collection and analysis are complete, and the article is published (see **Status** above).
 
 | Item | State |
 |------|-------|
@@ -73,7 +73,9 @@ awaiting final editor approval (see **Status** above).
 | Consensus synthesis + reference architecture ([`analysis/consensus/`](analysis/consensus/)) | done |
 | Cureus submission + two deferral revisions | done |
 | Peer review | done |
-| Publication-approval deferral (2026-11-16): sentence fix + Table 4-6 casing | done; resubmitted 2026-11-18, awaiting editor |
+| Publication-approval deferral (2026-11-16): sentence fix + Table 4-6 casing | done; resubmitted 2026-11-18 |
+| Publication-approval deferral (2026-11-21): 15 scientific issues | done; resubmitted 2026-11-25 |
+| Editor approval and publication | done, 2026-11-25, [doi:10.7759/s44389-026-00392-5](https://doi.org/10.7759/s44389-026-00392-5) |
 | Follow-up study on evaluator staleness | separate repository, private until the study is submitted |
 
 Contribution flow is one branch + PR per issue — see [`CONTRIBUTING.md`](CONTRIBUTING.md).
@@ -201,8 +203,10 @@ Short version (full version in [`CONTRIBUTING.md`](CONTRIBUTING.md)):
 
 ## Citation
 
-See [`CITATION.cff`](CITATION.cff). Short form:
+See [`CITATION.cff`](CITATION.cff). For the findings, cite the article:
+
+> Aryal, R. (2026). Large Language Models as Systems Architects: A Controlled Study of Consensus, Fabrication, and Constraint Reasoning on One Hard Design Task. *Cureus Journal of Computer Science*, 3, es44389-026-00392-5. https://doi.org/10.7759/s44389-026-00392-5
+
+For the data and analysis code, cite the archive:
 
 > Aryal, R. (2026). *Large Language Models as Systems Architects: A Controlled Study of Consensus, Fabrication, and Constraint Reasoning on One Hard Design Task* (dataset and analysis code). Zenodo. https://doi.org/10.5281/zenodo.22245991
-
-Manuscript through peer review and awaiting final editor approval at *Cureus Journal of Computer Science* (Springer Nature), article 21832.

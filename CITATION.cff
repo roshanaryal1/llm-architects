@@ -52,4 +52,8 @@ preferred-citation:
       given-names: Roshan
   journal: "Cureus Journal of Computer Science"
   year: 2026
-  notes: "Peer review complete; deferred 2026-11-21 at publication approval; revision resubmitted 2026-11-25, awaiting editor approval (Springer Nature, Cureus article 21832)."
+  month: 11
+  volume: 3
+  doi: 10.7759/s44389-026-00392-5
+  url: "https://www.cureusjournals.com/articles/21832-large-language-models-as-systems-architects-a-controlled-study-of-consensus-fabrication-and-constraint-reasoning-on-one-hard-design-task"
+  notes: "Article es44389-026-00392-5, published 2026-11-25 (Springer Nature, Cureus article 21832)."
