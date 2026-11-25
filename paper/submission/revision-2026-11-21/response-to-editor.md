@@ -210,7 +210,8 @@ state on the capture day rather than its current state.
    weights held fixed. Their adjudicated totals are 9, 8 and 6, all in the lower third, and two
    captures record the model version as not shown. The text now reports the observed
    differences (six of nine dimensions) and describes the comparison as one of chat modes, not
-   a controlled same-weights experiment.
+   a controlled same-weights experiment. Table 1 now gives the DeepSeek model
+   version as not shown or not disclosed (presumed V4-Pro), as the capture metadata records.
 6. **Reliable dimensions.** The previous text described recency, tool factuality and benchmark
    factuality as reliable. That holds for the canonical rater pair only and is now stated that
    way.
@@ -231,9 +232,19 @@ state on the capture day rather than its current state.
    citation-quality score changes from 0 to 1 as a result, and its total from 11 to 12; it stays
    in the middle third, and the sensitivity analyses were rerun. Its model-factuality score stays
    at 1: the model tag first given as the reason (Qwen3.5-35B-A3B) is a real release, but the
-   capture also gives a wrong size for DeepSeek V4 Flash.
+   capture also gives a wrong size for DeepSeek V4 Flash. The internal-consistency paragraph no
+   longer lists the Meta citation apparatus as a self-contradiction; it is described as a
+   source-quality weakness, as in Table 4.
 10. **References.** References [1] and [4] have seven and six authors and are now listed in full,
-   per the journal's rule; they had been cut to "et al.".
+   per the journal's rule; they had been cut to "et al.". References [1] and [2] now link to their
+   arXiv records, and the page ranges previously shown for them, which no source supports, are
+   removed.
+11. **Anchor scope.** The previous text said the anchor capture was excluded from every
+   cross-response aggregate. It is excluded from the consensus counts, the response rankings and
+   the rank-based thirds, but the rater-agreement statistics (Table 7, the kappa and alpha values,
+   and Figure 4) were computed over all thirteen responses, including the anchor, as were the
+   per-capture fabrication and consistency checks. The three sentences that made the wider claim
+   now say this, and the Table 1 note for the anchor is narrowed to match. No number changes.
 
 Two release-file fixes were also made that do not change any reported number: labels in the
 estimator's presets that still called two verified models fabricated were corrected, and the
