@@ -33,7 +33,9 @@ Add these as the note line under each existing table.
 **Table 1.** In the three DeepSeek rows, replace "DeepSeek-V4-Pro" with "DeepSeek, version not
 shown (presumed V4-Pro)" (Expert, Instant) and "DeepSeek, version not disclosed (presumed
 V4-Pro)" (Instant+DeepThink), as the capture metadata records. Replace the stale note "mode-variant
-(Sections 5, 9 only)" with "mode variant (see Table 6)".
+(Sections 5, 9 only)" with "mode variant (see Table 6)". In the anchor row, change the note
+ending "excluded from cross-response stats" to "anchor, not blind; excluded from consensus
+counts and rankings", since the rater-agreement statistics include the anchor.
 
 **Table 2.** Change the title from "Genuine product-level disagreements (no majority position)" to
 "Product-level decision axes: the options chosen and their counts", since some options have seven
