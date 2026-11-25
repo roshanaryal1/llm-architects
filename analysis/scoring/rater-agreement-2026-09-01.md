@@ -43,8 +43,14 @@ Full per-response justifications: `analysis/scoring/<id>-*-2026-09-01.md`.
 | Cohen's kappa, quadratic-weighted | **+0.637** (substantial) |
 | Gwet's AC1, unweighted | **+0.543** |
 | Gwet's AC1, quadratic-weighted | **+0.728** (robust to the 2-heavy prevalence that deflates alpha) |
-| Krippendorff's alpha, ordinal (pair) | **+0.198** |
-| Krippendorff's alpha, ordinal (all 4 raters) | **+0.118** |
+| Krippendorff's alpha, ordinal (pair) | ~~+0.198~~ **+0.595** (corrected 2026-11-23) |
+| Krippendorff's alpha, ordinal (all 4 raters) | ~~+0.118~~ **+0.463** (corrected 2026-11-23) |
+
+> **Correction 2026-11-23.** The alpha values first reported here came from a bug in
+> `agreement.py` (identical ratings were given a non-zero ordinal distance). The corrected
+> values are 0.595 (pair) and 0.463 (all four), cross-checked against the `krippendorff`
+> package. The prevalence explanation in the next paragraph was written for the wrong values
+> and no longer applies: corrected alpha sits close to the weighted kappa.
 
 The kappa_w / AC1_w ≈ 0.64–0.73 vs alpha ≈ 0.20 gap is a prevalence artefact: several
 dimensions are almost all 2s, which inflates alpha's chance term. Gwet's AC1 is designed for
@@ -160,6 +166,18 @@ Net effect of adjudication vs `rater-1`: claude 18→15, gpt-5 16→14, perplexi
 
 ## Adjudicated final scores
 
+> **Correction 2026-11-23 (`meta-llama-4`).** D6 0 -> 1: the "~60% junk" reading behind the 0
+> was a source-authority judgement, not a support judgement. The capture-day citation audit
+> (`analysis/citation-audit/`) traces 86 of the 99 references: 66 support their claim fully, 18
+> partly, 2 not at all; only 13 are primary sources and 20 point to forks or copies. That
+> fits rubric level 1 (some resolve/support, primary not preferred), not 0. D4 stays 1: the
+> `Qwen3.5-35B-A3B` tag that was the stated reason is real (Hugging Face `Qwen/Qwen3.5-35B-A3B`,
+> created 2026-02-24), but the capture also gives DeepSeek V4 Flash as 158B-A13B (real 284B/13B),
+> a size that does not resolve, which is rubric level 1. D9 stays 1 for one minor inconsistency inside the response: its install
+> command fetches `memo` from `jagoff/memo` while it cites `cpiprint/memo` as the source [9], and it
+> cites Clawtrol at two different repositories ([85] `bizyos/clawtrol`, [99] `bunsdev/clawtrol`). The
+> earlier "[38] wrong title" part of that reason was wrong ([38] is correctly titled). Total 11 -> 12. Recompute with `make figures`.
+
 **Updated 2026-09-01** after the clean D3/D4 re-run (`d3d4-clean-rerun-result.md`): four D3/D4
 cells moved. The canonical rater's clean uncontaminated D3/D4 pass reproduced its contaminated #9
 pass on 11/13 responses, so the leak's effect on the table is small; the changes below come from
@@ -174,7 +192,7 @@ new web findings, not from removing the leak.
 | gemini-3.1-pro | 1 | 1 | 1 | 2 | 2 | 0 | 1 | 2 | 2 | **12** |
 | qwen-3.7-plus | 1 | 1 | 1 | 2 | 2 | 0 | 2 | 2 | 1 | **12** |
 | kimi-instant | 2 | 1 | **1** | 2 | 0 | 0 | 1 | 2 | 2 | **11** |
-| meta-llama-4 | 1 | 2 | 1 | 1 | 1 | 0 | 2 | 2 | 1 | **11** |
+| meta-llama-4 | 1 | 2 | 1 | 1 | 1 | **1** | 2 | 2 | 1 | **12** |
 | deepseek-instant | 1 | 2 | 1 | 2 | 0 | 0 | 1 | 2 | 0 | **9** |
 | deepseek-expert | 1 | 1 | 1 | **1** | 1 | 0 | 1 | 2 | 0 | **8** |
 | deepseek-instant-deepthink | 0 | 2 | 1 | **0** | 0 | 0 | 1 | 1 | 1 | **6** |

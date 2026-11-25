@@ -7,6 +7,12 @@ Two raters run: **GPT-5.6 Sol** (ChatGPT, paid) and **Perplexity** (free).
 
 ## Headline
 
+> **Correction 2026-11-23.** Comparing `scores-gpt-5.6-sol-2026-09-01.csv` with
+> `scores-d3d4-gpt-5.6-sol-2026-09-01.csv` shows **three** changed cells, not two:
+> `mistral-large-3` D3 2->1 as well as the two listed below. The clean run therefore matched the
+> contaminated run on **10 of 13** responses. Whether the changes come from removing the leaked
+> list or from new verification evidence cannot be separated by this comparison.
+
 **The rater-packet leak did not materially change the canonical rater's D3/D4.**
 GPT-5.6 Sol's clean run matched its contaminated #9 run on **11 of 13 responses**; the two
 changes (`meta-llama-4` D4 1→2, `deepseek-instant-deepthink` D4 2→0) were both driven by specific

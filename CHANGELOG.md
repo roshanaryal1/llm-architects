@@ -5,6 +5,53 @@ All notable changes to the corpus and analysis. Format loosely follows
 
 ## [Unreleased]
 
+### Revision - 2026-11-23 - Capture-day citation audit (Cureus issue 10) and archive (issue 15)
+- `analysis/citation-audit/`: all 99 Meta references audited against their state on
+  31 Aug 2026 (Wayback captures; dated GitHub records via the API). 86 traceable: 66 full,
+  18 partial, 2 none; 13 not traceable to the capture day; 13 primary; 20 forks or copies. Replaces the
+  unrecorded "59 of 99". First pass by an AI assistant, every verdict with its reason and
+  evidence; `second-coder-sheet.csv` holds a blind 20-row sample for the author.
+- `meta-llama-4` re-adjudicated: D6 0 -> 1; D4 stays 1 (Qwen3.5-35B-A3B is real, but DeepSeek
+  V4 Flash is given a wrong size); total 11 -> 12; sensitivity outputs and Figure 1 regenerated.
+- Verification register: cplt, DiffResearch, agent-policy-engine and Helmrig resolved to real
+  projects created before the capture day; all 19 flagged names are real. Reference [38] is correctly titled.
+- Key verification evidence saved to the Wayback Machine (`analysis/verification/`).
+- Release `v1.1` archived on Zenodo: 10.5281/zenodo.24455267; cited in the manuscript and
+  letter; `CITATION.cff` updated to 1.1.0.
+
+### Revision - 2026-11-22 - Cureus editorial deferral of 2026-11-21 (15 issues)
+- Editor deferred approval on 2026-11-21 with 10 major and 5 minor scientific issues;
+  resubmission due by 2027-01-02. Not yet resubmitted.
+- Added `analysis/scripts/sensitivity.py` (rater exclusion, dimension sensitivity, rank-based
+  thirds, bootstrap and Wilson intervals, break-even memory reserves, permutation test on the
+  consensus gap) with outputs in `analysis/sensitivity/`, and `analysis/scripts/figures.py`
+  with four figures in `paper/figures/`. `make figures` regenerates both.
+- Added `analysis/citation-audit/` (citation decision rules and a 99-row audit sheet for the
+  Meta references; the original 59-of-99 pass kept no per-URL record).
+- Revised `paper/submission/manuscript-cureus.md`; response letter and portal guide in
+  `paper/submission/revision-2026-11-21/`.
+- Corrections found on the way: the Methods memory-reserve description did not match
+  `memory_budget.py`; the claim that the z-ai design exceeds 32 GB on weights alone was wrong;
+  the "reliable dimensions" held only for the canonical rater pair.
+- `memory_budget.py`: preset labels aligned with the verification register, and
+  `deepseek-instant` marked as an alternative reading (the capture says one large model at a
+  time). No numbers changed.
+- 2026-11-23, after an independent review of the branch:
+  - `agreement.py`: Krippendorff ordinal alpha fixed (identical ratings had a non-zero
+    distance). Canonical pair 0.198 -> 0.595, four raters 0.118 -> 0.463; checked against the
+    `krippendorff` package. This error was in the originally submitted paper.
+  - `memory_budget.py`: presets `deepseek-instant-qwen` and `deepseek-instant-gemma` for the
+    stated one-model-at-a-time design.
+  - `sensitivity.py`: thirds tie rule now matches its documentation; random-rater check uses
+    the clean D3/D4 scores; the unreproducible Meta 59/99 count removed.
+  - Manuscript: fabrication counts (19 names in 14 table entries), clean-pass counts (3 cells,
+    10/13), DeepSeek mode claims, memory verdicts, rater-robustness claims, and references [1]
+    and [4] corrected.
+  - Second review round: Kendall tau-b joint ties fixed (`agreement.py`); DeepSeek Instant
+    presets include the active 9B summarizer; LLM-mean condition with clean D3/D4; prompt
+    sensitivity and model-identity claims corrected; Table 4's Meta count replaced in the
+    portal guide; dated count corrections in the scoring README and clean re-run report.
+
 ### Submission - 2026-11-18 - Cureus publication-approval deferral fixes + resubmission
 - Editor deferred publication approval on 2026-11-16 with two points; both fixed in the
   Cureus portal and the article resubmitted on 2026-11-18 (status: Editor Approval).

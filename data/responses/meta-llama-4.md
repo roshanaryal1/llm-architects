@@ -825,3 +825,30 @@ largest reference apparatus in the corpus and the least reliable one. The 3-buck
 split needs a caveat: **bucket-3 responses can imitate bucket-1's surface form** (dense numbered
 citations) while remaining fabrication-heavy — the references are camouflage. Cross-check every
 cited URL; do not score "has a Sources section" as a proxy for "is grounded".
+
+### Correction 2026-11-23: citation audit, [38], and three names
+- A capture-day citation audit (`analysis/citation-audit/`; rules in `criteria.md`, counts from
+  `tally.py`) traced 86 of the 99 references to their state on 31 August 2026. Of those 86, 66
+  fully support their claim, 18 support it only partly and 2 do not. The other 13 cannot be
+  traced (gone or blocking automated access, no archive copy), so their capture-day state is
+  unknown.
+- The weakness is source authority, not support: only 13 of the 86 are primary sources, and 20
+  point to forks (zero or one star today) instead of the original repository.
+- The earlier "~60% junk URLs" note above mixed up low source authority with lack of support.
+  Many of the URLs are weak sources (commits, forks, personal repos), but only 2 of the 86
+  traceable references fail to support their claims.
+- `[38]` (arXiv 2412.14161) is correctly titled: the arXiv record is "TheAgentCompany:
+  Benchmarking LLM Agents on Consequential Real World Tasks", as Meta gives it. The notes above
+  that call it mis-titled, or the CodeAct paper, are wrong. The audit finds it only partly
+  supports the CodeAct claim it is attached to.
+- `cplt` is real: `https://github.com/navikt/cplt`, created 2026-04-09. Meta's [71]
+  `santobedi/cplt` is a fork of it; its README before the cutoff states the kernel-level
+  credential blocking and `git_guard.enabled` setting Meta describes.
+- `agent-policy-engine` is real: `https://github.com/visualops-ai/agent-policy-engine`, created
+  2026-05-28, cited directly as [74]. It returns allow, deny, sandbox or approval-required, as
+  Meta says.
+- The `Qwen3.5-35B-A3B` tag is real: `https://huggingface.co/Qwen/Qwen3.5-35B-A3B`, created
+  2026-02-24 (35B total, 3B active, Apache 2.0, 262,144-token context). OpenRouter lists the
+  canonical slug `qwen/qwen3.5-35b-a3b-20260224`, the id Meta gives. The "fabricated tag" and
+  "fake OpenRouter id" labels above are wrong.
+- Evidence and dates: `analysis/verification/tool-model-register.md` (correction 2026-11-23).
