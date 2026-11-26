@@ -1,7 +1,7 @@
 # LLMs as Systems Architects: A Controlled Study of Consensus, Fabrication, and Constraint Reasoning on One Hard Design Task
 
 **Author.** Roshan Aryal
-Bachelor of Information Technology (AI & Data Science), Otago Polytechnic, Auckland, New Zealand
+Artificial Intelligence and Data Science, Independent Researcher, Auckland, New Zealand
 Corresponding author: roshanaryaal@gmail.com
 
 **Data and code availability.** All data, prompts, the rubric, the four rater score sets, the
