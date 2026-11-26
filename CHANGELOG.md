@@ -5,6 +5,11 @@ All notable changes to the corpus and analysis. Format loosely follows
 
 ## [Unreleased]
 
+### Metadata - 2026-11-26 - ORCID on the citation and the archive
+- `CITATION.cff`: ORCID iD 0009-0001-4758-4977 added to the author in `authors` and
+  `preferred-citation`. Both Zenodo records (v1.0, v1.1) now carry the same ORCID and list the
+  article (doi:10.7759/s44389-026-00392-5) as a related work ("is supplement to") (#28).
+
 ### Fix - 2026-11-26 - `manuscript.md` labelled as a superseded draft
 - `paper/submission/manuscript.md` was last revised on 2026-09-10 and is not the published text
   (9 of its 257 sentences appear in the published article). It now says so at the top, and the
