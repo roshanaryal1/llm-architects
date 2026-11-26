@@ -9,7 +9,7 @@ Repository: <https://github.com/roshanaryal1/llm-architects> (MIT code / CC-BY-4
   open-ended systems-architecture task under a fixed consumer-hardware constraint, and to build
   a reusable protocol for evaluating such open-ended design output without a ground-truth
   answer key.
-- **Who created it / funded it?** Roshan Aryal (Otago Polytechnic). No external funding.
+- **Who created it / funded it?** Roshan Aryal (Independent Researcher, Auckland, New Zealand). No external funding.
 
 ## Composition
 

@@ -12,6 +12,11 @@ All notable changes to the corpus and analysis. Format loosely follows
 - README status, status table and citation section, and the `CITATION.cff` preferred citation,
   now point to the published article (#22).
 
+### Fix - 2026-11-26 - Author affiliation matches the published article
+- `paper/submission/manuscript.md` and `paper/submission/datasheet.md` gave an institutional
+  affiliation that does not apply to this paper. Both now give Independent Researcher, Auckland,
+  New Zealand, as on the published article (#24).
+
 ### Revision - 2026-11-23 - Capture-day citation audit (Cureus issue 10) and archive (issue 15)
 - `analysis/citation-audit/`: all 99 Meta references audited against their state on
   31 Aug 2026 (Wayback captures; dated GitHub records via the API). 86 traceable: 66 full,
