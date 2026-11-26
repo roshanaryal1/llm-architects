@@ -15,7 +15,8 @@
    - Tables inserted per-section via the portal Table tool; not in Abstract/Conclusions.
    - AI-tool use documented in Materials and Methods (CJCS AI policy).
    - Preprint disclosure (if arXiv-first) goes in Acknowledgements.
-  The generic version (manuscript.md) is kept for arXiv / DMLR.
+  manuscript.md is a superseded pre-revision draft (2026-09-10): do not use it for arXiv or
+  any other venue. The published article is doi:10.7759/s44389-026-00392-5 (see issue #6).
 
   Revision 2026-11-21 (editor deferral, 15 issues). Paste-in guide, table notes and the
   point-by-point response are in paper/submission/revision-2026-11-21/.

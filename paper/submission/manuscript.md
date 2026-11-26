@@ -1,5 +1,11 @@
 # LLMs as Systems Architects: A Controlled Study of Consensus, Fabrication, and Constraint Reasoning on One Hard Design Task
 
+> **Superseded draft.** This is the generic Markdown version as last revised on 2026-09-10,
+> before the November 2026 revisions. It is not the published text, so do not post or cite it
+> as the paper. The published article is
+> [doi:10.7759/s44389-026-00392-5](https://doi.org/10.7759/s44389-026-00392-5); the text
+> entered in the Cureus portal is [`manuscript-cureus.md`](manuscript-cureus.md).
+
 **Author.** Roshan Aryal
 Artificial Intelligence and Data Science, Independent Researcher, Auckland, New Zealand
 Corresponding author: roshanaryaal@gmail.com

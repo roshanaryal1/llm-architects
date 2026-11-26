@@ -114,7 +114,7 @@ llm-architects/
 │   ├── draft-v1.md              Working long-form write-up
 │   └── submission/              Cureus CJCS submission
 │       ├── manuscript-cureus.md   The submitted manuscript (portal source of record)
-│       ├── manuscript.md          Portable Markdown mirror
+│       ├── manuscript.md          Superseded generic draft (2026-09-10); not the published text
 │       ├── references.bib         All references — peer-reviewed, no preprints
 │       └── datasheet.md
 │
