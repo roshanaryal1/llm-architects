@@ -5,6 +5,11 @@ All notable changes to the corpus and analysis. Format loosely follows
 
 ## [Unreleased]
 
+### Fix - 2026-11-26 - `manuscript.md` labelled as a superseded draft
+- `paper/submission/manuscript.md` was last revised on 2026-09-10 and is not the published text
+  (9 of its 257 sentences appear in the published article). It now says so at the top, and the
+  README layout no longer calls it a mirror (#26).
+
 ### Publication - 2026-11-25 - Published in Cureus Journal of Computer Science
 - The editor approved the 2026-11-25 resubmission and the article was published the same day:
   *Cureus Journal of Computer Science* 3: es44389-026-00392-5,
